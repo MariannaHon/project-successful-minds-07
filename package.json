@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/project-successful-minds-07/",
-    "lint": "eslint .",
+    "lint:js": "eslint src/**/*.{js,jsx}",
     "preview": "vite preview"
   },
   "dependencies": {
