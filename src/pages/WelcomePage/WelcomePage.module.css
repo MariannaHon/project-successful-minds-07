@@ -1,0 +1,7 @@
+.welcomePage {
+  background-image: url('../../../public/images/WelcomePage-background-desktop-op.jpg.jpg'),
+    url('../../../public/images/WelcomePage-background-desktop-two-op.jpg.jpg');
+  background-size: cover;
+  width: 1440px;
+  height: 800px;
+}
