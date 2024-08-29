@@ -1,36 +1,32 @@
-//import React from 'react';
-
-//import { useSelector, useDispatch } from 'react-redux';
-
 import { useNavigate } from 'react-router-dom';
 
-import styles from './WaterConsumptionTracker.module.css';
+import css from './WaterСonsumptionTracker.module.css';
 
 const WaterСonsumptionTracker = () => {
   const navigate = useNavigate();
 
   const handleTryTrackerClick = () => {
-    navigate('/signup'); // Використовуємо navigate для переходу
+    navigate('/signup');
   };
   return (
-    <div className={styles.waterСonsumptionTrackerBlockOne}>
-      <h1 className={styles.waterСonsumptionTrackerHeader}>
+    <div className={css.waterСonsumptionTrackerBlockOne}>
+      <h1 className={css.waterСonsumptionTrackerHeader}>
         Water consumption tracker
       </h1>
 
-      <h2 className={styles.waterСonsumptionTrackerSubheader}>
+      <h2 className={css.waterСonsumptionTrackerSubheader}>
         Record daily water intake and track your progress
       </h2>
 
-      <h3 className={styles.waterСonsumptionTrackerBlockOneTitle}>
+      <h3 className={css.waterСonsumptionTrackerBlockOneTitle}>
         Tracker Benefits
       </h3>
 
-      <ul className={styles.waterСonsumptionTrackerContainer}>
-        <li className={styles.waterСonsumptionTrackerItem}>
+      <ul className={css.waterСonsumptionTrackerContainer}>
+        <li className={css.waterСonsumptionTrackerItem}>
           <span>
             <svg
-              className={styles.iconCalendarDays}
+              className={css.iconCalendarDays}
               width="40"
               height="40"
               aria-label="icon-calendar-days"
@@ -42,10 +38,10 @@ const WaterСonsumptionTracker = () => {
           <span>Habit drive</span>
         </li>
 
-        <li className={styles.waterСonsumptionTrackerItem}>
+        <li className={css.waterСonsumptionTrackerItem}>
           <span>
             <svg
-              className={styles.iconPresentationChartBar}
+              className={css.iconPresentationChartBar}
               width="40"
               height="40"
               aria-label="icon-presentation-chart-bar"
@@ -57,10 +53,10 @@ const WaterСonsumptionTracker = () => {
           <span>View statistics</span>
         </li>
 
-        <li className={styles.waterСonsumptionTrackerItem}>
+        <li className={css.waterСonsumptionTrackerItem}>
           <span>
             <svg
-              className={styles.iconWrenchScrewdriver}
+              className={css.iconWrenchScrewdriver}
               width="40"
               height="40"
               aria-label="icon-wrench-screwdriver"
@@ -74,7 +70,7 @@ const WaterСonsumptionTracker = () => {
       </ul>
       <button
         type="button"
-        className={styles.button}
+        className={css.button}
         onClick={handleTryTrackerClick}
       >
         Try tracker

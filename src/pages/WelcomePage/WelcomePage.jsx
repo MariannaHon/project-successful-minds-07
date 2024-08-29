@@ -1,43 +1,13 @@
-//import React from 'react';
+import { WaterСonsumptionTracker } from '../../components/WaterСonsumptionTracker/WaterСonsumptionTracker.jsx';
 
-import //useSelector,
-
-//useDispatch,
-
-'react-redux';
-
-//import { useNavigate } from 'react-router-dom';
-
-//import styled from 'styled-components';
-
-import { WaterСonsumptionTracker } from '../../components/WaterСonsumptionTracker';
-
-import { WhyDrinkWater } from '../../components/WhyDrinkWater';
-
-//import { WhyDrinkWater } from '../../components/WhyDrinkWater';
+import { WhyDrinkWater } from '../../components/WhyDrinkWater/WhyDrinkWater.jsx';
 
 const WelcomePage = () => {
-  //const dispatch = useDispatch();
-
-  //const navigate = useNavigate();
-
-  //   const handleTryTrackerClick = () => {
-
-  //     navigate('/signup');
-
-  //   };
-
   return (
     <>
       <WaterСonsumptionTracker />
 
       <WhyDrinkWater />
-
-      {/* <TryTrackerButton onClick={handleTryTrackerClick}>
-
-        Try tracker
-
-      </TryTrackerButton> */}
     </>
   );
 };
