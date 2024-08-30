@@ -1,0 +1,11 @@
+.text {
+  padding: 50px;
+  font-weight: 500;
+  font-size: 25px;
+  color: var(--primary-black);
+}
+
+.link {
+  font-weight: 500;
+  color: var(--primary-blue);
+}
