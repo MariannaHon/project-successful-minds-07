@@ -10,10 +10,12 @@
   --secondary-orange: #ff9d43;
   --secondary-pale-blue: #d7e3ff;
   --overlay-bg-color: rgba(0, 0, 0, 0.8);
-
   /* FONT-SIZE */
+
   --font-size-large: 36px;
+  --font-size-bigger: 28px;
   --font-size-base: 26px;
+  --font-size-normal: 24px;
   --font-size-medium: 18px;
   --font-size-smaller: 16px;
   --font-size-small: 12px;

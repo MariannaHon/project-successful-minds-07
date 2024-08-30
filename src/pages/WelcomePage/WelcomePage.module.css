@@ -1,7 +1,63 @@
+.welcomePageContainer {
+  max-width: var(--container-max-width);
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 .welcomePage {
-  background-image: url('../../../public/images/WelcomePage-background-desktop-op.jpg.jpg'),
-    url('../../../public/images/WelcomePage-background-desktop-two-op.jpg.jpg');
-  background-size: cover;
-  width: 1440px;
-  height: 800px;
+  background-color: var(--primary-white);
+  background-image: url('../../../public/images/BackgroundWelcomePageMobile.png')
+    no-repeat bottom;
+
+  //background-size: cover;
+  //background-position: bottom;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //object-fit: cover;
+}
+
+.welcomePageContainerBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .welcomePageContainer {
+    max-width: var(--container-medium-width);
+  }
+}
+
+/* ____________________________Desctop style____________________________ */
+
+@media screen and (min-width: 1440px) {
+  .welcomePageContainer {
+    max-width: var(--container-max-width);
+  }
+  .welcomePage {
+    background-color: var(--primary-white);
+    background-image: url('../../../public/images/BackgroundWelcomePage.png'),
+      url('../../../public/images/BackgroundElemWelcomePage.png');
+    background-repeat: no-repeat;
+    //background-size: cover;
+    background-position: bottom, 50%;
+    width: 1440px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    //object-fit: cover;
+  }
+
+  .welcomePageContainerBlock {
+    display: flex;
+    align-items: end;
+    margin-top: 135px;
+  }
 }

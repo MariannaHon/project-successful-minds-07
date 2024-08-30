@@ -1,0 +1,43 @@
+.whyDrinkWaterBlockTwo {
+  background-color: var(--secondary-light-blue);
+  box-shadow: var(--box-shadow-medium);
+  min-width: 320px;
+  padding: 0 20px;
+
+  padding: 24px 16px 24px 16px;
+  gap: 12px;
+  border-radius: var(--border-radius-smaller);
+  display: flex;
+  flex-direction: column;
+}
+
+.WaterHeader {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-extra-tight);
+  text-align: left;
+  color: var(--primary-black);
+  margin-bottom: 12px;
+  //margin-bottom: 10px;
+}
+.waterItem {
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+  color: var(--primary-black);
+  display: flex;
+  align-items: center;
+  //gap: 12px;
+  margin-bottom: 16px;
+}
+.myIconSpan {
+  display: flex;
+  color: var(--primary-blue);
+  padding-right: 3px;
+  size: 8px;
+  align-items: center;
+}
+span {
+  display: block;
+}

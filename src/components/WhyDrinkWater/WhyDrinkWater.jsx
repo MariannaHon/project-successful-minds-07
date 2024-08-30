@@ -1,37 +1,58 @@
-import styles from './WhyDrinkWater.module.css';
-
+import css from './WhyDrinkWater.module.css';
+import { VscCircleFilled } from 'react-icons/vsc';
 const WhyDrinkWater = () => {
   return (
-    <div className={styles.whyDrinkWaterBlockTwo}>
-      <h3 className={styles.whyDrinkWaterHeader}>Why drink water</h3>
+    <div className={css.whyDrinkWaterBlockTwo}>
+      <h3 className={css.WaterHeader}>Why drink water</h3>
 
-      <ul className={styles.whyDrinkWaterContainer}>
-        <li className={styles.whyDrinkWaterItem}>
+      <ul className={css.whyDrinkWaterContainer}>
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
           Supply of nutrients to all organs
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
           Providing oxygen to the lungs
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
           Maintaining the work of the heart
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
           Release of processed substances
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
           Ensuring the stability of the internal environment
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
-          Maintaining within the normal temperature
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
+          <span>Maintaining within the normal temperature</span>
         </li>
 
-        <li className={styles.whyDrinkWaterItem}>
-          Maintaining an immune system capable of resisting disease
+        <li className={css.waterItem}>
+          <span className={css.myIconSpan}>
+            <VscCircleFilled size="14" />
+          </span>
+          <span>Maintaining an immune system capable of resisting disease</span>
         </li>
       </ul>
     </div>
