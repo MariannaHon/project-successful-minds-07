@@ -10,7 +10,6 @@
     url('../../../public/images/BackgroundWelcomePageMobile.png') no-repeat;
   width: var(--container-min-width);
   height: 952px;
-  //background-size: cover cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,17 +17,14 @@
 }
 
 /* Перевизначаємо шлях до зображення
-   якщо щільність екрана як мінімум 2x */
-/* @media (min-resolution: 192dpi) {
+   якщо щільність екрана як мінімум 2x 
+ @media (min-resolution: 192dpi) {
   .welcomePage {
     background: var(--primary-white)
-      url('../../../public/images/BackgroundWelcomePageMobile@2x.png') no-repeat
-      contain; 
-//background-size: 320px 952px;
-//}
-//}*/
+      url('../../../public/images/BackgroundWelcomePageMobile@2x.png') no-repeat; 
+   }
+ }*/
 .welcomePageContainerBlock {
- 
   margin: 0 auto;
 }
 
@@ -59,21 +55,19 @@
     background-image: url('../../../public/images/BackgroundWelcomePage.png'),
       url('../../../public/images/BackgroundElemWelcomePage.png');
     background-repeat: no-repeat;
-    //background-size: cover;
     background-position: bottom, 50%;
     width: 1440px;
     height: 800px;
     display: flex;
     justify-content: center;
     align-items: start;
-    //object-fit: cover;
-    //flex-direction: row;
+    flex-direction: row;
   }
 
   .welcomePageContainerBlock {
-    //display: flex;
+    display: flex;
     align-items: end;
-    margin-top: 135px;
+    margin-top: 115px;
     flex-direction: row;
   }
 }
