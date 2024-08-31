@@ -8,19 +8,17 @@ import { useId } from 'react';
 
 const AuthForm = () => {
   console.log('-------------AUTHFORM');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   
   const login = Yup.object().shape({
     email: Yup.string()
       .email('Please enter a valid email address')
       .required('Required'),
     password: Yup.string()
-      .min(8, 'Password must be at least 8 characters')
+      .min(4, 'Password must be at least 8 characters')
       .max(64, 'Password must be no more than 64 characters')
       .required('Required'),
   });
-
-  
 
   const mailFieldId = useId();
   const passwordFieldId = useId();
@@ -34,7 +32,9 @@ const AuthForm = () => {
           email: values.email,
           password: values.password,
         };
-          dispatch(SignIn(userData));
+        console.log({userData});
+        
+          // dispatch(SignIn(userData));
         actions.resetForm();
       }}
     >
