@@ -41,6 +41,29 @@
 @media screen and (min-width: 768px) {
   .welcomePageContainer {
     max-width: var(--container-medium-width);
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .welcomePage {
+    background: var(--primary-white)
+      url('../../../public/images/BackgroundTabletWelcomePage.png') no-repeat;
+    width: var(--container-medium-width);
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center;
+    margin: 0 auto; */
+  }
+  .welcomePageContainerBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
   }
 }
 

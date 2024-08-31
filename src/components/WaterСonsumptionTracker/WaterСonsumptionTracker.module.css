@@ -77,6 +77,46 @@
     width: 40px;
     height: 40px;
   }
+  .WaterСonsumptionTrackerButton {
+    box-shadow: var(--box-shadow-regular);
+    width: 336px;
+    height: 44px;
+    padding: 10px 30px 10px 30px;
+    border-radius: var(--border-radius-smaller);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-loose);
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .waterСonsumptionTrackerContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .waterСonsumptionTrackerHeader {
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-tight);
+    margin-bottom: 16px;
+    width: 439px;
+  }
+
+  .waterСonsumptionTrackerSubheader {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    width: 439px;
+    margin-bottom: 24px;
+  }
+  .WaterHeader {
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-extra-tight);
+    text-align: left;
+    color: var(--primary-black);
+    margin-bottom: 12px;
+  }
 }
 
 /* ____________________________Desctop style____________________________ */
