@@ -1,15 +1,26 @@
 import { useDispatch } from 'react-redux';
 import { SignIn } from '../../redux/auth/operations';
 import css from './AuthForm.module.css';
-
+import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
-import { signin } from '../../validation';
+
 
 const AuthForm = () => {
   console.log('-------------AUTHFORM');
+  const dispatch = useDispatch();
+  
+  const login = Yup.object().shape({
+    email: Yup.string()
+      .email('Please enter a valid email address')
+      .required('Required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(64, 'Password must be no more than 64 characters')
+      .required('Required'),
+  });
 
-  //   const dispatch = useDispatch();
+  
 
   const mailFieldId = useId();
   const passwordFieldId = useId();
@@ -17,13 +28,13 @@ const AuthForm = () => {
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
-      validationSchema={signin}
+      validationSchema={login}
       onSubmit={(values, actions) => {
         const userData = {
           email: values.email,
           password: values.password,
         };
-        //   dispatch(SignIn(userData));
+          dispatch(SignIn(userData));
         actions.resetForm();
       }}
     >
