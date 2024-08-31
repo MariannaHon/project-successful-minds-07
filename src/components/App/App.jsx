@@ -17,24 +17,22 @@ export default function App() {
     <div>
       <SharedLayout>
         <Routes>
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/welcome" component={<WelcomePage />} />
           <Route
             path="/signup"
             element={
-              <RestrictedRoute redirectTo="/home" component={<SignupPage />} />
+              <RestrictedRoute redirectTo="/home" component={SignupPage} />
             }
           />
           <Route
             path="/signin"
             element={
-              <RestrictedRoute component={<SigninPage />} redirectTo="/home" />
+              <RestrictedRoute component={SigninPage} redirectTo="/home" />
             }
           />
           <Route
             path="/home"
-            element={
-              <PrivateRoute component={<HomePage />} redirectTo="/signin" />
-            }
+            element={<PrivateRoute component={HomePage} redirectTo="/signin" />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
