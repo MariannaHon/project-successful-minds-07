@@ -3,16 +3,18 @@ import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-
+import SigninPage from '../../pages/SigninPage/SigninPage';
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
-const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
+// const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
+    console.log('-------Appp');
+    
   return (<div>
     <SharedLayout>
       <Routes>
