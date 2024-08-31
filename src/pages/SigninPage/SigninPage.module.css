@@ -1,0 +1,25 @@
+.container{
+    width: var(--container-min-width);
+    height: 100vh;
+    text-align: left;
+    color:var(--primary-black);
+    background-color: rgb(242, 183, 183);
+    padding: 0 20px;
+}
+.title{
+    color:var(--primary-black);
+}
+.link{
+    text-decoration: none;
+    color: var(--primary-blue);
+}
+@media screen and (min-width: 768px) {
+    .container{
+        width: var(--container-medium-width);
+    }
+}
+@media screen and (min-width: 1440px) {
+    .container{
+        width: var(--container-max-width);
+    }
+}
