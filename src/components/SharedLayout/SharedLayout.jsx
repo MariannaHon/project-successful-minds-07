@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
-import css from './Layout.module.css';
+import css from './SharedLayout.module.css';
 
 export const SharedLayout = ({ children }) => {
   return (
