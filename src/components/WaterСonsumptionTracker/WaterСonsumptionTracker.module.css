@@ -87,12 +87,12 @@
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-loose);
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
   .waterСonsumptionTrackerContainer {
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 110px;
     margin-bottom: 24px;
   }
   .waterСonsumptionTrackerHeader {
@@ -116,6 +116,9 @@
     text-align: left;
     color: var(--primary-black);
     margin-bottom: 12px;
+  }
+  .spanText {
+    /* weight: 40px; */
   }
 }
 

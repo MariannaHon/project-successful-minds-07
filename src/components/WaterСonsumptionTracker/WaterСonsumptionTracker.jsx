@@ -20,12 +20,7 @@ const WaterСonsumptionTracker = () => {
         <ul className={styles.waterСonsumptionTrackerContainer}>
           <li className={styles.waterItem}>
             <span>
-              <svg
-                className={styles.iconBar}
-                width="40"
-                height="40"
-                aria-label="icon-calendar-days"
-              >
+              <svg className={styles.iconBar} aria-label="icon-calendar-days">
                 <use href="../../../public/symbol-defs.svg#icon-calendar-days"></use>
               </svg>
             </span>
@@ -37,8 +32,6 @@ const WaterСonsumptionTracker = () => {
             <span>
               <svg
                 className={styles.iconBar}
-                width="40"
-                height="40"
                 aria-label="icon-presentation-chart-bar"
               >
                 <use href="../../../public/symbol-defs.svg#icon-presentation-chart-bar"></use>
@@ -52,8 +45,6 @@ const WaterСonsumptionTracker = () => {
             <span>
               <svg
                 className={styles.iconBar}
-                width="40"
-                height="40"
                 aria-label="icon-wrench-screwdriver"
               >
                 <use href="../../../public/symbol-defs.svg#icon-wrench-screwdriver"></use>
