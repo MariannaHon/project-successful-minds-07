@@ -1,29 +1,39 @@
 .welcomePageContainer {
-  max-width: var(--container-max-width);
-  padding: 0 20px;
+  max-width: var(--container-min-width);
   margin: 0 auto;
+  padding: 0 20px;
+  margin-top: 25px;
 }
 
 .welcomePage {
-  background-color: var(--primary-white);
-  background-image: url('../../../public/images/BackgroundWelcomePageMobile.png')
-    no-repeat bottom;
-
-  //background-size: cover;
-  //background-position: bottom;
-
+  background: var(--primary-white)
+    url('../../../public/images/BackgroundWelcomePageMobile.png') no-repeat;
+  width: var(--container-min-width);
+  height: 952px;
+  //background-size: cover cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //object-fit: cover;
+  margin: 0 auto;
 }
 
+/* Перевизначаємо шлях до зображення
+   якщо щільність екрана як мінімум 2x */
+/* @media (min-resolution: 192dpi) {
+  .welcomePage {
+    background: var(--primary-white)
+      url('../../../public/images/BackgroundWelcomePageMobile@2x.png') no-repeat
+      contain; 
+//background-size: 320px 952px;
+//}
+//}*/
 .welcomePageContainerBlock {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+
+  margin: 0 auto;
 }
 
 /* ____________________________Tablet style____________________________ */
@@ -53,11 +63,13 @@
     justify-content: center;
     align-items: start;
     //object-fit: cover;
+    //flex-direction: row;
   }
 
   .welcomePageContainerBlock {
-    display: flex;
+    //display: flex;
     align-items: end;
     margin-top: 135px;
+    flex-direction: row;
   }
 }

@@ -1,7 +1,6 @@
 .waterСonsumptionTrackerBlockOne {
   display: flex;
   flex-direction: column;
-  //min-width: 320px;
 }
 
 .waterСonsumptionTrackerHeader {
@@ -11,6 +10,7 @@
   text-align: left;
   color: var(--primary-black);
   margin-bottom: 16px;
+  width: 246px;
 }
 
 .waterСonsumptionTrackerSubheader {
@@ -20,6 +20,7 @@
   text-align: left;
   color: var(--primary-black);
   margin-bottom: 16px;
+  width: 197px;
 }
 .WaterHeader {
   font-size: var(--font-size-medium);
