@@ -1,14 +1,16 @@
 
 import { lazy } from 'react';
-// import Toaster from ''
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-import SigninPage from '../../pages/SigninPage/SigninPage';
+import { Toaster } from 'react-hot-toast';
+import './App.css';
+
+
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
-// const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
+const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
@@ -18,7 +20,7 @@ export default function App() {
   return (
     <div>
       <SharedLayout>
-        {/* <Toaster /> */}
+        <Toaster />
         <Routes>
           <Route path="/welcome" component={<WelcomePage />} />
           <Route

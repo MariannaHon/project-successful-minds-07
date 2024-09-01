@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { SignIn } from '../../redux/auth/operations';
+import { logIn } from '../../redux/auth/operations';
 import css from './AuthForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
@@ -8,7 +8,7 @@ import { useId } from 'react';
 
 const AuthForm = () => {
   console.log('-------------AUTHFORM');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   
   const login = Yup.object().shape({
     email: Yup.string()
@@ -34,7 +34,7 @@ const AuthForm = () => {
         };
         console.log({userData});
         
-          // dispatch(SignIn(userData));
+          dispatch(logIn(userData));
         actions.resetForm();
       }}
     >

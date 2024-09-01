@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser } from "./operations";
+import { register, logIn } from "./operations";
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefresh: false,
   error: null,
 };
 
@@ -32,25 +32,25 @@ const authSlice = createSlice({
       .addCase(logIn.rejected, (state, action) => {
         state.error = action.payload;
       })
-      .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
-        state.error = null;
-      })
-      .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-        state.error = null;
-      })
-      .addCase(refreshUser.rejected, (state, action) => {
-        state.isRefreshing = false;
-        state.error = action.payload;
-      });
+      // .addCase(logOut.fulfilled, (state) => {
+      //   state.user = { name: null, email: null };
+      //   state.token = null;
+      //   state.isLoggedIn = false;
+      //   state.error = null;
+      // })
+      // .addCase(refreshUser.pending, (state) => {
+      //   state.isRefresh = true;
+      // })
+      // .addCase(refreshUser.fulfilled, (state, action) => {
+      //   state.user = action.payload;
+      //   state.isLoggedIn = true;
+      //   state.isRefresh = false;
+      //   state.error = null;
+      // })
+      // .addCase(refreshUser.rejected, (state, action) => {
+      //   state.isRefresh = false;
+      //   state.error = action.payload;
+      // });
   },
 });
 
