@@ -33,26 +33,41 @@ const RegisterForm = () => {
   return (
     <div className={css.registerContainer}>
       <div className={css.registerHeader}>
-        <p>Tracker of water</p>
-        <a href="/signin">Sign in</a>
+        <div>
+          <svg className={css.waterIcon}>
+            <use href="../../../public/symbol-defs.svg#"></use>
+          </svg>
+          <h2 className={css.title}>Tracker of water</h2>
+        </div>
+
+        <a className={css.link} href="/signin">
+          Sign in
+        </a>
       </div>
+      <p className={css.description}>Sign Up</p>
       <Formik
         initialValues={{ email: '', password: '', repeatPassword: '' }}
         onSubmit={onSubmit}
         validationSchema={formSchema}
       >
         <Form className={css.form}>
-          <p>Sign Up</p>
+          <label className={css.label} htmlFor="email">
+            Enter your email
+          </label>
           <Field
             className={css.input}
+            id="email"
             type="email"
             name="email"
             autoComplete="off"
             placeholder="E-mail"
           ></Field>
           <ErrorMessage className={css.warning} name="email" component="span" />
-
+          <label className={css.label} htmlFor="password">
+            Enter your password
+          </label>
           <Field
+            id="password"
             className={css.input}
             type="password"
             name="password"
@@ -64,8 +79,11 @@ const RegisterForm = () => {
             name="password"
             component="span"
           />
-
+          <label className={css.label} htmlFor="repeatPassword">
+            Repeat password
+          </label>
           <Field
+            id="repeatPassword"
             className={css.input}
             type="password"
             name="repeatPassword"
@@ -76,15 +94,13 @@ const RegisterForm = () => {
           <button className={css.button} type="submit">
             Sign Up
           </button>
-
-          <a href="/signin">Sign in</a>
         </Form>
       </Formik>
-      <img
-        className={css.image}
-        src="../../../public/images/BottleRegisterMobile.jpg"
-        alt="BottleLogo"
-      />
+      <div className={css.image} alt="BottleLogo">
+        <a className={css.link} href="/signin">
+          Sign in
+        </a>
+      </div>
     </div>
   );
 };
