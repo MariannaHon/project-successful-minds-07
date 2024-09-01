@@ -1,12 +1,10 @@
-
 import { lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
-
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
@@ -22,7 +20,7 @@ export default function App() {
       <SharedLayout>
         <Toaster />
         <Routes>
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route path="/" element={<WelcomePage />} />
           <Route
             path="/signup"
             element={
