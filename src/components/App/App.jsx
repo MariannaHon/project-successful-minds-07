@@ -22,7 +22,7 @@ export default function App() {
       <SharedLayout>
         <Toaster />
         <Routes>
-          <Route path="/welcome" component={<WelcomePage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route
             path="/signup"
             element={
