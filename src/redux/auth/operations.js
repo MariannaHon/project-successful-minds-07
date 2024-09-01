@@ -13,7 +13,10 @@ export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
-      const response = await axios.post('/users/signup', newUser);
+      const response = await axios.post(
+        'https://successful-minds-db.onrender.com/auth/signup',
+        newUser
+      );
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
