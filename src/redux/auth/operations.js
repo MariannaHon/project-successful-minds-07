@@ -13,7 +13,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
-      const response = await axios.post('/users/signup', newUser);
+      const response = await axios.post('/auth/signup', newUser);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -25,25 +25,14 @@ export const register = createAsyncThunk(
 
 axios.defaults.baseURL = "https://successful-minds-db.onrender.com/";
 
-// export const register = createAsyncThunk(
-//   "auth/register",
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const res = await axios.post("/users/signup", credentials);
-//       setAuthHeader(res.data.token);
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const logIn = createAsyncThunk(
   "auth/signin",
-  async (newUser, thunkAPI) => {
+  async (User, thunkAPI) => {
     try {
-      const response = await axios.post("/users/signin", newUser);
+      const response = await axios.post("/auth/signin", User);
       setAuthHeader(response.data.token);
+      console.log(response.data);
+      
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');

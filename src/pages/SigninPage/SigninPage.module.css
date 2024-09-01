@@ -12,7 +12,7 @@
   margin-bottom: 66px;  
 }
 .background{
-    background:url('../../images/signin/mobile-background.png') no-repeat;
+    background:url('../../../public/images/signin/mobile-background.png') no-repeat;
     width: 320px;
 }
 .title {
@@ -23,7 +23,7 @@
   color: var(--primary-blue);
 }
 .image{
-    background: url('../../images/signin/mobile-bottle.png') no-repeat;
+    background: url('../../../public/images/signin/mobile-bottle.png') no-repeat;
     width: 280px;
     height: 210px;
 }
@@ -31,9 +31,29 @@
   .container {
     width: var(--container-medium-width);
   }
+  .background{
+    background:url('../../../public/images/signin/table-background.png') no-repeat;
+    width: 768px;
+}
+
+  .image{
+    background: url('../../../public/images/signin/tablet-bottle.png') no-repeat;
+    width: 736px;
+    height: 548px;
+}
 }
 @media screen and (min-width: 1440px) {
   .container {
     width: var(--container-max-width);
   }
+  .background{
+    background:url('../../../public/images/signin/desktop-background.png') no-repeat;
+    width: 768px;
+}
+
+  .image{
+    background: url('../../../public/images/signin/desktop-bottle.png') no-repeat;
+    width: 916px;
+    height: 680px;
+}
 }

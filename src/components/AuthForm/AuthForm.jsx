@@ -63,7 +63,7 @@ const AuthForm = () => {
           <Field
             type="password"
             name="password"
-            rel="to-replace"
+            
             id={passwordFieldId}
             className={css.inputField}
             placeholder="Password"
