@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1,
@@ -35,11 +35,17 @@ a {
 
 button {
   cursor: pointer;
-	font-family: inherit;
+  font-family: inherit;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+button,
+button:active,
+button:focus {
+  border: none;
 }
