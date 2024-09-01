@@ -1,4 +1,7 @@
 import * as React from 'react';
+import  {useState} from 'react';
+
+// import clsx from "clsx";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,6 +10,10 @@ import FormLabel from '@mui/material/FormLabel';import { useId } from "react";
 import { LuUpload } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
+import { FaRegEye } from "react-icons/fa6";
+{/* <FaRegEye /> */}
+import { FaRegEyeSlash } from "react-icons/fa6";
+{/* <FaRegEyeSlash /> */}
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
@@ -16,7 +23,7 @@ import * as Yup from "yup";
 
 // import { useDispatch } from "react-redux";
 import css from "./SettingModal.module.css";
-// import {updateUser} from "../../redux/auth/operations";
+// import {refreshUser} from "../../redux/auth/operations";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string().min(3, "Too Short!").max(50, "Too Long!"),
@@ -49,7 +56,21 @@ const FeedbackSchema = Yup.object().shape({
     //   dispatch(updateUser(values))          
         actions.resetForm();
       };
+    // Show/hide pssword
+    const [openPsw, setOpenPsw] = useState(true);
+  
+    const [type, setType] = useState('password');
 
+    const togglePassInput = () => {
+      if (type === 'password') {
+          setType('text');
+          setOpenPsw(!open)
+     
+      } else {
+          setType('password');
+          setOpenPsw(open)
+      }
+  };
     
       return (
        <div>
@@ -101,15 +122,31 @@ validationSchema={FeedbackSchema} >
             
             <h3>Password</h3>
             <label  htmlFor={`${fieldId}-outPassword`} className={css.label}>Outdated password:</label>
-            <Field type="password" name="outPassword" id={`${fieldId}-outPassword`}  className={css.field} />
-            <ErrorMessage name="outPassword" component="span" className={css.error}/>
+            <Field type={type} name="outPassword" id={`${fieldId}-outPassword`}  className={css.field} />
+            <span>{
+                    (openPsw === false)? <FaRegEye name="outPassword" id={`${fieldId}-outPassword`} className={css.eye} onClick={togglePassInput}/>:
+                    <FaRegEyeSlash name="outPassword" id={`${fieldId}-outPassword`} className={css.eye} onClick={togglePassInput}/>
+                  }
+            </span>
+            <ErrorMessage name="outPassword" component="span" className={css.error}/>            
 
             <label  htmlFor={`${fieldId}-nPassword`} className={css.label} >New Password:</label>
             <Field type="password" name="nPassword" id={`${fieldId}-nPassword`}  className={css.field}/>
+            
+            <span>{
+                    (openPsw === false)? <FaRegEye name="nPassword" id={`${fieldId}-nPassword`}  className={css.eye} onClick={togglePassInput}/>:
+                    <FaRegEyeSlash name="nPassword" id={`${fieldId}-nPassword`} className={css.eye.eyeClose} onClick={togglePassInput}/>
+                  }
+            </span>
             <ErrorMessage name="nPassword" component="span" className={css.error}/>
 
             <label  htmlFor={`${fieldId}-repeatNPassword`} className={css.label} >Repeat new password:</label>
             <Field type="password" name="repeatNPassword" id={`${fieldId}-repeatNPassword`}  className={css.field}/>
+            <span>{
+                    (openPsw === false)? <FaRegEye name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>:
+                    <FaRegEyeSlash name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>
+                  }
+            </span>
             <ErrorMessage name="repeatNPassword" component="span" className={css.error}/>
 
         </div>
