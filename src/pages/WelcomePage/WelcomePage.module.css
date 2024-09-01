@@ -7,7 +7,7 @@
 
 .welcomePage {
   background: var(--primary-white)
-    url('../../../public/images/BackgroundWelcomePageMobile.png') no-repeat;
+    url('../../../images/BackgroundWelcomePageMobile.png') no-repeat;
   width: var(--container-min-width);
   height: 952px;
   display: flex;
@@ -38,7 +38,7 @@
 
   .welcomePage {
     background: var(--primary-white)
-      url('../../../public/images/BackgroundTabletWelcomePage.png') no-repeat;
+      url('../../../images/BackgroundTabletWelcomePage.png') no-repeat;
     width: var(--container-medium-width);
     padding-bottom: 125px;
   }
@@ -52,7 +52,7 @@
   }
   .welcomePage {
     background-color: var(--primary-white);
-    background-image: url('../../../public/images/BackgroundWelcomePage.png'),
+    background-image: url('../../../images/BackgroundWelcomePage.png'),
       url('../../../public/images/BackgroundElemWelcomePage.png');
     background-repeat: no-repeat;
     background-position: bottom, 50%;
