@@ -1,8 +1,10 @@
 import styles from './WaterСonsumptionTracker.module.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 const WaterСonsumptionTracker = () => {
+  const navigate = useNavigate();
   const handleTryTrackerClick = () => {
-    return <Navigate to="/signup" replace />;
+    navigate('/signup', { replace: true });
   };
   return (
     <div className={styles.waterСonsumptionTrackerBlockOne}>
