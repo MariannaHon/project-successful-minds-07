@@ -1,6 +1,6 @@
 
 import { lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
@@ -12,8 +12,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
-const NotFoundPage = lazy(() =>
-  import('../../pages/NotFoundPage/NotFoundPage')
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
@@ -32,12 +31,14 @@ export default function App() {
           <Route
             path="/signin"
             element={
-              <RestrictedRoute component={SigninPage} redirectTo="/home" />
+              <RestrictedRoute redirectTo="/home" component={SigninPage} />
             }
           />
           <Route
             path="/home"
-            element={<PrivateRoute component={HomePage} redirectTo="/signin" />}
+            element={
+              <PrivateRoute redirectTo="/signin" component={HomePage} />
+            }
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
