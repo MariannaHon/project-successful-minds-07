@@ -7,7 +7,6 @@ import { useId } from 'react';
 
 
 const AuthForm = () => {
-  console.log('-------------AUTHFORM');
   const dispatch = useDispatch();
   
   const login = Yup.object().shape({
@@ -64,6 +63,7 @@ const AuthForm = () => {
           <Field
             type="password"
             name="password"
+            rel="to-replace"
             id={passwordFieldId}
             className={css.inputField}
             placeholder="Password"
