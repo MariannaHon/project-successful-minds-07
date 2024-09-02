@@ -19,6 +19,7 @@ export default function App() {
   return (
     <div>
       <SharedLayout>
+<<<<<<< Updated upstream
         <Suspense fallback={<Toaster />}></Suspense>
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" />} />
@@ -43,6 +44,38 @@ export default function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+=======
+        <Suspense fallback={<Toaster />}>
+          <Routes>
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/welcome" />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <RestrictedRoute redirectTo="/home" component={SignupPage} />
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <RestrictedRoute component={SigninPage} redirectTo="/home" />
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/signin" />
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+>>>>>>> Stashed changes
       </SharedLayout>
     </div>
   );

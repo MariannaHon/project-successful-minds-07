@@ -15,3 +15,8 @@ export const SharedLayout = ({ children }) => {
 SharedLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
