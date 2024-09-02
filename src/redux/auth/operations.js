@@ -13,10 +13,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://successful-minds-db.onrender.com/auth/signup',
-        newUser
-      );
+      const response = await axios.post('/auth/signup', newUser);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -25,3 +22,59 @@ export const register = createAsyncThunk(
     }
   }
 );
+
+axios.defaults.baseURL = "https://successful-minds-db.onrender.com/";
+
+export const logIn = createAsyncThunk(
+  "auth/signin",
+  async (User, thunkAPI) => {
+    try {
+      const response = await axios.post("/auth/signin", User);
+      setAuthHeader(response.data.token);
+      console.log(response.data);
+      
+      return response.data;
+    } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    await axios.post("/users/logout");
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// export const refreshUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+
+//     try {
+//       setAuthHeader(persistedToken);
+//       const res = await axios.get("/users/current");
+//       return res.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+//   {
+//     condition: (_, { getState }) => {
+//       const state = getState();
+//       const persistedToken = state.auth.token;
+
+//       if (persistedToken === null) {
+//         return false;
+//       }
+
+//       return true;
+//     },
+//     dispatchConditionRejection: true,
+//   }
+// );
