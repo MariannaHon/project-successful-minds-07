@@ -1,0 +1,32 @@
+.headerSection {
+  padding-top: 20px;
+}
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 23px;
+}
+
+@media screen and (min-width: 768px) {
+  .headerWrapper {
+    margin: 0 33px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .headerSection {
+    padding-top: 20px;
+  }
+
+  .headerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 80px;
+  }
+}
+
+
+  
