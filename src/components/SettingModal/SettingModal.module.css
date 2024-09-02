@@ -2,6 +2,13 @@
 h3 {
     color: var(--primary-black);
 }
+.error {
+    line-height: 1.29;
+    color: var(--secondary-red);
+    font-weight: var(--font-weight-regular);
+    font-size: 14px;    
+
+}
 .container {
     margin: 0 auto;
     }

@@ -27,8 +27,8 @@ import css from "./SettingModal.module.css";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string().min(3, "Too Short!").max(34, "Too Long!"),
-    email:  Yup.string().email().required,
-    outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required,
+    email: Yup.string().email().required(),
+    outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required(),
     nPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
     repeatNPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!")
     .oneOf([Yup.ref("nPassword"), null], "Passwords must match"),
@@ -132,7 +132,7 @@ validationSchema={FeedbackSchema} >
             <ErrorMessage name="outPassword" component="span" className={css.error}/>            
             <div className={css.thumb}>
             <label  htmlFor={`${fieldId}-nPassword`} className={css.label} >New Password:</label>
-            <Field type="password" name="nPassword" id={`${fieldId}-nPassword`}  className={css.field}/>
+            <Field type={type} name="nPassword" id={`${fieldId}-nPassword`}  className={css.field}/>
             <span>{
                     (openPsw === false)? <FaRegEye name="nPassword" id={`${fieldId}-nPassword`}  className={css.eye} onClick={togglePassInput}/>:
                     <FaRegEyeSlash name="nPassword" id={`${fieldId}-nPassword`} className={css.eye} onClick={togglePassInput}/>
@@ -141,7 +141,7 @@ validationSchema={FeedbackSchema} >
             <ErrorMessage name="nPassword" component="span" className={css.error}/>
             <div className={css.thumb}>
             <label  htmlFor={`${fieldId}-repeatNPassword`} className={css.label} >Repeat new password:</label>
-            <Field type="password" name="repeatNPassword" id={`${fieldId}-repeatNPassword`}  className={css.field}/>
+            <Field type={type} name="repeatNPassword" id={`${fieldId}-repeatNPassword`}  className={css.field}/>
             <span>{
                     (openPsw === false)? <FaRegEye name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>:
                     <FaRegEyeSlash name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>
