@@ -11,8 +11,7 @@ const HomePage = () => {
       <div className={css.container}>
         <div className={css.leftColumn}>
           {/* <DailyNorma /> */}
-          {/* <img src={'../../../public/imgHomePage/Botle_mobile.png'} alt="Bottle" className={css.bottleImage} /> */}
-          <WaterRatioPanel className={css.waterRatioPanel}/>
+          <WaterRatioPanel />
         </div>
         <div className={css.rightColumn}>
           {/* <TodayWaterList /> */}

@@ -17,36 +17,42 @@
 .progressBarContainer {
   display: flex;
   align-items: center;
+  /* width: 100%; */
+  margin-bottom: 16px;
+}
+
+.progressTextNumber {
+  display: flex;
+  width: 280px;
   width: 100%;
-  /* margin-bottom: 20px; */
+  justify-content: space-between;
 }
 
 .progressText {
   font-size: 14px;
   color: #407BFF;
-  margin: 0 10px;
+  /* margin: 0 10px; */
 }
 
 .progressBar {
   position: relative;
   flex-grow: 1;
-  width: 280px;
-  height: 50px;
-    /* top: 35px; */
-    /* left: 266px; */
-  /* gap: 0px; */
-    /* border-radius: 10px 0px 0px 0px; */
-    opacity: 0px;
-    /* angle: -90 deg; */
-  height: 10px;
+  width: 256px;
+  margin-left: 10px;
+  margin-right: 14px;
+  opacity: 0px;
+  height: 8px;
   background-color: #D7E3FF;
   border-radius: 5px;
+  margin-bottom: 16px;
 }
 
 .progress {
-  height: 100%;
+  /* height: 100%; */
   background-color: #9EBBFF;
   border-radius: 5px;
+  margin-bottom: 20px;
+  width: 256px;
 }
 
 .thumb {
@@ -57,7 +63,7 @@
   background-color: white;
   border: 2px solid #407BFF;
   border-radius: 50%;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
 }
 
 .centerMark {
@@ -71,7 +77,6 @@
 
 .addWaterButton {
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: #407BFF;
   color: #FFFFFF;
@@ -87,7 +92,8 @@
   background-color: #407BFF;
 }
 
-.addWaterIcon {
+.icon {
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
-  font-size: 18px;
 }

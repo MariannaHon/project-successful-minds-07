@@ -11,14 +11,25 @@ const WaterRatioPanel = ({ progress, onAddWaterClick }) => {
           
           <div className={css.progress} style={{ width: `${progress}%` }} />
           <div className={css.thumb} style={{ left: `calc(${progress}% - 7px)` }} />
-          <div className={css.progressText}>0%</div>
-          <div className={css.centerMark}>50%</div>
-          <div className={css.progressText}>100%</div>
+          <div className={css.progressTextNumber}>
+            <span className={css.progressText}>0%</span>
+            {/* <span className={css.progressText}>50%</span> */}
+            <span className={css.progressText}>100%</span>
+          </div>
+          
         </div>
         
       </div>
       <button className={css.addWaterButton} onClick={onAddWaterClick}>
-        <span className={css.addWaterIcon}>+</span> Add Water
+        <span>
+              <svg
+                className={css.icon}
+                aria-label="icon-plus-circle"
+              >
+                <use href="../../../public/symbol-defs.svg#icon-plus-circle"></use>
+              </svg>
+        </span>
+        <span> Add Water</span>
       </button>
     </div>
   );
