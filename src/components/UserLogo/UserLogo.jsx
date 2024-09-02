@@ -10,7 +10,7 @@ const UserLogo = () => {
   // const { user } = useAuth();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  console.log(user);
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleToggleModal = () => {
