@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+// import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import Header from '../../components/Header/Header';
@@ -10,9 +10,9 @@ export default function Signin() {
 
     return (
         <div className={css.container}>
-            <Helmet>
+{/*             <Helmet>
                 <title>SignIn to Tracker of Water</title>
-            </Helmet>
+            </Helmet> */}
 
             <Header />
 
