@@ -28,6 +28,7 @@ export default function App() {
               element={
                 <PrivateRoute component={HomePage} redirectTo="/welcome" />
               }
+            />
             <Route
               path="/signup"
               element={
