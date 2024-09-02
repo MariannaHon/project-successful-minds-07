@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
+import { logIn } from '../../redux/auth/operations';
 import css from './AuthForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
-import { signin } from '../../redux/auth/operations';
 
 
 const AuthForm = () => {
@@ -33,7 +33,7 @@ const AuthForm = () => {
         };
         console.log({userData});
         
-          dispatch(signin(userData));
+          dispatch(logIn(userData));
         actions.resetForm();
       }}
     >
