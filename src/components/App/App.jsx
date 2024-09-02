@@ -1,4 +1,3 @@
-
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute.jsx';
@@ -20,14 +19,14 @@ export default function App() {
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
-					<Routes>
-						<Route path="/welcome" element={<WelcomePage />} />
+          <Routes>
+            <Route path="/welcome" element={<WelcomePage />} />
             <Route
               path="/"
               element={
                 <PrivateRoute component={HomePage} redirectTo="/welcome" />
               }
-            />     
+            />
             <Route
               path="/signup"
               element={
