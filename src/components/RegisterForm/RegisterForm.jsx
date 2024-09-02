@@ -11,7 +11,7 @@ const RegisterForm = () => {
 
   const onSubmit = (values, actions) => {
     if (values.password === values.repeatPassword) {
-      dispatch(register(values));
+      dispatch(register(values.email, values.password));
       actions.resetForm();
     } else {
       {
