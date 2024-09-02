@@ -1,86 +1,52 @@
+import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import css from './AuthForm.module.css';
 import * as Yup from 'yup';
-import { Field, Form, Formik, ErrorMessage } from 'formik';
-import { useId } from 'react';
+import { ErrorMessage } from 'formik';
 import { signin } from '../../redux/auth/operations';
 
 
 const AuthForm = () => {
-  const dispatch = useDispatch();
-  
-  const login = Yup.object().shape({
-    email: Yup.string()
-      .email('Please enter a valid email address')
-      .required('Required'),
-    password: Yup.string()
-      .min(4, 'Password must be at least 8 characters')
-      .max(64, 'Password must be no more than 64 characters')
-      .required('Required'),
-  });
 
-  const mailFieldId = useId();
-  const passwordFieldId = useId();
+    const dispatch = useDispatch();
 
-  return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      validationSchema={login}
-      onSubmit={(values, actions) => {
-        const userData = {
-          email: values.email,
-          password: values.password,
-        };
-        console.log({userData});
-        
-          dispatch(signin(userData));
+    const handleSubmit = (values, actions) => {
+        dispatch(signin(values));
         actions.resetForm();
-      }}
-    >
-      <Form className={css.formContainer} name="Sign In">
-        <label htmlFor={mailFieldId} className={css.label}>
-          Enter your email
-        </label>
-        <div className={css.wrap}>
-          <Field
-            type="email"
-            name="email"
-            id={mailFieldId}
-            className={css.inputField}
-            placeholder="Email"
-          />
-          <ErrorMessage
-            name="email"
-            component="span"
-            className={css.errorMessage}
-          />
+    };
+
+    const formSchema = Yup.object().shape({
+        email: Yup.string().email().required(),
+        password: Yup.string()
+            .min(8, 'Too short password')
+            .max(64, 'Too long password')
+            .required(),
+    });
+
+    return (
+        <div>
+            <Formik
+                initialValues={{ email: '', password: '' }}
+                onSubmit={handleSubmit}
+                validationSchema={formSchema}
+            >
+                <Form>
+                    <Field type="email" name="email" autoComplete="off"></Field>
+                    <ErrorMessage name="email" component="span" />
+
+                    <Field
+                        type="password"
+                        name="password"
+                        autoComplete="new-password"
+                    ></Field>
+                    <ErrorMessage name="password" component="span" />
+
+                    <button type="submit">Forgot password?</button>
+
+                    <button type="submit">Sign Up</button>
+                </Form>
+            </Formik>
         </div>
+    )
+}
 
-        <label htmlFor={passwordFieldId} className={css.label}>
-          Enter your password
-        </label>
-        <div className={css.wrap}>
-          <Field
-            type="password"
-            name="password"
-            
-            id={passwordFieldId}
-            className={css.inputField}
-            placeholder="Password"
-          />
-          <ErrorMessage
-            name="password"
-            component="span"
-            className={css.errorMessage}
-          />
-        </div>
-
-        <button type="submit" className={css.submitButton}>
-          Sign In
-        </button>
-      </Form>
-    </Formik>
-  );
-};
-
-export default AuthForm;
+export default AuthForm
