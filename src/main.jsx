@@ -13,11 +13,11 @@ import { Provider } from 'react-redux';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <PersistGate loading={<Loader />} persistor={persistor}>
+      <PersistGate loading={<Loader />} persistor={persistor}>
+        <BrowserRouter>
           <App />
-        </PersistGate>
-      </BrowserRouter>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </StrictMode>
 );
