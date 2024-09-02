@@ -1,7 +1,6 @@
 // import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
-import Header from '../../components/Header/Header';
 import css from './SigninPage.module.css';
 
 
@@ -13,8 +12,6 @@ export default function Signin() {
 {/*             <Helmet>
                 <title>SignIn to Tracker of Water</title>
             </Helmet> */}
-
-            <Header />
 
             <div className={css.container_signin}>
                 <div className={css.background}>
