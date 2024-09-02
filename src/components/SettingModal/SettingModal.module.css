@@ -1,33 +1,14 @@
-h1 {
-    margin: 0;
-    color: var(--primary-black);
-}
-h3 {
-    margin: 0;
-    color: var(--primary-black);
-    font-weight: var(--font-weight-medium);
-    font-size: 18px; 
-    /* line-height: 20px; */ 
-    line-height: 1.11;
-}
-body {
-    background-color:var(--primary-white);
-}
-.error {
-    line-height: 1.28571;
-    color: var(--secondary-red);
-    font-weight: var(--font-weight-regular);
-    font-size: 14px;    
-}
+
+
 .container {
     width: 960px;
-    margin: 0 auto;
-}
+    }
 .groupRight {
     display: flex;
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
+    padding-top: 20px;
     max-width: 544px;
 }
 .groupLeft {
@@ -42,6 +23,7 @@ body {
     gap: 24px;   
     align-items: flex-end;
     margin: 0 auto;
+
 }
 .photo {
     border-radius: 100%;
@@ -66,18 +48,26 @@ body {
     color: var(--primary-blue);
 }
 .field:hover, .field:focus, .field:active {
-    border: 1px solid  var(--secondary-pale-blue);
+    border: 0.5px solid  var(--secondary-pale-blue);
+    background-color: var(--primary-white);
+
 }
 .label {
     color: var(--primary-black);
-    font-size: var(--font-size-smaller);;
-    position: relative;
+    font-size: var(--font-size-smaller);
+    margin-bottom: 8px;
     
+}
+.thumb {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* gap: 8px; */
 }
 .eye {
     position: absolute;
-    right: 180px;
-    top: auto;
+    right: 14px;
+    top: 40px; 
     color: var(--primary-blue);    
 }
 .radio {
@@ -141,4 +131,3 @@ body {
     margin-top: 24px;
     max-width: 960px;
 }
-

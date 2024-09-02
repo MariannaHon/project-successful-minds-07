@@ -26,11 +26,11 @@ import css from "./SettingModal.module.css";
 // import {refreshUser} from "../../redux/auth/operations";
 
 const FeedbackSchema = Yup.object().shape({
-    name: Yup.string().min(3, "Too Short!").max(50, "Too Long!"),
-    email:  Yup.string().email(),
-    outPassword: Yup.string().min(8, "Too Short!").max(16, "Too Long!"),
-    nPassword: Yup.string().min(8, "Too Short!").max(16, "Too Long!"),
-    repeatNPassword: Yup.string().min(8, "Too Short!").max(16, "Too Long!")
+    name: Yup.string().min(3, "Too Short!").max(34, "Too Long!"),
+    email:  Yup.string().email().required,
+    outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required,
+    nPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
+    repeatNPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!")
     .oneOf([Yup.ref("nPassword"), null], "Passwords must match"),
    
   });
@@ -40,9 +40,10 @@ const FeedbackSchema = Yup.object().shape({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 1008,
+    margin: 0,
     bgcolor: 'background.paper',
     border: 'none',
-   borderRadius: 2,
+    borderRadius: 2,
     boxShadow: 24,
     p: 4,
   };
@@ -121,32 +122,32 @@ validationSchema={FeedbackSchema} >
         <div className={css.groupRight}>
             
             <h3>Password</h3>
+            <div className={css.thumb}>
             <label  htmlFor={`${fieldId}-outPassword`} className={css.label}>Outdated password:</label>
             <Field type={type} name="outPassword" id={`${fieldId}-outPassword`}  className={css.field} />
             <span>{
                     (openPsw === false)? <FaRegEye name="outPassword" id={`${fieldId}-outPassword`} className={css.eye} onClick={togglePassInput}/>:
                     <FaRegEyeSlash name="outPassword" id={`${fieldId}-outPassword`} className={css.eye} onClick={togglePassInput}/>
                   }
-            </span>
+            </span></div>
             <ErrorMessage name="outPassword" component="span" className={css.error}/>            
-
+            <div className={css.thumb}>
             <label  htmlFor={`${fieldId}-nPassword`} className={css.label} >New Password:</label>
             <Field type="password" name="nPassword" id={`${fieldId}-nPassword`}  className={css.field}/>
-            
             <span>{
                     (openPsw === false)? <FaRegEye name="nPassword" id={`${fieldId}-nPassword`}  className={css.eye} onClick={togglePassInput}/>:
-                    <FaRegEyeSlash name="nPassword" id={`${fieldId}-nPassword`} className={css.eye.eyeClose} onClick={togglePassInput}/>
+                    <FaRegEyeSlash name="nPassword" id={`${fieldId}-nPassword`} className={css.eye} onClick={togglePassInput}/>
                   }
-            </span>
+            </span></div>
             <ErrorMessage name="nPassword" component="span" className={css.error}/>
-
+            <div className={css.thumb}>
             <label  htmlFor={`${fieldId}-repeatNPassword`} className={css.label} >Repeat new password:</label>
             <Field type="password" name="repeatNPassword" id={`${fieldId}-repeatNPassword`}  className={css.field}/>
             <span>{
                     (openPsw === false)? <FaRegEye name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>:
                     <FaRegEyeSlash name="repeatNPassword" id={`${fieldId}-repeatNPassword`} className={css.eye} onClick={togglePassInput}/>
                   }
-            </span>
+            </span></div>
             <ErrorMessage name="repeatNPassword" component="span" className={css.error}/>
 
         </div>
