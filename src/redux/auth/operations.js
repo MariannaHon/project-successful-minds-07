@@ -1,6 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+
+
+axios.defaults.baseURL = 'https://successful-minds-db.onrender.com/auth/signup';
+
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -14,12 +19,28 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post(
-        'https://successful-minds-db.onrender.com/auth/signup',
+        'auth/signup',
         newUser
       );
       setAuthHeader(response.data.token);
       return response.data;
-    } catch (error) {
+    } catch (e) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const signin = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        'auth/signin', { email, password }
+      );
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (e) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(e.message);
     }
