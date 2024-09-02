@@ -17,3 +17,4 @@ SharedLayout.propTypes = {
 };
 
 export default SharedLayout;
+

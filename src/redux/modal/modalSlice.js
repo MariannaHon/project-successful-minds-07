@@ -22,3 +22,4 @@ const modalSlice = createSlice({
 export const { setModalStatus, setModalContent } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;
+

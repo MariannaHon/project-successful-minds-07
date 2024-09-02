@@ -1,0 +1,33 @@
+.userAuthWrapper {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  min-width: 84px;
+}
+
+.userAuthLink {
+  color: var(--dark-blue, #407bff);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25;
+  transition: var(--transition);
+}
+
+.userAuthLink:hover,
+.userAuthLink:focus {
+  color: var(--Secondary-color-5, #ff9d43);
+}
+
+@media screen and (min-width: 768px) {
+  .userAuthWrapper {
+    min-width: 90px;
+  }
+
+  .userAuthLink {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}

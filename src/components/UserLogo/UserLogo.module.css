@@ -1,4 +1,5 @@
 
+
 .userLogoWrapper {
     display: flex;
     gap: 6px;
@@ -28,3 +29,4 @@
     height: 22px;
     fill: var(--dark-blue, #407bff);
 }
+
