@@ -1,6 +1,5 @@
 import * as React from 'react';
 import  {useState} from 'react';
-
 // import clsx from "clsx";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -27,8 +26,8 @@ import css from "./SettingModal.module.css";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string().min(3, "Too Short!").max(34, "Too Long!"),
-    email: Yup.string().email().required(),
-    outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required(),
+    email: Yup.string().email().required("Required"),
+    outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required("Required"),
     nPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!"),
     repeatNPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!")
     .oneOf([Yup.ref("nPassword"), null], "Passwords must match"),
@@ -72,7 +71,6 @@ const FeedbackSchema = Yup.object().shape({
           setOpenPsw(open)
       }
   };
-    
       return (
        <div>
         <button className={css.buttonSetting} onClick={handleOpen} ><IoSettingsOutline/>  Setting</button>
@@ -110,7 +108,8 @@ validationSchema={FeedbackSchema} >
     </FormControl>
           <div className={css.groupLeft}>
             <label  htmlFor={`${fieldId}-name`}><h3>Your name</h3></label>
-            <Field type="text" name="name" id={`${fieldId}-name`}  className={css.field}/>
+            <Field type="text" name="name" id={`${fieldId}-name`}  className={css.field} />
+            
             <ErrorMessage name="name" component="span" className={css.error}/>
         </div>
         <div className={css.groupLeft}>

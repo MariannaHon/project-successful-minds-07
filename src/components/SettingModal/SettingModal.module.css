@@ -54,11 +54,13 @@ h3 {
     color: var(--primary-blue);
     outline: 0;
 }
-.field:hover, .field:focus, .field:active {
-    border: 0.5px solid  var(--secondary-pale-blue);
-    background-color: var(--primary-white);
-
+.field:focus:invalid {
+    border: 1px solid var(--secondary-red);
 }
+input:focus:invalid {
+    border: 1px solid var(--secondary-red);
+}
+
 .label {
     color: var(--primary-black);
     font-size: var(--font-size-smaller);
@@ -158,6 +160,10 @@ h3 {
 .field {
     width: 256px;
 }
+.redField {
+    width: 256px;
+    height: 36px;
+}
 .thumb {
     position: relative;
 }
@@ -196,6 +202,10 @@ h3 {
     width: 392px;
     height: 44px;
 }
+.redField {
+    width: 392px;
+    height: 44px;
+}
 .button {
     width: 160px;
     height: 44px;
@@ -224,6 +234,7 @@ h3 {
     width: 392px;
     height: 44px;
 }
+
 .thumb {
     position: relative;
   
