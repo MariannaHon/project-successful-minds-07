@@ -1,19 +1,12 @@
-<<<<<<< Updated upstream
 
-import AuthForm from '../../components/AuthForm/AuthForm.jsx'
-=======
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
->>>>>>> Stashed changes
+
 import css from './SigninPage.module.css';
 
 const SigninPage = () => {
     return (
-<<<<<<< Updated upstream
-        <div>
-            <AuthForm />
-=======
         <div className={css.container}>
             <Helmet>
                 <title>SignIn to Tracker of Water</title>
@@ -33,7 +26,6 @@ const SigninPage = () => {
                 </div>
             </div>
             <div className={css.image}></div>
->>>>>>> Stashed changes
         </div>
     )
 }

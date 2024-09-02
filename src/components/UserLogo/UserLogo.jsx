@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 
 import css from "./UserLogo.module.css";
 // import { useAuth } from "../../redux/authUser/selectors";
@@ -56,5 +54,3 @@ const UserLogo = () => {
 };
 
 export default UserLogo;
-
->>>>>>> Stashed changes

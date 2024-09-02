@@ -1,0 +1,25 @@
+/* .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  /* .footer {
+    background-color: #282c34;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  } */
+

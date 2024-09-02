@@ -1,6 +1,6 @@
-import { Suspense } from 'react';
+import Header from "../Header/Header.jsx";
 import PropTypes from 'prop-types';
-import Header from '../Header/Header';
+import { Suspense } from "react";
 import css from './SharedLayout.module.css';
 
 export const SharedLayout = ({ children }) => {
@@ -15,8 +15,4 @@ export const SharedLayout = ({ children }) => {
 SharedLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes

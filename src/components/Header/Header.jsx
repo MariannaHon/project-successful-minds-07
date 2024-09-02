@@ -1,14 +1,4 @@
-// const Header = () => {};
-// export default Header;
 
-<<<<<<< Updated upstream
-import UserAuth from '../UserAuth/UserAuth.jsx';
-import Logo from '../Logo/Logo.jsx';
-
-import css from './Header.module.css'
-
-export default function Header() {
-=======
 import css from "./Header.module.css";
 
 // import { NavLink, Navigate } from 'react-router-dom';
@@ -24,8 +14,6 @@ const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-
-
     <header className={css.headerSection}>
       <Logo />
       {isLoggedIn ? <UserLogo /> : <UserAuth />}
@@ -34,12 +22,3 @@ const Header = () => {
 };
 
 export default Header;
->>>>>>> Stashed changes
-
-    return (
-        <header className={css.head}>
-            <Logo />
-            <UserAuth />
-        </header>
-    )
-}
