@@ -1,7 +1,7 @@
 // import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
-// import Header from 'components/Header/Header';
+import Header from 'components/Header/Header';
 import css from './SignInPage.module.css';
 
 
