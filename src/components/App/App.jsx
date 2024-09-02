@@ -1,9 +1,9 @@
 
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
-import { SharedLayout } from '../SharedLayout/SharedLayout';
-import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute.jsx';
+import { SharedLayout } from '../SharedLayout/SharedLayout.jsx';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute.jsx';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 
