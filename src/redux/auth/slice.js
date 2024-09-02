@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn } from "./operations";
+import { createSlice } from '@reduxjs/toolkit';
+import { register, logIn } from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -10,13 +10,13 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.token;
         state.isLoggedIn = true;
         state.error = null;
       })
@@ -24,33 +24,34 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        console.log(action);
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.token;
         state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(logIn.rejected, (state, action) => {
         state.error = action.payload;
-      })
-      // .addCase(logOut.fulfilled, (state) => {
-      //   state.user = { name: null, email: null };
-      //   state.token = null;
-      //   state.isLoggedIn = false;
-      //   state.error = null;
-      // })
-      // .addCase(refreshUser.pending, (state) => {
-      //   state.isRefresh = true;
-      // })
-      // .addCase(refreshUser.fulfilled, (state, action) => {
-      //   state.user = action.payload;
-      //   state.isLoggedIn = true;
-      //   state.isRefresh = false;
-      //   state.error = null;
-      // })
-      // .addCase(refreshUser.rejected, (state, action) => {
-      //   state.isRefresh = false;
-      //   state.error = action.payload;
-      // });
+      });
+    // .addCase(logOut.fulfilled, (state) => {
+    //   state.user = { name: null, email: null };
+    //   state.token = null;
+    //   state.isLoggedIn = false;
+    //   state.error = null;
+    // })
+    // .addCase(refreshUser.pending, (state) => {
+    //   state.isRefresh = true;
+    // })
+    // .addCase(refreshUser.fulfilled, (state, action) => {
+    //   state.user = action.payload;
+    //   state.isLoggedIn = true;
+    //   state.isRefresh = false;
+    //   state.error = null;
+    // })
+    // .addCase(refreshUser.rejected, (state, action) => {
+    //   state.isRefresh = false;
+    //   state.error = action.payload;
+    // });
   },
 });
 

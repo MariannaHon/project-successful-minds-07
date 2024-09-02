@@ -10,15 +10,18 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
+    const newUser = {
+      email: values.email,
+      password: values.password,
+    };
+
     if (values.password === values.repeatPassword) {
-      dispatch(register(values.email, values.password));
+      dispatch(register(newUser));
       actions.resetForm();
     } else {
-      {
-        toast.error('Passwords did not happen', {
-          position: 'top-right',
-        });
-      }
+      toast.error('Passwords did not happen', {
+        position: 'top-right',
+      });
     }
   };
 
