@@ -1,26 +1,41 @@
+
 import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import css from './Logo.module.css';
-
 import { useSelector } from 'react-redux';
+// import { Link } from "react-router-dom";
+import css from "./Logo.module.css";
 
 const Logo = () => {
 
-    const isLoggedIn = useSelector(selectIsLoggedIn);
-    const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
 
-    const logoClick = () => {
-        navigate(isLoggedIn ? "/home" : "/welcome");
-    }
+  const logoClick = () => {
+    navigate(isLoggedIn ? "/home" : "/welcome");
+  }
 
-    return (
-        <div onClick={logoClick}>
-            <svg className={css.icons}>
-                <use href="/symbol-defs.svg#icon-Logo-2" width="40" height="40">
-                </use>
-            </svg>
-        </div>
-    )
-}
+  return (
+
+    <div onClick={logoClick}>
+      <svg width="40" height="48" className={css.icons}>
+        <use href="/symbol-defs.svg#icon-Logo-2" >
+        </use>
+      </svg>
+    </div>
+
+
+    // <Link to={"/"}>
+
+    //     <p className={s.logoText}>
+    //       TRACKER
+    //       <br />
+    //       OF WATER
+    //     </p>
+    //   </div>
+    // </Link>
+  );
+};
+
 
 export default Logo
+

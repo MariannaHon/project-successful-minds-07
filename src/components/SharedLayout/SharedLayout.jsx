@@ -1,12 +1,12 @@
-import { Suspense } from 'react';
+import Header from "../Header/Header";
 import PropTypes from 'prop-types';
-import Header from '../Header/Header';
+import { Suspense } from "react";
 import css from './SharedLayout.module.css';
 
-export const SharedLayout = ({ children }) => {
+const SharedLayout = ({ children }) => {
   return (
     <div className={css.container}>
-      {/* <Header /> */}
+      <Header />
       <Suspense fallback={null}>{children}</Suspense>
     </div>
   );
@@ -15,3 +15,7 @@ export const SharedLayout = ({ children }) => {
 SharedLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default SharedLayout;
+
+
