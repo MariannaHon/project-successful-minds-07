@@ -33,7 +33,7 @@ const AuthForm = () => {
         };
         console.log({userData});
         
-          dispatch(logIn(userData));
+          dispatch(signin(userData));
         actions.resetForm();
       }}
     >
