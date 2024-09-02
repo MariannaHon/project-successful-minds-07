@@ -30,7 +30,6 @@ const AuthForm = () => {
           email: values.email,
           password: values.password,
         };
-        console.log({ userData });
 
         dispatch(logIn(userData));
         actions.resetForm();
@@ -65,6 +64,7 @@ const AuthForm = () => {
             id={passwordFieldId}
             className={css.inputField}
             placeholder="Password"
+            autoComplete="off"
           />
           <ErrorMessage
             name="password"

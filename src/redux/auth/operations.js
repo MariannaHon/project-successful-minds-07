@@ -29,9 +29,7 @@ export const signin = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'auth/signin', { email, password }
-      );
+      const response = await axios.post('auth/signin', { email, password });
       setAuthHeader(response.data.token);
       return response.data;
     } catch (e) {
@@ -45,7 +43,6 @@ export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
     setAuthHeader(response.data.token);
-    console.log(response.data);
 
     return response.data;
   } catch (error) {
