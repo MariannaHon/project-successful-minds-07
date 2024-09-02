@@ -1,14 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/auth/operations';
 import css from './AuthForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
-
-import { Formik, Form, Field } from 'formik';
-import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
-import { ErrorMessage } from 'formik';
 import { signin } from '../../redux/auth/operations';
 
 
