@@ -59,6 +59,17 @@
   text-align: center;
   margin-bottom: 40px;
 }
+.WaterСonsumptionTrackerButton:active {
+  box-shadow: none;
+  -webkit-text-stroke: none;
+  text-stroke: none;
+}
+.WaterСonsumptionTrackerButton:hover {
+  box-shadow: var(--box-shadow-dark);
+  text-shadow: 0px 4px 4px var(--overlay-bg-color);
+  -webkit-text-stroke: 1px var(--overlay-bg-color);
+  text-stroke: 1px var(--overlay-bg-color);
+}
 .waterСonsumptionTrackerContainer {
   display: flex;
   flex-direction: column;

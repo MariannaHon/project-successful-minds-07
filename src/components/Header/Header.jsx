@@ -1,23 +1,34 @@
 
+import css from "./Header.module.css";
 
-import s from "./Header.module.css";
-
-import UserLogo from "../Logo/Logo";
-import UserAuth from "../UserAuth/UserAuth";
-// import UserLogo from "../UserLogo/UserLogo";
+import { NavLink, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import UserAuth from "../UserAuth/UserAuth.jsx";
+import UserLogo from "../UserLogo/UserLogo.jsx";
+import Logo from '../Logo/Logo.jsx';
 import { useAuth } from "../../hooks/userAuth";
 
 const Header = () => {
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
+
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
+
+
+    <header className={css.headerSection}>
+      <Logo />
+      <UserAuth />
+    </header>
+
+
     // <header className={s.headerSection}>
-      <div className={s.headerWrapper}>
-        <UserLogo />
-        {!isLoggedIn ? <UserAuth /> : <UserLogo />} 
-      </div>
-   
+    // <div className={s.headerWrapper}>
+    //   <UserLogo />
+    //   {!isLoggedIn ? <UserAuth /> : <UserLogo />}
+    // </div>
   );
 };
-
 
 export default Header;
