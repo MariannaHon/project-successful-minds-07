@@ -1,20 +1,16 @@
-// import { Helmet } from 'react-helmet';
+
+import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
-import Header from '../../components/Header/Header';
+
 import css from './SigninPage.module.css';
 
-
-export default function Signin() {
-    console.log('--------------------------SIGNIN');
-
+const SigninPage = () => {
     return (
         <div className={css.container}>
-{/*             <Helmet>
+            <Helmet>
                 <title>SignIn to Tracker of Water</title>
-            </Helmet> */}
-
-            <Header />
+            </Helmet>
 
             <div className={css.container_signin}>
                 <div className={css.background}>
@@ -31,6 +27,7 @@ export default function Signin() {
             </div>
             <div className={css.image}></div>
         </div>
-    );
+    )
 }
 
+export default SigninPage

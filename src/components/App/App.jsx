@@ -1,8 +1,10 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute.jsx';
-import { SharedLayout } from '../SharedLayout/SharedLayout.jsx';
-import { PrivateRoute } from '../PrivateRoute/PrivateRoute.jsx';
+
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
+import { SharedLayout } from '../SharedLayout/SharedLayout';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
+
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 
@@ -10,8 +12,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
-const NotFoundPage = lazy(() =>
-  import('../../pages/NotFoundPage/NotFoundPage')
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
