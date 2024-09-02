@@ -23,7 +23,7 @@ import * as Yup from "yup";
 
 // import { useDispatch } from "react-redux";
 import css from "./SettingModal.module.css";
-// import {refreshUser} from "../../redux/auth/operations";
+// import {updateUser} from "../../redux/auth/operations";
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string().min(3, "Too Short!").max(34, "Too Long!"),
