@@ -7,7 +7,6 @@ import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 
-
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));

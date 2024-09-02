@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const WaterСonsumptionTracker = () => {
   const navigate = useNavigate();
+
   const handleTryTrackerClick = () => {
     navigate('/signup', { replace: true });
   };
