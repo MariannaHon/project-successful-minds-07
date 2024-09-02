@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Suspense } from "react";
 import css from './SharedLayout.module.css';
 
-const SharedLayout = ({ children }) => {
+export const SharedLayout = ({ children }) => {
   return (
     <div className={css.container}>
       <Header />
@@ -15,6 +15,4 @@ const SharedLayout = ({ children }) => {
 SharedLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-export default SharedLayout;
 
