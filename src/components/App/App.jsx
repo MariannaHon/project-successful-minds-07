@@ -1,6 +1,6 @@
 
-import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
@@ -19,8 +19,9 @@ export default function App() {
   return (
     <div>
       <SharedLayout>
-        <Toaster />
+        <Suspense fallback={<Toaster />}></Suspense>
         <Routes>
+          <Route path="/" element={<Navigate to="/welcome" />} />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route
             path="/signup"
