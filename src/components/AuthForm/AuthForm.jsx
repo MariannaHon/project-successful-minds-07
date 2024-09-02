@@ -5,10 +5,9 @@ import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
 
-
 const AuthForm = () => {
   const dispatch = useDispatch();
-  
+
   const login = Yup.object().shape({
     email: Yup.string()
       .email('Please enter a valid email address')
@@ -31,9 +30,9 @@ const AuthForm = () => {
           email: values.email,
           password: values.password,
         };
-        console.log({userData});
-        
-          dispatch(logIn(userData));
+        console.log({ userData });
+
+        dispatch(logIn(userData));
         actions.resetForm();
       }}
     >
@@ -63,7 +62,6 @@ const AuthForm = () => {
           <Field
             type="password"
             name="password"
-            
             id={passwordFieldId}
             className={css.inputField}
             placeholder="Password"
