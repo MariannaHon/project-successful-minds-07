@@ -1,4 +1,4 @@
-import Header from "../Header/Header";
+import Header from "../Header/Header.jsx";
 import PropTypes from 'prop-types';
 import { Suspense } from "react";
 import css from './SharedLayout.module.css';
