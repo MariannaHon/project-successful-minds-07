@@ -7,16 +7,19 @@ import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
-    <div className={css.container}>
-      <div className={css.leftColumn}>
-        {/* <DailyNorma /> */}
-        <WaterRatioPanel />
-      </div>
-      <div className={css.rightColumn}>
-        {/* <TodayWaterList /> */}
-        {/* <MonthStatsTable /> */}
-      </div>
-    </div>
+    <div className={css.homePage} >
+      <div className={css.container}>
+        <div className={css.leftColumn}>
+          {/* <DailyNorma /> */}
+          {/* <img src={'../../../public/imgHomePage/Botle_mobile.png'} alt="Bottle" className={css.bottleImage} /> */}
+          <WaterRatioPanel className={css.waterRatioPanel}/>
+        </div>
+        <div className={css.rightColumn}>
+          {/* <TodayWaterList /> */}
+          {/* <MonthStatsTable /> */}
+        </div>
+        </div>
+      </div>  
   );
 };
 
