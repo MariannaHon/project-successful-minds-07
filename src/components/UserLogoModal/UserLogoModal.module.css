@@ -1,14 +1,52 @@
-.blueIcon {
-    color: var(--primary-blue);
-    background-color: transparent;
-    width: 16px;
-    height: 16px;
+
+
+.userLogoModalBackdrop {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
 }
-.container {
-    
-    display: flex;
+
+.userLogoModalWrapper {
+    display: inline-flex;
+    padding: 16px;
     flex-direction: column;
-    gap: 24px;    
-   
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 10px;
+    background: var(--white);
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
+    position: absolute;
+    top: 68px;
+    right: 33px;
+    z-index: 1200;
+}
+
+.userLogoModalButton {
+    color: var(--dark-blue);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.userLogoModalButton:hover,
+.userLogoModalButton:focus {
+    color: var(--orange);
+}
+
+.userLogoModalSvg {
+    padding: 0;
+    width: 26px;
+    height: 26px;
+    stroke: var(--dark-blue);
 }
 
