@@ -1,3 +1,4 @@
+
 import { lazy, Suspense } from 'react';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -14,6 +15,7 @@ const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage')
 );
+
 
 export default function App() {
   return (
@@ -53,3 +55,4 @@ export default function App() {
     </div>
   );
 }
+
