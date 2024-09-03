@@ -2,8 +2,8 @@
 .headerSection {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1024px;
+    justify-content: space-between;
+    /* gap: 1024px; */
     padding-top: 20px;
 }
 
