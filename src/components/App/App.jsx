@@ -1,4 +1,3 @@
-
 import { lazy, Suspense } from 'react';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -13,9 +12,9 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
-const NotFoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage')
+const NotFoundPage = lazy(() =>
+  import('../../pages/NotFoundPage/NotFoundPage')
 );
-
 
 export default function App() {
   return (
@@ -33,7 +32,7 @@ export default function App() {
             <Route
               path="/signup"
               element={
-                <RestrictedRoute redirectTo="/home" component={SignupPage} />
+                <RestrictedRoute component={SignupPage} redirectTo="/home" />
               }
             />
             <Route
@@ -45,7 +44,7 @@ export default function App() {
             <Route
               path="/home"
               element={
-                <PrivateRoute component={HomePage} redirectTo="/signin" />
+                <PrivateRoute component={HomePage} redirectTo="/signup" />
               }
             />
             <Route path="*" element={<NotFoundPage />} />
@@ -55,4 +54,3 @@ export default function App() {
     </div>
   );
 }
-

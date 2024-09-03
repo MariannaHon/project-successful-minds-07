@@ -35,14 +35,14 @@ const RegisterForm = () => {
 
   return (
     <div className={css.registerContainer}>
-      <div className={css.registerHeader}>
+      {/* <div className={css.registerHeader}>
         <div>
           <svg className={css.waterIcon}>
             <use href="../../../public/symbol-defs.svg#"></use>
           </svg>
           <h2 className={css.title}>Tracker of water</h2>
         </div>
-      </div>
+      </div> */}
       <p className={css.description}>Sign Up</p>
       <Formik
         initialValues={{ email: '', password: '', repeatPassword: '' }}
