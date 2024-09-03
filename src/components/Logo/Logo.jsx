@@ -21,7 +21,7 @@ const Logo = () => {
         <use href="/symbol-defs.svg#icon-Logo-2" >
         </use>
       </svg>
-    </div>
+    </div>)
 
-
-export default Logo
+  }
+export default Logo;

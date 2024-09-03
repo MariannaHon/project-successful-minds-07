@@ -1,5 +1,3 @@
-
-
 .userLogoModalBackdrop {
     position: fixed;
     left: 0px;
@@ -25,7 +23,7 @@
 }
 
 .userLogoModalButton {
-    color: var(--dark-blue);
+    color: var(--primary-blue);
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
@@ -42,7 +40,9 @@
 .userLogoModalButton:focus {
     color: var(--orange);
 }
-
+.blueIcon {
+    color: var(--primary-blue);
+}
 .userLogoModalSvg {
     padding: 0;
     width: 26px;
