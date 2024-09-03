@@ -8,7 +8,7 @@
 
 // import { Toaster } from 'react-hot-toast';
 import './App.css';
-import UserLogoModal from '../UserLogoutModal/UserLogoutModal';
+import UserLogoModal from '../UserLogoModal/UserLogoModal';
 // const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 // const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 // const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));

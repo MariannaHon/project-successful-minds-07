@@ -96,9 +96,9 @@ input:focus:invalid {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+   
+    font-size: var(--font-size-smaller);
+    font-weight: var(--font-weight-regular);
 }
 .iconClose {
     color: var(--primary-blue); 
