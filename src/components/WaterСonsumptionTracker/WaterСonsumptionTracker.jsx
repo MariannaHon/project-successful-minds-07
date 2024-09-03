@@ -50,7 +50,7 @@ const WaterСonsumptionTracker = () => {
                 className={styles.iconBar}
                 aria-label="icon-wrench-screwdriver"
               >
-                <use href="./../../dist/symbol-defs.svg#icon-wrench-screwdriver"></use>
+                <use href="dist/symbol-defs.svg#icon-wrench-screwdriver"></use>
               </svg>
             </span>{' '}
             <span className={styles.spanText}>Personal rate setting</span>
