@@ -36,6 +36,7 @@ a {
 button {
   cursor: pointer;
   font-family: inherit;
+  cursor:  url(./././public/mdi_cursor-pointer.png) 2 2, pointer;
 }
 
 img {

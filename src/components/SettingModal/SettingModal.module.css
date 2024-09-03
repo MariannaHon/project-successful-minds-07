@@ -120,10 +120,7 @@ input:focus:invalid {
     background-color:var(--primary-blue);
     color: var(--primary-white);
     border: none;
-    border-radius: 10px;
-    /* padding: 10px 30px; */
-    /* width: 160px;
-    height: 44px; */
+    border-radius: 10px;  
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
     cursor:  url(../../../public/mdi_cursor-pointer.png) 2 2, pointer;
 }

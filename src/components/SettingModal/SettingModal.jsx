@@ -25,6 +25,7 @@ import css from "./SettingModal.module.css";
 // import {updateUser} from "../../redux/auth/operations";
 
 const FeedbackSchema = Yup.object().shape({
+    
     name: Yup.string().min(3, "Too Short!").max(34, "Too Long!"),
     email: Yup.string().email().required("Required"),
     outPassword: Yup.string().min(8, "Too Short!").max(64, "Too Long!").required("Required"),
