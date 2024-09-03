@@ -20,6 +20,7 @@
   padding: 24px 16px 24px 16px;
   border-radius: var(--border-radius-smaller);
   gap: 16px;
+  margin-bottom: 38px;
 }
 
 .waterItem {
@@ -47,7 +48,7 @@
     box-shadow: var(--box-shadow-medium);
 
     padding: 32px 24px 32px 24px;
-
+    margin-bottom: 35px;
     gap: 16px;
   }
 }

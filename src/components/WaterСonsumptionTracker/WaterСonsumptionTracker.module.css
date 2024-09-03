@@ -89,13 +89,13 @@
 
   .waterСonsumptionTrackerContainer {
     flex-direction: row;
-    gap: 110px;
+    gap: 102px;
     margin-bottom: 24px;
   }
   .waterСonsumptionTrackerHeader {
     font-size: var(--font-size-large);
     line-height: var(--line-height-tight);
-    width: 439px;
+    width: 480px;
   }
   .waterСonsumptionTrackerSubheader {
     font-size: var(--font-size-base);
