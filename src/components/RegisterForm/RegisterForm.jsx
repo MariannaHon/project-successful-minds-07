@@ -42,10 +42,6 @@ const RegisterForm = () => {
           </svg>
           <h2 className={css.title}>Tracker of water</h2>
         </div>
-
-        <a className={css.link} href="/signin">
-          Sign in
-        </a>
       </div>
       <p className={css.description}>Sign Up</p>
       <Formik
