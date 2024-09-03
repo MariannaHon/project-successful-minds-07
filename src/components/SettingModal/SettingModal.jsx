@@ -6,12 +6,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+
 import { useId } from 'react';
 import { LuUpload } from 'react-icons/lu';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { IoClose } from 'react-icons/io5';
 import { FaRegEye } from 'react-icons/fa6';
 import { FaRegEyeSlash } from 'react-icons/fa6';
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { fetchUser, updateUser } from '../../redux/user/operations';
@@ -35,6 +37,7 @@ const FeedbackSchema = Yup.object().shape({
     .min(8, 'Too Short!')
     .max(64, 'Too Long!')
     .oneOf([Yup.ref('nPassword'), null], 'Passwords must match'),
+
 });
 const style = {
   position: 'absolute',
@@ -66,22 +69,22 @@ function SettingModal() {
     }
   }, [open, dispatch, userId, userData]);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  }
+
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async (values, actions) => {
     try {
-      const result = await dispatch(
-        updateUser({
-          id: userId,
-          avatar: values.avatar,
-          gender: values.gender,
-          name: values.name,
-          email: values.email,
-          password: values.nPassword,
-        })
-      ).unwrap();
-
+      const result = await dispatch(updateUser({
+        id: userId,
+        avatar: values.avatar,
+        gender: values.gender,
+        name: values.name,
+        email: values.email,
+        password: values.nPassword
+      })).unwrap();
       if (result) {
         actions.resetForm();
         setOpen(false);
