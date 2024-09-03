@@ -1,6 +1,6 @@
 
 
-.userLogoModalBackdrop {
+/* .userLogoModalBackdrop {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -25,7 +25,7 @@
 }
 
 .userLogoModalButton {
-    color: var(--dark-blue);
+    color: var(--primary-blue);
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
@@ -41,12 +41,19 @@
 .userLogoModalButton:hover,
 .userLogoModalButton:focus {
     color: var(--orange);
+} */
+
+.blueIcon {
+    color: var(--primary-blue);
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
 }
 
-.userLogoModalSvg {
-    padding: 0;
-    width: 26px;
-    height: 26px;
-    stroke: var(--dark-blue);
-}
+.container {
 
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+}

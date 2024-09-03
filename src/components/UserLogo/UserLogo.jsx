@@ -1,29 +1,17 @@
 import css from './UserLogo.module.css';
-// import { useAuth } from "../../redux/authUser/selectors";
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+// import { useState } from 'react';
 import { selectUser } from '../../redux/auth/selectors.js';
-// import { useModal } from "../../userModal/userModal";
-import { setModalContent, setModalStatus } from '../../redux/modal/modalSlice';
+import UserLogoModal from '../UserLogoModal/UserLogoModal.jsx';
 
 const UserLogo = () => {
-  // const { user } = useAuth();
-  const dispatch = useDispatch();
+
   const user = useSelector(selectUser);
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleToggleModal = () => {
-    setModalOpen(!modalOpen);
-
-    dispatch(setModalStatus(modalOpen));
-    dispatch(setModalContent('UserLogoModal'));
-  };
-
   const getUserAvatarContent = () => {
-    if (user.avatarURL) {
+    if (user.avatarUrl) {
       return (
-        <img className={css.userLogoImg} src={user.avatarURL} alt="avatar" />
+        <img className={css.userLogoImg} src={user.avatarUrl} alt="avatar" />
       );
     } else if (user.name) {
       return (
@@ -40,24 +28,11 @@ const UserLogo = () => {
     }
   };
 
-  // const { modalStatus } = useModal();
-
-  // const handleOpenUserModal = () => {
-  //     dispatch(setModalStatus(!modalStatus));
-  //     dispatch(setModalContent("UserLogoModal"));
-  // };
-
   return (
-    <div className={css.userLogoWrapper} onClick={handleToggleModal}>
+    <div className={css.userLogoWrapper}>
       <p className={css.userLogoName}>{user.name || user.email}</p>
       {getUserAvatarContent()}
-      {/* <img className={css.userLogoImg} src={user.avatarURL} alt="avatarURL" /> */}
-      {/* onClick={handleOpenUserModal} - було в батоні */}
-      <button className={css.userLogoButton}>
-        <svg className={css.userLogoSvg}>
-          <use href="/symbol-defs.svg#icon-chevron-double-up" />
-        </svg>
-      </button>
+      <UserLogoModal />
     </div>
   );
 };
