@@ -22,6 +22,7 @@ const Logo = () => {
         </use>
       </svg>
     </div>
-
+  )
+}
 
 export default Logo
