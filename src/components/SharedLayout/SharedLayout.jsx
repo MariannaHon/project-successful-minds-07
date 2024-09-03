@@ -6,7 +6,7 @@ import css from './SharedLayout.module.css';
 export const SharedLayout = ({ children }) => {
   return (
     <div className={css.container}>
-      {/* <Header /> */}
+      <Header />
       <Suspense fallback={null}>{children}</Suspense>
     </div>
   );
