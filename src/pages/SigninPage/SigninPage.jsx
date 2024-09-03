@@ -23,8 +23,8 @@ const SigninPage = () => {
             Sign up
           </NavLink>
         </div>
+        <div className={css.image}></div>
       </div>
-      <div className={css.image}></div>
     </div>
   );
 };
