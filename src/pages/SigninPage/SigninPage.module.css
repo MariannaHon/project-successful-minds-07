@@ -48,7 +48,7 @@
     background: url('../../../public/images/signin/tablet-bottle.png') no-repeat;
     width: 736px;
     height: 548px;
-    position: absolute;
+    /* position: absolute; */
     top: 116px;
     left: 112px;
 }
