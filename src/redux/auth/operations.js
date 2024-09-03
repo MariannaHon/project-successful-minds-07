@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -9,6 +10,9 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
+
+
 export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
@@ -16,23 +20,21 @@ export const register = createAsyncThunk(
       const response = await axios.post('/auth/signup', newUser);
       setAuthHeader(response.data.token);
       return response.data;
-    } catch (error) {
+    } catch (e) {
       toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-axios.defaults.baseURL = "https://successful-minds-db.onrender.com/";
-
-export const logIn = createAsyncThunk(
-  "auth/signin",
-  async (User, thunkAPI) => {
+export const signin = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/signin", User);
+      const response = await axios.post(
+        'auth/signin', { email, password }
+      );
       setAuthHeader(response.data.token);
-      console.log(response.data);
-      
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -41,9 +43,22 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
-    await axios.post("/users/logout");
+    const response = await axios.post('/auth/signin', User);
+    setAuthHeader(response.data.token);
+    console.log(response.data);
+
+    return response.data;
+  } catch (error) {
+    toast.error('Something went wrong :( Try again later.');
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await axios.post('/users/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
