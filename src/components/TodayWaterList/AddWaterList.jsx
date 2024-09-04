@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import css from "./TodayWaterList.module.css";
-import icons from "/public/symbol-defsG.svg";
+import icons from "/public/symbol-defsN.svg";
 
 
 export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
