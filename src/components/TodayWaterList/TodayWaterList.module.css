@@ -70,7 +70,7 @@
   position: relative;
   background-color: #ECF2FF;
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 280px;
   margin: 0 auto;
   height: 264px;
   flex: 1;
@@ -140,6 +140,16 @@
 
 }
 
+.iconDelete {
+  color: #EF5050;
+}
+
+.iconGlass {
+  width: 36px;
+  height: 36px;
+  color: #407BFF;
+}
+
 .addWaterButton {
   font-size: 16px;
   position: sticky;
@@ -162,4 +172,10 @@
 
 .addWaterButton:hover {
   background-color: #0056b3;
+}
+
+@media screen and (min-width: 768px) {
+  .todayWaterList {
+    max-width: 704px;
+  }
 }

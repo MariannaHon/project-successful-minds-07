@@ -50,10 +50,11 @@
 
 .mark {
   position: absolute;
+  /* text-align: center; */
   width: 1px;
   height: 8px;
   background-color: #D7E3FF;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
 }
 
 .progressBar {
@@ -149,29 +150,26 @@
     }
 
     .progressBar {
-      width: 356px;
+      width: 325px;
     }
 
     .progressTextNumber {
       width: 356px;
-      margin-left: 0px;
+      
     }
+
 }
 
 @media screen and (min-width: 1440px) {
   .progressBar {
-      width: 391px;
+      width: 360px;
     }
 
   .progressTextNumber {
       width: 391px;
    }
 
-  .progressText:not(:first-child) {
-    margin-right: -15px;
-  }
-
-  .addWaterButton {
+   .addWaterButton {
     width: 178px;
     padding: 10px 10px;
   }

@@ -1,6 +1,5 @@
 // /* eslint-disable react/prop-types */
 // // import React from 'react';
-import { HiOutlinePencilSquare } from "react-icons/hi2";
 // import css from './TodayWaterList.module.css';
 
 // const TodayWaterList = () => {
@@ -60,7 +59,11 @@ import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 
 
-import  { useState } from 'react';
+import { useState } from 'react';
+import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { CiGlass } from "react-icons/ci";
+
 import css from './TodayWaterList.module.css';
 
 const TodayWaterList = () => {
@@ -69,8 +72,8 @@ const TodayWaterList = () => {
     { id: 2, amount: 220, time: '11:00' },
     { id: 3, amount: 200, time: '14:00' },
     { id: 4, amount: 150, time: '16:00' },
-    { id: 4, amount: 150, time: '16:00' },
-    { id: 4, amount: 150, time: '16:00' }
+    { id: 5, amount: 150, time: '16:00' },
+    { id: 6, amount: 150, time: '16:00' }
   ]);
 
   const handleEdit = (id) => {
@@ -87,10 +90,12 @@ const TodayWaterList = () => {
       <ul className={css.list}>
         {waterEntries.map(entry => (
           <li key={entry.id} className={css.item}>
+            {/* <svg className={css.iconGlass} aria-label="icon-glass"><use href="/imgHomePage/Glass.svg#icon-glass"></use></svg> */}
+            <CiGlass className={css.iconGlass}/>
             <span className={css.amount}>{entry.amount} ml</span>
             <span className={css.time}>{entry.time}</span>
             <button className={css.btn} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
-            <button className={css.btn} onClick={() => handleDelete(entry.id)}></button>
+            <button className={css.btn} onClick={() => handleDelete(entry.id)}><RiDeleteBinLine className={css.iconDelete}></RiDeleteBinLine></button>
           </li>
         ))}
       </ul>
