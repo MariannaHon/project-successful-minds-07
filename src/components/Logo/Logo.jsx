@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 import { useSelector } from 'react-redux';
-// import { Link } from "react-router-dom";
 import css from "./Logo.module.css";
 
 const Logo = () => {
@@ -19,23 +18,11 @@ const Logo = () => {
 
     <div onClick={logoClick}>
       <svg width="40" height="48" className={css.icons}>
-        <use href="/symbol-defs.svg#icon-Logo-2" >
+        <use href="/project-successful-minds-07/symbol-defs.svg#icon-Logo-2" >
         </use>
       </svg>
     </div>
-
-
-    // <Link to={"/"}>
-
-    //     <p className={s.logoText}>
-    //       TRACKER
-    //       <br />
-    //       OF WATER
-    //     </p>
-    //   </div>
-    // </Link>
-  );
-};
-
+  )
+}
 
 export default Logo

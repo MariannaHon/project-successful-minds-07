@@ -1,8 +1,9 @@
+
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { WaterEntry } from "./TodayWaterListModal";
 import css from "./TodayWaterList.module.css";
-import icons from "/public/symbol-defsG.svg";
+import icons from "/public/symbol-defsN.svg";
 
 export const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
