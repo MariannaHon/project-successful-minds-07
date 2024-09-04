@@ -1,0 +1,100 @@
+.modalContainer {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.formulaContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.formulaTitle {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.formula {
+    font-size: 16px;
+    color: #007bff;
+}
+
+.explanation {
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #6c757d;
+}
+
+.genderContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calculateRateText {
+    margin-right: 10px;
+}
+
+.radioLabel {
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.inputField {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.errorText {
+    color: #ff4d4d;
+    font-size: 12px;
+}
+
+.resultContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.resultText {
+    font-weight: bold;
+}
+
+.resultValue {
+    color: #007bff;
+    font-size: 18px;
+}
+
+.saveButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.saveButton:hover {
+    background-color: #0056b3;
+}
