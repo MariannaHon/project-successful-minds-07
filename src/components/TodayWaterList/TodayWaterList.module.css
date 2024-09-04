@@ -1,0 +1,65 @@
+.container {
+  padding: 16px;
+  background-color: #f5f7fa;
+  border-radius: 8px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.entryText {
+  display: flex;
+  align-items: center;
+}
+
+.waterAmount {
+  font-size: 18px;
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.time {
+  font-size: 16px;
+  color: #999;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.editButton,
+.deleteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.editButton .icon,
+.deleteButton .icon {
+  width: 20px;
+  height: 20px;
+  fill: #007bff;
+}
+
+.deleteButton .icon {
+  fill: #ff0000;
+}
