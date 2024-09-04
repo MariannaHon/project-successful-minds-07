@@ -5,7 +5,9 @@
     align-items: center;
     width: 102px;
   }
-  
+  .icons{
+    fill:#407bff;
+  }
   .logoTekst {
     color: var(--dark-blue, #407bff);
     font-family: Roboto;

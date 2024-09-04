@@ -23,8 +23,12 @@
 .inputField::placeholder, .inputField_pswd::placeholder{
     color: var(--secondary-blue);
 }
-.inputField:focus, .inputField:hover, .inputField:active, .inputField_pswd:focus,.inputField_pswd:hover,.inputField_pswd:active{
+.inputField:focus, .inputField:hover, .inputField_pswd:focus,.inputField_pswd:hover,.inputField_pswd:active{
     border: 1px solid var(--secondary-blue);
+}
+.inputField:active{
+  color:var(--primary-blue);
+  border: 1px solid var(--secondary-blue);
 }
 .wrap_pswd{
   position: relative;
