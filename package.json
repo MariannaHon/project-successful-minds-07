@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build --base=/project-successful-minds-07/",
     "lint:js": "eslint src/**/*.{js,jsx}",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -19,6 +21,7 @@
     "axios": "^1.7.5",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
+    "gh-pages": "^6.1.1",
     "modern-normalize": "^3.0.0",
     "project-successful-minds-07": "file:",
     "react": "^18.3.1",
