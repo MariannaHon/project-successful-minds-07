@@ -1,6 +1,6 @@
 // // import React from 'react';
 // // import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
-import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
+// import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 // // import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 // // import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable.jsx';
 // import css from './HomePage.module.css';
@@ -28,8 +28,8 @@ import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.js
 
 // import { useState } from 'react';
 // import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
-// import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
-// import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
+import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 // import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable.jsx';
 import css from './HomePage.module.css';
 
@@ -43,11 +43,7 @@ const HomePage = () => {
           <WaterRatioPanel />
         </div>
         <div className={css.rightColumn}>
-          {/* <TodayWaterList 
-            waterEntries={waterEntries} 
-            onEdit={handleEdit} 
-            onDelete={handleDelete} 
-          /> */}
+          <TodayWaterList />
           {/* <MonthStatsTable /> */}
         </div>
       </div>
