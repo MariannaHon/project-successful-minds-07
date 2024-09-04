@@ -40,6 +40,12 @@
   top: 10px; 
   color: var(--primary-blue);    
 }
+.stars{
+  position: absolute;
+    top: 10px;
+    left: 10px;
+    color:  var(--primary-blue);;
+}
 .wrap {
  height: 70px;
 }

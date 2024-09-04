@@ -1,16 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm/AuthForm';
-// import { Helmet } from 'react-helmet';
 
 import css from './SigninPage.module.css';
 
 const SigninPage = () => {
   return (
     <div className={css.container}>
-      {/* <Helmet>
-        <title>SignIn to Tracker of Water</title>
-      </Helmet> */}
-      {/* <picture>
+          {/* <picture>
         <source
           srcset="
             ./img/img_about_desktop_1440@1x.png 1x,

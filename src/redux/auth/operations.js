@@ -27,21 +27,21 @@ export const register = createAsyncThunk(
   }
 );
 
-export const signin = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        'auth/signin', { email, password }
-      );
-      setAuthHeader(response.data.token);
-      return response.data;
-    } catch (error) {
-      toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const signin = createAsyncThunk(
+//   'auth/login',
+//   async ({ email, password }, thunkAPI) => {
+//     try {
+//       const response = await axios.post(
+//         'auth/signin', { email, password }
+//       );
+//       setAuthHeader(response.data.token);
+//       return response.data;
+//     } catch (error) {
+//       toast.error('Something went wrong :( Try again later.');
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
