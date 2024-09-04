@@ -4,6 +4,7 @@
   gap: 8px;
   min-width: 84px;
   padding-right: 20px;
+  cursor: pointer;
 }
 
 .icons {
