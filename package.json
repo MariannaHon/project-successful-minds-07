@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "vite build --base=/project-successful-minds-07/",
     "lint:js": "eslint src/**/*.{js,jsx}",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
