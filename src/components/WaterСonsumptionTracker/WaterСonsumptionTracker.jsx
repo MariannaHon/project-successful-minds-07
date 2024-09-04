@@ -34,8 +34,6 @@ const WaterСonsumptionTracker = () => {
           <li className={styles.waterItem}>
             <span>
               <svg
-                width="30"
-                height="30"
                 className={styles.iconBar}
                 aria-label="icon-presentation-chart-bar"
               >
@@ -49,8 +47,6 @@ const WaterСonsumptionTracker = () => {
           <li className={styles.waterItem}>
             <span>
               <svg
-                width="30"
-                height="30"
                 className={styles.iconBar}
                 aria-label="icon-wrench-screwdriver"
               >
