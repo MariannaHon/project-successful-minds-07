@@ -18,7 +18,7 @@ const Logo = () => {
 
     <div onClick={logoClick}>
       <svg width="40" height="48" className={css.icons}>
-        <use href="./dist/symbol-defs1.svg#icon-Logo-2" >
+        <use href="/symbol-defs.svg#icon-Logo-2" >
         </use>
       </svg>
     </div>
