@@ -13,13 +13,9 @@ const Logo = () => {
 
   return (
     <div className={css.logoWrapper} onClick={logoClick}>
-      <img 
-        src="/android-chrome-192x192.png" 
-        alt="Logo" 
-        width="40" 
-        height="48" 
-        className={css.icons} 
-      />
+      <svg width="40" height="48" className={css.icons}>
+        <use href="/project-successful-minds-07/symbol-defs.svg#icon-Logo-2" >
+        </use></svg>
       <p className={css.logoTekst}>
         TRACKER
         <br />
