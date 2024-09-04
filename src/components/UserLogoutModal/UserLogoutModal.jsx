@@ -5,6 +5,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { logOut } from '../../redux/auth/operations'
+import { useDispatch } from "react-redux";
 
 const style = {
   position: 'absolute',
@@ -24,8 +25,10 @@ const UserLogoutModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const dispatch = useDispatch();
+
   const handleLogOut = () => {
-    logOut();
+    dispatch(logOut());
     handleClose();
   }
   return (
