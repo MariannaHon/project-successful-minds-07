@@ -1,14 +1,13 @@
-
-
 .userLogoWrapper {
     display: flex;
     gap: 6px;
     justify-self: center;
     align-items: center;
     min-width: 122px;
-}
-
-.userLogoName {
+    cursor: url(./././public/mdi_cursor-pointer.png) 2 2, pointer;
+  }
+  
+  .userLogoName {
     color: var(--black, #2f2f2f);
     text-align: right;
     font-family: Roboto;
@@ -16,10 +15,23 @@
     font-style: normal;
     font-weight: 400;
     line-height: 1.25;
-}
-
-.userLogoImg {
+  }
+  
+  .userLogoImg {
     border-radius: 100px;
     width: 28px;
     height: 28px;
-}
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .userLogoName {
+      font-size: 14px;
+    }
+  
+    .userLogoImg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
