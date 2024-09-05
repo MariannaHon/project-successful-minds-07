@@ -2,6 +2,7 @@
 h3 {
     color: var(--primary-black);
 }
+
 .error {
     line-height: 1.29;
     color: var(--secondary-red);
@@ -39,10 +40,24 @@ h3 {
     width: 80px;
     height: 80px;
 }
-.link {
+.iconChange {
     color: var(--primary-blue);
-    cursor:  url(../../../public/mdi_cursor-pointer.png) 2 2, pointer;
+    width: 16px;
+    padding-right: 4px;
 }
+.change {
+    display: none;
+}
+.link {
+    cursor:  url(../../../public/mdi_cursor-pointer.png) 2 2, pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+   
+}
+
 .field {
     position: relative;
     padding: 4px;
@@ -96,9 +111,12 @@ input:focus:invalid {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    gap: 8px;
+  
+    
+}
+.errorInput {
+    border: 1px solid var(--secondary-red);
 }
 .iconClose {
     color: var(--primary-blue); 
