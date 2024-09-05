@@ -7,6 +7,7 @@
   height: 264px;
   flex: 1;
   overflow-y: auto;
+  padding: 0 24px;
 }
 
 .title {
@@ -33,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+  padding: 8px 0;
   border-bottom: 1px solid #D7E3FF;
   height: 26px;
 }
@@ -41,6 +42,7 @@
 .amount {
   font-size: 18px;
   color: #407BFF;
+  margin-right: 16px;
 }
 
 .time {
@@ -73,6 +75,8 @@
   width: 36px;
   height: 36px;
   color: #407BFF;
+  margin-right: 12px;
+  margin-top: 6px;
 }
 
 .addWaterButton {
@@ -92,11 +96,19 @@
 }
 
 .addWaterButton:hover {
-  background-color: #0056b3;
+  background-color: #ECF2FF;
 }
 
 @media screen and (min-width: 768px) {
   .todayWaterList {
     max-width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .item {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
   }
 }
