@@ -1,7 +1,7 @@
 .homePage {
     background-color: var(--primary-white);
-      background-image: url('../../../imgHomePage/Background_element_mobile.png'), 
-        url('../../../imgHomePage/Botle_mobile.png');
+      background-image: url('/project-successful-minds-07/imgHomePage/Background_element_mobile.png'), 
+        url('/project-successful-minds-07/imgHomePage/Botle_mobile.png');
       background-repeat: no-repeat;
       /* width: var(--container-min-width); */
       height: 1374px;
