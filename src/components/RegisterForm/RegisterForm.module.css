@@ -6,6 +6,7 @@
   margin-right: auto;
   width: 280px;
 }
+
 .registerHeader {
   display: flex;
   flex-direction: row;
@@ -66,7 +67,7 @@
 }
 
 .image {
-  background-image: url('../../../images/BottleRegisterMobile.jpg');
+  background-image: url('/project-successful-minds-07/images/register/RegisterBottleMobile.jpg');
   width: 280px;
   height: 210px;
 }
@@ -75,4 +76,33 @@
   font-size: 16px;
   line-height: 1.25;
   color: var(--primary-blue);
+}
+.passEye {
+  position: absolute;
+  right: 31px;
+  top: 239px;
+  color: var(--primary-blue);
+}
+.repPassEye {
+  position: absolute;
+  right: 31px;
+  top: 317px;
+  color: var(--primary-blue);
+}
+@media screen and (min-width: 768px) {
+  .registerContainer {
+    min-width: 704px;
+  }
+  .background {
+    position: absolute;
+    background-image: url('/project-successful-minds-07/images/register/RegisterWaterTablet.jpg');
+    background-position: center;
+    background-size: 100%;
+    background-position: right;
+    top: 0%;
+    left: 0%;
+    width: 768px;
+    height: 680px;
+    z-index: -1;
+  }
 }
