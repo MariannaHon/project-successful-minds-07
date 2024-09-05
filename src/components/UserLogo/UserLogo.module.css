@@ -4,6 +4,7 @@
     justify-self: center;
     align-items: center;
     min-width: 122px;
+    cursor: url(./././public/mdi_cursor-pointer.png) 2 2, pointer;
   }
   
   .userLogoName {
