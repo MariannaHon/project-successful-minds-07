@@ -1,0 +1,25 @@
+
+
+.userLogoWrapper {
+    display: flex;
+    gap: 6px;
+    justify-self: center;
+    align-items: center;
+    min-width: 122px;
+}
+
+.userLogoName {
+    color: var(--black, #2f2f2f);
+    text-align: right;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.userLogoImg {
+    border-radius: 100px;
+    width: 28px;
+    height: 28px;
+}

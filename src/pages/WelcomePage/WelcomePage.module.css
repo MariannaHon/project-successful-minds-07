@@ -1,0 +1,87 @@
+.welcomePageContainer {
+  max-width: var(--container-min-width);
+  /* margin: 0 auto; */
+  padding: 0 20px;
+  margin-top: 25px;
+}
+
+.welcomePage {
+  background: var(--primary-white)
+    url('../../../dist/images/BackgroundWelcomePageMobile.png') no-repeat bottom;
+  width: var(--container-min-width);
+  //height: 872px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+ /* @media (min-resolution: 192dpi) {
+  .welcomePage {
+    background: var(--primary-white)
+      url('../../../images/BackgroundWelcomePageMobile@2x.png') no-repeat; width: var(--container-min-width);
+      height: 952px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
+   }
+ } */
+.welcomePageContainerBlock {
+  margin: 0 auto;
+  
+}
+
+/* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .welcomePageContainer {
+    max-width: var(--container-medium-width);
+    padding: 0 32px;
+  }
+
+  .welcomePage {
+    background: var(--primary-white)
+      url('../../../dist/images/BackgroundTabletWelcomePage.png') no-repeat bottom;
+    width: var(--container-medium-width); 
+    height: 736px;
+    //margin-top: 40px;
+    //padding-bottom: 125px;
+  }
+  /* @media (min-resolution: 192dpi) {
+    .welcomePage {
+      background: var(--primary-white)
+        url('../../../public/images/BackgroundTabletWelcomePage@2x.png') no-repeat; width: var(--container-min-width); 
+        width: var(--container-medium-width);
+        padding-bottom: 125px;
+        
+     }
+} */
+}
+/* ____________________________Desctop style____________________________ */
+
+@media screen and (min-width: 1440px) {
+  .welcomePageContainer {
+    max-width: var(--container-max-width);
+  }
+  .welcomePage {
+    background-color: var(--primary-white);
+    background-image: url('../../../dist/images/BackgroundWelcomePage.png'),
+      url('../../../dist/images/BackgroundElemWelcomePage.png');
+    background-repeat: no-repeat;
+    background-position: bottom, center 30%;
+    width: 1440px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: row;
+     
+  }
+
+  .welcomePageContainerBlock {
+    display: flex;
+    align-items: end;
+    margin-top: 55px;
+    flex-direction: row;
+  }
+}

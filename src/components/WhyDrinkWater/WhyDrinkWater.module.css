@@ -1,0 +1,62 @@
+.whyDrinkWaterBlockTwo {
+  display: flex;
+  flex-direction: column;
+}
+
+.WaterHeader {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-extra-tight);
+  text-align: left;
+  color: var(--primary-black);
+}
+
+.whyDrinkWaterContainer {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background-color: var(--secondary-light-blue);
+  box-shadow: var(--box-shadow-medium);
+  padding: 24px 16px 24px 16px;
+  border-radius: var(--border-radius-smaller);
+  gap: 16px;
+  margin-bottom: 38px;
+}
+
+.waterItem {
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+  color: var(--primary-black);
+  display: flex;
+  align-items: center;
+}
+.myIconSpan {
+  display: flex;
+  color: var(--primary-blue);
+  padding-right: 3px;
+  size: 8px;
+  align-items: center;
+}
+
+/* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .whyDrinkWaterContainer {
+    width: 494px;
+    box-shadow: var(--box-shadow-medium);
+
+    padding: 32px 24px 32px 24px;
+    margin-bottom: 35px;
+    gap: 16px;
+  }
+}
+
+/* ____________________________Desctop style____________________________ */
+@media screen and (min-width: 1440px) { 
+  .whyDrinkWaterContainer {
+  margin-bottom: 0;
+}
+}
+

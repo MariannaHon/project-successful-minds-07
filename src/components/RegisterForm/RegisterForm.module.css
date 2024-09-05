@@ -1,0 +1,78 @@
+/* Mobile */
+.registerContainer {
+  font-family: 'Roboto', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+}
+.registerHeader {
+  display: flex;
+  flex-direction: row;
+  gap: 94px;
+  margin-bottom: 24px;
+}
+.description {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.23077;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+.title {
+  display: flex;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--primary-blue);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  margin-bottom: 8px;
+}
+.input {
+  border: 1px solid var(--secondary-blue);
+  border-radius: 6px;
+  padding: 12px 10px;
+  height: 44px;
+  width: 280px;
+  margin-bottom: 16px;
+}
+.input::placeholder {
+  color: var(--secondary-blue);
+}
+.warning {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--secondary-blue);
+}
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 280px;
+  height: 36px;
+  box-shadow: var(--box-shadow-regular);
+  background: var(--primary-blue);
+  color: var(--primary-white);
+  margin-bottom: 16px;
+}
+
+.image {
+  background-image: url('../../../images/BottleRegisterMobile.jpg');
+  width: 280px;
+  height: 210px;
+}
+.link {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-blue);
+}

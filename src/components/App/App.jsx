@@ -1,30 +1,56 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from '../../pages/HomePage/HomePage.jsx';
 
-// import './App.css'
+import { lazy, Suspense } from 'react';
 
-// function App() {
+import { Routes, Route } from 'react-router-dom';
+import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
+import { SharedLayout } from '../SharedLayout/SharedLayout';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
-//   return (
-//     <>
+import { Toaster } from 'react-hot-toast';
 
-//     </>
-//   )
-// }
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
+const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const NotFoundPage = lazy(() =>
+  import('../../pages/NotFoundPage/NotFoundPage')
+);
 
-// export default App
-
-
-const App = () => {
+export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <div>
+      <SharedLayout>
+        <Suspense fallback={<Toaster />}>
+          <Routes>
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/welcome" />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <RestrictedRoute component={SignupPage} redirectTo="/home" />
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <RestrictedRoute component={SigninPage} redirectTo="/home" />
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/signup" />
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </SharedLayout>
+    </div>
   );
-};
-
-export default App;
-
+}

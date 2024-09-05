@@ -1,0 +1,90 @@
+.container {
+  width: 280px;
+  background-color: var(--primary-white);
+  height: 100vh;
+  text-align: left;
+  color: var(--primary-black);
+  position: relative;
+  background-image: url('/project-successful-minds-07/images/signin/mobile-background.png');
+  background-repeat: no-repeat;
+  background-position: left 0px top 28px;
+  background-size: cover;
+  width: 320px;
+  height: 464px;
+}
+.container_signin {
+  /* margin-bottom: 66px;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.background {
+}
+.title {
+  color: var(--primary-black);
+}
+.link {
+  text-decoration: none;
+  color: var(--primary-blue);
+}
+.image {
+  background: url('/project-successful-minds-07/images/signin/mobile-bottle.png') no-repeat;
+  width: 280px;
+  height: 210px;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: var(--container-medium-width);
+    position: relative;
+    background-image: url('/project-successful-minds-07/images/signin/table-background.png');
+    background-repeat: no-repeat;
+    background-position: left 0px top 0px;
+    background-size: cover;
+    width: 768px;
+    height: 680px;
+  }
+  .container_signin {
+    /* display: flex; */
+    flex-direction: row;
+  }
+  .background {
+  }
+
+  .image {
+    background-image: url('/project-successful-minds-07/images/signin/tablet-bottle.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: left 112px top 116px; */
+    width: 736px;
+    height: 548px;
+    position: absolute;
+    top: 52px;
+    left: 80px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1404px;
+    height: 582px;
+    background-image: url('/project-successful-minds-07/images/signin/desktop-background.png');
+    background-repeat: no-repeat;
+
+  }
+  .container_signin {
+    flex-direction: row-reverse;
+    gap: 312px;
+  }
+  .background {
+    /* width: 768px; */
+  }
+
+  .image {
+    background-image: url('/project-successful-minds-07/images/signin/desktop-bottle.png');
+    background-repeat: no-repeat;
+    background-position: left -51px top 80px;
+    background-size: cover;
+    width: 916px;
+    height: 680px;
+  }
+}

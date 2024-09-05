@@ -1,0 +1,65 @@
+.formContainer {
+  margin: 16px 0;
+  /* background-color: var(--primary-white); */
+  width: 280px;
+  height: 250px;
+  /* border: 1px solid black; */
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  color: var(--primary-blue);
+  border: 1px solid var(--secondary-pale-blue);
+  border-radius: var(--border-radius-small);
+  /* -webkit-text-security:square; */
+}
+.inputField::placeholder{
+    color: var(--secondary-blue);
+}
+.inputField:focus, .inputField:hover, .inputField:active{
+    border: 1px solid var(--secondary-blue);
+}
+.wrap {
+ height: 70px;
+}
+
+.errorMessage {
+  color: var(--secondary-red);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submitButton {
+  display: block;
+  width: 100%;
+  padding: 8px 30px;
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  border: none;
+  border-radius: var(--border-radius-smaller);
+  box-shadow: var(--box-shadow-dark);
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  box-shadow: none;
+  cursor: url('../../images/Cursor.png'),pointer;
+}
+@media screen and (min-width: 768px) {
+    .formContainer{
+        width: 336px;
+        margin-left: 0;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .formContainer{
+        width: 384px;
+    }
+}

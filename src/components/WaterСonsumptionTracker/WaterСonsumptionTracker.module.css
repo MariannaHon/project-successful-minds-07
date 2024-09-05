@@ -1,0 +1,150 @@
+.waterСonsumptionTrackerBlockOne {
+  display: flex;
+  flex-direction: column;
+}
+
+.waterСonsumptionTrackerHeader {
+  font-size: var(--font-size-bigger);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-align: left;
+  color: var(--primary-black);
+  margin-bottom: 16px;
+  width: 246px;
+}
+
+.waterСonsumptionTrackerSubheader {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+  color: var(--primary-black);
+  margin-bottom: 16px;
+  width: 197px;
+}
+.WaterHeader {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-extra-tight);
+  text-align: left;
+  color: var(--primary-black);
+  margin-bottom: 12px;
+}
+.waterItem {
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  text-align: left;
+  color: var(--primary-black);
+  display: flex;
+  align-items: center;
+}
+.iconBar {
+  width: 32px;
+  height: 32px;
+}
+.WaterСonsumptionTrackerButton {
+  display: block;
+  background-color: var(--primary-blue);
+  box-shadow: var(--box-shadow-regular);
+  width: 280px;
+  height: 36px;
+  padding: 8px 30px 8px 30px;
+  gap: 10px;
+  border-radius: var(--border-radius-smaller);
+  color: var(--primary-white);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-relaxed);
+  text-align: center;
+  margin-bottom: 40px;
+}
+.WaterСonsumptionTrackerButton:active {
+  box-shadow: none;
+  -webkit-text-stroke: none;
+  text-stroke: none;
+}
+.WaterСonsumptionTrackerButton:hover {
+  box-shadow: var(--box-shadow-dark);
+  text-shadow: 0px 4px 4px var(--overlay-bg-color);
+  -webkit-text-stroke: 1px var(--overlay-bg-color);
+  text-stroke: 1px var(--overlay-bg-color);
+}
+.waterСonsumptionTrackerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.spanText {
+  margin-left: 6px;
+}
+/* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .iconBar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .waterСonsumptionTrackerContainer {
+    flex-direction: row;
+    gap: 102px;
+    margin-bottom: 24px;
+  }
+  .waterСonsumptionTrackerHeader {
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-tight);
+    width: 480px;
+  }
+  .waterСonsumptionTrackerSubheader {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+    width: 439px;
+    margin-bottom: 24px;
+  }
+  .WaterHeader {
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-extra-tight);
+    margin-bottom: 12px;
+  }
+  .WaterСonsumptionTrackerButton {
+    width: 336px;
+    height: 44px;
+    padding: 10px 30px 10px 30px;
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-loose);
+    margin-bottom: 50px;
+  }
+}
+/* ____________________________Desctop style____________________________ */
+
+@media screen and (min-width: 1440px) {
+  .waterСonsumptionTrackerBlockOne {
+    margin-right: 80px;
+    width: 439px;
+  }
+  .waterСonsumptionTrackerHeader {
+    font-weight: var(--font-weight-bold);
+  }
+  .waterСonsumptionTrackerSubheader {
+    margin-bottom: 16px;
+  }
+  .WaterHeader {
+    margin-bottom: 16px;
+  }
+  .WaterСonsumptionTrackerButton {
+    margin-bottom: 0;
+
+    box-shadow: var(--box-shadow-light);
+    width: 384px;
+    height: 44px;
+  }
+  .waterСonsumptionTrackerContainer {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+}
