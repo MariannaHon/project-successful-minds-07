@@ -12,6 +12,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const ForgotPasswordPage = lazy(() => import('../../pages/ForgotPasswordPage/ForgotPasswordPage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
@@ -39,6 +40,12 @@ export default function App() {
               path="/signin"
               element={
                 <RestrictedRoute component={SigninPage} redirectTo="/home" />
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <RestrictedRoute component={ForgotPasswordPage} redirectTo="/welcome" />
               }
             />
             <Route
