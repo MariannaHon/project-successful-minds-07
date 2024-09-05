@@ -5,7 +5,7 @@
   text-align: left;
   color: var(--primary-black);
   position: relative;
-  background-image: url('../../../public/images/signin/mobile-background.png');
+  background-image: url('/project-successful-minds-07/images/signin/mobile-background.png');
   background-repeat: no-repeat;
   background-position: left 0px top 28px;
   background-size: cover;
@@ -29,7 +29,7 @@
   color: var(--primary-blue);
 }
 .image {
-  background: url('../../../public/images/signin/mobile-bottle.png') no-repeat;
+  background: url('/project-successful-minds-07/images/signin/mobile-bottle.png') no-repeat;
   width: 280px;
   height: 210px;
 }
@@ -37,7 +37,7 @@
   .container {
     width: var(--container-medium-width);
     position: relative;
-    background-image: url('../../../public/images/signin/table-background.png');
+    background-image: url('/project-successful-minds-07/images/signin/table-background.png');
     background-repeat: no-repeat;
     background-position: left 0px top 0px;
     background-size: cover;
@@ -52,7 +52,7 @@
   }
 
   .image {
-    background-image: url('../../../public/images/signin/tablet-bottle.png');
+    background-image: url('/project-successful-minds-07/images/signin/tablet-bottle.png');
     background-repeat: no-repeat;
     background-size: cover;
     /* background-position: left 112px top 116px; */
@@ -67,7 +67,7 @@
   .container {
     width: 1404px;
     height: 582px;
-    background-image: url('../../../public/images/signin/desktop-background.png');
+    background-image: url('/project-successful-minds-07/images/signin/desktop-background.png');
     background-repeat: no-repeat;
 
   }
@@ -80,7 +80,7 @@
   }
 
   .image {
-    background-image: url('../../../public/images/signin/desktop-bottle.png');
+    background-image: url('/project-successful-minds-07/images/signin/desktop-bottle.png');
     background-repeat: no-repeat;
     background-position: left -51px top 80px;
     background-size: cover;

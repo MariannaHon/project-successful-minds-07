@@ -13,9 +13,10 @@ const UserAuth = () => {
       <button className={css.userAuthLink} type="button" onClick={authClick}>
         Sign in
       </button>
-      <svg width="40" height="48" className={css.icons}>
-        <use href="/project-successful-minds-07/symbol-defs.svg#icon-Logo-2" >
-        </use></svg>
+      <svg width="28" height="28" className={css.icons}>
+        <use href="/project-successful-minds-07/symbol-defs.svg#icon-user" >
+        </use>
+      </svg>
     </div>
   );
 };
