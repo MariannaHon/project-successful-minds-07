@@ -11,7 +11,7 @@
   margin-bottom: 8px;
 }
 
-.inputField,.inputField_pswd {
+.inputField {
   width: 100%;
   padding: 8px;
   margin-bottom: 5px;
@@ -20,31 +20,11 @@
   border-radius: var(--border-radius-small);
   /* -webkit-text-security:square; */
 }
-.inputField::placeholder, .inputField_pswd::placeholder{
+.inputField::placeholder{
     color: var(--secondary-blue);
 }
-.inputField:focus, .inputField:hover, .inputField_pswd:focus,.inputField_pswd:hover,.inputField_pswd:active{
+.inputField:focus, .inputField:hover, .inputField:active{
     border: 1px solid var(--secondary-blue);
-}
-.inputField:active{
-  color:var(--primary-blue);
-  border: 1px solid var(--secondary-blue);
-}
-.wrap_pswd{
-  position: relative;
-  height: 70px;
-}
-.eye {
-  position: absolute;
-  right: 14px;
-  top: 10px; 
-  color: var(--primary-blue);    
-}
-.stars{
-  position: absolute;
-    top: 10px;
-    left: 10px;
-    color:  var(--primary-blue);;
 }
 .wrap {
  height: 70px;

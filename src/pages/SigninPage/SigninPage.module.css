@@ -1,6 +1,5 @@
 .container {
-  max-width: 280px;
-  margin: 0 auto;
+  width: 280px;
   background-color: var(--primary-white);
   height: 100vh;
   text-align: left;
@@ -16,7 +15,7 @@
 .container_signin {
   /* margin-bottom: 66px;  */
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-between;
   padding: 0 20px;
 }
@@ -36,11 +35,11 @@
 }
 @media screen and (min-width: 768px) {
   .container {
-    max-width: var(--container-medium-width);
-    /* position: relative; */
+    width: var(--container-medium-width);
+    position: relative;
     background-image: url('/project-successful-minds-07/images/signin/table-background.png');
     background-repeat: no-repeat;
-    /* background-position: left 0px top 0px; */
+    background-position: left 0px top 0px;
     background-size: cover;
     width: 768px;
     height: 680px;
