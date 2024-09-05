@@ -43,6 +43,7 @@ h3 {
 .iconChange {
     color: var(--primary-blue);
     width: 16px;
+    padding-right: 4px;
 }
 .change {
     display: none;
@@ -110,8 +111,12 @@ input:focus:invalid {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
+    gap: 8px;
   
     
+}
+.errorInput {
+    border: 1px solid var(--secondary-red);
 }
 .iconClose {
     color: var(--primary-blue); 

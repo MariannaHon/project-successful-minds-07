@@ -5,7 +5,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
+import clsx from 'clsx';
 import { useId } from 'react';
 import { LuUpload } from 'react-icons/lu';
 import { IoSettingsOutline } from 'react-icons/io5';
@@ -105,6 +105,7 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
+
   function changeHandler(e) {
     const file = e.target.files[0]
     dispatch(changeAvatar(file))
@@ -187,13 +188,8 @@ function SettingModal() {
                         type="text"
                         name="name"
                         id={`${fieldId}-name`}
-                        className={css.field}
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="span"
-                        className={css.error}
-                      />
+                        className={css.field} />
+                      <ErrorMessage name="name" component="span" className={css.error} />
                     </div>
                     <div className={css.groupLeft}>
                       <label htmlFor={`${fieldId}-email`}>
