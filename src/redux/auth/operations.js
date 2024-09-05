@@ -94,7 +94,7 @@ export const updatePassword = createAsyncThunk(
   'auth/updatePassword',
   async ({ new_password, token }, thunkAPI) => {
     try {
-      setAuthHeader(token); // Встановлення заголовка авторизації
+      setAuthHeader(token); 
       const response = await axios.patch('/auth/password', {
         new_password,
       });

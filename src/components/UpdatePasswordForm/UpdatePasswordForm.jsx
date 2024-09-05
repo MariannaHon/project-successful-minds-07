@@ -206,7 +206,8 @@ const UpdatePasswordForm = () => {
             type="password"
             name="new_password"
             id={passwordFieldId}
-            className={css.inputField}
+            className={`passwordError ? ${css.inputField} ${css.error} : css.inputField`}
+            // className={css.inputField}
             placeholder="New password"
           />
           <ErrorMessage
@@ -224,7 +225,8 @@ const UpdatePasswordForm = () => {
             type="password"
             name="confirm_new_password"
             id={passwordFieldId}
-            className={css.inputField}
+            // className={css.inputField}
+            className={`confirmPasswordError ? ${css.inputField} ${css.error} : css.inputField`}
             placeholder="Confirm password"
           />
           <ErrorMessage
