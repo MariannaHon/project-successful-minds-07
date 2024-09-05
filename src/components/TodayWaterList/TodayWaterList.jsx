@@ -1,9 +1,9 @@
-
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { WaterEntry } from "./TodayWaterListModal";
 import css from "./TodayWaterList.module.css";
 import icons from "/public/symbol-defsN.svg";
+import { EditWaterForm } from "./EditWaterForm";
 
 export const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
@@ -13,6 +13,8 @@ export const TodayWaterList = () => {
       date: new Date(),
     },
   ]);
+
+  const [editingRecord, setEditingRecord] = useState(null);
 
   const handleAddWater = () => {
     const newWaterItem = {
@@ -25,6 +27,23 @@ export const TodayWaterList = () => {
 
   const handleDelete = (id) => {
     setWaterItems(waterItems.filter((elem) => elem.id !== id));
+  };
+
+  const handleEdit = (item) => {
+    setEditingRecord(item);
+  };
+
+  const handleEditModalClose = () => {
+    setEditingRecord(null);
+  };
+
+  const handleUpdateWater = (updatedAmount, updatedDate) => {
+    setWaterItems(waterItems.map((item) =>
+      item.id === editingRecord.id
+        ? { ...item, amount: updatedAmount, date: updatedDate }
+        : item
+    ));
+    handleEditModalClose();
   };
 
   return (
@@ -40,6 +59,7 @@ export const TodayWaterList = () => {
                     initialAmount={elem.amount}
                     initialDate={elem.date}
                     onDelete={() => handleDelete(elem.id)}
+                    onEdit={() => handleEdit(elem)}
                   />
                 </li>
               ))}
@@ -53,6 +73,16 @@ export const TodayWaterList = () => {
           </div>
         </div>
       </div>
+      {editingRecord && (
+        <div className={css.modalBackdrop}>
+          <EditWaterForm
+            onClose={handleEditModalClose}
+            initialAmount={editingRecord.amount}
+            initialDate={editingRecord.date}
+            updateWaterData={handleUpdateWater}
+          />
+        </div>
+      )}
     </div>
   );
 };
