@@ -9,6 +9,8 @@
 .label {
   display: block;
   margin-bottom: 8px;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-regular);
 }
 
 .inputField,.inputField_pswd {
@@ -16,6 +18,8 @@
   padding: 8px;
   margin-bottom: 5px;
   color: var(--primary-blue);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
   border: 1px solid var(--secondary-pale-blue);
   border-radius: var(--border-radius-small);
   /* -webkit-text-security:square; */
@@ -30,6 +34,9 @@
   color:var(--primary-blue);
   border: 1px solid var(--secondary-blue);
 }
+.wrap {
+  height: 70px;
+ }
 .wrap_pswd{
   position: relative;
   height: 70px;
@@ -40,20 +47,18 @@
   top: 10px; 
   color: var(--primary-blue);    
 }
-.stars{
+/* .stars{
   position: absolute;
     top: 10px;
     left: 10px;
     color:  var(--primary-blue);;
-}
-.wrap {
- height: 70px;
-}
+} */
+
 
 .errorMessage {
   color: var(--secondary-red);
   font-size: 12px;
-  margin-top: 5px;
+  padding-top: 5px;
 }
 
 .submitButton {
