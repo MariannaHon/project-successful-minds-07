@@ -8,6 +8,7 @@ import css from './RegisterForm.module.css';
 import { FaRegEye } from 'react-icons/fa6';
 import { FaRegEyeSlash } from 'react-icons/fa6';
 import { useId, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -61,18 +62,21 @@ const RegisterForm = () => {
         validationSchema={formSchema}
       >
         <Form className={css.form}>
-          <label className={css.label} htmlFor="email">
-            Enter your email
-          </label>
-          <Field
-            className={css.input}
-            id={`${id}-email`}
-            type="email"
-            name="email"
-            autoComplete="off"
-            placeholder="E-mail"
-          ></Field>
-          <div>
+          <div className={css.formContainer}>
+            <label className={css.label} htmlFor="email">
+              Enter your email
+            </label>
+            <Field
+              className={css.input}
+              id={`${id}-email`}
+              type="email"
+              name="email"
+              autoComplete="off"
+              placeholder="E-mail"
+            />
+            {/* <ErrorMessage name="email" component="span" className="error" /> */}
+          </div>
+          <div className={css.formContainer}>
             <label className={css.label} htmlFor="password">
               Enter your password
             </label>
@@ -83,7 +87,7 @@ const RegisterForm = () => {
               name="password"
               autoComplete="new-password"
               placeholder="Password"
-            ></Field>
+            />
             {isOpen ? (
               <FaRegEyeSlash
                 name="repeatPassword"
@@ -100,7 +104,7 @@ const RegisterForm = () => {
               />
             )}
           </div>
-          <div>
+          <div className={css.formContainer}>
             <label className={css.label} htmlFor="repeatPassword">
               Repeat password
             </label>
@@ -111,7 +115,7 @@ const RegisterForm = () => {
               name="repeatPassword"
               autoComplete="new-password"
               placeholder="Repeat password"
-            ></Field>
+            />
 
             {isOpen ? (
               <FaRegEyeSlash
@@ -135,9 +139,9 @@ const RegisterForm = () => {
         </Form>
       </Formik>
       <div className={css.image} alt="BottleLogo">
-        <a className={css.link} href="/signin">
+        <NavLink className={css.link} to="/signin">
           Sign in
-        </a>
+        </NavLink>
       </div>
     </div>
   );

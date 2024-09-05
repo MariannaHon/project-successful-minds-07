@@ -31,8 +31,17 @@
   display: flex;
   flex-direction: column;
 }
-.label {
-  margin-bottom: 8px;
+.background {
+  position: absolute;
+  background-image: url('/project-successful-minds-07/images/register/BackgroundMobile.jpg');
+  background-position: center;
+  background-size: 100%;
+  background-position: right;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 .input {
   border: 1px solid var(--secondary-blue);
@@ -41,6 +50,7 @@
   height: 44px;
   width: 280px;
   margin-bottom: 16px;
+  margin-top: 8px;
 }
 .input::placeholder {
   color: var(--secondary-blue);
@@ -66,11 +76,6 @@
   margin-bottom: 16px;
 }
 
-.image {
-  background-image: url('/project-successful-minds-07/images/register/RegisterBottleMobile.jpg');
-  width: 280px;
-  height: 210px;
-}
 .link {
   font-weight: 400;
   font-size: 16px;
@@ -89,20 +94,35 @@
   top: 317px;
   color: var(--primary-blue);
 }
+/* tablet */
 @media screen and (min-width: 768px) {
   .registerContainer {
     min-width: 704px;
   }
   .background {
     position: absolute;
-    background-image: url('/project-successful-minds-07/images/register/RegisterWaterTablet.jpg');
+    background-image: url('/project-successful-minds-07/images/register/BackgroundTablet.jpg');
     background-position: center;
     background-size: 100%;
     background-position: right;
     top: 0%;
     left: 0%;
-    width: 768px;
-    height: 680px;
     z-index: -1;
   }
+}
+.passEye {
+  position: absolute;
+  right: 467px;
+  top: 283px;
+  color: var(--primary-blue);
+}
+.repPassEye {
+  position: absolute;
+  right: 467px;
+  top: 369px;
+  color: var(--primary-blue);
+}
+.form {
+  flex-wrap: wrap;
+  max-width: 336px;
 }
