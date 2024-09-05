@@ -1,23 +1,31 @@
-.logoWraper {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    width: 102px;
-  }
-  
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.logoTekst {
+  color: #407bff;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 768px) {
   .logoTekst {
-    color: var(--dark-blue, #407bff);
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
+    font-size: 14px;
   }
-  
-  
-  @media screen and (min-width: 768px) {}
-  
-  @media screen and (min-width: 1440px) {}
-  
+}
+
+@media screen and (min-width: 1440px) {
+  .logoTekst {
+    font-size: 16px;
+  }
+}
+
+

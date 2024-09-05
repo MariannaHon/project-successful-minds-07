@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './components/App/App.jsx';
 import 'modern-normalize';
 import './styles/globalStyles.css';
@@ -17,9 +17,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
-        <BrowserRouter basename="/project-successful-minds-07/">
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </PersistGate>
     </Provider>
   </StrictMode>
