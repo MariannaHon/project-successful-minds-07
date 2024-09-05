@@ -1,7 +1,7 @@
 import css from './ForgotPasswordForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { forgotPassword } from '../../redux/auth/operations';
 import { useId } from 'react';
 const ForgotPasswordForm = () => {
@@ -11,7 +11,7 @@ const ForgotPasswordForm = () => {
       .email('Please enter a valid email address')
       .required('Required'),
   });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{ email: '' }}
