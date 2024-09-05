@@ -16,9 +16,10 @@ const Logo = () => {
 
   return (
 
-    <div>
-      <svg width="40" height="40" className={css.icons}>
-        <use href="./../../dist/favicon-32x32.png" width="40" height="40"></use>
+    <div onClick={logoClick}>
+      <svg width="40" height="48" className={css.icons}>
+        <use href="/project-successful-minds-07/symbol-defs.svg#icon-Logo-2" >
+        </use>
       </svg>
     </div>
   )
