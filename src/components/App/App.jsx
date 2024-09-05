@@ -1,17 +1,12 @@
 import { lazy, Suspense } from 'react';
 
-import {
-  Routes,
-  Route,
-  //Navigate
-} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 import { Toaster } from 'react-hot-toast';
-import './App.css';
-//import UpdatePasswordPage from '../../pages/UpdatePasswordPage/UpdatePasswordPage';
 
 const UpdatePasswordPage = lazy(() =>
   import('../../pages/UpdatePasswordPage/UpdatePasswordPage')
