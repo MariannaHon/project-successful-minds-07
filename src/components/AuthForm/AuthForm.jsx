@@ -11,33 +11,12 @@ const AuthForm = () => {
   const [type, setType] = useState('password');
   const [openPsw, setOpenPsw] = useState(true);
   const dispatch = useDispatch();
-  const [password, setPassword] = useState('');
-  const maskedPassword = password.replace(/./g, '*');
-  const handleChange = (event) => {
-    setPassword(event.target.value);
-  };
-// ---------------------------
-// import React, { useState } from 'react';
-// const PasswordInput = () => {
-//   const [password, setPassword] = useState('');
-//   const handleChange = (event) => {
-//     setPassword(event.target.value);
-//   };
-//   const maskedPassword = password.replace(/./g, '*'); // Заміна на зірочки
-//   return (
-//     <div>
-//       <input
-//         type="password"
-//         value={password}
-//         onChange={handleChange}
-//         placeholder="Введіть пароль"
-//       />
-//       <span>{maskedPassword}</span>
-//     </div>
-//   );
-// };
-// export default PasswordInput;
-// ---------------------------
+  // const [password, setPassword] = useState('');
+  // const maskedPassword = password.replace(/./g, '*');
+  // const handleChange = (event) => {
+  //   setPassword(event.target.value);
+  // };
+
 
 
   const login = Yup.object().shape({
@@ -76,7 +55,7 @@ const AuthForm = () => {
         actions.resetForm();
       }}
     >
-      <Form className={css.formContainer} name="Sign In">
+      <Form className={css.formContainer} name="Sign In" noValidate>
         <label htmlFor={mailFieldId} className={css.label}>
           Enter your email
         </label>
@@ -103,9 +82,9 @@ const AuthForm = () => {
           <Field
             type={type}
             name="password"
-            value={password}
-            onChange={handleChange}
-            // autoComplete="off"
+            // value={password}
+            // onChange={handleChange}
+            // // autoComplete="off"
             id={passwordFieldId}
             className={css.inputField_pswd}
             placeholder="Password"
@@ -132,7 +111,7 @@ const AuthForm = () => {
               />
             )}
           </span>
-          <span className={css.stars}>{maskedPassword}</span>
+          {/* <span className={css.stars}>{maskedPassword}</span> */}
         </div>
 
         <button type="submit" className={css.submitButton}>

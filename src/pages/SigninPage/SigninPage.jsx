@@ -47,9 +47,9 @@ const SigninPage = () => {
           <h2 className={css.title}>Sign In</h2>
 
           <AuthForm />
-          {/* <NavLink className={css.link} to="/forgot-password">
+           <NavLink className={css.link} to="/forgot-password"> 
             Forgot your password?
-          </NavLink> */}
+          </NavLink> 
           <NavLink className={css.link} to="/signup">
             Sign up
           </NavLink>
