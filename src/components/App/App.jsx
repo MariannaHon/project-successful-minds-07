@@ -1,11 +1,14 @@
 
 import { lazy, Suspense } from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import {
+  Routes, Route,
+  //Navigate 
+} from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-
+// import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
 import { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
@@ -15,7 +18,7 @@ const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
-
+const ForgotPasswordPage = lazy(() => import('../../pages/ForgotPasswordPage/ForgotPasswordPage'));
 export default function App() {
   return (
     <div>
@@ -39,6 +42,15 @@ export default function App() {
               path="/signin"
               element={
                 <RestrictedRoute component={SigninPage} redirectTo="/home" />
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <RestrictedRoute
+                  component={ForgotPasswordPage}
+                  redirectTo="/welcome"
+                />
               }
             />
             <Route
