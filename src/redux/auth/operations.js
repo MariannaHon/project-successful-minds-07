@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/signup', newUser);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.accessToken);
       return response.data;
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
@@ -34,7 +34,7 @@ export const signin = createAsyncThunk(
       const response = await axios.post(
         'auth/signin', { email, password }
       );
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.accessToken);
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -46,7 +46,7 @@ export const signin = createAsyncThunk(
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
-    setAuthHeader(response.data.token);
+    setAuthHeader(response.data.accessToken);
     console.log(response.data);
 
     return response.data;
