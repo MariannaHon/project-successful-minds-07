@@ -43,10 +43,12 @@ const SigninPage = () => {
         />
       </picture> */}
       <div className={css.container_signin}>
+      <div className={css.image}></div>
         <div className={css.background}>
           <h2 className={css.title}>Sign In</h2>
 
           <AuthForm />
+
            <NavLink className={css.link} to="/forgot-password"> 
             Forgot your password?
           </NavLink> 
@@ -54,7 +56,7 @@ const SigninPage = () => {
             Sign up
           </NavLink>
         </div>
-        <div className={css.image}></div>
+        
       </div>
     </div>
   );

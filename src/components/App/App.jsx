@@ -8,7 +8,7 @@ import {
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
-import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
+// import ForgotPasswordPage from '../../pages/ForgotPasswordPage/ForgotPasswordPage';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 
@@ -19,7 +19,7 @@ const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
-// const ForgotPasswordPage = lazy(() => import('../../pages/ForgotPasswordPage/ForgotPasswordPage'));
+const ForgotPasswordPage = lazy(() => import('../../pages/ForgotPasswordPage/ForgotPasswordPage'));
 export default function App() {
   return (
     <div>
