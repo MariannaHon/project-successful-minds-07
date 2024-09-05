@@ -1,4 +1,27 @@
+.headerSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .headerSection {
+      padding: 20px 33px;
+    }
+  }
+  
+  @media screen and (min-width: 1440px) {
+    .headerSection {
+      padding: 20px 80px;
+    }
+  }
+  
 
+
+/* 
 .headerSection {
     display: flex;
     align-items: center;
@@ -33,4 +56,4 @@
         align-items: center;
         margin: 0 80px;
     }
-}
+} */
