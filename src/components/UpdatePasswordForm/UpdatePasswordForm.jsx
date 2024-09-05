@@ -166,7 +166,10 @@ const UpdatePasswordForm = () => {
 
         try {
           const hashedPassword = await bcrypt.hash(new_password, 10);
-
+          if (!validationSchema.isValidSync(values)) {
+            toast.error('Please correct the errors in the form.');
+            return;
+          }
           const response = await dispatch(
             updatePassword({ new_password: hashedPassword, token })
           );
