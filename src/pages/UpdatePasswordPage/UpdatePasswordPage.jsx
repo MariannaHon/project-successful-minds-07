@@ -10,7 +10,6 @@ const UpdatePasswordPage = () => {
 
           <UpdatePasswordForm />
         </div>
-        <div className={css.image}></div>
       </div>
     </div>
   );
