@@ -12,7 +12,6 @@ const clearAuthHeader = () => {
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
 
-
 export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
@@ -31,9 +30,7 @@ export const signin = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'auth/signin', { email, password }
-      );
+      const response = await axios.post('auth/signin', { email, password });
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -93,3 +90,20 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 //     dispatchConditionRejection: true,
 //   }
 // );
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async ({ new_password, token }, thunkAPI) => {
+    try {
+      setAuthHeader(token); // Встановлення заголовка авторизації
+      const response = await axios.patch('/auth/password', {
+        new_password,
+      });
+      return response.data;
+    } catch (error) {
+      toast.error(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    } finally {
+      clearAuthHeader(); // Очищення заголовка авторизації після запиту
+    }
+  }
+);

@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
 
 import {
-  Routes, Route,
-  //Navigate 
+  Routes,
+  Route,
+  //Navigate
 } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
@@ -10,7 +11,11 @@ import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 import { Toaster } from 'react-hot-toast';
 import './App.css';
+//import UpdatePasswordPage from '../../pages/UpdatePasswordPage/UpdatePasswordPage';
 
+const UpdatePasswordPage = lazy(() =>
+  import('../../pages/UpdatePasswordPage/UpdatePasswordPage')
+);
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
@@ -48,6 +53,15 @@ export default function App() {
               path="/home"
               element={
                 <PrivateRoute component={HomePage} redirectTo="/signup" />
+              }
+            />
+            <Route
+              path="/update-password"
+              element={
+                <PrivateRoute
+                  component={UpdatePasswordPage}
+                  redirectTo="/signin"
+                />
               }
             />
             <Route path="*" element={<NotFoundPage />} />
