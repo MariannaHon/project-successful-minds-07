@@ -31,9 +31,6 @@ export default function App() {
   }, [dispatch]);
 
   return 
-  //   isRefresh ? (
-  //   <b>Refreshing user...</b>
-  // ) : 
       (
     <div>
       <SharedLayout>
