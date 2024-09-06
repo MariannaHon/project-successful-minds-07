@@ -5,8 +5,15 @@ import { ErrorMessage } from 'formik';
 import { register } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import css from './RegisterForm.module.css';
+import { FaRegEye } from 'react-icons/fa6';
+import { FaRegEyeSlash } from 'react-icons/fa6';
+import { useId, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [type, setType] = useState('password');
+
   const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
@@ -33,16 +40,21 @@ const RegisterForm = () => {
       .required(),
   });
 
+  const togglePassInput = () => {
+    if (type === 'password') {
+      setType('text');
+      setIsOpen(false);
+    } else {
+      setType('password');
+      setIsOpen(true);
+    }
+  };
+
+  const id = useId();
+
   return (
     <div className={css.registerContainer}>
-      {/* <div className={css.registerHeader}>
-        <div>
-          <svg className={css.waterIcon}>
-            <use href="../../../public/symbol-defs.svg#"></use>
-          </svg>
-          <h2 className={css.title}>Tracker of water</h2>
-        </div>
-      </div> */}
+      <div className={css.background}></div>
       <p className={css.description}>Sign Up</p>
       <Formik
         initialValues={{ email: '', password: '', repeatPassword: '' }}
@@ -50,55 +62,86 @@ const RegisterForm = () => {
         validationSchema={formSchema}
       >
         <Form className={css.form}>
-          <label className={css.label} htmlFor="email">
-            Enter your email
-          </label>
-          <Field
-            className={css.input}
-            id="email"
-            type="email"
-            name="email"
-            autoComplete="off"
-            placeholder="E-mail"
-          ></Field>
-          <ErrorMessage className={css.warning} name="email" component="span" />
-          <label className={css.label} htmlFor="password">
-            Enter your password
-          </label>
-          <Field
-            id="password"
-            className={css.input}
-            type="password"
-            name="password"
-            autoComplete="new-password"
-            placeholder="Password"
-          ></Field>
-          <ErrorMessage
-            className={css.warning}
-            name="password"
-            component="span"
-          />
-          <label className={css.label} htmlFor="repeatPassword">
-            Repeat password
-          </label>
-          <Field
-            id="repeatPassword"
-            className={css.input}
-            type="password"
-            name="repeatPassword"
-            autoComplete="new-password"
-            placeholder="Repeat password"
-          ></Field>
+          <div className={css.formContainer}>
+            <label className={css.label} htmlFor="email">
+              Enter your email
+            </label>
+            <Field
+              className={css.input}
+              id={`${id}-email`}
+              type="email"
+              name="email"
+              autoComplete="off"
+              placeholder="E-mail"
+            />
+            {/* <ErrorMessage name="email" component="span" className="error" /> */}
+          </div>
+          <div className={css.formContainer}>
+            <label className={css.label} htmlFor="password">
+              Enter your password
+            </label>
+            <Field
+              id={`${id}-password`}
+              className={css.input}
+              type="password"
+              name="password"
+              autoComplete="new-password"
+              placeholder="Password"
+            />
+            {isOpen ? (
+              <FaRegEyeSlash
+                name="repeatPassword"
+                id={`${id}-repeatPassword`}
+                className={css.passEye}
+                onClick={togglePassInput}
+              />
+            ) : (
+              <FaRegEye
+                name="repeatPassword"
+                id={`${id}-repeatPassword`}
+                className={css.passEye}
+                onClick={togglePassInput}
+              />
+            )}
+          </div>
+          <div className={css.formContainer}>
+            <label className={css.label} htmlFor="repeatPassword">
+              Repeat password
+            </label>
+            <Field
+              id={`${id}-repeatPassword`}
+              className={css.input}
+              type="password"
+              name="repeatPassword"
+              autoComplete="new-password"
+              placeholder="Repeat password"
+            />
 
+            {isOpen ? (
+              <FaRegEyeSlash
+                name="repeatPassword"
+                id={`${id}-repeatPassword`}
+                className={css.repPassEye}
+                onClick={togglePassInput}
+              />
+            ) : (
+              <FaRegEye
+                name="repeatPassword"
+                id={`${id}-repeatPassword`}
+                className={css.repPassEye}
+                onClick={togglePassInput}
+              />
+            )}
+          </div>
           <button className={css.button} type="submit">
             Sign Up
           </button>
         </Form>
       </Formik>
       <div className={css.image} alt="BottleLogo">
-        <a className={css.link} href="/signin">
+        <NavLink className={css.link} to="/signin">
           Sign in
-        </a>
+        </NavLink>
       </div>
     </div>
   );

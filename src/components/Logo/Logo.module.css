@@ -1,23 +1,7 @@
-.logoWraper {
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    width: 102px;
-  }
-  
-  .logoTekst {
-    color: var(--dark-blue, #407bff);
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-  }
-  
-  
-  @media screen and (min-width: 768px) {}
-  
-  @media screen and (min-width: 1440px) {}
-  
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  cursor: url(/project-successful-minds-07/mdi_cursor-pointer.png) 2 2, pointer;
+  margin-right: auto;
+}
+

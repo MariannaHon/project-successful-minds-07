@@ -10,7 +10,7 @@ import UserLogoutModal from '../UserLogoutModal/UserLogoutModal.jsx';
 const style = {
   position: 'absolute',
   top: 140,
-  right: 20,
+  right: -62,
   transform: 'translate(-50%, -50%)',
   minWidth: 118,
   minHight: 88,
@@ -33,7 +33,7 @@ const UserLogoModal = () => {
       <button onClick={handleOpen}><GoChevronDown className={css.blueIcon} /></button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} >
-          <div>
+          <div className={css.container}>
             <SettingModal />
             <UserLogoutModal />
           </div>
