@@ -75,7 +75,7 @@ function SettingModal() {
     try {
       const result = await dispatch(updateUser({
         id: userId,
-        avatarUrl: values.avatarUrl,
+        avatarUrl: values.file,
         gender: values.gender,
         name: values.name,
         email: values.email,
@@ -106,8 +106,8 @@ function SettingModal() {
   };
 
   function changeHandler(e) {
-    const file = e.target.files[0]
-    dispatch(changeAvatar(file))
+    const file = e.target.files[0];
+    dispatch(changeAvatar(file));
 }
 
   return (
@@ -152,7 +152,7 @@ function SettingModal() {
                         <label htmlFor={`${fieldId}-avatar`} className={css.link} >
                         <LuUpload className={css.iconChange}/>Upload a photo</label>
                         <input type='file' className={css.change} onChange={e => changeHandler(e)}
-                        id={`${fieldId}-avatar`} accept="image/*"/>                                      
+                        id={`${fieldId}-avatar`} accept="image/*" name="file"/>                                      
                       </div>
                     </div>
                     <FormControl className={css.radio}>
