@@ -1,4 +1,3 @@
-
 import { lazy, Suspense, useEffect } from 'react';
 
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -18,14 +17,15 @@ const UpdatePasswordPage = lazy(() =>
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
-const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
-const ForgotPasswordPage = lazy(() => import('../../pages/ForgotPasswordPage/ForgotPasswordPage'));
+//const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const ForgotPasswordPage = lazy(() =>
+  import('../../pages/ForgotPasswordPage/ForgotPasswordPage')
+);
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
-
   const dispatch = useDispatch();
   const isRefresh = useSelector(selectIsRefresh);
   const location = useLocation();
@@ -69,7 +69,10 @@ export default function App() {
             <Route
               path="/forgot-password"
               element={
-                <RestrictedRoute component={ForgotPasswordPage} redirectTo="/welcome" />
+                <RestrictedRoute
+                  component={ForgotPasswordPage}
+                  redirectTo="/welcome"
+                />
               }
             />
             <Route
@@ -83,5 +86,5 @@ export default function App() {
         </Suspense>
       </SharedLayout>
     </div>
-  )
+  );
 }
