@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import css from './ForgotPasswordPage.module.css';
-import ForgotPasswordForm from "../../components/ForgotPasswordForm/ForgotPasswordForm";
+import ForgotPasswordForm from '../../components/ForgotPasswordForm/ForgotPasswordForm';
 
-const ForgotPasswordPage = ()=>{
-return(
+const ForgotPasswordPage = () => {
+  return (
     <>
-    <ForgotPasswordForm></ForgotPasswordForm>
-    <NavLink className={css.link} to="/signin">Sign in</NavLink>
+      <ForgotPasswordForm></ForgotPasswordForm>
+      <NavLink className={css.link} to="/signin">
+        Sign in
+      </NavLink>
     </>
-)
-}
+  );
+};
 export default ForgotPasswordPage;
