@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 import { refreshUser } from '../../redux/auth/operations';
-import { selectIsRefresh } from '../../redux/auth/selectors';
+import { selectIsRefresh, selectIsLoggedIn } from '../../redux/auth/selectors';
 
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,17 +28,24 @@ const NotFoundPage = lazy(() =>
 export default function App() {
   const dispatch = useDispatch();
   const isRefresh = useSelector(selectIsRefresh);
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
+  const isLoggedin = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     const refresh = async () => {
-      await dispatch(refreshUser());
-      navigate(location.pathname);
+      try {
+        await dispatch(refreshUser()).unwrap();
+      } catch (error) {
+        console.error("Error during refresh:", error);
+        navigate('/signin');
+      }
     };
 
-    refresh();
-  }, [dispatch, location.pathname, navigate]);
+    if (isLoggedin) {
+      refresh();
+    }
+  }, [dispatch, isLoggedin, navigate]);
 
   return isRefresh ? (
     <b>Refreshing user...</b>
