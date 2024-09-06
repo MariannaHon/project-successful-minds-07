@@ -17,8 +17,6 @@ const AuthForm = () => {
   //   setPassword(event.target.value);
   // };
 
-
-
   const login = Yup.object().shape({
     email: Yup.string()
       .email('Please enter a valid email address')
