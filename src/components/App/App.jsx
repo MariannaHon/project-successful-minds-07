@@ -39,7 +39,7 @@ export default function App() {
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
-              path="/home"
+              path="/"
               element={
                 <PrivateRoute component={HomePage} redirectTo="/welcome" />
               }
