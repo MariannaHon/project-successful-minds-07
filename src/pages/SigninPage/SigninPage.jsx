@@ -6,7 +6,7 @@ import css from './SigninPage.module.css';
 const SigninPage = () => {
   return (
     <div className={css.container}>
-          {/* <picture>
+      {/* <picture>
         <source
           srcset="
             ./img/img_about_desktop_1440@1x.png 1x,
@@ -43,20 +43,20 @@ const SigninPage = () => {
         />
       </picture> */}
       <div className={css.container_signin}>
-      <div className={css.image}></div>
+        <div className={css.image}></div>
         <div className={css.background}>
           <h2 className={css.title}>Sign In</h2>
 
           <AuthForm />
 
-           <NavLink className={css.link} to="/forgot-password"> 
+          <NavLink className={css.link} to="/forgot-password">
             Forgot your password?
-          </NavLink> 
+          </NavLink>
           <NavLink className={css.link} to="/signup">
             Sign up
           </NavLink>
         </div>
-        
+
       </div>
     </div>
   );

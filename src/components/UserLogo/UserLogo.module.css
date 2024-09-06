@@ -1,26 +1,29 @@
 .userLogoWrapper {
     display: flex;
-    gap: 6px;
-    justify-self: center;
     align-items: center;
-    min-width: 122px;
-    cursor: url(./././public/mdi_cursor-pointer.png) 2 2, pointer;
+    justify-content: flex-start;
+    width: 122px;
   }
   
   .userLogoName {
-    color: var(--black, #2f2f2f);
+    display: flex;
+    flex-wrap: wrap;
+    width: 74px;
+    color: #2f2f2f;
     text-align: right;
     font-family: Roboto;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.25;
+    margin-right: 8px;
   }
   
   .userLogoImg {
     border-radius: 100px;
     width: 28px;
     height: 28px;
+    margin-right: 4px;
   }
   
   

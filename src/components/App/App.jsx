@@ -1,12 +1,16 @@
 
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefresh } from '../../redux/auth/selectors';
+
 import { Toaster } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
@@ -18,14 +22,24 @@ const NotFoundPage = lazy(() =>
 );
 
 export default function App() {
-  return (
+
+  const dispatch = useDispatch();
+  const isRefresh = useSelector(selectIsRefresh);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefresh ? (
+    <b>Refreshing user...</b>
+  ) : (
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
-              path="/"
+              path="/home"
               element={
                 <PrivateRoute component={HomePage} redirectTo="/welcome" />
               }
@@ -46,12 +60,6 @@ export default function App() {
               path="/forgot-password"
               element={
                 <RestrictedRoute component={ForgotPasswordPage} redirectTo="/welcome" />
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <PrivateRoute component={HomePage} redirectTo="/signup" />
               }
             />
             <Route path="*" element={<NotFoundPage />} />
