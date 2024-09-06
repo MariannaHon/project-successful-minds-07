@@ -12,7 +12,7 @@
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.7",
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.0",
@@ -27,6 +27,7 @@
     "react-router-dom": "^6.26.1",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "toast": "^0.5.4",
     "yup": "^1.4.0"
   },
   "devDependencies": {
