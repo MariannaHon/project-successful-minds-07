@@ -11,13 +11,14 @@ const clearAuthHeader = () => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
+axios.defaults.withCredentials = true;
 
 export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/signup', newUser);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.accessToken);
       return response.data;
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
@@ -43,9 +44,7 @@ export const signin = createAsyncThunk(
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
-    setAuthHeader(response.data.token);
-    console.log(response.data);
-
+    setAuthHeader(response.data.data.accessToken);
     return response.data;
   } catch (error) {
     toast.error('Something went wrong :( Try again later.');
@@ -57,53 +56,71 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/auth/logout');
     clearAuthHeader();
+    return true;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//     try {
-//       setAuthHeader(persistedToken);
-//       const res = await axios.get("/users/current");
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const state = getState();
-//       const persistedToken = state.auth.token;
+    //     try {
+    //       setAuthHeader(persistedToken);
+    //       const res = await axios.get("/users/current");
+    //       return res.data;
+    //     } catch (error) {
+    //       return thunkAPI.rejectWithValue(error.message);
+    //     }
+    //   },
+    //   {
+    //     condition: (_, { getState }) => {
+    //       const state = getState();
+    //       const persistedToken = state.auth.token;
 
-//       if (persistedToken === null) {
-//         return false;
-//       }
+    //       if (persistedToken === null) {
+    //         return false;
+    //       }
 
-//       return true;
-//     },
-//     dispatchConditionRejection: true,
-//   }
-// );
-export const updatePassword = createAsyncThunk(
-  'auth/updatePassword',
-  async ({ new_password, token }, thunkAPI) => {
+    //       return true;
+    //     },
+    //     dispatchConditionRejection: true,
+    //   }
+    // );
+    export const updatePassword = createAsyncThunk(
+      'auth/updatePassword',
+      async ({ new_password, token }, thunkAPI) => {
+        try {
+          setAuthHeader(token);
+          const response = await axios.patch('/auth/password', {
+            new_password,
+          });
+          return response.data;
+        } catch (error) {
+          toast.error(error.message);
+          return thunkAPI.rejectWithValue(error.message);
+        } finally {
+          clearAuthHeader(); // Очищення заголовка авторизації після запиту
+        }
+      }
+    );
+    console.log(persistedToken);
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
     try {
-      setAuthHeader(token); 
-      const response = await axios.patch('/auth/password', {
-        new_password,
+      const res = await axios.post('/auth/refresh', null, {
+        withCredentials: true,
       });
-      return response.data;
+      setAuthHeader(res.data.accessToken);
+      return res.data;
     } catch (error) {
-      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
-    } finally {
-      clearAuthHeader(); // Очищення заголовка авторизації після запиту
     }
   }
 );

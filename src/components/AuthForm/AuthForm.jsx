@@ -49,11 +49,13 @@ const AuthForm = () => {
           password: values.password,
         };
         // console.log({ userData });
-        dispatch(logIn(userData));
+        const res = dispatch(logIn(userData));
+        console.log(res);
         actions.resetForm();
       }}
     >
       <Form className={css.formContainer} name="Sign In" noValidate>
+        
         <label htmlFor={mailFieldId} className={css.label}>
           Enter your email
         </label>

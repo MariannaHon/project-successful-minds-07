@@ -1,97 +1,123 @@
 
-import { createSlice } from "@reduxjs/toolkit";
-import { logOutUser } from "../authUser/operations.js";
+import { createSlice } from '@reduxjs/toolkit';
 import {
-    userWaterDay,
-    addWaterUser,
-    deleteWater,
-    editWater,
-    waterMonthUser,
-} from "./operations";
+  fetchWaterPerDay,
+  fetchWaterPerMonth,
+  addWater,
+  changeWater,
+  deleteWater,
+} from './operations';
 
-const handlePending = (state) => {
-    state.isLoading = true;
+const localDate = () => {
+  const milliseconds = Date.now();
+  const date = new Date(milliseconds);
+
+  return date.toLocaleDateString();
 };
 
-const handleRejected = (state, action) => {
-    state.isLoading = false;
-    state.error = action.payload;
-};
+function handleLoading(state) {
+  state.loading = true;
+  state.error = null;
+}
 
-const watersSlice = createSlice({
-    name: "water",
-    initialState: {
-        todayWater: [],
-        monthWater: [],
-        idForEditDeleteWater: "",
-        isLoading: false,
-        error: null,
+function handleError(state, action) {
+  state.loading = false;
+  state.error = action.payload;
+}
+
+const waterSlice = createSlice({
+  name: 'water',
+  initialState: {
+    waters: {
+      waterPerMonth: [],
+      waterPerDay: {
+        waterRecord: [],
+      },
     },
-
-    reducers: {
-        setIdForEditDeleteWater: (state, action) => {
-            state.idForEditDeleteWater = action.payload;
-        },
+    loading: false,
+    error: false,
+    activeDay: localDate(),
+    currentDate: Date.now(),
+  },
+  reducers: {
+    setActiveDay(state, action) {
+      state.activeDay = action.payload;
     },
-
-    extraReducers: (builder) => {
-        builder
-            .addCase(userWaterDay.pending, handlePending)
-            .addCase(userWaterDay.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-                state.todayWater = action.payload;
-            })
-            .addCase(userWaterDay.rejected, handleRejected)
-
-            .addCase(addWaterUser.pending, handlePending)
-            .addCase(addWaterUser.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-                state.todayWater = action.payload.dayWaterUser;
-                state.monthWater = action.payload.monthWaterUser;
-                // state.todayWater.push(action.payload.dayWaterUser);
-            })
-            .addCase(addWaterUser.rejected, handleRejected)
-
-            .addCase(deleteWater.pending, handlePending)
-            .addCase(deleteWater.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-                // const index = state.items.findIndex(
-                //   (task) => task.id === action.payload.id
-                // );
-                // state.items.splice(index, 1);
-                state.todayWater = action.payload.dayWaterUser;
-                state.monthWater = action.payload.monthWaterUser;
-            })
-            .addCase(deleteWater.rejected, handleRejected)
-
-            .addCase(editWater.pending, handlePending)
-            .addCase(editWater.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-                state.todayWater = action.payload.dayWaterUser;
-                state.monthWater = action.payload.monthWaterUser;
-            })
-            .addCase(editWater.rejected, handleRejected)
-
-            .addCase(waterMonthUser.pending, handlePending)
-            .addCase(waterMonthUser.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.error = null;
-                state.monthWater = action.payload;
-            })
-            .addCase(waterMonthUser.rejected, handleRejected)
-
-            .addCase(logOutUser.fulfilled, (state) => {
-                state.items = [];
-                state.error = null;
-                state.isLoading = false;
-            });
+    setCurrentDate(state, action) {
+      state.currentDate = action.payload;
     },
+  },
+  extraReducers: builder =>
+    builder
+      .addCase(fetchWaterPerDay.pending, handleLoading)
+      .addCase(fetchWaterPerDay.fulfilled, (state, action) => {
+        state.error = false;
+        state.loading = false;
+        state.waters.waterPerDay.waterRecord = action.payload;
+      })
+      .addCase(fetchWaterPerDay.rejected, handleError)
+      .addCase(fetchWaterPerMonth.pending, handleLoading)
+      .addCase(fetchWaterPerMonth.fulfilled, (state, action) => {
+        state.error = false;
+        state.loading = false;
+        state.waters.waterPerMonth = action.payload;
+      })
+      .addCase(fetchWaterPerMonth.rejected, handleError)
+      .addCase(deleteWater.pending, handleLoading)
+      .addCase(deleteWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+        state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
+          entry => entry._id !== action.payload._id
+        );
+        state.waters.waterPerMonth = state.waters.waterPerMonth.filter(
+          entry => entry._id !== action.payload._id
+        );
+      })
+      .addCase(deleteWater.rejected, handleError)
+      .addCase(addWater.pending, handleLoading)
+      .addCase(addWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+
+        if (!state.waters.waterPerDay.waterRecord) {
+          state.waters.waterPerDay.waterRecord = [];
+        }
+
+        state.waters.waterPerDay.waterRecord.push(action.payload);
+
+        if (!state.waters.waterPerMonth) {
+          state.waters.waterPerMonth = [];
+        }
+
+        state.waters.waterPerMonth.push(action.payload);
+      })
+      .addCase(addWater.rejected, handleError)
+      .addCase(changeWater.pending, handleLoading)
+      .addCase(changeWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = false;
+
+        const updatedEntry = action.payload;
+        const index = state.waters.waterPerDay.waterRecord.findIndex(
+          entry => entry._id === updatedEntry._id
+        );
+
+        if (index !== -1) {
+          state.waters.waterPerDay.waterRecord[index] = updatedEntry;
+        }
+
+        const indexMonth = state.waters.waterPerMonth.findIndex(
+          entry => entry._id === updatedEntry._id
+        );
+
+        if (indexMonth !== -1) {
+          state.waters.waterPerMonth[indexMonth] = updatedEntry;
+        }
+      })
+      .addCase(changeWater.rejected, handleError),
 });
 
-export const { setIdForEditDeleteWater } = watersSlice.actions;
+export const waterReducer = waterSlice.reducer;
+export const { setActiveDay, setCurrentDate } = waterSlice.actions;
 
-export const waterReducer = watersSlice.reducer;
