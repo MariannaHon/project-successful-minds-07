@@ -13,7 +13,7 @@
   font-weight: 500;
   color: var(--primary-blue);
   text-decoration: underline;
-  cursor: url(./././public/mdi_cursor-pointer.png) 2 2, pointer; /* Кастомний курсор */
+  cursor: url(./././public/mdi_cursor-pointer.png) 2 2, pointer;
 }
 
 @media screen and (max-width: 768px) {
