@@ -24,7 +24,7 @@ const WaterСonsumptionTracker = () => {
           <li className={styles.waterItem}>
             <span>
               <svg className={styles.iconBar} aria-label="icon-calendar-days">
-                <use href="../../../public/symbol-defs.svg#icon-calendar-days"></use>
+                <use href="../../../dist/symbol-defs.svg#icon-calendar-days"></use>
               </svg>
             </span>
 
@@ -37,7 +37,7 @@ const WaterСonsumptionTracker = () => {
                 className={styles.iconBar}
                 aria-label="icon-presentation-chart-bar"
               >
-                <use href="../../../public/symbol-defs.svg#icon-presentation-chart-bar"></use>
+                <use href="../../../dist/symbol-defs.svg#icon-presentation-chart-bar"></use>
               </svg>
             </span>
 
@@ -50,7 +50,7 @@ const WaterСonsumptionTracker = () => {
                 className={styles.iconBar}
                 aria-label="icon-wrench-screwdriver"
               >
-                <use href="../../../public/symbol-defs.svg#icon-wrench-screwdriver"></use>
+                <use href="../../../dist/symbol-defs.svg#icon-wrench-screwdriver"></use>
               </svg>
             </span>{' '}
             <span className={styles.spanText}>Personal rate setting</span>
