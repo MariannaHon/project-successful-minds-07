@@ -12,7 +12,6 @@ const clearAuthHeader = () => {
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
 
-
 export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
@@ -27,13 +26,11 @@ export const register = createAsyncThunk(
   }
 );
 
-
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
-    setAuthHeader(response.data.accessToken);
-    console.log(response.data);
-
+    setAuthHeader(response.data.token);
+    console.log(response.data.token);
     return response.data;
   } catch (error) {
     toast.error('Something went wrong :( Try again later.');
