@@ -20,11 +20,11 @@ const AuthForm = () => {
   const login = Yup.object().shape({
     email: Yup.string()
       .email('Please enter a valid email address')
-      .required('Required'),
+      .required('Email is Required'),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .max(64, 'Password must be no more than 64 characters')
-      .required('Required'),
+      .required('Password is Required'),
   });
 
   const mailFieldId = useId();
