@@ -16,7 +16,7 @@
     "@mui/styled-engine-sc": "^6.0.1",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.7",
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "gh-pages": "^6.1.1",
@@ -33,6 +33,7 @@
     "react-router-dom": "^6.26.1",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "toast": "^0.5.4",
     "styled-components": "^6.1.13",
     "yup": "^1.4.0"
   },
