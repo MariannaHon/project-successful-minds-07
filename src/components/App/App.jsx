@@ -62,6 +62,12 @@ export default function App() {
                 <RestrictedRoute component={ForgotPasswordPage} redirectTo="/welcome" />
               }
             />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/welcome" />
+              }
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
