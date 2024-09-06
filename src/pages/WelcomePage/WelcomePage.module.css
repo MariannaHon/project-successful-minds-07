@@ -7,25 +7,29 @@
 
 .welcomePage {
   background: var(--primary-white)
-    url('../../../public/images/BackgroundWelcomePageMobile.png') no-repeat;
+    url('../../../dist/images/BackgroundWelcomePageMobile.png') no-repeat bottom;
   width: var(--container-min-width);
-  height: 952px;
+  //height: 872px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
 }
 
-/* Перевизначаємо шлях до зображення
-   якщо щільність екрана як мінімум 2x 
- @media (min-resolution: 192dpi) {
+ /* @media (min-resolution: 192dpi) {
   .welcomePage {
     background: var(--primary-white)
-      url('../../../public/images/BackgroundWelcomePageMobile@2x.png') no-repeat; 
+      url('../../../images/BackgroundWelcomePageMobile@2x.png') no-repeat; width: var(--container-min-width);
+      height: 952px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 auto;
    }
- }*/
+ } */
 .welcomePageContainerBlock {
   margin: 0 auto;
+  
 }
 
 /* ____________________________Tablet style____________________________ */
@@ -38,12 +42,22 @@
 
   .welcomePage {
     background: var(--primary-white)
-      url('../../../public/images/BackgroundTabletWelcomePage.png') no-repeat;
-    width: var(--container-medium-width);
-    padding-bottom: 125px;
+      url('../../../dist/images/BackgroundTabletWelcomePage.png') no-repeat bottom;
+    width: var(--container-medium-width); 
+    height: 736px;
+    //margin-top: 40px;
+    //padding-bottom: 125px;
   }
+  /* @media (min-resolution: 192dpi) {
+    .welcomePage {
+      background: var(--primary-white)
+        url('../../../public/images/BackgroundTabletWelcomePage@2x.png') no-repeat; width: var(--container-min-width); 
+        width: var(--container-medium-width);
+        padding-bottom: 125px;
+        
+     }
+} */
 }
-
 /* ____________________________Desctop style____________________________ */
 
 @media screen and (min-width: 1440px) {
@@ -52,22 +66,22 @@
   }
   .welcomePage {
     background-color: var(--primary-white);
-    background-image: url('../../../public/images/BackgroundWelcomePage.png'),
-      url('../../../public/images/BackgroundElemWelcomePage.png');
+    background-image: url('../../../dist/images/BackgroundWelcomePage.png'),
+      url('../../../dist/images/BackgroundElemWelcomePage.png');
     background-repeat: no-repeat;
-    background-position: bottom, 50%;
+    background-position: bottom, center 30%;
     width: 1440px;
-    height: 800px;
     display: flex;
     justify-content: center;
     align-items: start;
     flex-direction: row;
+     
   }
 
   .welcomePageContainerBlock {
     display: flex;
     align-items: end;
-    margin-top: 117px;
+    margin-top: 55px;
     flex-direction: row;
   }
 }

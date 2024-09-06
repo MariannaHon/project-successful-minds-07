@@ -1,3 +1,4 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchWaterPerDay,
@@ -119,3 +120,4 @@ const waterSlice = createSlice({
 
 export const waterReducer = waterSlice.reducer;
 export const { setActiveDay, setCurrentDate } = waterSlice.actions;
+

@@ -1,8 +1,11 @@
 import styles from './WaterСonsumptionTracker.module.css';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 const WaterСonsumptionTracker = () => {
+  const navigate = useNavigate();
+
   const handleTryTrackerClick = () => {
-    return <Navigate to="/signup" replace />;
+    navigate('/signup', { replace: true });
   };
   return (
     <div className={styles.waterСonsumptionTrackerBlockOne}>
@@ -21,7 +24,7 @@ const WaterСonsumptionTracker = () => {
           <li className={styles.waterItem}>
             <span>
               <svg className={styles.iconBar} aria-label="icon-calendar-days">
-                <use href="../../../public/symbol-defs.svg#icon-calendar-days"></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-calendar-days"></use>
               </svg>
             </span>
 
@@ -34,7 +37,7 @@ const WaterСonsumptionTracker = () => {
                 className={styles.iconBar}
                 aria-label="icon-presentation-chart-bar"
               >
-                <use href="../../../public/symbol-defs.svg#icon-presentation-chart-bar"></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-presentation-chart-bar"></use>
               </svg>
             </span>
 
@@ -47,9 +50,9 @@ const WaterСonsumptionTracker = () => {
                 className={styles.iconBar}
                 aria-label="icon-wrench-screwdriver"
               >
-                <use href="../../../public/symbol-defs.svg#icon-wrench-screwdriver"></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-wrench-screwdriver"></use>
               </svg>
-            </span>{' '}
+            </span>
             <span className={styles.spanText}>Personal rate setting</span>
           </li>
         </ul>

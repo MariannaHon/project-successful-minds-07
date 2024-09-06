@@ -1,0 +1,7 @@
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  cursor: url(/project-successful-minds-07/mdi_cursor-pointer.png) 2 2, pointer;
+  margin-right: auto;
+}
+

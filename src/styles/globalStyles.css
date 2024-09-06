@@ -18,6 +18,7 @@
   --font-size-normal: 24px;
   --font-size-medium: 18px;
   --font-size-smaller: 16px;
+	--font-size-smallest: 14px;
   --font-size-small: 12px;
 
   /* FONT-WEIGHT */
@@ -27,6 +28,7 @@
 
   /* LINE-HEIGHT */
   --line-height-loose: 1.33;
+	--line-height: 1.28;
   --line-height-relaxed: 1.25;
   --line-height-normal: 1.23;
   --line-height-tight: 1.17;

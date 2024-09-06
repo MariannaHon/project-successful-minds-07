@@ -1,0 +1,14 @@
+.blueIcon {
+    color: var(--primary-blue);
+    background-color: transparent;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+

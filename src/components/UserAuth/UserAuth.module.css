@@ -1,0 +1,38 @@
+.userAuthWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 84px;  
+}
+
+.icons {
+  height: 28px;
+  width: 28px;
+  fill: none;
+  stroke: #2F2F2F;
+}
+
+.userAuthLink {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #407bff;
+  background-color: transparent;
+}
+
+.userAuthLink:hover,
+.userAuthLink:focus {
+  color: var(--Secondary-color-5, #ff9d43);
+}
+
+@media screen and (min-width: 768px) {
+  .userAuthWrapper {
+    min-width: 90px;
+  }
+
+  .userAuthLink {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
