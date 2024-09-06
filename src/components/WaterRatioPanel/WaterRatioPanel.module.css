@@ -1,7 +1,8 @@
 .container {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   margin-bottom: 40px;
+  padding: 0 20px;
 }
 
 .title {
@@ -103,7 +104,7 @@
   justify-content: center;
   background-color: #407BFF;
   color: #FFFFFF;
-  width: 100%;
+  width: 280px;
   font-size: 18px;
   margin-top: 40px;
   padding: 10px 30px;
@@ -128,7 +129,7 @@
 @media screen and (min-width: 768px) {
 
   .container {
-     margin-top: -180px;
+     margin-top: -150px;
   }
 
   .progressBarContainer {

@@ -31,12 +31,12 @@ const TodayWaterList = () => {
         {waterEntries.map(entry => (
           <li key={entry.id} className={css.item}>
             {/* <svg className={css.iconGlass} aria-label="icon-glass"><use href="/imgHomePage/Glass.svg#icon-glass"></use></svg> */}
-            <div>
+            <div className={css.value}>
               <CiGlass className={css.iconGlass} />
-              <span className={css.amount}>{entry.amount} ml</span>
-              <span className={css.time}>{entry.time}</span>
+              <p className={css.amount}>{entry.amount} ml</p>
+              <p className={css.time}>{entry.time}</p>
             </div>
-            <div>
+            <div className={css.btnAll}>
               <button className={css.btn} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
               <button className={css.btn} onClick={() => handleDelete(entry.id)}><RiDeleteBinLine className={css.iconDelete}></RiDeleteBinLine></button>
             </div>
