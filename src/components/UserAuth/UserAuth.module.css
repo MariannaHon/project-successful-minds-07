@@ -1,19 +1,24 @@
 .userAuthWrapper {
   display: flex;
-  gap: 8px;
-  justify-content: center;
   align-items: center;
-  min-width: 84px;
+  gap: 8px;
+  min-width: 84px;  
+}
+
+.icons {
+  height: 28px;
+  width: 28px;
+  fill: none;
+  stroke: #2F2F2F;
 }
 
 .userAuthLink {
-  color: var(--dark-blue, #407bff);
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
+  font-size: 16px;
   line-height: 1.25;
-  transition: var(--transition);
+  color: #407bff;
+  background-color: transparent;
 }
 
 .userAuthLink:hover,
