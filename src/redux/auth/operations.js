@@ -21,6 +21,8 @@ export const register = createAsyncThunk(
       setAuthHeader(accessToken);
       localStorage.setItem('accessToken', accessToken);
       return response.data;
+      
+      
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(e.message);
