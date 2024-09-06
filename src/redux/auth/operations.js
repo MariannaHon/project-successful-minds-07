@@ -62,64 +62,48 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const refreshUser = createAsyncThunk();
-//   'auth/refresh',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//     try {
-//       setAuthHeader(persistedToken);
-//       const res = await axios.get("/users/current");
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const state = getState();
-//       const persistedToken = state.auth.token;
+    console.log(persistedToken);
 
-//       if (persistedToken === null) {
-//         return false;
-//       }
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
 
-//       return true;
-//     },
-//     dispatchConditionRejection: true,
-//   }
-// );
-export const updatePassword =
-  createAsyncThunk();
-  //       'auth/updatePassword',
-  //       async ({ new_password, token }, thunkAPI) => {
-  //         try {
-  //           setAuthHeader(token);
-  //           const response = await axios.patch('/auth/password', {
-  //             new_password,
-  //           });
-  //           return response.data;
-  //         } catch (error) {
-  //           toast.error(error.message);
-  //           return thunkAPI.rejectWithValue(error.message);
-  //         } finally {
-  //           clearAuthHeader();
-  //         }
-  //       }
-  //     );
-  //     console.log(persistedToken);
+    try {
+      const res = await axios.post('/auth/refresh', null, {
+        withCredentials: true,
+      });
+      setAuthHeader(res.data.accessToken);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async ({ newPassword, confirmPassword, token }, thunkAPI) => {
+    try {
+      if (newPassword !== confirmPassword) {
+        toast.error("Passwords don't match");
+        return thunkAPI.rejectWithValue("Passwords don't match");
+      }
 
-  //     if (!persistedToken) {
-  //       return thunkAPI.rejectWithValue('Unable to fetch user');
-  //     }
-
-  //     try {
-  //       const res = await axios.post('/auth/refresh', null, {
-  //         withCredentials: true,
-  //       });
-  //       setAuthHeader(res.data.accessToken);
-  //       return res.data;
-  //     } catch (error) {
-  //       return thunkAPI.rejectWithValue(error.message);
-  //     }
+      const response = await axios.patch('/auth/password', {
+        newPassword,
+        confirmPassword,
+        token,
+      });
+      setAuthHeader(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
