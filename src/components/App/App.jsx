@@ -30,9 +30,9 @@ export default function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefresh ? (
-    <b>Refreshing user...</b>
-  ) : (
+  // return isRefresh ? (
+  //   <b>Refreshing user...</b>
+  // ) : (
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
