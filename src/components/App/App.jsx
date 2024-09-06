@@ -1,23 +1,55 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
-import { Toaster } from 'react-hot-toast';
-import './App.css';
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefresh, selectIsLoggedIn } from '../../redux/auth/selectors';
 
+import { Toaster } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+
+const UpdatePasswordPage = lazy(() =>
+  import('../../pages/UpdatePasswordPage/UpdatePasswordPage')
+);
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const ForgotPasswordPage = lazy(() =>
+  import('../../pages/ForgotPasswordPage/ForgotPasswordPage')
+);
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefresh = useSelector(selectIsRefresh);
+  // const location = useLocation();
+  const navigate = useNavigate();
+  const isLoggedin = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    const refresh = async () => {
+      try {
+        await dispatch(refreshUser()).unwrap();
+      } catch (error) {
+        console.error("Error during refresh:", error);
+        navigate('/signin');
+      }
+    };
+
+    if (isLoggedin) {
+      refresh();
+    }
+  }, [dispatch, isLoggedin, navigate]);
+
+  return isRefresh ? (
+    <b>Refreshing user...</b>
+  ) : (
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
@@ -42,9 +74,18 @@ export default function App() {
               }
             />
             <Route
+              path="/forgot-password"
+              element={
+                <RestrictedRoute
+                  component={ForgotPasswordPage}
+                  redirectTo="/welcome"
+                />
+              }
+            />
+            <Route
               path="/home"
               element={
-                <PrivateRoute component={HomePage} redirectTo="/signup" />
+                <PrivateRoute component={HomePage} redirectTo="/welcome" />
               }
             />
             <Route path="*" element={<NotFoundPage />} />

@@ -11,14 +11,14 @@ const clearAuthHeader = () => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
-
+axios.defaults.withCredentials = true;
 
 export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
-      const response = await axios.post('/auth/signup', newUser);
-      setAuthHeader(response.data.token);
+      const response = await axios.post('/auth/signup', newUser, { withCredentials: true });
+      setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
@@ -31,9 +31,7 @@ export const signin = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'auth/signin', { email, password }
-      );
+      const response = await axios.post('auth/signin', { email, password });
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -45,10 +43,9 @@ export const signin = createAsyncThunk(
 
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
-    const response = await axios.post('/auth/signin', User);
-    setAuthHeader(response.data.token);
-    console.log(response.data);
-
+    const response = await axios.post('/auth/signin', User, { withCredentials: true });
+    setAuthHeader(response.data.data.accessToken);
+    console.log(response.data.data.accessToken);
     return response.data;
   } catch (error) {
     toast.error('Something went wrong :( Try again later.');
@@ -58,38 +55,46 @@ export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.get('/auth/logout');
     clearAuthHeader();
+    return true;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-// export const refreshUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
 
-//     try {
-//       setAuthHeader(persistedToken);
-//       const res = await axios.get("/users/current");
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (_, { getState }) => {
-//       const state = getState();
-//       const persistedToken = state.auth.token;
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.post("/auth/refresh", null, { withCredentials: true });
+      setAuthHeader(res.data.data.accessToken);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async ({ newPassword, confirmPassword, token }, thunkAPI) => {
+    try {
+      if (newPassword !== confirmPassword) {
+        toast.error("Passwords don't match");
+        return thunkAPI.rejectWithValue("Passwords don't match");
+      }
 
-//       if (persistedToken === null) {
-//         return false;
-//       }
-
-//       return true;
-//     },
-//     dispatchConditionRejection: true,
-//   }
-// );
+      const response = await axios.patch('/auth/password', {
+        newPassword,
+        confirmPassword,
+        token,
+      });
+      setAuthHeader(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
