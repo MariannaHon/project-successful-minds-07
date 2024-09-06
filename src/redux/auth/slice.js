@@ -25,7 +25,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        // console.log(action);
+        console.log(action);
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
@@ -38,6 +38,7 @@ const authSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: null, email: null };
         state.token = null;
+        console.log(state.token);
         state.isLoggedIn = false;
         state.error = null;
       })
@@ -45,15 +46,12 @@ const authSlice = createSlice({
         state.isRefresh = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        console.log(action.payload);
-
-        state.token = action.payload.data.accessToken;
+        state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefresh = false;
         state.error = null;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        console.log(action.payload);
         state.isRefresh = false;
         state.error = action.payload;
       });

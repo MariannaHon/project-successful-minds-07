@@ -1,7 +1,7 @@
 
 import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
@@ -25,12 +25,21 @@ export default function App() {
 
   const dispatch = useDispatch();
   const isRefresh = useSelector(selectIsRefresh);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    const refresh = async () => {
+      await dispatch(refreshUser());
+      navigate(location.pathname);
+    };
 
-  return (
+    refresh();
+  }, [dispatch, location.pathname, navigate]);
+
+  return isRefresh ? (
+    <b>Refreshing user...</b>
+  ) : (
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
