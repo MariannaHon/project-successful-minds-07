@@ -30,8 +30,7 @@ export default function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return 
-      (
+  return (
     <div>
       <SharedLayout>
         <Suspense fallback={<Toaster />}>
@@ -72,5 +71,5 @@ export default function App() {
         </Suspense>
       </SharedLayout>
     </div>
-  );
+  )
 }
