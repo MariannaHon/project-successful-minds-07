@@ -20,6 +20,8 @@ export const register = createAsyncThunk(
       const response = await axios.post('/auth/signup', newUser);
       setAuthHeader(response.data.accessToken);
       return response.data;
+      
+      
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(e.message);

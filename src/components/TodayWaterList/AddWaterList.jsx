@@ -1,17 +1,16 @@
-
 import { useState } from "react";
 import css from "./TodayWaterList.module.css";
 import icons from "/public/symbol-defsN.svg";
 
-
 export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
     const [amount, setAmount] = useState(initialAmount);
-    const [date, setDate] = useState(initialDate);
-
+    const [date, setDate] = useState(initialDate ? new Date(initialDate) : new Date()); 
+    
     const formatTimeForInput = (date) => {
+        if (!(date instanceof Date) || isNaN(date.getTime())) return ""; 
         let hours = date.getHours();
         let minutes = date.getMinutes();
-        hours = hours < 10 ? `0${hours}` : hours; 
+        hours = hours < 10 ? `0${hours}` : hours;
         minutes = minutes < 10 ? `0${minutes}` : minutes;
         return `${hours}:${minutes}`;
     };
@@ -21,13 +20,14 @@ export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData 
         const newDate = new Date(date); 
         newDate.setHours(hours);
         newDate.setMinutes(minutes);
-        setDate(newDate);  
+        setDate(newDate);
     };
 
     const formatDate = (date) => {
+        if (!(date instanceof Date) || isNaN(date.getTime())) return "Invalid Date"; 
         let hours = date.getHours();
         let minutes = date.getMinutes();
-        return hours + ':' + minutes;
+        return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
     };
 
     const handleDec = () => {
@@ -35,8 +35,7 @@ export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData 
     };
 
     const handleInc = () => {
-        
-        setAmount(amount + 50);
+        setAmount((prev) => (prev < 5000 ? prev + 50 : 5000));
     };
 
     const handleChange = (e) => {
@@ -46,14 +45,14 @@ export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData 
     const handleSubmit = (e) => {
         e.preventDefault();
         updateWaterData(amount, date);
-        onClose(); 
+        onClose(); // Close the modal
     };
 
     return (
         <form className={css.section} onSubmit={handleSubmit}>
             <p className={css.sectionHeader}>Edit the entered amount of water</p>
-            <button className={css.crossBtn}>
-                <svg onClick={onClose}>
+            <button className={css.crossBtn} onClick={onClose}>
+                <svg>
                     <use href={`${icons}#icon-cross`}></use>
                 </svg>
             </button>
@@ -88,17 +87,18 @@ export const AddWater = ({ onClose, initialAmount, initialDate, updateWaterData 
                         <input
                             type="time"
                             value={formatTimeForInput(date)}
-                            onChange={handleTimeChange} 
-                            
+                            onChange={handleTimeChange}
                         />
                     </div>
                     <div className={css.inputWrapper}>
                         <p className={css.numberTopic}>Enter the value of the water used:</p>
-                        <input type="number"
+                        <input
+                            type="number"
                             value={amount}
                             onChange={handleChange}
                             min={0}
-                        max={5000}/>
+                            max={5000}
+                        />
                     </div>
                 </div>
             </div>

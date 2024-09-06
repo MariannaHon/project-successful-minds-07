@@ -10,7 +10,6 @@ import toast from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import css from './DailyNormaModal.module.css';
 import { IoClose } from 'react-icons/io5';
-import { addWaterUser } from '../../redux/water/operations';
 
 const schema = yup.object().shape({
     weight: yup.number().typeError('Please, enter a number').min(0).max(300).required('Weight is required'),
@@ -19,7 +18,7 @@ const schema = yup.object().shape({
 });
 
 const DailyNormaModal = ({ onClose }) => {
-    const { gender, weight, dailyTimeActivity, todayWater } = useSelector(selectUser);
+    const user = useSelector(selectUser);
     const dispatch = useDispatch();
 
     const formatNumber = (num) => {
@@ -27,18 +26,18 @@ const DailyNormaModal = ({ onClose }) => {
         return num.toFixed(1);
     };
 
-    const [manualWaterNorm, setManualWaterNorm] = useState(''); 
-    const [isEditing, setIsEditing] = useState(false); 
+    const [manualWaterNorm, setManualWaterNorm] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
 
-    const { register, handleSubmit, formState: { errors }, setValue, reset, watch } = useForm({
-        defaultValues: { weight, dailyTimeActivity, todayWater },
+    const { register, handleSubmit, formState: { errors }, setValue, reset, watch, getValues } = useForm({
+        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender },
         resolver: yupResolver(schema),
     });
 
     const watchFields = watch(['weight', 'dailyTimeActivity', 'gender']);
 
     const calculateNormaWater = (userGender, userWeight, userSportTime) => {
-        let normaWater = 2; 
+        let normaWater = 2;
         if (userWeight > 0 && userSportTime >= 0) {
             if (userGender === 'female') {
                 normaWater = Math.ceil((userWeight * 0.03 + userSportTime * 0.4) * 100) / 100;
@@ -50,34 +49,55 @@ const DailyNormaModal = ({ onClose }) => {
     };
 
     useEffect(() => {
-        reset({ weight, dailyTimeActivity, todayWater });
+        reset({ weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender });
         setManualWaterNorm('');
         setIsEditing(false);
-    }, [reset, weight, dailyTimeActivity, todayWater]);
+    }, [reset, user.weight, user.dailyTimeActivity, user.todayWater, user.gender]);
 
     useEffect(() => {
-       
         if (watchFields[0] && watchFields[1] && !isEditing) {
             const calculatedNormaWater = calculateNormaWater(watchFields[2], watchFields[0], watchFields[1]);
             const formattedValue = formatNumber(calculatedNormaWater);
-            setValue('todayWater', parseFloat(formattedValue)); 
-            setManualWaterNorm(formattedValue); 
+            setValue('todayWater', parseFloat(formattedValue));
+            setManualWaterNorm(formattedValue);
         }
     }, [watchFields, setValue, isEditing]);
 
     const onSubmit = async (data) => {
+        const { weight: newWeight, dailyTimeActivity: newActivity, gender: newGender, todayWater: newTodayWater } = getValues();
+        const hasChanges = user.weight !== newWeight || user.dailyTimeActivity !== newActivity || user.gender !== newGender || user.todayWater !== newTodayWater;
+
         try {
-            await dispatch(updateUser(data)).unwrap();
+            if (!user._id) {
+                throw new Error("User ID is missing");
+            }
 
-            const waterData = {
-                todayWater: parseFloat(manualWaterNorm) || 0, 
-                date: new Date().toISOString(),
-            };
+            const waterRateInMilliliters = parseFloat(manualWaterNorm) * 1000;
 
-            await dispatch(addWaterUser(waterData)).unwrap();
+            console.log({
+                _id: user._id,
+                weight: newWeight,
+                dailyTimeActivity: newActivity,
+                gender: newGender,
+                waterRate: waterRateInMilliliters || 0, // Відправляємо норму води в мілілітрах
+                todayWater: parseFloat(newTodayWater) * 1000 || 0, // Відправляємо щоденне споживання води в мілілітрах
+            });
 
-            onClose();
+            const updateUserPromise = hasChanges
+                ? dispatch(updateUser({
+                    _id: user._id,
+                    weight: newWeight,
+                    dailyTimeActivity: newActivity,
+                    gender: newGender,
+                    waterRate: waterRateInMilliliters || 0,
+                    todayWater: parseFloat(newTodayWater) * 1000 || 0, // Зберігаємо дані в мілілітрах
+                })).unwrap()
+                : Promise.resolve();
+
+            await updateUserPromise;
+
             toast.success('The changes were successfully applied!');
+            onClose();
         } catch (error) {
             console.error('Update failed:', error);
             toast.error('Failed to apply changes!');
@@ -116,86 +136,85 @@ const DailyNormaModal = ({ onClose }) => {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className={css.container}>
-                        <h2 className={css.formTitle}>Calculate your rate:</h2>
-                        <div className={css.genderContainer}>
-                            <label className={css.radioLabel}>
+                            <h2 className={css.formTitle}>Calculate your rate:</h2>
+                            <div className={css.genderContainer}>
+                                <label className={css.radioLabel}>
+                                    <input
+                                        className={css.radio}
+                                        type="radio"
+                                        value="female"
+                                        {...register('gender')}
+                                        defaultChecked={user.gender === 'female'}
+                                    />
+                                    <span className={css.checkmark}></span>
+                                    For woman
+                                </label>
+                                <label className={css.radioLabel}>
+                                    <input
+                                        className={css.radio}
+                                        type="radio"
+                                        value="male"
+                                        {...register('gender')}
+                                        defaultChecked={user.gender === 'male'}
+                                    />
+                                    <span className={css.checkmark}></span>
+                                    For man
+                                </label>
+                            </div>
+
+                            <label className={css.label}>
+                                Your weight in kilograms:
                                 <input
-                                    className={css.radio}
-                                    type="radio"
-                                    value="female"
-                                    {...register('gender')}
-                                    defaultChecked={gender === 'female'}
+                                    placeholder='0'
+                                    type="number"
+                                    step="any"
+                                    {...register('weight')}
+                                    className={`${css.inputField} ${errors.weight ? css.error : ''}`}
                                 />
-                                <span className={css.checkmark}></span>
-                                For woman
+                                {errors.weight && <p className={css.errorText}>{errors.weight.message}</p>}
                             </label>
-                            <label className={css.radioLabel}>
+
+                            <label className={css.label}>
+                                Time of active participation in sports (hours):
                                 <input
-                                    className={css.radio}
-                                    type="radio"
-                                    value="male"
-                                    {...register('gender')}
-                                    defaultChecked={gender === 'male'}
+                                    placeholder='0'
+                                    type="number"
+                                    step="any"
+                                    {...register('dailyTimeActivity')}
+                                    className={`${css.inputField} ${errors.dailyTimeActivity ? css.error : ''}`}
                                 />
-                                <span className={css.checkmark}></span>
-                                For man
+                                {errors.dailyTimeActivity && <p className={css.errorText}>{errors.dailyTimeActivity.message}</p>}
+                            </label>
+
+                            <div className={css.resultContainer}>
+                                <p className={css.resultText}>The required amount of water in liters per day: </p>
+                                <span className={css.resultValue}>{manualWaterNorm || '2.0'} L</span>
+                            </div>
+
+                            <label className={css.labelNorma}>
+                                Write down how much water you will drink:
+                                <input
+                                    placeholder='0'
+                                    type="number"
+                                    step="any"
+                                    value={manualWaterNorm}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (/^\d*\.?\d*$/.test(value)) {
+                                            const parsedValue = parseFloat(value) || '';
+                                            setManualWaterNorm(parsedValue);
+                                            setIsEditing(true);
+                                            setValue('todayWater', parsedValue);
+                                        }
+                                    }}
+                                    onBlur={() => setIsEditing(false)}
+                                    className={`${css.inputField} ${errors.todayWater ? css.error : ''}`}
+                                />
+                                {errors.todayWater && <p className={css.errorText}>{errors.todayWater.message}</p>}
                             </label>
                         </div>
-
-                        <label className={css.label}>
-                            Your weight in kilograms:
-                            <input
-                                placeholder='0'
-                                type="num"
-                                step="any"
-                                {...register('weight')}
-                                className={`${css.inputField} ${errors.weight ? css.error : ''}`}
-                            />
-                            {errors.weight && <p className={css.errorText}>{errors.weight.message}</p>}
-                        </label>
-
-                        <label className={css.label}>
-                            Time of active participation in sports (hours):
-                            <input
-                                placeholder='0'
-                                type="num"
-                                step="any"
-                                {...register('dailyTimeActivity')}
-                                className={`${css.inputField} ${errors.dailyTimeActivity ? css.error : ''}`}
-                            />
-                            {errors.dailyTimeActivity && <p className={css.errorText}>{errors.dailyTimeActivity.message}</p>}
-                        </label>
-
-                        <div className={css.resultContainer}>
-                            <p className={css.resultText}>The required amount of water in liters per day: </p>
-                            <span className={css.resultValue}>{manualWaterNorm || '2.0'} L</span>
-                        </div>
-
-                        <label className={css.labelNorma}>
-                            Write down how much water you will drink:
-                            <input
-                                placeholder='0'
-                                type="num"
-                                step="any"
-                                value={manualWaterNorm}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    if (/^\d*\.?\d*$/.test(value)) {
-                                        const parsedValue = parseFloat(value) || '';
-                                        setManualWaterNorm(parsedValue); 
-                                        setIsEditing(true); 
-                                        setValue('todayWater', parsedValue); 
-                                    }
-                                }}
-                                onBlur={() => setIsEditing(false)} 
-                                className={`${css.inputField} ${errors.todayWater ? css.error : ''}`}
-                            />
-                            {errors.todayWater && <p className={css.errorText}>{errors.todayWater.message}</p>}
-                        </label>
-</div>
                         <div className={css.containerButton}>
-
-                        <button type="submit" className={css.saveButton}>Save</button>
+                            <button type="submit" className={css.saveButton}>Save</button>
                         </div>
                     </form>
                 </div>
