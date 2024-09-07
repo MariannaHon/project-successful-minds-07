@@ -4,10 +4,8 @@ import ForgotPasswordForm from '../../components/ForgotPasswordForm/ForgotPasswo
 const ForgotPasswordPage = () => {
   return (
     <div className={css.container}>
-         <ToastContainer/>
       <div className={css.background}>
         <div className={css.image}></div>
-       
         <div className={css.container_signin}>
           <h2 className={css.title}>Forgot Password</h2>
           <ForgotPasswordForm />
