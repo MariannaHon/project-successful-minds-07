@@ -102,7 +102,6 @@ export const refreshUser = createAsyncThunk(
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);
       }
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
