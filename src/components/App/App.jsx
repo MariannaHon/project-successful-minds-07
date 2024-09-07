@@ -6,7 +6,7 @@ import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 import { refreshUser } from '../../redux/auth/operations';
-import { selectRefresh } from '../../redux/auth/selectors';
+import { selectIsLoading, selectIsRefresh } from '../../redux/auth/selectors';
 
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,10 +24,12 @@ const ForgotPasswordPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
+import Loader from '../Loader/Loader.jsx';
 
 export default function App() {
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  const isRefresh = useSelector(selectRefresh);
+  const isRefresh = useSelector(selectIsRefresh);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function App() {
           navigate('/signin');
         }
       } catch (error) {
-        console.error("Error during refresh:", error);
+        console.error('Error during refresh:', error);
         navigate('/signin');
       }
     };
@@ -48,7 +50,7 @@ export default function App() {
   }, [dispatch, navigate]);
 
   return isRefresh ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
     <div>
       <SharedLayout>
@@ -92,6 +94,7 @@ export default function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
+            {isLoading && <Loader />}
           </Routes>
         </Suspense>
       </SharedLayout>
