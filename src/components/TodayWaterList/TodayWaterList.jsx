@@ -3,7 +3,7 @@ import { useState } from "react";
 import { WaterEntry } from "./TodayWaterListModal";
 import css from "./TodayWaterList.module.css";
 import icons from "/public/symbol-defsN.svg";
-import { EditWaterForm } from "./EditWaterForm";
+import { EditWaterForm } from "./AddWaterList";
 
 export const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
@@ -38,11 +38,13 @@ export const TodayWaterList = () => {
   };
 
   const handleUpdateWater = (updatedAmount, updatedDate) => {
-    setWaterItems(waterItems.map((item) =>
-      item.id === editingRecord.id
-        ? { ...item, amount: updatedAmount, date: updatedDate }
-        : item
-    ));
+    setWaterItems(
+      waterItems.map((item) =>
+        item.id === editingRecord.id
+          ? { ...item, amount: updatedAmount, date: updatedDate }
+          : item
+      )
+    );
     handleEditModalClose();
   };
 
@@ -73,6 +75,7 @@ export const TodayWaterList = () => {
           </div>
         </div>
       </div>
+
       {editingRecord && (
         <div className={css.modalBackdrop}>
           <EditWaterForm
