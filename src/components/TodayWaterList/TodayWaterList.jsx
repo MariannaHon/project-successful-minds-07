@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
+// import { RiDeleteBinLine } from "react-icons/ri";
 import { CiGlass } from "react-icons/ci";
 
 import css from './TodayWaterList.module.css';
@@ -38,7 +38,7 @@ const TodayWaterList = () => {
             </div>
             <div className={css.btnAll}>
               <button className={css.btn} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
-              <button className={css.btn} onClick={() => handleDelete(entry.id)}><RiDeleteBinLine className={css.iconDelete}></RiDeleteBinLine></button>
+              <button className={css.btn} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete}/></button>
             </div>
             
           </li>
