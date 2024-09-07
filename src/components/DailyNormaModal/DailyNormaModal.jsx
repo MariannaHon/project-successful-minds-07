@@ -11,15 +11,14 @@ import { useState, useEffect, useCallback } from 'react';
 import css from './DailyNormaModal.module.css';
 import { IoClose } from 'react-icons/io5';
 
-// Схема валідації за допомогою yup
 const schema = yup.object().shape({
     weight: yup.number().typeError('Please, enter a number').min(0).max(300).required('Weight is required'),
     dailyTimeActivity: yup.number().typeError('Please, enter a number').min(0).max(8).required('Active sport time is required'),
     todayWater: yup.number().typeError('Please, enter a number').min(0).max(10).required('Daily water intake is required'),
 });
 
-const DailyNormaModal = ({ onClose }) => {
-    const user = useSelector(selectUser);
+const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
+    const user = useSelector(selectUser); // Використовуйте useSelector для отримання даних користувача
     const dispatch = useDispatch();
 
     const formatNumber = (num) => {
@@ -31,7 +30,7 @@ const DailyNormaModal = ({ onClose }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const { register, handleSubmit, formState: { errors }, setValue, reset, watch, getValues } = useForm({
-        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender },
+        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.waterRate / 1000, gender: user.gender },
         resolver: yupResolver(schema),
     });
 
@@ -50,10 +49,16 @@ const DailyNormaModal = ({ onClose }) => {
     };
 
     useEffect(() => {
-        reset({ weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender });
-        setManualWaterNorm('');
-        setIsEditing(false);
-    }, [reset, user.weight, user.dailyTimeActivity, user.todayWater, user.gender]);
+        if (user) {
+            reset({
+                weight: user.weight,
+                dailyTimeActivity: user.dailyTimeActivity,
+                todayWater: user.waterRate / 1000,
+                gender: user.gender
+            });
+            setManualWaterNorm(user.waterRate ? formatNumber(user.waterRate / 1000) : '');
+        }
+    }, [user, reset]);
 
     useEffect(() => {
         if (watchFields[0] && watchFields[1] && !isEditing) {
@@ -64,38 +69,27 @@ const DailyNormaModal = ({ onClose }) => {
         }
     }, [watchFields, setValue, isEditing]);
 
-    const onSubmit = async (data) => {
+    const onSubmit = async () => {
         const { gender: newGender, todayWater: newTodayWater } = getValues();
-
-        const hasChanges = user.gender !== newGender || user.todayWater !== newTodayWater;
+        const todayWaterInMilliliters = parseFloat(newTodayWater) * 1000 || 0;
 
         try {
-            const todayWaterInMilliliters = parseFloat(newTodayWater) * 1000 || 0;
-
             const updateUserPayload = {
                 gender: newGender,
-                todayWater: todayWaterInMilliliters,
+                waterRate: todayWaterInMilliliters,
             };
 
-            const updateUserPromise = hasChanges
-                ? dispatch(updateUser(updateUserPayload)).unwrap()
-                : Promise.resolve();
-
-            await updateUserPromise;
-
+            await dispatch(updateUser(updateUserPayload)).unwrap();
+            onUpdateSuccess(); // Call the update success function
             toast.success('The changes were successfully applied!');
             onClose();
         } catch (error) {
             console.error('Update failed:', error);
             toast.error('Failed to apply changes!', {
-                duration: 5000, // 5 секунд
+                duration: 5000,
             });
         }
     };
-
-
-
-
 
     const handleNumericInput = (e) => {
         const invalidChars = ['-', '+', 'e', 'E'];

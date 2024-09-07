@@ -1,6 +1,7 @@
 import { useState } from "react";
 import css from "./TodayWaterList.module.css";
-import icons from "../public/symbol-defsN.svg";
+// import icons from "../public/symbol-defsN.svg";
+import { IoIosRemoveCircleOutline, IoIosAddCircleOutline } from "react-icons/io";
 import PropTypes from 'prop-types';
 
 export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
@@ -65,13 +66,13 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
         <p className={css.sectionHeader}>Edit the entered amount of water</p>
         <button className={css.crossBtn} type="button" onClick={onClose}>
           <svg>
-            <use href={`${icons}#icon-cross`}></use>
+            {/* <use href={`${icons}#icon-cross`}></use> */}
           </svg>
         </button>
         <div className={css.formEditInfo}>
           <div className={css.waterPreInfo}>
             <svg className={css.svgGlass}>
-              <use href={`${icons}#icon-glass`}></use>
+              {/* <use href={`${icons}#icon-glass`}></use> */}
             </svg>
             <div className={css.timeAmount}>
               <span className={css.waterAmount}>{amount ? `${amount} ml` : "0 ml"}</span>
@@ -90,7 +91,7 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
               >
 
                 <svg>
-                  <use href={`${icons}#icon-minus`}></use>
+                                <IoIosRemoveCircleOutline />
                 </svg>
 
               </button>
@@ -102,7 +103,7 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
                 disabled={amount === 5000}
               >
                 <svg>
-                  <use href={`${icons}#icon-plus`}></use>
+                                <IoIosAddCircleOutline />
                 </svg>
               </button>
             </div>
