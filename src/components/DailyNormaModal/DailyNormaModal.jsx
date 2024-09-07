@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
 import { updateUser } from '../../redux/user/operations';
 import toast from 'react-hot-toast';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import css from './DailyNormaModal.module.css';
 import { IoClose } from 'react-icons/io5';
 
@@ -17,8 +17,8 @@ const schema = yup.object().shape({
     todayWater: yup.number().typeError('Please, enter a number').min(0).max(10).required('Daily water intake is required'),
 });
 
-const DailyNormaModal = ({ onClose }) => {
-    const user = useSelector(selectUser);
+const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
+    const user = useSelector(selectUser); // Використовуйте useSelector для отримання даних користувача
     const dispatch = useDispatch();
 
     const formatNumber = (num) => {
@@ -30,7 +30,7 @@ const DailyNormaModal = ({ onClose }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const { register, handleSubmit, formState: { errors }, setValue, reset, watch, getValues } = useForm({
-        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender },
+        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.waterRate / 1000, gender: user.gender },
         resolver: yupResolver(schema),
     });
 
@@ -49,10 +49,16 @@ const DailyNormaModal = ({ onClose }) => {
     };
 
     useEffect(() => {
-        reset({ weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.todayWater, gender: user.gender });
-        setManualWaterNorm('');
-        setIsEditing(false);
-    }, [reset, user.weight, user.dailyTimeActivity, user.todayWater, user.gender]);
+        if (user) {
+            reset({
+                weight: user.weight,
+                dailyTimeActivity: user.dailyTimeActivity,
+                todayWater: user.waterRate / 1000,
+                gender: user.gender
+            });
+            setManualWaterNorm(user.waterRate ? formatNumber(user.waterRate / 1000) : '');
+        }
+    }, [user, reset]);
 
     useEffect(() => {
         if (watchFields[0] && watchFields[1] && !isEditing) {
@@ -63,53 +69,52 @@ const DailyNormaModal = ({ onClose }) => {
         }
     }, [watchFields, setValue, isEditing]);
 
-    const onSubmit = async (data) => {
-        const { weight: newWeight, dailyTimeActivity: newActivity, gender: newGender, todayWater: newTodayWater } = getValues();
-        const hasChanges = user.weight !== newWeight || user.dailyTimeActivity !== newActivity || user.gender !== newGender || user.todayWater !== newTodayWater;
+    const onSubmit = async () => {
+        const { gender: newGender, todayWater: newTodayWater } = getValues();
+        const todayWaterInMilliliters = parseFloat(newTodayWater) * 1000 || 0;
 
         try {
-            if (!user._id) {
-                throw new Error("User ID is missing");
-            }
-
-            const waterRateInMilliliters = parseFloat(manualWaterNorm) * 1000;
-
-            console.log({
-                _id: user._id,
-                weight: newWeight,
-                dailyTimeActivity: newActivity,
+            const updateUserPayload = {
                 gender: newGender,
-                waterRate: waterRateInMilliliters || 0, // Відправляємо норму води в мілілітрах
-                todayWater: parseFloat(newTodayWater) * 1000 || 0, // Відправляємо щоденне споживання води в мілілітрах
-            });
+                waterRate: todayWaterInMilliliters,
+            };
 
-            const updateUserPromise = hasChanges
-                ? dispatch(updateUser({
-                    _id: user._id,
-                    weight: newWeight,
-                    dailyTimeActivity: newActivity,
-                    gender: newGender,
-                    waterRate: waterRateInMilliliters || 0,
-                    todayWater: parseFloat(newTodayWater) * 1000 || 0, // Зберігаємо дані в мілілітрах
-                })).unwrap()
-                : Promise.resolve();
-
-            await updateUserPromise;
-
+            await dispatch(updateUser(updateUserPayload)).unwrap();
+            onUpdateSuccess(); // Call the update success function
             toast.success('The changes were successfully applied!');
             onClose();
         } catch (error) {
             console.error('Update failed:', error);
-            toast.error('Failed to apply changes!');
+            toast.error('Failed to apply changes!', {
+                duration: 5000,
+            });
         }
     };
+
+    const handleNumericInput = (e) => {
+        const invalidChars = ['-', '+', 'e', 'E'];
+        if (invalidChars.includes(e.key)) {
+            e.preventDefault();
+        }
+    };
+
+    const handleKeyDown = useCallback((event) => {
+        if (event.key === 'Escape') {
+            onClose();
+        }
+    }, [onClose]);
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
 
     return (
         <Modal open={true} onClose={onClose} aria-labelledby="modal-title">
             <Box className={css.modalStyle}>
                 <div className={css.modalContainer}>
                     <div className={css.dailyCloseContainer}>
-                        <h3 className={css.title}>My daily norma</h3>
+                        <h3 className={css.title}>Calculate your rate</h3>
                         <button onClick={onClose} className={css.iconClose}>
                             <IoClose />
                         </button>
@@ -117,7 +122,7 @@ const DailyNormaModal = ({ onClose }) => {
 
                     <div className={css.formulaContainer}>
                         <div className={css.formulaTitleContainer}>
-                            <h4 className={css.formulaTitle}>For girl: </h4>
+                            <h4 className={css.formulaTitle}>For woman: </h4>
                             <p className={css.formula}>V=(M*0.03) + (T*0.4)</p>
                         </div>
                         <div className={css.formulaTitleContainer}>
@@ -170,6 +175,7 @@ const DailyNormaModal = ({ onClose }) => {
                                     step="any"
                                     {...register('weight')}
                                     className={`${css.inputField} ${errors.weight ? css.error : ''}`}
+                                    onKeyDown={handleNumericInput}
                                 />
                                 {errors.weight && <p className={css.errorText}>{errors.weight.message}</p>}
                             </label>
@@ -182,6 +188,7 @@ const DailyNormaModal = ({ onClose }) => {
                                     step="any"
                                     {...register('dailyTimeActivity')}
                                     className={`${css.inputField} ${errors.dailyTimeActivity ? css.error : ''}`}
+                                    onKeyDown={handleNumericInput}
                                 />
                                 {errors.dailyTimeActivity && <p className={css.errorText}>{errors.dailyTimeActivity.message}</p>}
                             </label>
@@ -209,6 +216,7 @@ const DailyNormaModal = ({ onClose }) => {
                                     }}
                                     onBlur={() => setIsEditing(false)}
                                     className={`${css.inputField} ${errors.todayWater ? css.error : ''}`}
+                                    onKeyDown={handleNumericInput}
                                 />
                                 {errors.todayWater && <p className={css.errorText}>{errors.todayWater.message}</p>}
                             </label>
