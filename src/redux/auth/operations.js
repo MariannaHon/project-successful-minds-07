@@ -91,22 +91,18 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const token = localStorage.getItem('accessToken');
 
-    // const state = thunkAPI.getState();
-    // const persistedToken = state.auth.accessToken;
-
-    // console.log(persistedToken);
-
     if (token === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
       setAuthHeader(token);
-      const res = await axios.post('/users');
+      const res = await axios.get('/users');
       const newAccessToken = res.data.data.accessToken;
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);
       }
+      console.log(res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
