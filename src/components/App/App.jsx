@@ -76,7 +76,7 @@ export default function App() {
               }
             />
             <Route
-              path="/password"
+              path="/reset-password"
               element={
                 <PrivateRoute
                   component={UpdatePasswordPage}
