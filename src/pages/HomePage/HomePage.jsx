@@ -16,8 +16,8 @@ const HomePage = () => {
           <WaterRatioPanel />
         </div>
         <div className={css.rightColumn}>
-          {/* <TodayWaterList /> */}
-          {/* <MonthStatsTable /> */}
+          <TodayWaterList />
+          <MonthStatsTable />
         </div>
       </div>
       <DailyNorma />

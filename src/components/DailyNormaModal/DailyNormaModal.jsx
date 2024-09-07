@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 });
 
 const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
-    const user = useSelector(selectUser); // Використовуйте useSelector для отримання даних користувача
+    const user = useSelector(selectUser); 
     const dispatch = useDispatch();
 
     const formatNumber = (num) => {
@@ -80,7 +80,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             };
 
             await dispatch(updateUser(updateUserPayload)).unwrap();
-            onUpdateSuccess(); // Call the update success function
+            onUpdateSuccess(); 
             toast.success('The changes were successfully applied!');
             onClose();
         } catch (error) {
