@@ -3,19 +3,22 @@ import {
   selectUser,
   selectIsLoggedIn,
   selectIsRefreshing,
-  selectIsRegistered,
-} from "../redux/authUser/selectors";
+  selectAccessToken,
+  selectRefreshToken,
+} from "../redux/water/selectors";
 
 export const useAuth = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isRegistered = useSelector(selectIsRegistered);
   const user = useSelector(selectUser);
+  const refreshToken = useSelector(selectRefreshToken);
+  const accessToken = useSelector(selectAccessToken);
 
   return {
     isLoggedIn,
     isRefreshing,
     user,
-    isRegistered,
+    refreshToken,
+    accessToken,
   };
 };

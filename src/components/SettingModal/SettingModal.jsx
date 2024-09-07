@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Radio from '@mui/material/Radio';
@@ -6,7 +5,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
 import { useId } from 'react';
 import { LuUpload } from 'react-icons/lu';
 import { IoSettingsOutline } from 'react-icons/io5';
@@ -16,8 +14,9 @@ import { FaRegEyeSlash } from 'react-icons/fa6';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { fetchUser, updateUser } from '../../redux/user/operations';
+import { fetchUser, updateUser, changeAvatar } from '../../redux/user/operations';
 import { selectUser } from '../../redux/auth/selectors';
+import toast from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
 import { ErrorMessage } from 'formik';
@@ -69,17 +68,14 @@ function SettingModal() {
     }
   }, [open, dispatch, userId, userData]);
 
-  const handleOpen = () => {
-    setOpen(true);
-  }
-
+  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleSubmit = async (values, actions) => {
     try {
       const result = await dispatch(updateUser({
         id: userId,
-        avatar: values.avatar,
+        avatarUrl: values.avatarUrl,
         gender: values.gender,
         name: values.name,
         email: values.email,
@@ -90,8 +86,10 @@ function SettingModal() {
         setOpen(false);
       }
     } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
       console.error('Failed to update user data:', error);
       actions.setErrors({ submit: error.message });
+      setOpen(true);
     }
   };
 
@@ -106,6 +104,11 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
+
+  function changeHandler(e) {
+    const file = e.target.files[0]
+    dispatch(changeAvatar(file))
+}
 
   return (
     <div>
@@ -123,7 +126,7 @@ function SettingModal() {
                 gender: userData?.gender || '',
                 name: userData?.name || '',
                 email: userData?.email || '',
-                outPassword: '',
+                outPassword: userData?.password || '',
                 nPassword: '',
                 repeatNPassword: '',
               }}
@@ -140,15 +143,16 @@ function SettingModal() {
                       <div className={css.changeAvatar}>
                         <img
                           src={
-                            userData?.photo ||
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-LrzjXCroigKL69FDfQ6enaiHlrDGLiZMUw&s'
+                            userData.avatarUrl ||
+                            'public/images/setting/Avatar.jpg'
                           }
                           alt="Avatar"
                           className={css.photo}
                         />
-                        <a href="" className={css.link}>
-                          <LuUpload /> Upload a photo
-                        </a>
+                        <label htmlFor={`${fieldId}-avatar`} className={css.link} >
+                        <LuUpload className={css.iconChange}/>Upload a photo</label>
+                        <input type='file' className={css.change} onChange={e => changeHandler(e)}
+                        id={`${fieldId}-avatar`} accept="image/*"/>                                      
                       </div>
                     </div>
                     <FormControl className={css.radio}>
@@ -158,6 +162,7 @@ function SettingModal() {
                       <RadioGroup
                         row
                         aria-labelledby="gender-radio-group-label"
+                        defaultValue="female"
                         name="gender"
                       >
                         <FormControlLabel
@@ -182,13 +187,8 @@ function SettingModal() {
                         type="text"
                         name="name"
                         id={`${fieldId}-name`}
-                        className={css.field}
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="span"
-                        className={css.error}
-                      />
+                        className={css.field} />
+                      <ErrorMessage name="name" component="span" className={css.error} />
                     </div>
                     <div className={css.groupLeft}>
                       <label htmlFor={`${fieldId}-email`}>

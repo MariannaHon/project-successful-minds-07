@@ -18,6 +18,7 @@ h3 {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
+    gap: 8px;
     font-size: var(--font-size-smaller);
     font-weight: var(--font-weight-regular);
 }
