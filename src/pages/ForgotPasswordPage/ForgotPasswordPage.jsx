@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import css from './ForgotPasswordPage.module.css';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm/ForgotPasswordForm';
-import { ToastContainer } from 'react-toastify';
 const ForgotPasswordPage = () => {
   return (
     <div className={css.container}>

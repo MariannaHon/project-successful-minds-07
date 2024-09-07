@@ -17,11 +17,29 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/signup', newUser);
-      setAuthHeader(response.data.accessToken);
+      const accessToken = response.data.data.accessToken;
+      setAuthHeader(accessToken);
+      localStorage.setItem('accessToken', accessToken);
       return response.data;
+      
+      
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const signin = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const response = await axios.post('auth/signin', { email, password });
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -63,26 +81,36 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/auth/logout');
     clearAuthHeader();
+    localStorage.removeItem('accessToken');
+    return true;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
 
-    console.log(persistedToken);
+    const token = localStorage.getItem('accessToken');
 
-    if (persistedToken === null) {
+    // const state = thunkAPI.getState();
+    // const persistedToken = state.auth.accessToken;
+
+    // console.log(persistedToken);
+
+    if (token === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
-      setAuthHeader(persistedToken);
-      const res = await axios.post('/auth/refresh');
+      setAuthHeader(token);
+      const res = await axios.post("/users");
+      const newAccessToken = res.data.data.accessToken;
+      if (newAccessToken) {
+        localStorage.setItem('accessToken', newAccessToken);
+      }
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -112,6 +140,27 @@ export const forgotPassword = createAsyncThunk(
         toast.error('Something went wrong :( Try again later.');
         return thunkAPI.rejectWithValue(error.message);
       }
+      );
+      
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async ({ newPassword, confirmPassword, token }, thunkAPI) => {
+    try {
+      if (newPassword !== confirmPassword) {
+        toast.error("Passwords don't match");
+        return thunkAPI.rejectWithValue("Passwords don't match");
+      }
+
+      const response = await axios.patch('/auth/password', {
+        newPassword,
+        confirmPassword,
+        token,
+      });
+      setAuthHeader(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      toast.error('Something went wrong :( Try again later.');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
