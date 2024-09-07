@@ -96,15 +96,15 @@ const UpdatePasswordForm = () => {
               //id={passwordFieldId}
               id={`${id}-new_password`}
               className={`${css.input} ${
-                errors.password && touched.password
-                  ? errors.password === 'Too short password'
+                errors.new_password && touched.new_password
+                  ? errors.new_password === 'Too short password'
                     ? css.short
-                    : errors.password === 'Too long password'
+                    : errors.new_password === 'Too long password'
                     ? css.long
-                    : errors.password === 'Password is Required'
+                    : errors.new_password === 'Password is Required'
                     ? css.required
                     : css.invalid
-                  : touched.password && !errors.password
+                  : touched.new_password && !errors.new_password
                   ? css.valid
                   : ''
               }`}
@@ -129,9 +129,9 @@ const UpdatePasswordForm = () => {
               id={`${id}-confirm_new_password`}
               //className={css.inputField}
               className={`${css.input} ${
-                errors.repeatPassword && touched.repeatPassword
+                errors.confirm_new_password && touched.confirm_new_password
                   ? css.mismatch
-                  : touched.repeatPassword && !errors.repeatPassword
+                  : touched.confirm_new_password && !errors.confirm_new_password
                   ? css.valid
                   : ''
               }`}
