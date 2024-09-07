@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
     const [amount, setAmount] = useState(initialAmount);
+
     const [date, setDate] = useState(initialDate);
   
     const formatTimeForInput = (date) => {
@@ -13,33 +14,44 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
       hours = hours < 10 ? `0${hours}` : hours;
       minutes = minutes < 10 ? `0${minutes}` : minutes;
       return `${hours}:${minutes}`;
+
     };
   
     const handleTimeChange = (e) => {
+
       const [hours, minutes] = e.target.value.split(":").map(Number);
       const newDate = new Date(date);
       newDate.setHours(hours);
       newDate.setMinutes(minutes);
       setDate(newDate);
+
     };
   
     const formatDate = (date) => {
+
       let hours = new Date(date).getHours();
       let minutes = new Date(date).getMinutes();
       return `${hours}:${minutes}`;
+
     };
   
     const handleDec = () => {
+
       setAmount((prev) => (prev > 50 ? prev - 50 : 0));
+
     };
   
     const handleInc = () => {
+
       setAmount(amount + 50);
+
     };
   
     const handleSubmit = (e) => {
+
       e.preventDefault();
       updateWaterData(amount, date);
+
     };
   
     const handleAmountChange = (e) => {
@@ -48,6 +60,7 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
     };
   
     return (
+
       <form className={css.sectionModal} onSubmit={handleSubmit}>
         <p className={css.sectionHeader}>Edit the entered amount of water</p>
         <button className={css.crossBtn} type="button" onClick={onClose}>
@@ -75,9 +88,11 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
                 onClick={handleDec}
                 disabled={amount === 0}
               >
+
                 <svg>
                   <use href={`${icons}#icon-minus`}></use>
                 </svg>
+
               </button>
               <p className={css.spanAmount}>{amount ? `${amount} ml` : "0 ml"}</p>
               <button
@@ -109,6 +124,7 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
                 value={amount === "" ? "" : amount}
                 onChange={handleAmountChange}
               />
+
             </div>
           </div>
         </div>
