@@ -54,7 +54,8 @@ export default function App() {
   ) : (
     <div>
       <SharedLayout>
-        <Suspense fallback={<Toaster />}>
+        <Toaster />
+        <Suspense fallback={null}>
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
