@@ -49,12 +49,31 @@ export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
     const response = await axios.post('/auth/signin', User);
     const accessToken = response.data.data.accessToken;
     setAuthHeader(accessToken);
-
     localStorage.setItem('accessToken', accessToken);
     return response.data;
   } catch (error) {
-    toast.error('Something went wrong :( Try again later.');
-    return thunkAPI.rejectWithValue(error.message);
+    if (error.response) {
+      const status = error.response.status;
+      console.log(error.response);
+      const errorMessage =
+        error.response.data.message || 'Authorization failed';
+      console.log({ status } + '   and ' + { errorMessage });
+      toast.error(`Error ${status}: ${errorMessage}`, {
+        position: 'top-center',
+      });
+
+      return thunkAPI.rejectWithValue(errorMessage);
+    } else if (error.request) {
+      toast.error('Network error: No response from server.', {
+        position: 'top-center',
+      });
+      return thunkAPI.rejectWithValue('No response from server');
+    } else {
+      toast.error('Something went wrong :( Try again later.', {
+        position: 'top-center',
+      });
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 });
 
@@ -98,6 +117,31 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+export const forgotPassword = createAsyncThunk(
+  'auth/forgot-password',
+  async (User, thunkAPI) => {
+    try {
+      const response = await axios.post('/auth/request-reset-email', User);
+      // setAuthHeader(response.data.accessToken);
+      toast.success(`Reset password email was sent`);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        const status = error.response.status;
+        console.log(error.response.data.data.message);
+        const errorMessage =
+          error.response.data.data.message || 'No send';
+        console.log({ status } + '   and ' + { errorMessage });
+        toast.error(`Error ${status}: ${errorMessage}`, {
+          position: 'top-center',
+        });
+        return thunkAPI.rejectWithValue(errorMessage);
+      } else {
+        toast.error('Something went wrong :( Try again later.');
+        return thunkAPI.rejectWithValue(error.message);
+      }
+      );
+      
 export const updatePassword = createAsyncThunk(
   'auth/updatePassword',
   async ({ newPassword, confirmPassword, token }, thunkAPI) => {
