@@ -34,6 +34,10 @@
   color:var(--primary-blue);
   border: 1px solid var(--secondary-blue);
 }
+.inputError {
+  border-color: red; /* Красная граница при ошибке */
+  color: red; /* Красный текст при ошибке */
+}
 .wrap {
   height: 70px;
  }
