@@ -1,5 +1,3 @@
-                    
-
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../redux/auth/operations';
 import css from './UpdatePasswordForm.module.css';
@@ -68,8 +66,8 @@ const UpdatePasswordForm = () => {
       }}
     >
       {({ errors, touched }) => (
-        <Form className={css.formContainer} name="Update password">
-          <label htmlFor="passwordField" className={css.label}>
+        <Form className={css.formContainer} noValidate name="Update password">
+          <label htmlFor="new_password" className={css.label}>
             Enter new password
           </label>
           <div className={css.wrap}>
@@ -77,7 +75,7 @@ const UpdatePasswordForm = () => {
               type="password"
               name="new_password"
               //id={passwordFieldId}
-              id={`${id}-passwordField`}
+              id={`${id}-new_password`}
               className={`${css.input} ${
                 errors.password && touched.password
                   ? errors.password === 'Too short password'
@@ -113,7 +111,7 @@ const UpdatePasswordForm = () => {
             />
           </div>
 
-          <label htmlFor="repeatPassword" className={css.label}>
+          <label htmlFor="confirm_new_password" className={css.label}>
             Confirm new password
           </label>
           <div className={css.wrap}>
@@ -121,7 +119,7 @@ const UpdatePasswordForm = () => {
               type="password"
               name="confirm_new_password"
               //id={passwordFieldId}
-              id={`${id}-repeatPassword`}
+              id={`${id}-confirm_new_password`}
               //className={css.inputField}
               className={`${css.input} ${
                 errors.repeatPassword && touched.repeatPassword
