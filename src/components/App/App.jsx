@@ -17,7 +17,7 @@ const UpdatePasswordPage = lazy(() =>
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
-//const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const ForgotPasswordPage = lazy(() =>
   import('../../pages/ForgotPasswordPage/ForgotPasswordPage')
 );
@@ -32,22 +32,22 @@ export default function App() {
   const isRefresh = useSelector(selectIsRefresh);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // const token = localStorage.getItem('accessToken');
-  //   // const refresh = async () => {
-  //   //   try {
-  //   //     if (token) {
-  //   //       await dispatch(refreshUser());
-  //   //     } else {
-  //   //       navigate('/signin');
-  //   //     }
-  //   //   } catch (error) {
-  //   //     console.error('Error during refresh:', error);
-  //   //     navigate('/signin');
-  //   //   }
-  //   };
-  //   // refresh();
-  // }, [dispatch]);
+  useEffect(() => {
+     const token = localStorage.getItem('accessToken');
+     const refresh = async () => {
+       try {
+         if (token) {
+           await dispatch(refreshUser());
+         } else {
+           navigate('/signin');
+         }
+       } catch (error) {
+         console.error('Error during refresh:', error);
+        navigate('/signin');
+       }
+    };
+     refresh();
+  }, [dispatch]);
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -60,7 +60,7 @@ export default function App() {
         <Toaster />
         <Suspense fallback={null}>
           <Routes>
-            <Route path="/welcome" element={<UpdatePasswordPage />} />
+            <Route path="/welcome" element={<WelcomePage />} />
             <Route
               path="/"
               element={
