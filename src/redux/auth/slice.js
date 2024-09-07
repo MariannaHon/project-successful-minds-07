@@ -42,6 +42,7 @@ const authSlice = createSlice({
       })
       .addCase(forgotPassword.fulfilled, (state, action) => {
         console.log('send');
+        state.user = action.payload.data.user;
         state.error = null;
       })
       .addCase(forgotPassword.rejected, (state, action) => {
