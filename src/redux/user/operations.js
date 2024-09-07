@@ -8,13 +8,12 @@ const setAuthHeader = (token) => {
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com/';
 
 export const fetchUser = createAsyncThunk(
-  'users/',
-  async (id, thunkAPI) => {
+  '/fetchAll',
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/users/${id}`);
+      const response = await axios.get('/');
       setAuthHeader(response.data.accessToken);
-      return response.data;   
-      
+      return response.data;        
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -22,10 +21,10 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'users/',
-  async ({ id, avatarUrl, gender, name, email, password }, thunkAPI) => {
+  '/',
+  async ({  avatarUrl, gender, name, email, password }, thunkAPI) => {
     try {
-      const response = await axios.patch(`/users/${id}`, {
+      const response = await axios.patch('/', {
         avatarUrl,
         gender,
         name,
@@ -41,10 +40,10 @@ export const updateUser = createAsyncThunk(
 );
 
 export const changeAvatar = createAsyncThunk(
-  '/users/avatar',
-  async ({id, avatarUrl},thunkAPI) => {
+  '/avatar',
+  async ({avatarUrl},thunkAPI) => {
     try {
-    const response = await axios.patch(`/users/${id}`, {avatarUrl});
+    const response = await axios.patch('/avatar', {avatarUrl});
     setAuthHeader(response.data.accessToken);
     return response.data;
   } catch (error) {
