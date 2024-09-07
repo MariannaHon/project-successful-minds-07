@@ -21,8 +21,6 @@ export const register = createAsyncThunk(
       setAuthHeader(accessToken);
       localStorage.setItem('accessToken', accessToken);
       return response.data;
-      
-      
     } catch (e) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(e.message);
@@ -88,11 +86,9 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-
     const token = localStorage.getItem('accessToken');
 
     // const state = thunkAPI.getState();
@@ -106,7 +102,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(token);
-      const res = await axios.post("/users");
+      const res = await axios.post('/users');
       const newAccessToken = res.data.data.accessToken;
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);
@@ -129,8 +125,7 @@ export const forgotPassword = createAsyncThunk(
       if (error.response) {
         const status = error.response.status;
         console.log(error.response.data.data.message);
-        const errorMessage =
-          error.response.data.data.message || 'No send';
+        const errorMessage = error.response.data.data.message || 'No send';
         console.log({ status } + '   and ' + { errorMessage });
         toast.error(`Error ${status}: ${errorMessage}`, {
           position: 'top-center',
@@ -140,8 +135,10 @@ export const forgotPassword = createAsyncThunk(
         toast.error('Something went wrong :( Try again later.');
         return thunkAPI.rejectWithValue(error.message);
       }
-      );
-      
+    }
+  }
+);
+
 export const updatePassword = createAsyncThunk(
   'auth/updatePassword',
   async ({ newPassword, confirmPassword, token }, thunkAPI) => {
