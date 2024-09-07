@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  forgotPassword,
+} from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -25,7 +31,6 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        console.log(action);
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
@@ -35,19 +40,28 @@ const authSlice = createSlice({
         // console.log(action);
         state.error = action.payload;
       })
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(forgotPassword.fulfilled, (state, action) => {
+        console.log('send');
+        state.user = action.payload.data.user;
+        state.error = null;
+      })
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.error = action.payload.data.Message;
+      })
+      .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
         state.token = null;
+        localStorage.removeItem('accessToken');
         console.log(state.token);
         state.isLoggedIn = false;
         state.error = null;
       })
-      .addCase(refreshUser.pending, (state) => {
+      .addCase(refreshUser.pending, state => {
         state.isRefresh = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
-        state.refresh = action.payload.data.refreshToken;
         state.isLoggedIn = true;
         state.isRefresh = false;
         state.error = null;
@@ -57,7 +71,7 @@ const authSlice = createSlice({
         state.isRefresh = false;
         state.error = action.payload;
       });
-  }
+  },
 });
 
 export const authReducer = authSlice.reducer;

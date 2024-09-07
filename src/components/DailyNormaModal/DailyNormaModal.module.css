@@ -1,0 +1,279 @@
+.modalContainer {
+    padding: 32px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin-bottom: 34px;
+}
+
+.modalStyle {
+    position: absolute;
+    width: 592px;
+    background-color: white;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dailyCloseContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.iconClose {
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #407BFF;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    /* margin-bottom: 20px; */
+
+}
+
+
+.formulaTitleContainer {
+    display: flex;
+}
+
+.formulaContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.formulaTitle {
+    color: #2F2F2F;
+    padding: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+.formula {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.33333;
+    color: #407BFF;
+}
+
+.formulaContainer div {
+    display: flex;
+    align-items: center;
+}
+
+.containerFormulaDescription {
+    border: 1px solid #D7E3FF;
+    border-radius: 10px;
+    padding: 10px;
+    width: 544px;
+    height: 68px;
+    margin-bottom: 34px;
+}
+
+.formulaDescription {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.33333;
+    color: #8F8F8F;
+
+}
+
+.formulaDescription span {
+    color: #407BFF;
+}
+
+.genderContainer {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+/* .radioLabel {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #007bff;
+}
+ */
+
+.formTitle {
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.11111;
+    color: #2F2F2F;
+}
+
+
+.radioLabel {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    /* Розмір шрифту, як на фото */
+    position: relative;
+    padding-left: 30px;
+    margin-right: 20px;
+    /* Відступ між радіо-кнопками */
+    color: #333;
+    /* Колір тексту */
+}
+
+.radioLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radioLabel .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 14px;
+    /* Висота радіо-кнопки */
+    width: 14px;
+    /* Ширина радіо-кнопки */
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    /* Синій контур */
+    transform: translateY(-50%);
+}
+
+.radioLabel input:checked+.checkmark {
+    background-color: transparent;
+    /* Прозорий фон */
+    border-color: #007bff;
+    /* Синя рамка при виборі */
+}
+
+.radioLabel .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radioLabel input:checked+.checkmark::after {
+    display: block;
+}
+
+.radioLabel input:checked+.checkmark::after {
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #007bff;
+    /* Синя точка в центрі при виборі */
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+.label {
+    display: block;
+    margin-bottom: 16px;
+    width: 100%;
+    text-align: left;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+.inputField {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 16px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #407BFF;
+}
+
+.inputField::placeholder {
+    color: #407BFF;
+}
+
+.inputField.error {
+    border-color: red;
+}
+
+.errorText {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.resultContainer {
+    margin: 20px 0;
+    display: flex;
+    gap: 6px;
+}
+
+.resultText {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.25;
+    color: #2F2F2F;
+}
+
+.resultValue {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.labelNorma {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.11111;
+    color: #2F2F2F;
+
+}
+
+.saveButton {
+    background-color: #007bff;
+    border: none;
+
+    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    background: #407BFF;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 30px;
+    width: 160px;
+    height: 44px;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.33333;
+    text-align: center;
+
+    color: #FFFFFF;
+
+   
+}
+
+.containerButton{
+    display:  flex;
+    justify-content: flex-end;
+}
+
+.saveButton:hover {
+    background-color: #0056b3;
+}
