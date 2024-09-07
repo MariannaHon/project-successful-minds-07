@@ -1,0 +1,53 @@
+/* DailyNorma.module.css */
+.container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ECF2FF;
+        border-radius: 10px;
+        padding: 8px 20px;
+        width: 166px;
+
+margin: 0 auto;
+
+}
+
+.title {
+    color: #2F2F2F;
+
+    font-weight: 500;
+        font-size: 18px;
+        line-height: 1.33333;
+        margin-bottom: 12px;
+}
+
+.normaContainer {
+    display: flex;
+    
+    align-items: baseline;
+    gap: 8px;
+    
+}
+
+.normaValue {
+    font-size: 24px;
+    color: #407BFF;
+    /* Синій колір тексту для норми */
+    font-weight: 700;
+}
+
+.editButton {
+     color: #8BAEFF;
+    /* Синій колір для кнопки */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    margin-left: 5px;
+   text-decoration: none;
+    font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+}
+

@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 import { refreshUser } from '../../redux/auth/operations';
-import { selectIsRefresh } from '../../redux/auth/selectors';
+import { selectIsLoading, selectIsRefresh } from '../../redux/auth/selectors';
 
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,28 +24,41 @@ const ForgotPasswordPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
+import Loader from '../Loader/Loader.jsx';
 
 export default function App() {
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const isRefresh = useSelector(selectIsRefresh);
-  const location = useLocation();
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   // const token = localStorage.getItem('accessToken');
+  //   // const refresh = async () => {
+  //   //   try {
+  //   //     if (token) {
+  //   //       await dispatch(refreshUser());
+  //   //     } else {
+  //   //       navigate('/signin');
+  //   //     }
+  //   //   } catch (error) {
+  //   //     console.error('Error during refresh:', error);
+  //   //     navigate('/signin');
+  //   //   }
+  //   };
+  //   // refresh();
+  // }, [dispatch]);
   useEffect(() => {
-    const refresh = async () => {
-      await dispatch(refreshUser());
-      navigate(location.pathname);
-    };
-
-    refresh();
-  }, [dispatch, location.pathname, navigate]);
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return isRefresh ? (
-    <b>Refreshing user...</b>
+    <Loader />
   ) : (
     <div>
       <SharedLayout>
-        <Suspense fallback={<Toaster />}>
+        <Toaster />
+        <Suspense fallback={null}>
           <Routes>
             <Route path="/welcome" element={<UpdatePasswordPage />} />
             <Route
@@ -85,6 +98,7 @@ export default function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
+            {isLoading && <Loader />}
           </Routes>
         </Suspense>
       </SharedLayout>

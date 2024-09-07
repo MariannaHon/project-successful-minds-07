@@ -18,14 +18,7 @@ const RegisterForm = () => {
       email: values.email,
       password: values.password,
     };
-    dispatch(register(newUser))
-      .unwrap()
-      .then(() => {})
-      .catch(() => {
-        toast.error('Passwords did not happen', {
-          position: 'top-right',
-        });
-      });
+    dispatch(register(newUser));
     actions.resetForm();
   };
 
