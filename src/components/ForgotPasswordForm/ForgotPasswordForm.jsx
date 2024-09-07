@@ -18,17 +18,17 @@ const ForgotPasswordForm = () => {
     const userEmail = { email: values.email };
     dispatch(forgotPassword(userEmail))
       .unwrap()
-      .then(() => {})
-      .catch(() => {
-        toast.error('Passwords did not happen', {
-          position: 'top-right',
-        });
-      });
+      // .then(() => {})
+      // .catch(() => {
+      //   toast.error('Passwords did not happen', {
+      //     position: 'top-right',
+      //   });
+      // });
     actions.resetForm();
   };
   return (
     <>
-    <div><Toaster/></div>
+    <Toaster/>
     <Formik
       initialValues={{ email: '' }}
       validationSchema={forgot}

@@ -95,11 +95,23 @@ export const forgotPassword = createAsyncThunk(
     try {
       const response = await axios.post('/auth/request-reset-email', User);
       // setAuthHeader(response.data.accessToken);
-      toast.error('jfdhgdkgkmfn');
+      toast.success(`Reset password email was sent`);
       return response.data;
-    } catch (e) {
-      toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      if (error.response) {
+        const status = error.response.status;
+        console.log(error.response.data.data.message);
+        const errorMessage =
+          error.response.data.data.message || 'No send';
+        console.log({ status } + '   and ' + { errorMessage });
+        toast.error(`Error ${status}: ${errorMessage}`, {
+          position: 'top-center',
+        });
+        return thunkAPI.rejectWithValue(errorMessage);
+      } else {
+        toast.error('Something went wrong :( Try again later.');
+        return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
