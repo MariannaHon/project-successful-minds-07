@@ -24,9 +24,11 @@ export const fetchUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
 
   'update/user',
-  async ({  gender, name, email, password }, thunkAPI) => {
+  async ({  id, avatarUrl, gender, name, email, password }, thunkAPI) => {
     try {
       const response = await axios.patch('users/', {
+        id,
+        avatarUrl,
         gender,
         name,
         email,
@@ -44,9 +46,9 @@ export const updateUser = createAsyncThunk(
 export const changeAvatar = createAsyncThunk(
 
   'update/avatar',
-  async ({avatarUrl},thunkAPI) => {
+  async (formData,thunkAPI) => {
     try {
-    const response = await axios.patch('users/avatar', {avatarUrl});
+    const response = await axios.patch('users/avatar', formData);
     setAuthHeader(response.data.accessToken);
     return response.data;
   } catch (error) {
