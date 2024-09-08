@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import css from './TodayWaterList.module.css';
-import icons from '../public/symbol-defsN.svg';
+// import icons from '../public/symbol-defsN.svg';
 import PropTypes from 'prop-types';
 
 export const EditWaterForm = ({
@@ -84,7 +84,7 @@ export const EditWaterForm = ({
               disabled={amount === 0}
             >
               <svg>
-                <use href={`${icons}#icon-minus`}></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-minus"></use>
               </svg>
             </button>
             <p className={css.spanAmount}>{amount ? `${amount} ml` : '0 ml'}</p>
@@ -95,7 +95,7 @@ export const EditWaterForm = ({
               disabled={amount === 5000}
             >
               <svg>
-                <use href={`${icons}#icon-plus`}></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus"></use>
               </svg>
             </button>
           </div>
