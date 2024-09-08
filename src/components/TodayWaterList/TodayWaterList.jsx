@@ -1,9 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
-// import { RiDeleteBinLine } from "react-icons/ri";
-import { CiGlass } from "react-icons/ci";
-
+import { WaterEntry } from './TodayWaterListModal';
 import css from './TodayWaterList.module.css';
 import { EditWaterForm } from './AddWaterList';
 
@@ -51,72 +48,43 @@ export const TodayWaterList = () => {
   };
 
   return (
-    <div className={css.todayWaterList}>
-      <h2 className={css.title}>Today</h2>
-      <ul className={css.list}>
-        {waterEntries.map(entry => (
-          <li key={entry.id} className={css.item}>
-            {/* <svg className={css.iconGlass} aria-label="icon-glass"><use href="/imgHomePage/Glass.svg#icon-glass"></use></svg> */}
-            <div className={css.value}>
-              <CiGlass className={css.iconGlass} />
-              <p className={css.amount}>{entry.amount} ml</p>
-              <p className={css.time}>{entry.time}</p>
-            </div>
-            <div className={css.btnAll}>
-              <button className={css.btnPencil} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
-              <button className={css.btnTrash} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete}/></button>
-            </div>
-            
-          </li>
-        ))}
-      </ul>
-      <button className={css.addWaterButton}>+ Add water</button>
+    <div className={css.tableWrapper}>
+      <div className={css.todayWrapper}>
+        <p className={css.today}>Today</p>
+        <div className={css.listContainer}>
+          <div className={css.hightRegulator}>
+            <ul className={css.listWraper}>
+              {waterItems.map(elem => (
+                <li key={elem.id}>
+                  <WaterEntry
+                    initialAmount={elem.amount}
+                    initialDate={elem.date}
+                    onDelete={() => handleDelete(elem.id)}
+                    onEdit={() => handleEdit(elem)}
+                  />
+                </li>
+              ))}
+            </ul>
+            <button className={css.addBtn} onClick={handleAddWater}>
+              <svg>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus`"></use>
+              </svg>
+              <span>Add water</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {editingRecord && (
+        <div className={css.modalBackdrop}>
+          <EditWaterForm
+            onClose={handleEditModalClose}
+            initialAmount={editingRecord.amount}
+            initialDate={editingRecord.date}
+            updateWaterData={handleUpdateWater}
+          />
+        </div>
+      )}
     </div>
   );
 };
-
-export default TodayWaterList;
-
-
-
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchWaterPerDay } from '../../redux/operations';
-// import { selectWaterPerDayArr } from '../../redux/selectors';
-// import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
-// import { CiGlass } from "react-icons/ci";
-// import css from './TodayWaterList.module.css';
-
-// const TodayWaterList = () => {
-//   const dispatch = useDispatch();
-//   const waterEntries = useSelector(selectWaterPerDayArr); 
-
-//     useEffect(() => {
-//     const todayDate = new Date().toLocaleDateString(); 
-//     dispatch(fetchWaterPerDay(todayDate)); 
-//   }, [dispatch]);
-
-//     return (
-//     <div className={css.todayWaterList}>
-//       <h2 className={css.title}>Today</h2>
-//       <ul className={css.list}>
-//         {waterEntries && waterEntries.map(entry => (
-//           <li key={entry.id} className={css.item}>
-//             <div className={css.value}>
-//               <CiGlass className={css.iconGlass} />
-//               <p className={css.amount}>{entry.amount} ml</p>
-//               <p className={css.time}>{entry.time}</p>
-//             </div>
-//             <div className={css.btnAll}>
-//               <button className={css.btn}><HiOutlinePencilSquare className={css.iconPencil}/></button>
-//               <button className={css.btn}><HiOutlineTrash className={css.iconDelete}/></button>
-//             </div>
-//           </li>
-//         ))}
-//       </ul>
-//       <button className={css.addWaterButton}>+ Add water</button>
-//     </div>
-//   );
-// };
-
-// export default TodayWaterList;
