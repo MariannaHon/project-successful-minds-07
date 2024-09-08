@@ -6,12 +6,13 @@ const setAuthHeader = (token) => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com/';
+axios.defaults.withCredentials = true;
 
 export const fetchUser = createAsyncThunk(
   'get/user',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('get/user');
+      const response = await axios.get('users/');
       setAuthHeader(response.data.accessToken);
       return response.data;        
     } catch (error) {
@@ -25,7 +26,7 @@ export const updateUser = createAsyncThunk(
   'update/user',
   async ({  avatarUrl, gender, name, email, password }, thunkAPI) => {
     try {
-      const response = await axios.patch('update/user', {
+      const response = await axios.patch('users/', {
 
         avatarUrl,
         gender,
@@ -48,12 +49,13 @@ export const changeAvatar = createAsyncThunk(
   'update/avatar',
   async ({avatarUrl},thunkAPI) => {
     try {
-    const response = await axios.patch('update/avatar', {avatarUrl});
+    const response = await axios.patch('users/avatar', {avatarUrl});
     setAuthHeader(response.data.accessToken);
     return response.data;
   } catch (error) {
     console.log(error)
     return thunkAPI.rejectWithValue(error.message);
+
   }
-  }
+}
 );
