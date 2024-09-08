@@ -56,7 +56,7 @@ function SettingModal() {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('password');
   const [openPsw, setOpenPsw] = useState(true);
-
+  const fieldId = useId();
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
   
@@ -65,7 +65,6 @@ function SettingModal() {
   useEffect(() => {
     if (open && !userData) {
       dispatch(fetchUser(userId));
-      console.log(userData)
     }
   }, [open, dispatch, userId, userData]);
 
@@ -74,21 +73,17 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
-      const result = await dispatch(updateUser({
-        id: userId,
-        avatarUrl: values.file,
+      const result = await dispatch(updateUser({       
         gender: values.gender,
         name: values.name,
         email: values.email,
         password: values.nPassword
-      })
-      
+      })      
     ).unwrap();
       if (result) {
         actions.resetForm();
         setOpen(false);
       }
-      console.log(result);
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
       console.error('Failed to update user data:', error);
@@ -97,7 +92,7 @@ function SettingModal() {
     }
   };
 
-  const fieldId = useId();
+  
 
   const togglePassInput = () => {
     if (type === 'password') {
@@ -109,10 +104,13 @@ function SettingModal() {
     }
   };
  const [selectedFile, setSelectedFile] = useState(null);
+
   function changeHandler(e) {
     const file = e.target.files[0];
     setSelectedFile(file);
-    dispatch(changeAvatar(file));
+    const formData = new FormData();    
+    const avatar = formData.append('avatarUrl', selectedFile)    
+    dispatch(changeAvatar(avatar));
 }
 
   return (

@@ -24,16 +24,13 @@ export const fetchUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
 
   'update/user',
-  async ({  avatarUrl, gender, name, email, password }, thunkAPI) => {
+  async ({  gender, name, email, password }, thunkAPI) => {
     try {
       const response = await axios.patch('users/', {
-
-        avatarUrl,
         gender,
         name,
         email,
         password,
-
       });
       setAuthHeader(response.data.accessToken);
 

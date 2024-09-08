@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUser, updateUser, changeAvatar } from './operations';
+import {fetchUser, updateUser, changeAvatar} from './operations';
+
 
 const initialState = {
     user: { 
-      id: '',
-      avatarUrl: '',
       gender: '',
       name:  '',
       email: '',
       password: '',
+    },
+    avatar: {
+      avatarUrl: '',
     },
     loading: false,
     error: null
@@ -17,40 +19,32 @@ const initialState = {
 export const userSlice = createSlice({
     name: 'users',
     initialState,
-	
-  extraReducers: builder => {
+
+   extraReducers: builder => {
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
-
-        state.user = action.payload.data;  
-      
+        state.user = action.payload.data;      
         state.error = null;
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.error = action.payload;
       })
-
       .addCase(changeAvatar.fulfilled,(state, action) => {
-        state.user = action.payload.data.user.avatarUrl;      
-
+        state.user = action.payload.data.avatar;      
         state.error = null;
-      })
-      .addCase(changeAvatar.rejected, (state, action) => {
+        })
+    .addCase(changeAvatar.rejected, (state, action) => {
         state.error = action.payload;
       })
-      .addCase(updateUser.fulfilled, (state, action) => {
+      .addCase(updateUser.fulfilled,(state, action) => {
         console.log(action.payload);
-
         state.user = action.payload.data.user;      
-
         state.error = null;
-      })
-      .addCase(updateUser.rejected, (state, action) => {
+    })
+    .addCase(updateUser.rejected,(state, action) => {
         state.error = action.payload;
-
     })
    }
 })
 
 export const userReducer = userSlice.reducer;
-
