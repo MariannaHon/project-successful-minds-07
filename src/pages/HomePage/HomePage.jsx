@@ -21,8 +21,8 @@ const HomePage = () => {
         </div>
       {/* </div> */}
 
-{/*       </div>
-      <DailyNorma /> */}
+      </div>
+      <DailyNorma />
     </div>
   );
 };
