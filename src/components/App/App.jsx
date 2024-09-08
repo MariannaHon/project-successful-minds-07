@@ -32,22 +32,6 @@ export default function App() {
   const isRefresh = useSelector(selectIsRefresh);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // const token = localStorage.getItem('accessToken');
-  //   // const refresh = async () => {
-  //   //   try {
-  //   //     if (token) {
-  //   //       await dispatch(refreshUser());
-  //   //     } else {
-  //   //       navigate('/signin');
-  //   //     }
-  //   //   } catch (error) {
-  //   //     console.error('Error during refresh:', error);
-  //   //     navigate('/signin');
-  //   //   }
-  //   };
-  //   // refresh();
-  // }, [dispatch]);
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
