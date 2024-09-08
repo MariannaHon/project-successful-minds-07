@@ -20,11 +20,6 @@ const AuthForm = () => {
     dispatch(logIn(userData)).unwrap();
     actions.resetForm();
   };
-  // const [password, setPassword] = useState('');
-  // const maskedPassword = password.replace(/./g, '*');
-  // const handleChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
 
   const login = Yup.object().shape({
     email: Yup.string()
@@ -55,80 +50,81 @@ const AuthForm = () => {
         initialValues={{ email: '', password: '' }}
         validationSchema={login}
         onSubmit={onSubmit}
-      > {({ errors, touched }) => (
-        <Form className={css.formContainer} name="Sign In" noValidate>
-          <label htmlFor={mailFieldId} className={css.label}>
-            Enter your email
-          </label>
-          <div className={css.wrap}>
-            <Field
-              type="email"
-              name="email"
-              // autoComplete="off"
-              id={mailFieldId}
-              className={
-                errors.email && touched.email
-                  ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
-                  : css.inputField
-              }
-              placeholder="Email"
-            />
-            <ErrorMessage
-              name="email"
-              component="span"
-              className={css.errorMessage}
-            />
-          </div>
+      >
+        {({ errors, touched }) => (
+          <Form className={css.formContainer} name="Sign In" noValidate>
+            <label htmlFor={mailFieldId} className={css.label}>
+              Enter your email
+            </label>
+            <div className={css.wrap}>
+              <Field
+                type="email"
+                name="email"
+                // autoComplete="off"
+                id={mailFieldId}
+                className={
+                  errors.email && touched.email
+                    ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
+                    : css.inputField
+                }
+                placeholder="Email"
+              />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css.errorMessage}
+              />
+            </div>
 
-          <label htmlFor={passwordFieldId} className={css.label}>
-            Enter your password
-          </label>
-          <div className={css.wrap_pswd}>
-            <Field
-              type={type}
-              name="password"
-              // value={password}
-              // onChange={handleChange}
-              // // autoComplete="off"
-              id={passwordFieldId}
-              // className={css.inputField_pswd}
-              className={
-                errors.email && touched.email
-                  ? `${css.inputField_pswd} ${css.inputError}` // Добавляем класс ошибки
-                  : css.inputField_pswd
-              }
-              placeholder="Password"
-            />
-            <ErrorMessage
-              name="password"
-              component="span"
-              className={css.errorMessage}
-            />
-            <span>
-              {openPsw ? (
-                <FaRegEyeSlash
-                  name="password"
-                  id={`${passwordFieldId}-password`}
-                  className={css.eye}
-                  onClick={togglePassInput}
-                />
-              ) : (
-                <FaRegEye
-                  name="outPassword"
-                  id={`${passwordFieldId}-password`}
-                  className={css.eye}
-                  onClick={togglePassInput}
-                />
-              )}
-            </span>
-            {/* <span className={css.stars}>{maskedPassword}</span> */}
-          </div>
+            <label htmlFor={passwordFieldId} className={css.label}>
+              Enter your password
+            </label>
+            <div className={css.wrap_pswd}>
+              <Field
+                type={type}
+                name="password"
+                // value={password}
+                // onChange={handleChange}
+                // // autoComplete="off"
+                id={passwordFieldId}
+                // className={css.inputField_pswd}
+                className={
+                  errors.email && touched.email
+                    ? `${css.inputField_pswd} ${css.inputError}` // Добавляем класс ошибки
+                    : css.inputField_pswd
+                }
+                placeholder="Password"
+              />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={css.errorMessage}
+              />
+              <span>
+                {openPsw ? (
+                  <FaRegEyeSlash
+                    name="password"
+                    id={`${passwordFieldId}-password`}
+                    className={css.eye}
+                    onClick={togglePassInput}
+                  />
+                ) : (
+                  <FaRegEye
+                    name="outPassword"
+                    id={`${passwordFieldId}-password`}
+                    className={css.eye}
+                    onClick={togglePassInput}
+                  />
+                )}
+              </span>
+              {/* <span className={css.stars}>{maskedPassword}</span> */}
+            </div>
 
-          <button type="submit" className={css.submitButton}>
-            Sign In
-          </button>
-        </Form>
-      )}
+            <button type="submit" className={css.submitButton}>
+              Sign In
+            </button>
+          </Form>
+        )}
       </Formik>
     </>
   );
