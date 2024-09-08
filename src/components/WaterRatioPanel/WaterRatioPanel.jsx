@@ -4,7 +4,9 @@ import { CgAdd } from "react-icons/cg";
 import css from './WaterRatioPanel.module.css';
 import { AddWater } from "../TodayWaterList/AddWaterList.jsx";
 
-const WaterRatioPanel = ({ progress, handleAddWater }) => {
+const WaterRatioPanel = ({ progress, 
+  //handleAddWater 
+}) => {
   // Створюємо стан для відображення модального вікна
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import css from "./TodayWaterList.module.css";
-import icons from "../public/symbol-defsN.svg";
+import icons from "../../../public/symbol-defsN.svg";
 import PropTypes from 'prop-types';
 
 export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
