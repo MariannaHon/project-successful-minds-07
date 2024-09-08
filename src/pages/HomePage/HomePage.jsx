@@ -1,4 +1,3 @@
-
 // import { useState } from 'react';
 import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
@@ -16,8 +15,8 @@ const HomePage = () => {
           <WaterRatioPanel />
         </div>
         <div className={css.rightColumn}>
-           {/* <TodayWaterList />  */}
-           {/* <MonthStatsTable />  */}
+          {/* <TodayWaterList /> */}
+          {/* <MonthStatsTable /> */}
         </div>
       </div>
       <DailyNorma />
@@ -26,3 +25,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
