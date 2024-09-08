@@ -10,7 +10,7 @@ import UserLogoutModal from '../UserLogoutModal/UserLogoutModal.jsx';
 const style = {
   position: 'absolute',
   top: 140,
-  right: -43,
+  right: -62,
   transform: 'translate(-50%, -50%)',
   minWidth: 118,
   minHight: 88,
