@@ -97,7 +97,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(token);
-      const res = await axios.get('/users/');
+      const res = await axios.get('');
       const newAccessToken = res.data.data.accessToken;
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);
