@@ -64,7 +64,7 @@ const AuthForm = () => {
                 id={mailFieldId}
                 className={
                   errors.email && touched.email
-                    ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
+                    ? `${css.inputField} ${css.inputError}`
                     : css.inputField
                 }
                 placeholder="Email"
