@@ -15,16 +15,19 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+
 export const updateUser = createAsyncThunk(
   'users/updateUser',
-  async ({ id, avatarUrl, gender, name, email, password }, thunkAPI) => {
+  async ({ id, avatarUrl, gender, name, email, password, waterRate }, thunkAPI) => {
     try {
       const userData = {
+        id, // Додаємо userId
         avatarUrl,
         gender,
         name,
         email,
         password,
+        waterRate, // Додаємо waterRate
       };
 
       console.log(userData);
@@ -37,6 +40,7 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
 
 export const changeAvatar = createAsyncThunk(
   '/users/changeAvatar',

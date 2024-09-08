@@ -38,6 +38,7 @@ export const signin = createAsyncThunk(
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
       return thunkAPI.rejectWithValue(error.message);
+      
     }
   }
 );
@@ -46,6 +47,7 @@ export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
     const accessToken = response.data.data.accessToken;
+    
     setAuthHeader(accessToken);
     localStorage.setItem('accessToken', accessToken);
     return response.data;

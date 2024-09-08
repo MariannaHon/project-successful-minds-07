@@ -55,7 +55,7 @@ const AuthForm = () => {
         initialValues={{ email: '', password: '' }}
         validationSchema={login}
         onSubmit={onSubmit}
-      >
+      > {({ errors, touched }) => (
         <Form className={css.formContainer} name="Sign In" noValidate>
           <label htmlFor={mailFieldId} className={css.label}>
             Enter your email
@@ -66,7 +66,11 @@ const AuthForm = () => {
               name="email"
               // autoComplete="off"
               id={mailFieldId}
-              className={css.inputField}
+              className={
+                errors.email && touched.email
+                  ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
+                  : css.inputField
+              }
               placeholder="Email"
             />
             <ErrorMessage
@@ -87,7 +91,12 @@ const AuthForm = () => {
               // onChange={handleChange}
               // // autoComplete="off"
               id={passwordFieldId}
-              className={css.inputField_pswd}
+              // className={css.inputField_pswd}
+              className={
+                errors.email && touched.email
+                  ? `${css.inputField_pswd} ${css.inputError}` // Добавляем класс ошибки
+                  : css.inputField_pswd
+              }
               placeholder="Password"
             />
             <ErrorMessage
@@ -119,6 +128,7 @@ const AuthForm = () => {
             Sign In
           </button>
         </Form>
+      )}
       </Formik>
     </>
   );
