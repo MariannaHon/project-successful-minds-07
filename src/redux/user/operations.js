@@ -54,6 +54,6 @@ export const changeAvatar = createAsyncThunk(
   } catch (error) {
     console.log(error)
     return thunkAPI.rejectWithValue(error.message);
-
+  }
   }
 );
