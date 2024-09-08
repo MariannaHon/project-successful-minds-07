@@ -10,7 +10,7 @@ const HomePage = () => {
   
   return (
     <div className={css.homePage}>
-      <div className={css.container}>
+      {/* <div className={css.container}> */}
         <div className={css.leftColumn}>
         
           <WaterRatioPanel />
@@ -19,6 +19,8 @@ const HomePage = () => {
           {/* <TodayWaterList /> */}
           {/* <MonthStatsTable /> */}
         </div>
+      {/* </div> */}
+
       </div>
       <DailyNorma />
     </div>
