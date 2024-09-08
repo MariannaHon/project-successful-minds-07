@@ -1,34 +1,42 @@
 .homePage {
-  background-color: var(--primary-white);
-  background-image: url('/project-successful-minds-07/imgHomePage/Background_element_mobile.png'), 
-    url('/project-successful-minds-07/imgHomePage/Botle_mobile.png');
-  background-repeat: no-repeat;
-  max-width: var(--container-min-width);
-  height: 1374px;
-  background-position: center 52px, center 84px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+    background-color: var(--primary-white);
+      background-image: url('/project-successful-minds-07/imgHomePage/Background_element_mobile.png'),
+        url('/project-successful-minds-07/imgHomePage/Botle_mobile.png');
+      background-repeat: no-repeat;
+      /* width: var(--container-min-width); */
+      height: 1374px;
+      background-position: center 52px, center 106px;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: start;
+      margin: 0 auto;
+    }
 
-/* 
-@media screen and (min-resolution: 192dpi) and (max-width: 767px),
-screen and (min-resolution: 2dppx) and (max-width: 767px),
-screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
-  .homePage {
-  background: url('../../../public/imgHomePage/Background_element_mobile_2x.png'), url('../../../public/imgHomePage/Botle_mobile_2x.png');
-  background-repeat: no-repeat;
-  }
-} */
-  
-.leftColumn {
-  padding-top: 310px;
-}
+      /*
+    @media screen and (min-resolution: 192dpi) and (max-width: 767px),
+    screen and (min-resolution: 2dppx) and (max-width: 767px),
+    screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+      .homePage {
+        background: url('../../../public/imgHomePage/Background_element_mobile_2x.png'), url('../../../public/imgHomePage/Botle_mobile_2x.png');
+        background-repeat: no-repeat;
+      }
+    } */
 
-.rightColumn {
-  width: 100%;
-}
+    .container {
+      max-width: var(--container-min-width);
+      padding: 0 20px;
+      margin-top: 330px;
+    }
+
+    /* .leftColumn,
+    .rightColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    } */
+
+
 
 @media screen and (min-width: 768px) {
 
@@ -36,22 +44,28 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet90.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_tablet.png');
     background-repeat: no-repeat;
-    background-position: center -50px, center -20px;
-    max-width: var(--container-medium-width);
+    background-position: center 0, center 22px;
+    /* width: var(--container-medium-width); */
     height: 1280px;
     margin-top: 40px;
-    padding: 0 32px;
   }
 
-  .leftColumn {
-    padding-top: 542px;
+  .container {
+    max-width: var(--container-medium-width);
+    padding: 0 32px;
+    margin-top: 594px;
   }
+/*
+     .leftColumn,
+     .rightColumn {
+       max-width: 50%;
+     } */
 }
 
 @media screen and (min-width: 1440px) {
   .container {
     max-width: var(--container-max-width);
-    margin-top: 665px;
+    margin-top: 672px;
   }
 
   .homePage {
@@ -59,17 +73,20 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_desctop.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_desctop.png');
     background-repeat: no-repeat;
-    background-position: center, left 50px top -50px;
-    max-width: 1440px;
+    background-position: center, left -50px top -50px;
+    width: 1440px;
     height: 680px;
     display: flex;
+    /* justify-content: center; */
     align-items: start;
-    flex-direction: row;
+    /* flex-direction: row; */
   }
-  .leftColumn {
-    margin-top: 180px;
-    margin-left: 35px;
-  }
+
+/*
+    .leftColumn,
+    .rightColumn {
+      max-width: 100%;
+    } */
 }
 
 
