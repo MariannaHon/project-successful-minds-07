@@ -2,11 +2,9 @@
 import { useState } from 'react';
 import { CgAdd } from "react-icons/cg";
 import css from './WaterRatioPanel.module.css';
-//import { AddWater } from "../TodayWaterList/AddWaterList.jsx";
+import {EditWaterForm} from "../TodayWaterList/AddWaterList.jsx";
 
-const WaterRatioPanel = ({ progress, 
-  //handleAddWater 
-}) => {
+const WaterRatioPanel = ({ progress, handleAddWater }) => {
   // Створюємо стан для відображення модального вікна
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,7 +49,7 @@ const WaterRatioPanel = ({ progress,
       {isModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <AddWater
+            <EditWaterForm 
               initialAmount={0} // Ви можете передати початкові значення
               initialDate={new Date()}
               updateWaterData={updateWaterData}

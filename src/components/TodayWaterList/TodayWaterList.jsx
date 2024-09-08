@@ -1,34 +1,16 @@
-
-import { nanoid } from "nanoid";
-import { useState } from "react";
-import { WaterEntry } from "./TodayWaterListModal";
-import css from "./TodayWaterList.module.css";
-import icons from "/public/symbol-defsN.svg";
-import { EditWaterForm } from "./AddWaterList";
-
-
-import { nanoid } from "nanoid";
-import { useState } from "react";
-import { WaterEntry } from "../TodayListModal/TodayListModal";
-import icons from "/public/symbol-defsN.svg";
-import { EditWaterForm } from "./EditWaterForm";
-
-
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { RiDeleteBinLine } from "react-icons/ri";
-import { CiGlass } from "react-icons/ci";
-
+import { WaterEntry } from './TodayWaterListModal';
 import css from './TodayWaterList.module.css';
+import { EditWaterForm } from './AddWaterList';
 
-const TodayWaterList = () => {
-  const [waterEntries, setWaterEntries] = useState([
-    { id: 1, amount: 250, time: '7:00' },
-    { id: 2, amount: 220, time: '11:00' },
-    { id: 3, amount: 200, time: '14:00' },
-    { id: 4, amount: 150, time: '16:00' },
-    { id: 5, amount: 150, time: '16:00' },
-    { id: 6, amount: 150, time: '16:00' }
+export const TodayWaterList = () => {
+  const [waterItems, setWaterItems] = useState([
+    {
+      id: nanoid(),
+      amount: 340,
+      date: new Date(),
+    },
   ]);
 
   const [editingRecord, setEditingRecord] = useState(null);
@@ -42,11 +24,11 @@ const TodayWaterList = () => {
     setWaterItems([newWaterItem, ...waterItems]);
   };
 
-  const handleDelete = (id) => {
-    setWaterEntries(waterEntries.filter(entry => entry.id !== id));
+  const handleDelete = id => {
+    setWaterItems(waterItems.filter(elem => elem.id !== id));
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = item => {
     setEditingRecord(item);
   };
 
@@ -54,10 +36,9 @@ const TodayWaterList = () => {
     setEditingRecord(null);
   };
 
-
   const handleUpdateWater = (updatedAmount, updatedDate) => {
     setWaterItems(
-      waterItems.map((item) =>
+      waterItems.map(item =>
         item.id === editingRecord.id
           ? { ...item, amount: updatedAmount, date: updatedDate }
           : item
@@ -73,7 +54,7 @@ const TodayWaterList = () => {
         <div className={css.listContainer}>
           <div className={css.hightRegulator}>
             <ul className={css.listWraper}>
-              {waterItems.map((elem) => (
+              {waterItems.map(elem => (
                 <li key={elem.id}>
                   <WaterEntry
                     initialAmount={elem.amount}
@@ -86,7 +67,7 @@ const TodayWaterList = () => {
             </ul>
             <button className={css.addBtn} onClick={handleAddWater}>
               <svg>
-                <use href={`${icons}#icon-plus`}></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus`"></use>
               </svg>
               <span>Add water</span>
             </button>
@@ -107,7 +88,3 @@ const TodayWaterList = () => {
     </div>
   );
 };
-
-
-export default TodayWaterList;
-
