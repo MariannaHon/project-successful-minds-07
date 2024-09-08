@@ -1,6 +1,6 @@
 import css from '../NotFoundPage/NotFoundPage.module.css';
 import { Link } from 'react-router-dom';
-
+import HomePage from '../HomePage/HomePage';
 export default function NotFoundPage() {
   return (
     <p className={css.text}>
@@ -8,6 +8,8 @@ export default function NotFoundPage() {
       <Link to="/welcome" className={css.link}>
         Welcome Page!
       </Link>
+
+<HomePage/>
     </p>
   );
 }

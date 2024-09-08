@@ -34,30 +34,35 @@ const ForgotPasswordForm = () => {
       validationSchema={forgot}
       onSubmit={onSubmit}
     >
-      <Form className={css.formContainer} name="ForgotPassword" noValidate>
-        <label htmlFor={mailFieldId} className={css.label}>
-          Enter your email
-        </label>
-        <div className={css.wrap}>
-          <Field
-            type="email"
-            name="email"
-            // autoComplete="off"
-            id={mailFieldId}
-            className={css.inputField}
-            placeholder="Email"
-          />
-          <ErrorMessage
-            name="email"
-            component="span"
-            className={css.errorMessage}
-          />
-        </div>
-        <button type="submit" className={css.submitButton}>
-          Send
-        </button>
-      </Form>
-    </Formik>
+      {({ errors, touched }) => (
+          <Form className={css.formContainer} name="ForgotPassword" noValidate>
+            <label htmlFor={mailFieldId} className={css.label}>
+              Enter your email
+            </label>
+            <div className={css.wrap}>
+              <Field
+                type="email"
+                name="email"
+                id={mailFieldId}
+                className={
+                  errors.email && touched.email
+                    ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
+                    : css.inputField
+                }
+                placeholder="Email"
+              />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css.errorMessage}
+              />
+            </div>
+            <button type="submit" className={css.submitButton}>
+              Send
+            </button>
+          </Form>
+        )}
+      </Formik>
     </>
   );
 };

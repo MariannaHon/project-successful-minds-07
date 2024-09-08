@@ -73,7 +73,7 @@ export default function App() {
               }
             />
             <Route
-              path="/password"
+              path="/reset-password:token"
               element={
                 <PrivateRoute
                   component={UpdatePasswordPage}
