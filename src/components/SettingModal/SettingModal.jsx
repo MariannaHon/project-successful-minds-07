@@ -105,14 +105,15 @@ function SettingModal() {
   };
  const [selectedFile, setSelectedFile] = useState(null);
 
-  function changeHandler(e) {
-    const file = e.target.files[0];
-    setSelectedFile(file);
-    const formData = new FormData();    
-    const avatar = formData.append('avatarUrl', selectedFile)    
-    dispatch(changeAvatar(avatar));
-}
+ function changeHandler(e) {
+  const file = e.target.files[0];
+  setSelectedFile(file);
 
+  const formData = new FormData();
+  formData.append('avatarUrl', file);
+
+  dispatch(changeAvatar(formData));
+}
   return (
     <div>
       <button className={css.buttonSetting} onClick={handleOpen}>
