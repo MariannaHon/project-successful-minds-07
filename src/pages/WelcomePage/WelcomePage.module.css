@@ -1,25 +1,23 @@
 .welcomePageContainer {
   max-width: var(--container-min-width);
-  /* margin: 0 auto; */
   padding: 0 20px;
   margin-top: 25px;
 }
 
 .welcomePage {
   background: var(--primary-white)
-    url('../../../dist/images/BackgroundWelcomePageMobile.png') no-repeat bottom;
+    url('/project-successful-minds-07/images/welcome/BackgroundWelcomePageMobile.png') no-repeat bottom;
   width: var(--container-min-width);
-  //height: 872px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
 }
 
- /* @media (min-resolution: 192dpi) {
+/* @media (min-resolution: 192dpi) {
   .welcomePage {
     background: var(--primary-white)
-      url('../../../images/BackgroundWelcomePageMobile@2x.png') no-repeat; width: var(--container-min-width);
+      url('/project-successful-minds-07/images/welcome/BackgroundWelcomePageMobile@2x.png') no-repeat; width: var(--container-min-width);
       height: 952px;
       display: flex;
       flex-direction: column;
@@ -29,7 +27,6 @@
  } */
 .welcomePageContainerBlock {
   margin: 0 auto;
-  
 }
 
 /* ____________________________Tablet style____________________________ */
@@ -42,19 +39,18 @@
 
   .welcomePage {
     background: var(--primary-white)
-      url('../../../dist/images/BackgroundTabletWelcomePage.png') no-repeat bottom;
-    width: var(--container-medium-width); 
+      url('/project-successful-minds-07/images/welcome/BackgroundTabletWelcomePage.png') no-repeat
+      bottom;
+    width: var(--container-medium-width);
     height: 736px;
-    //margin-top: 40px;
-    //padding-bottom: 125px;
   }
   /* @media (min-resolution: 192dpi) {
     .welcomePage {
       background: var(--primary-white)
-        url('../../../public/images/BackgroundTabletWelcomePage@2x.png') no-repeat; width: var(--container-min-width); 
+        url('/project-successful-minds-07/images/welcome/BackgroundTabletWelcomePage@2x.png') no-repeat; width: var(--container-min-width);
         width: var(--container-medium-width);
         padding-bottom: 125px;
-        
+
      }
 } */
 }
@@ -66,8 +62,8 @@
   }
   .welcomePage {
     background-color: var(--primary-white);
-    background-image: url('../../../dist/images/BackgroundWelcomePage.png'),
-      url('../../../dist/images/BackgroundElemWelcomePage.png');
+    background-image: url('/project-successful-minds-07/images/welcome/BackgroundWelcomePage.png'),
+      url('/project-successful-minds-07/images/welcome/BackgroundElemWelcomePage.png');
     background-repeat: no-repeat;
     background-position: bottom, center 30%;
     width: 1440px;
@@ -75,7 +71,6 @@
     justify-content: center;
     align-items: start;
     flex-direction: row;
-     
   }
 
   .welcomePageContainerBlock {

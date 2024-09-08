@@ -9,31 +9,60 @@
 .label {
   display: block;
   margin-bottom: 8px;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-regular);
 }
 
-.inputField {
+.inputField,.inputField_pswd {
   width: 100%;
   padding: 8px;
   margin-bottom: 5px;
   color: var(--primary-blue);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
   border: 1px solid var(--secondary-pale-blue);
   border-radius: var(--border-radius-small);
   /* -webkit-text-security:square; */
 }
-.inputField::placeholder{
+.inputField::placeholder, .inputField_pswd::placeholder{
     color: var(--secondary-blue);
 }
-.inputField:focus, .inputField:hover, .inputField:active{
+.inputField:focus, .inputField:hover, .inputField_pswd:focus,.inputField_pswd:hover,.inputField_pswd:active{
     border: 1px solid var(--secondary-blue);
 }
-.wrap {
- height: 70px;
+.inputField:active{
+  color:var(--primary-blue);
+  border: 1px solid var(--secondary-blue);
 }
+.inputError {
+  border-color: var(--secondary-red); /* Красная граница при ошибке */
+  color:var(--secondary-red);
+}
+.wrap {
+  height: 70px;
+ }
+.wrap_pswd{
+  position: relative;
+  height: 70px;
+}
+.eye {
+  position: absolute;
+  right: 14px;
+  top: 10px; 
+  color: var(--primary-blue);    
+}
+/* .stars{
+  position: absolute;
+    top: 10px;
+    left: 10px;
+    color:  var(--primary-blue);;
+} */
+
 
 .errorMessage {
   color: var(--secondary-red);
   font-size: 12px;
-  margin-top: 5px;
+  padding-top: 5px;
 }
 
 .submitButton {

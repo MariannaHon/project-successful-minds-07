@@ -31,7 +31,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 }
 
 @media screen and (min-width: 768px) {
-  
+
   .homePage {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet90.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_tablet.png');
@@ -66,7 +66,6 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     align-items: start;
     flex-direction: row;
   }
-
   .leftColumn {
     margin-top: 180px;
     margin-left: 35px;

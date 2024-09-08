@@ -1,27 +1,53 @@
-
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
 // import { RiDeleteBinLine } from "react-icons/ri";
 import { CiGlass } from "react-icons/ci";
 
 import css from './TodayWaterList.module.css';
+import { EditWaterForm } from './AddWaterList';
 
-const TodayWaterList = () => {
-  const [waterEntries, setWaterEntries] = useState([
-    { id: 1, amount: 250, time: '7:00' },
-    { id: 2, amount: 220, time: '11:00' },
-    { id: 3, amount: 200, time: '14:00' },
-    { id: 4, amount: 150, time: '16:00' },
-    { id: 5, amount: 150, time: '16:00' },
-    { id: 6, amount: 150, time: '16:00' }
+export const TodayWaterList = () => {
+  const [waterItems, setWaterItems] = useState([
+    {
+      id: nanoid(),
+      amount: 340,
+      date: new Date(),
+    },
   ]);
 
-  const handleEdit = (id) => {
-    
+  const [editingRecord, setEditingRecord] = useState(null);
+
+  const handleAddWater = () => {
+    const newWaterItem = {
+      id: nanoid(),
+      amount: 250,
+      date: new Date(),
+    };
+    setWaterItems([newWaterItem, ...waterItems]);
   };
 
-  const handleDelete = (id) => {
-    setWaterEntries(waterEntries.filter(entry => entry.id !== id));
+  const handleDelete = id => {
+    setWaterItems(waterItems.filter(elem => elem.id !== id));
+  };
+
+  const handleEdit = item => {
+    setEditingRecord(item);
+  };
+
+  const handleEditModalClose = () => {
+    setEditingRecord(null);
+  };
+
+  const handleUpdateWater = (updatedAmount, updatedDate) => {
+    setWaterItems(
+      waterItems.map(item =>
+        item.id === editingRecord.id
+          ? { ...item, amount: updatedAmount, date: updatedDate }
+          : item
+      )
+    );
+    handleEditModalClose();
   };
 
   return (
