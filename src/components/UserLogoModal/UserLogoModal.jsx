@@ -30,7 +30,7 @@ const UserLogoModal = () => {
 
   return (
     <div>
-      <button onClick={handleOpen}><GoChevronDown className={css.blueIcon} /></button>
+      <button className={css.btn} onClick={handleOpen}><GoChevronDown className={css.blueIcon} /></button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style} >
           <div className={css.container}>

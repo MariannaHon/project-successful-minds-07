@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { register } from '../../redux/auth/operations';
-import toast from 'react-hot-toast';
+//import toast from 'react-hot-toast';
 import css from './RegisterForm.module.css';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import { useId, useState } from 'react';
@@ -18,14 +18,7 @@ const RegisterForm = () => {
       email: values.email,
       password: values.password,
     };
-    dispatch(register(newUser))
-      .unwrap()
-      .then(() => {})
-      .catch(() => {
-        toast.error('Passwords did not happen', {
-          position: 'top-right',
-        });
-      });
+    dispatch(register(newUser));
     actions.resetForm();
   };
 

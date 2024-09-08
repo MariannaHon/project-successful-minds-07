@@ -21,17 +21,21 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
+
   'update/user',
   async ({  avatarUrl, gender, name, email, password }, thunkAPI) => {
     try {
       const response = await axios.patch('update/user', {
+
         avatarUrl,
         gender,
         name,
         email,
         password,
+
       });
       setAuthHeader(response.data.accessToken);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -40,6 +44,7 @@ export const updateUser = createAsyncThunk(
 );
 
 export const changeAvatar = createAsyncThunk(
+
   'update/avatar',
   async ({avatarUrl},thunkAPI) => {
     try {
@@ -49,6 +54,6 @@ export const changeAvatar = createAsyncThunk(
   } catch (error) {
     console.log(error)
     return thunkAPI.rejectWithValue(error.message);
+
   }
-}
 );
