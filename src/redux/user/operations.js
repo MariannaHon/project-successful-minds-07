@@ -6,6 +6,7 @@ const setAuthHeader = (token) => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com/';
+axios.defaults.withCredentials = true;
 
 export const fetchUser = createAsyncThunk(
   'get/user',
