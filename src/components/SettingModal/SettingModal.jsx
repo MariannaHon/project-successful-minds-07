@@ -16,7 +16,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
 import { selectUser } from '../../redux/auth/selectors';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
 import { ErrorMessage } from 'formik';
@@ -59,8 +59,7 @@ function SettingModal() {
 
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
-
-
+  
   const userId = userData?._id;
 
   useEffect(() => {
@@ -329,6 +328,7 @@ function SettingModal() {
                   <button type="submit" className={css.button}>
                     Save
                   </button>
+                  <Toaster position="top-center" reverseOrder={true}/>
                 </div>
               </Form>
             </Formik>

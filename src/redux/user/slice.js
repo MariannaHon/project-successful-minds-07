@@ -3,22 +3,25 @@ import {fetchUser, updateUser, changeAvatar} from './operations';
 
 
 const initialState = {
-    user: {         
-        avatarUrl: '',
-        name: '', 
-        email: '',
-        password: '',
+    user: { 
+      id: '',
+      avatarUrl: '',
+      gender: '',
+      name:  '',
+      email: '',
+      password: '',
     },
+    loading: false,
+    error: null
    };
 
 export const userSlice = createSlice({
-    name: 'updateUser',
+    name: 'users',
     initialState,
 
    extraReducers: builder => {
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.user = action.payload.data;      
         state.error = null;
       })
@@ -26,8 +29,7 @@ export const userSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(changeAvatar.fulfilled,(state, action) => {
-      console.log(action.payload);
-        state.user = action.payload.data;      
+        state.user = action.payload.data.user.avatarUrl;      
         state.error = null;
         })
     .addCase(changeAvatar.rejected, (state, action) => {
@@ -35,7 +37,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled,(state, action) => {
         console.log(action.payload);
-        state.user = action.payload.data;      
+        state.user = action.payload.data.user;      
         state.error = null;
     })
     .addCase(updateUser.rejected,(state, action) => {
@@ -43,3 +45,6 @@ export const userSlice = createSlice({
     })
    }
 })
+
+
+export const userReducer = userSlice.reducer;
