@@ -1,0 +1,181 @@
+.modalStyle {
+    position: absolute;
+    width: 592px;
+    background-color: var(--primary-white);
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.modalContainer{
+padding: 32px 24px;
+}
+.addCloseContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.title{
+    font-weight: 500;
+        font-size: 26px;
+        line-height: 1.23077;
+        color: var(--primary-black);
+}
+
+.iconClose {
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--primary-blue)F;
+}
+
+
+.formTitle{
+    font-weight: 500;
+        font-size: 18px;
+        line-height: 1.11111;
+        color: var(--primary-black);
+}
+
+.inputGroup
+{
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 24px;
+}
+.buttonAddWater{
+    background: none;
+        padding: 10px;
+        width: 44px;
+        height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-blue);
+
+}
+.addWaterIcon {
+        width: 24px;
+        height: 24px;
+        color:var(--primary-blue);
+}
+
+.inputWater{
+    border-radius: 40px;
+        padding: 6px 10px;
+        width: 92px;
+        height: 36px;
+        background-color: #D7E3FF;
+        border: none;
+        font-weight: 700;
+            font-size: 18px;
+            line-height: 1.33333;
+            text-align: center;
+            color: var(--primary-blue);
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.timeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.timeContainer label{
+    font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+        
+}
+
+.timeContainer input{
+    border: 1px solid #D7E3FF;
+        border-radius: 6px;
+        padding: 12px 10px;
+        height: 44px;
+        outline: none;
+        color: var(--primary-blue);
+}
+.timeContainer input::placeholder{
+    color: var(--primary-blue);
+}
+
+.editWaterContainer {
+    display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 24px;
+}
+
+.editWaterContainer label {
+    font-weight: 500;
+        font-size: 18px;
+        line-height: 1.11111;
+        color: var(--primary-black);
+}
+
+.editWaterContainer input{
+    border: 1px solid #D7E3FF;
+        border-radius: 6px;
+        padding: 12px 10px;
+        height: 44px;
+        color: var(--primary-blue);
+        outline: none;
+        
+}
+.editWaterContainer input::placeholder{
+    color: var(--primary-blue);
+}
+
+.saveContainer{
+    display: flex;
+    gap: 24px;
+    font-weight: 700;
+        font-size: 18px;
+        line-height: 1.33333;
+        text-align: center;
+        align-items: center;
+        justify-content: flex-end;
+        color: var(--primary-blue);
+}
+
+.saveBtn{
+    border-radius: 10px;
+        padding: 10px 30px;
+        width: 160px;
+        height: 44px;
+        box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+            background: var(--primary-blue);
+            font-weight: 500;
+                font-size: 18px;
+                line-height: 1.33333;
+                text-align: center;
+                color: var(--primary-white);
+}
+
+
+@media (max-width: 767px) {
+    .modalStyle {
+            width: 280px;
+        }
+                .editWaterContainer input,.timeContainer input{
+                    width: 120px;
+                }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .modalStyle{
+        width: 704px;
+    }
+}
