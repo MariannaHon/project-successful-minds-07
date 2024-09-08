@@ -28,21 +28,6 @@ export const register = createAsyncThunk(
   }
 );
 
-export const signin = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }, thunkAPI) => {
-    try {
-      const response = await axios.post('auth/signin', { email, password });
-      setAuthHeader(response.data.token);
-      return response.data;
-    } catch (error) {
-      toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(error.message);
-      
-    }
-  }
-);
-
 export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   try {
     const response = await axios.post('/auth/signin', User);
@@ -99,7 +84,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(token);
-      const res = await axios.get('/users');
+      const res = await axios.get('/users/');
       const newAccessToken = res.data.data.accessToken;
       if (newAccessToken) {
         localStorage.setItem('accessToken', newAccessToken);

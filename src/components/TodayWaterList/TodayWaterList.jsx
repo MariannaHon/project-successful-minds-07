@@ -1,9 +1,8 @@
-import { nanoid } from "nanoid";
-import { useState } from "react";
-import  WaterEntry from "../TodayListModal/TodayListModal";
-import css from "./TodayWaterList.module.css";
-import icons from "/public/symbol-defsN.svg";
-import { EditWaterForm } from "./AddWaterList";
+import { nanoid } from 'nanoid';
+import { useState } from 'react';
+import { WaterEntry } from './TodayWaterListModal';
+import css from './TodayWaterList.module.css';
+import { EditWaterForm } from './AddWaterList';
 
 export const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
@@ -25,11 +24,11 @@ export const TodayWaterList = () => {
     setWaterItems([newWaterItem, ...waterItems]);
   };
 
-  const handleDelete = (id) => {
-    setWaterItems(waterItems.filter((elem) => elem.id !== id));
+  const handleDelete = id => {
+    setWaterItems(waterItems.filter(elem => elem.id !== id));
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = item => {
     setEditingRecord(item);
   };
 
@@ -39,7 +38,7 @@ export const TodayWaterList = () => {
 
   const handleUpdateWater = (updatedAmount, updatedDate) => {
     setWaterItems(
-      waterItems.map((item) =>
+      waterItems.map(item =>
         item.id === editingRecord.id
           ? { ...item, amount: updatedAmount, date: updatedDate }
           : item
@@ -55,7 +54,7 @@ export const TodayWaterList = () => {
         <div className={css.listContainer}>
           <div className={css.hightRegulator}>
             <ul className={css.listWraper}>
-              {waterItems.map((elem) => (
+              {waterItems.map(elem => (
                 <li key={elem.id}>
                   <WaterEntry
                     initialAmount={elem.amount}
@@ -68,7 +67,7 @@ export const TodayWaterList = () => {
             </ul>
             <button className={css.addBtn} onClick={handleAddWater}>
               <svg>
-                <use href={`${icons}#icon-plus`}></use>
+                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus`"></use>
               </svg>
               <span>Add water</span>
             </button>
