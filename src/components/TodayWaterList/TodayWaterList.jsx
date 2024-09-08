@@ -37,8 +37,8 @@ const TodayWaterList = () => {
               <p className={css.time}>{entry.time}</p>
             </div>
             <div className={css.btnAll}>
-              <button className={css.btn} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
-              <button className={css.btn} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete}/></button>
+              <button className={css.btnPencil} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil}/></button>
+              <button className={css.btnTrash} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete}/></button>
             </div>
             
           </li>

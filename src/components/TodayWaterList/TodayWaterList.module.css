@@ -69,13 +69,34 @@
   font-size: 12px;
 }
 
-.btn {
+.btnPencil, .btnTrash {
   width: 18px;
   height: 18px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
+  position: relative;
+}
+
+.btnPencil:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 16px;
+  height: 1px;
+  background-color: #9EBBFF;
+}
+
+.btnTrash:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 16px;
+  height: 1px;
+  background-color: #EF5050;
 }
 
 .btnAll {
@@ -125,6 +146,7 @@
 
 .addWaterButton:hover {
   background-color: #ECF2FF;
+  color: #FF9D43;
 }
 
 @media screen and (min-width: 768px) {
