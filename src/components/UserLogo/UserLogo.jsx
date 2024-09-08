@@ -16,13 +16,13 @@ const UserLogo = () => {
     } else if (user.name) {
       return (
         <div className={css.userInitial}>
-          {user.name.charAt(0)}
+          {user.name.charAt(0).toUpperCase()}
         </div>
       );
     } else {
       return (
         <div className={css.userInitial}>
-          {user.email.charAt(0)}
+          {user.email.charAt(0).toUpperCase()}
         </div>
       );
     }
