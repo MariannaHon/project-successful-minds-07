@@ -48,6 +48,7 @@ export default function App() {
     };
      refresh();
   }, [dispatch]);
+  
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -61,12 +62,10 @@ export default function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
-            <Route
-              path="/"
-              element={
-                <PrivateRoute component={HomePage} redirectTo="/welcome" />
-              }
-            />
+              <Route
+                path="/home"
+                element={<PrivateRoute component={HomePage} redirectTo="/signin" />}
+              />
             <Route
               path="/signup"
               element={

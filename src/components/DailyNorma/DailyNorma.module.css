@@ -1,6 +1,6 @@
 /* DailyNorma.module.css */
 .container {
-    background-color: #FFFFFF;
+    background-color: var(--primary-white);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ECF2FF;
@@ -8,12 +8,11 @@
         padding: 8px 20px;
         width: 166px;
 
-margin: 0 auto;
 
 }
 
 .title {
-    color: #2F2F2F;
+    color: var(--primary-black);
 
     font-weight: 500;
         font-size: 18px;
@@ -31,7 +30,7 @@ margin: 0 auto;
 
 .normaValue {
     font-size: 24px;
-    color: #407BFF;
+    color: var(--primary-blue);
     /* Синій колір тексту для норми */
     font-weight: 700;
 }
@@ -50,4 +49,5 @@ margin: 0 auto;
         font-size: 16px;
         line-height: 1.25;
 }
+
 

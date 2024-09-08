@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import { WaterEntry } from "./TodayWaterListModal";
+import  WaterEntry from "../TodayListModal/TodayListModal";
 import css from "./TodayWaterList.module.css";
 import icons from "/public/symbol-defsN.svg";
 import { EditWaterForm } from "./AddWaterList";

@@ -1,22 +1,22 @@
 import { useState } from "react";
 import css from "./TodayWaterList.module.css";
-import icons from "../public/symbol-defsN.svg";
-import PropTypes from 'prop-types';
+import icons from "/public/symbol-defsN.svg";
 
 export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWaterData }) => {
   const [amount, setAmount] = useState(initialAmount);
-  const [date, setDate] = useState(initialDate);
+  const [date, setDate] = useState(initialDate ? new Date(initialDate) : new Date());
 
   const formatTimeForInput = (date) => {
-    let hours = new Date(date).getHours();
-    let minutes = new Date(date).getMinutes();
+    if (!(date instanceof Date) || isNaN(date.getTime())) return "";
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
     hours = hours < 10 ? `0${hours}` : hours;
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${hours}:${minutes}`;
   };
 
   const handleTimeChange = (e) => {
-    const [hours, minutes] = e.target.value.split(":").map(Number);
+    const [hours, minutes] = e.target.value.split(':').map(Number);
     const newDate = new Date(date);
     newDate.setHours(hours);
     newDate.setMinutes(minutes);
@@ -24,9 +24,11 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
   };
 
   const formatDate = (date) => {
-    let hours = new Date(date).getHours();
-    let minutes = new Date(date).getMinutes();
-    return `${hours}:${minutes}`;
+    if (!(date instanceof Date) || isNaN(date.getTime())) return "Invalid Date";
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    return hours + ':' + minutes;
+    return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
   };
 
   const handleDec = () => {
@@ -35,97 +37,50 @@ export const EditWaterForm = ({ onClose, initialAmount, initialDate, updateWater
 
   const handleInc = () => {
     setAmount(amount + 50);
+    setAmount((prev) => (prev < 5000 ? prev + 50 : 5000));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleChange = (e) => {
+    setAmount(Number(e.target.value));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     updateWaterData(amount, date);
-    onClose(); 
-  };
-
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-    setAmount(value === "" ? "" : Number(value));
+    onClose();
   };
 
   return (
-    <form className={css.sectionModal} onSubmit={handleFormSubmit}>
+    <form className={css.section} onSubmit={handleSubmit}>
       <p className={css.sectionHeader}>Edit the entered amount of water</p>
-      <button className={css.crossBtn} type="button" onClick={onClose}>
+      <button className={css.crossBtn} onClick={onClose}>
         <svg>
           <use href={`${icons}#icon-cross`}></use>
         </svg>
       </button>
-      <div className={css.formEditInfo}>
-        <div className={css.waterPreInfo}>
-          <svg className={css.svgGlass}>
-            <use href={`${icons}#icon-glass`}></use>
-          </svg>
-          <div className={css.timeAmount}>
-            <span className={css.waterAmount}>{amount ? `${amount} ml` : "0 ml"}</span>
-            <span className={css.spanTime}>{formatDate(date)}</span>
-          </div>
+      <div className={css.inputWrapper}>
+        <div className={css.inputGroup}>
+          <p className={css.numberTopic}>Amount of water:</p>
+          <button type="button" onClick={handleDec}>-</button>
+          <input
+            type="number"
+            value={amount}
+            onChange={handleChange}
+            min={0}
+            max={5000}
+          />
+          <button type="button" onClick={handleInc}>+</button>
         </div>
-        <div className={css.amountCorrection}>
-          <p className={css.enteredData}>Correct entered data:</p>
-          <p>Amount of water:</p>
-          <div className={css.amountCalc}>
-            <button
-              type="button"
-              className={css.amountBtnDec}
-              onClick={handleDec}
-              disabled={amount === 0}
-            >
-              <svg>
-                <use href={`${icons}#icon-minus`}></use>
-              </svg>
-            </button>
-            <p className={css.spanAmount}>{amount ? `${amount} ml` : "0 ml"}</p>
-            <button
-              type="button"
-              className={css.amountBtnInc}
-              onClick={handleInc}
-              disabled={amount === 5000}
-            >
-              <svg>
-                <use href={`${icons}#icon-plus`}></use>
-              </svg>
-            </button>
-          </div>
-          <div className={css.inputWrapper}>
-            <p>Recording time:</p>
-            <input
-              type="time"
-              value={formatTimeForInput(date)}
-              onChange={handleTimeChange}
-            />
-          </div>
-          <div className={css.inputWrapper}>
-            <p className={css.numberTopic}>Enter the value of the water used:</p>
-            <input
-              type="number"
-              name="amount"
-              min={0}
-              max={5000}
-              value={amount === "" ? "" : amount}
-              onChange={handleAmountChange}
-            />
-          </div>
+        <div className={css.inputWrapper}>
+          <p className={css.numberTopic}>Enter the time:</p>
+          <input
+            type="time"
+            value={formatTimeForInput(date)}
+            onChange={handleTimeChange}
+          />
         </div>
       </div>
-      <div className={css.saveBtnWrapper}>
-        <div className={css.finalAmountSave}>
-          <p>{amount === 0 || amount === "" ? "" : `${amount} ml`}</p>
-          <button type="submit">Save</button>
-        </div>
-      </div>
+      <button type="submit">Save</button>
     </form>
   );
-};
-
-EditWaterForm.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  initialAmount: PropTypes.number.isRequired,
-  initialDate: PropTypes.instanceOf(Date).isRequired,
-  updateWaterData: PropTypes.func.isRequired,
 };

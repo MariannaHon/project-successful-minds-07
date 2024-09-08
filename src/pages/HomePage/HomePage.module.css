@@ -66,6 +66,7 @@
   .container {
     max-width: var(--container-max-width);
     margin-top: 672px;
+display: flex;
   }
 
   .homePage {
