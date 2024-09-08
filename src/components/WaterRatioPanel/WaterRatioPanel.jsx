@@ -26,7 +26,7 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
 
           <div className={css.progressTextNumber}>
             <span className={css.progressText}>0%</span>
-            <span className={css.progressTextM}>50%</span>
+            <span className={css.progressText}>50%</span>
             <span className={css.progressText}>100%</span>
           </div>
           
