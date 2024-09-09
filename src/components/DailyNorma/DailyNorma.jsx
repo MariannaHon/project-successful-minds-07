@@ -33,12 +33,12 @@ const DailyNorma = () => {
         return (milliliters / 1000).toFixed(1);
     };
 
-    const handleUpdateSuccess = () => {
+    const handleUpdateSuccess = (newWaterRate) => {
 
-        if (user._id) {
-            dispatch(fetchUser(user._id));
-            setLocalWaterRate(user.waterRate);
+        if (newWaterRate) {
+            setLocalWaterRate(newWaterRate);
         }
+        setOpen(false);
     };
 
     return (
