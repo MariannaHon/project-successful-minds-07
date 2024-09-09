@@ -30,13 +30,13 @@
 }
 .inputField:focus, .inputField:hover, .inputField_pswd:focus,.inputField_pswd:hover,.inputField_pswd:active{
     border: 1px solid var(--secondary-blue);
-    outline: none;
+    /* outline: none; */
 }
 .inputField:active{
   color:var(--primary-blue);
   border: 1px solid var(--secondary-blue);
 }
-.inputError {
+.inputError,.inputError_pswd {
   border-color: var(--secondary-red); /* Красная граница при ошибке */
   color:var(--secondary-red);
 }
