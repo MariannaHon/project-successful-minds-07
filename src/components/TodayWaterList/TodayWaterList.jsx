@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { WaterEntry } from './TodayWaterListModal';
+import { WaterEntry } from '../TodayListModal/TodayListModal';
 import css from './TodayWaterList.module.css';
 import { EditWaterForm } from './AddWaterList';
 
-export const TodayWaterList = () => {
+const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
     {
       id: nanoid(),
@@ -88,3 +88,5 @@ export const TodayWaterList = () => {
     </div>
   );
 };
+
+export default TodayWaterList;
