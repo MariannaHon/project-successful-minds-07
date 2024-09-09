@@ -9,7 +9,6 @@ import { LuUpload } from 'react-icons/lu';
 import { IoSettingsOutline, IoClose } from 'react-icons/io5';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
@@ -169,11 +168,10 @@ const handleGenderChange = (event) => {
                       </FormLabel>
                       <RadioGroup
                          row
-                         aria-labelledby="gender-radio-group-label"
-                         defaultValue="female"
+                         aria-labelledby="gender-radio-group-label"                         
                          name="gender"
                          value={selectedGender}
-                          onChange={handleGenderChange}                         
+                        onChange={handleGenderChange}                         
                       >
                         <FormControlLabel
                           value="female"
