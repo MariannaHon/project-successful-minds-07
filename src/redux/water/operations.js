@@ -50,7 +50,7 @@ export const addWater = createAsyncThunk(
     const date = formatDateForAddOrEditWater(localDate);
 
     try {
-      const response = await axios.post('/water/add', {
+      const response = await axios.post('/water', {
         date,
         time,
         amount,

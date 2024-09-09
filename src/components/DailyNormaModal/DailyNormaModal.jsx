@@ -13,24 +13,24 @@ import { IoClose } from 'react-icons/io5';
 
 const schema = yup.object().shape({
     weight: yup.number().typeError('Please, enter a number').min(0).max(300).required('Weight is required'),
-    dailyTimeActivity: yup.number().typeError('Please, enter a number').min(0).max(8).required('Active sport time is required'),
+    dailyTimeActivity: yup.number().typeError('Please, enter a number').min(0).max(10).required('Active sport time is required'),
     todayWater: yup.number().typeError('Please, enter a number').min(0).max(10).required('Daily water intake is required'),
 });
 
 const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
-    const user = useSelector(selectUser); // Використовуйте useSelector для отримання даних користувача
+    const user = useSelector(selectUser);
     const dispatch = useDispatch();
+    const [finalWaterNorm, setFinalWaterNorm] = useState('2.0');
+    const [manualWaterNorm, setManualWaterNorm] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
 
     const formatNumber = (num) => {
         if (isNaN(num)) return '';
         return num.toFixed(1);
     };
 
-    const [manualWaterNorm, setManualWaterNorm] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
-
     const { register, handleSubmit, formState: { errors }, setValue, reset, watch, getValues } = useForm({
-        defaultValues: { weight: user.weight, dailyTimeActivity: user.dailyTimeActivity, todayWater: user.waterRate / 1000, gender: user.gender },
+        defaultValues: { weight: '', dailyTimeActivity: '', todayWater: '', gender: '' },
         resolver: yupResolver(schema),
     });
 
@@ -50,13 +50,14 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
 
     useEffect(() => {
         if (user) {
+            const initialWaterNorm = user.waterRate ? formatNumber(user.waterRate / 1000) : '2.0';
+            setFinalWaterNorm(initialWaterNorm);
             reset({
-                weight: user.weight,
-                dailyTimeActivity: user.dailyTimeActivity,
-                todayWater: user.waterRate / 1000,
-                gender: user.gender
+                weight: user.weight || '',
+                dailyTimeActivity: user.dailyTimeActivity || '',
+                todayWater: user.waterRate ? user.waterRate / 1000 : '',
+                gender: user.gender || ''
             });
-            setManualWaterNorm(user.waterRate ? formatNumber(user.waterRate / 1000) : '');
         }
     }, [user, reset]);
 
@@ -66,6 +67,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             const formattedValue = formatNumber(calculatedNormaWater);
             setValue('todayWater', parseFloat(formattedValue));
             setManualWaterNorm(formattedValue);
+            setFinalWaterNorm(formattedValue);
         }
     }, [watchFields, setValue, isEditing]);
 
@@ -80,8 +82,8 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             };
 
             await dispatch(updateUser(updateUserPayload)).unwrap();
-            onUpdateSuccess(); // Call the update success function
             toast.success('The changes were successfully applied!');
+            onUpdateSuccess();
             onClose();
         } catch (error) {
             console.error('Update failed:', error);
@@ -114,7 +116,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             <Box className={css.modalStyle}>
                 <div className={css.modalContainer}>
                     <div className={css.dailyCloseContainer}>
-                        <h3 className={css.title}>Calculate your rate</h3>
+                        <h3 className={css.title}>My daily norma</h3>
                         <button onClick={onClose} className={css.iconClose}>
                             <IoClose />
                         </button>
@@ -122,8 +124,8 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
 
                     <div className={css.formulaContainer}>
                         <div className={css.formulaTitleContainer}>
-                            <h4 className={css.formulaTitle}>For woman: </h4>
-                            <p className={css.formula}>V=(M*0.03) + (T*0.4)</p>
+                            <h4 className={css.formulaTitle}>For girl: </h4>
+                            <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
                         </div>
                         <div className={css.formulaTitleContainer}>
                             <h4 className={css.formulaTitle}>For man: </h4>
@@ -140,7 +142,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className={css.container}>
+                        <div className={css.formContainer}>
                             <h2 className={css.formTitle}>Calculate your rate:</h2>
                             <div className={css.genderContainer}>
                                 <label className={css.radioLabel}>
@@ -149,7 +151,6 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
                                         type="radio"
                                         value="female"
                                         {...register('gender')}
-                                        defaultChecked={user.gender === 'female'}
                                     />
                                     <span className={css.checkmark}></span>
                                     For woman
@@ -160,7 +161,6 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
                                         type="radio"
                                         value="male"
                                         {...register('gender')}
-                                        defaultChecked={user.gender === 'male'}
                                     />
                                     <span className={css.checkmark}></span>
                                     For man
@@ -181,7 +181,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
                             </label>
 
                             <label className={css.label}>
-                                Time of active participation in sports (hours):
+                                The time of active participation in sports or other activities with a high physical. load in hours:
                                 <input
                                     placeholder='0'
                                     type="number"
@@ -195,7 +195,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
 
                             <div className={css.resultContainer}>
                                 <p className={css.resultText}>The required amount of water in liters per day: </p>
-                                <span className={css.resultValue}>{manualWaterNorm || '2.0'} L</span>
+                                <span className={css.resultValue}>{finalWaterNorm || '2.0'} L</span>
                             </div>
 
                             <label className={css.labelNorma}>
@@ -214,7 +214,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
                                             setValue('todayWater', parsedValue);
                                         }
                                     }}
-                                    onBlur={() => setIsEditing(false)}
+                                    // onBlur={() => setIsEditing(false)}
                                     className={`${css.inputField} ${errors.todayWater ? css.error : ''}`}
                                     onKeyDown={handleNumericInput}
                                 />
