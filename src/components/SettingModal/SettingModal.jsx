@@ -12,12 +12,7 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import {
-  fetchUser,
-  updateUser,
-  changeAvatar,
-} from '../../redux/user/operations';
-
+import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -32,12 +27,16 @@ const FeedbackSchema = Yup.object().shape({
   // .defined(),
   name: Yup.string().min(3, 'Too Short!').max(34, 'Too Long!'),
   email: Yup.string().email().required('Required'),
-  outPassword: Yup.string().min(8, 'Too Short!').max(64, 'Too Long!'),
+  outPassword: Yup.string()
+    .min(8, 'Too Short!')
+    .max(64, 'Too Long!')
+    .required('Required'),
   nPassword: Yup.string().min(8, 'Too Short!').max(64, 'Too Long!'),
   repeatNPassword: Yup.string()
     .min(8, 'Too Short!')
     .max(64, 'Too Long!')
     .oneOf([Yup.ref('nPassword'), null], 'Passwords must match'),
+
 });
 const style = {
   position: 'absolute',
@@ -74,17 +73,14 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
-      const result = await dispatch(
-        updateUser({
-          id: userId,
-          avatarUrl: values.avatarUrl,
-          gender: values.gender,
-          name: values.name,
-          email: values.email,
-          password: values.nPassword,
-        })
-      ).unwrap();
-
+      const result = await dispatch(updateUser({   
+        gender: values.gender,
+        name: values.name,
+        email: values.email,
+        password: values.nPassword
+      })
+            
+    ).unwrap();
       if (result) {
         actions.resetForm();
         handleClose();
@@ -113,14 +109,16 @@ function SettingModal() {
    
   };
 
-  function changeHandler(e) {
-    const file = e.target.files[0];
-    dispatch(changeAvatar(file));
-  }
+//avatar chenge
+ const [selectedFile, setSelectedFile] = useState(null);
+ function changeHandler(e) {
+  const file = e.target.files[0];
+  setSelectedFile(file);
 
   const formData = new FormData();
   formData.append('avatarUrl', file);
   dispatch(changeAvatar(formData));
+}
   return (
     <div>
       <button className={css.buttonSetting} onClick={handleOpen}>
@@ -160,20 +158,10 @@ function SettingModal() {
                           alt="Avatar"
                           className={css.photo}
                         />
-                        <label
-                          htmlFor={`${fieldId}-avatar`}
-                          className={css.link}
-                        >
-                          <LuUpload className={css.iconChange} />
-                          Upload a photo
-                        </label>
-                        <input
-                          type="file"
-                          className={css.change}
-                          onChange={e => changeHandler(e)}
-                          id={`${fieldId}-avatar`}
-                          accept="image/*"
-                        />
+                        <label htmlFor={`${fieldId}-avatar`} className={css.link} >
+                        <LuUpload className={css.iconChange}/>Upload a photo</label>
+                        <input type='file' className={css.change} onChange={e => changeHandler(e)}
+                        id={`${fieldId}-avatar`} accept="image/*" name="file"/>                                      
                       </div>
                     </div>
                     <FormControl className={css.radio}>
@@ -212,13 +200,8 @@ function SettingModal() {
                         type="text"
                         name="name"
                         id={`${fieldId}-name`}
-                        className={css.field}
-                      />
-                      <ErrorMessage
-                        name="name"
-                        component="span"
-                        className={css.error}
-                      />
+                        className={css.field} />
+                      <ErrorMessage name="name" component="span" className={css.error} />
                     </div>
                     <div className={css.groupLeft}>
                       <label htmlFor={`${fieldId}-email`}>
