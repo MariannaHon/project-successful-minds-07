@@ -1,38 +1,38 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com/';
+axios.defaults.withCredentials = true;
 
 export const fetchUser = createAsyncThunk(
-  'users/fetchAll',
-  async (id, thunkAPI) => {
+  'get/user',
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/users/${id}`);
-      return response.data;
+      const response = await axios.get('users/');
+      setAuthHeader(response.data.accessToken);
+      return response.data;        
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-
 export const updateUser = createAsyncThunk(
-  'users/updateUser',
-  async ({ id, avatarUrl, gender, name, email, password, waterRate }, thunkAPI) => {
+
+  'update/user',
+  async ({ gender, name, email, password }, thunkAPI) => {
     try {
-      const userData = {
-        id, // Додаємо userId
-        avatarUrl,
+      const response = await axios.patch('users', {       
         gender,
         name,
         email,
         password,
-        waterRate, // Додаємо waterRate
-      };
-
-      console.log(userData);
-
-      const response = await axios.patch(`/users/`, userData);
+      });
+      setAuthHeader(response.data.accessToken);
 
       return response.data;
     } catch (error) {
@@ -41,16 +41,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-
 export const changeAvatar = createAsyncThunk(
-  '/users/changeAvatar',
-  async ({ id, avatarUrl }, thunkAPI) => {
+
+  'update/avatar',
+  async (formData,thunkAPI) => {
     try {
-      const response = await axios.patch(`/users/${id}`, { avatarUrl });
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
-    }
+    const response = await axios.patch('users/avatar', formData);
+    setAuthHeader(response.data.accessToken);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return thunkAPI.rejectWithValue(error.message);
+
   }
+}
 );

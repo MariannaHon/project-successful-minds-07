@@ -1,23 +1,19 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { CgAdd } from "react-icons/cg";
+import { CgAdd } from 'react-icons/cg';
 import css from './WaterRatioPanel.module.css';
-import {EditWaterForm} from "../TodayWaterList/AddWaterList.jsx";
+import { EditWaterForm } from '../TodayWaterList/AddWaterList';
+import AddWaterModal from '../AddWaterModal/AddWaterModal';
 
-const WaterRatioPanel = ({ progress, handleAddWater }) => {
-  // Створюємо стан для відображення модального вікна
+const WaterRatioPanel = ({ progress }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Функція для відкриття/закриття модального вікна
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // Функція для оновлення даних про воду
   const updateWaterData = (amount, date) => {
     console.log(`Amount: ${amount}, Date: ${date}`);
-    // Тут ви можете передавати оновлені дані у батьківський компонент або API
-    setIsModalOpen(false); // Закриваємо модальне вікно після збереження
+    setIsModalOpen(false);
   };
 
   return (
@@ -26,7 +22,10 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
       <div className={css.progressBarContainer}>
         <div className={css.progressBar}>
           <div className={css.progress} style={{ width: `${progress}%` }} />
-          <div className={css.thumb} style={{ left: `calc(${progress}% - 7px)` }} />
+          <div
+            className={css.thumb}
+            style={{ left: `calc(${progress}% - 7px)` }}
+          />
 
           <div className={css.marks}>
             <span className={css.mark} style={{ left: '0%' }} />
@@ -36,7 +35,7 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
 
           <div className={css.progressTextNumber}>
             <span className={css.progressText}>0%</span>
-            <span className={css.progressTextM}>50%</span>
+            <span className={css.progressText}>50%</span>
             <span className={css.progressText}>100%</span>
           </div>
         </div>
@@ -45,11 +44,10 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
         </button>
       </div>
 
-      {/* Відображаємо модальне вікно, тільки якщо isModalOpen === true */}
       {isModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <EditWaterForm 
+            <AddWaterModal
               initialAmount={0} // Ви можете передати початкові значення
               initialDate={new Date()}
               updateWaterData={updateWaterData}

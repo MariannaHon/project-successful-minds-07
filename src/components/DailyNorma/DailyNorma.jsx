@@ -11,10 +11,12 @@ const DailyNorma = () => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if (user.id) {
-            dispatch(fetchUser(user.id));
+        if (user._id) {
+            dispatch(fetchUser(user._id)); 
+                    
+                       
         }
-    }, [dispatch, user.id]);
+    }, [dispatch, user._id]);
 
     const handleEditClick = () => {
         setOpen(true);
@@ -29,16 +31,20 @@ const DailyNorma = () => {
     };
 
     const handleUpdateSuccess = () => {
-        if (user.id) {
-            dispatch(fetchUser(user.id));
-        }
+
+        if (user._id) {
+            dispatch(fetchUser(user._id)); 
+            
+        } 
     };
 
     return (
         <div className={css.container}>
             <p className={css.title}>My daily norma</p>
             <div className={css.normaContainer}>
-                <span className={css.normaValue}>{user.waterRate ? convertMillilitersToLiters(user.waterRate) : '2.0'} L</span>
+                <span className={css.normaValue}>
+                    {user.waterRate ? convertMillilitersToLiters(user.waterRate) : '2.0'} L
+                </span>
                 <button className={css.editButton} onClick={handleEditClick}>Edit</button>
             </div>
             {open && <DailyNormaModal onClose={handleClose} onUpdateSuccess={handleUpdateSuccess} />}

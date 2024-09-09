@@ -15,11 +15,11 @@ export const selectUserAvatar = state => state.user.userInfo.avatar;
 
 export const selectWaterNorma = state => state.user?.userInfo?.waterNorma || 1.5;
 
-export const selectWaterPerDay = state => state.water.waters.waterPerDay;
+export const selectWaterPerDay = state => state.water.waterPerDay;
 
-export const selectWaterPerDayArr = state => state.water.waters.waterPerDay.waterRecord;
+export const selectWaterPerDayArr = state => state.water.waterPerDay.waterRecord;
 
-export const selectWaterPerMonth = state => state.water.waters.waterPerMonth;
+export const selectWaterPerMonth = state => state.water.waterPerMonth;
 
 export const selectLoading = state => state.water.loading;
 
@@ -27,7 +27,7 @@ export const selectError = state => state.water.error;
 
 export const selectActiveDay = state => state.water.activeDay;
 
-export const selectCurrentDate = state => state.water.currentDate;
+export const selectCurrentDate = state => state.water?.currentDate || Date.now();
 
 export const selectCountUsers = state => state.user.countUsers;
 

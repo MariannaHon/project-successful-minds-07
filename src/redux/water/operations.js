@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+// import { toast } from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formatDateForAddOrEditWater } from '../../helpers/formatDateForAddOrEditWater.js';
 
@@ -50,7 +50,7 @@ export const addWater = createAsyncThunk(
     const date = formatDateForAddOrEditWater(localDate);
 
     try {
-      const response = await axios.post('/water/add', {
+      const response = await axios.post('/water', {
         date,
         time,
         amount,
