@@ -17,7 +17,7 @@ const UpdatePasswordPage = lazy(() =>
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const SignupPage = lazy(() => import('../../pages/SignupPage/SignupPage'));
 const SigninPage = lazy(() => import('../../pages/SigninPage/SigninPage'));
-//const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const ForgotPasswordPage = lazy(() =>
   import('../../pages/ForgotPasswordPage/ForgotPasswordPage')
 );
@@ -44,7 +44,7 @@ export default function App() {
         <Toaster />
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/welcome" element={<UpdatePasswordPage />} />
+            <Route path="/welcome" element={<WelcomePage />} />
             <Route
               path="/"
               element={
