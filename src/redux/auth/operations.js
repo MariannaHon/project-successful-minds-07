@@ -131,7 +131,7 @@ export const updatePassword = createAsyncThunk(
         return thunkAPI.rejectWithValue("Passwords don't match");
       }
 
-      const response = await axios.patch('/auth/reset-password', {
+      const response = await axios.patch('/reset-password', {
         newPassword,
         confirmPassword,
         token,

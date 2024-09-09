@@ -23,8 +23,8 @@ const UpdatePasswordForm = () => {
       .catch(() => {
         toast.error('Passwords did not happen', {
           position: 'top-right',
-        });
-      });
+       });
+     });
     actions.resetForm();
   };
 
