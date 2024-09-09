@@ -12,9 +12,9 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { fetchUser, updateUser, changeAvatar } from '../../redux/user/operations';
+import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
 import { selectUser } from '../../redux/auth/selectors';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
 import { ErrorMessage } from 'formik';
@@ -23,6 +23,8 @@ import * as Yup from 'yup';
 import css from './SettingModal.module.css';
 
 const FeedbackSchema = Yup.object().shape({
+  gender: Yup.oneOf(['male', 'female'] )
+  .defined(),
   name: Yup.string().min(3, 'Too Short!').max(34, 'Too Long!'),
   email: Yup.string().email().required('Required'),
   outPassword: Yup.string()
@@ -57,7 +59,7 @@ function SettingModal() {
   const fieldId = useId();
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
-
+  
   const userId = userData?._id;
 
   useEffect(() => {
@@ -71,18 +73,14 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
-
       const result = await dispatch(updateUser({   
-
         gender: values.gender,
         name: values.name,
         email: values.email,
         password: values.nPassword
-
       })
             
     ).unwrap();
-
       if (result) {
         actions.resetForm();
         handleClose();
@@ -104,7 +102,6 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
-
 // radio groop
   const [gender, setGender] = useState(); 
   const handleChangeRadio = (event) => {
@@ -117,7 +114,6 @@ function SettingModal() {
  function changeHandler(e) {
   const file = e.target.files[0];
   setSelectedFile(file);
-
 
   const formData = new FormData();
   formData.append('avatarUrl', file);
@@ -155,9 +151,9 @@ function SettingModal() {
                       <h3 className={css.groupLeft}>Your Photo</h3>
                       <div className={css.changeAvatar}>
                         <img
-                          src={
-                            userData.avatarUrl ||
-                            'public/images/setting/Avatar.jpg'
+                          src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
+                            (userData.avatarUrl ||
+                            'public/images/setting/Avatar.jpg')
                           }
                           alt="Avatar"
                           className={css.photo}
@@ -165,7 +161,7 @@ function SettingModal() {
                         <label htmlFor={`${fieldId}-avatar`} className={css.link} >
                         <LuUpload className={css.iconChange}/>Upload a photo</label>
                         <input type='file' className={css.change} onChange={e => changeHandler(e)}
-                        id={`${fieldId}-avatar`} accept="image/*"/>                                      
+                        id={`${fieldId}-avatar`} accept="image/*" name="file"/>                                      
                       </div>
                     </div>
                     <FormControl className={css.radio}>
@@ -340,6 +336,7 @@ function SettingModal() {
                   <button type="submit" className={css.button}>
                     Save
                   </button>
+                  <Toaster position="top-center" reverseOrder={true}/>
                 </div>
               </Form>
             </Formik>

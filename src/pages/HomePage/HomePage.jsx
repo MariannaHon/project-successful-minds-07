@@ -1,6 +1,4 @@
-
-// import { useState } from 'react';
-// import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
+import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 // import Calendar from '../../components/Calendar/Calendar.jsx';
@@ -14,13 +12,11 @@ const HomePage = () => {
       <div className={css.leftColumn}>
         <WaterRatioPanel progress={progress} />
       </div>
-
       <div className={css.rightColumn}>
         <TodayWaterList />
         {/* <Calendar /> */}
       </div>
     </div >
-
   );
 };
 export default HomePage;
