@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useState } from 'react';
 import { CgAdd } from "react-icons/cg";
 import css from './WaterRatioPanel.module.css';
@@ -41,7 +41,6 @@ const WaterRatioPanel = ({ progress }) => {
         </button>
       </div>
 
-      {/* Відображаємо модальне вікно, тільки якщо isModalOpen === true */}
       {isModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>

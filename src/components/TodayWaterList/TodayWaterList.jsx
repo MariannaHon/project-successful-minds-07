@@ -12,6 +12,7 @@ const TodayWaterList = () => {
     { id: 4, amount: 150, time: '16:00' },
     { id: 5, amount: 150, time: '16:00' },
     { id: 6, amount: 150, time: '16:00' }
+
   ]);
   const handleEdit = (id) => {
     setWaterEntries(waterEntries.filter(entry => entry.id !== id));
