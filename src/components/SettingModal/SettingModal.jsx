@@ -23,8 +23,8 @@ import * as Yup from 'yup';
 import css from './SettingModal.module.css';
 
 const FeedbackSchema = Yup.object().shape({
-  // gender: Yup.oneOf(['male', 'female'] )
-  // .defined(),
+  gender: Yup.string().oneOf(['male', 'female'] )
+  .defined(),
   name: Yup.string().min(3, 'Too Short!').max(34, 'Too Long!'),
   email: Yup.string().email().required('Required'),
   outPassword: Yup.string()
@@ -74,7 +74,7 @@ function SettingModal() {
   const handleSubmit = async (values, actions) => {
     try {
       const result = await dispatch(updateUser({   
-        gender: values.gender,
+        gender: selectedGender,
         name: values.name,
         email: values.email,
         password: values.nPassword
@@ -103,11 +103,10 @@ function SettingModal() {
     }
   };
 // radio groop
-  const [gender, setGender] = useState(); 
-  const handleChangeRadio = (event) => {
-    setGender(event.target.value);
-   
-  };
+const [selectedGender, setSelectedGender] = useState('female');
+const handleGenderChange = (event) => {
+  setSelectedGender(event.target.value);
+};
 
 //avatar chenge
  const [selectedFile, setSelectedFile] = useState(null);
@@ -169,25 +168,23 @@ function SettingModal() {
                         <h3>Your gender identity</h3>
                       </FormLabel>
                       <RadioGroup
-                        row
-                        aria-labelledby="gender-radio-group-label"
-                        defaultValue="female"
-                        name="gender"
+                         row
+                         aria-labelledby="gender-radio-group-label"
+                         defaultValue="female"
+                         name="gender"
+                         value={selectedGender}
+                          onChange={handleGenderChange}                         
                       >
                         <FormControlLabel
                           value="female"
                           control={<Radio />}
                           label="Woman"
-                          checked={gender === 'female'}
-                          onChange={handleChangeRadio}
                           className={css.label}
                         />
                         <FormControlLabel
                           value="male"
                           control={<Radio />}
                           label="Man"
-                          checked={gender === 'male'}
-                          onChange={handleChangeRadio}
                           className={css.label}
                         />
                       </RadioGroup>
