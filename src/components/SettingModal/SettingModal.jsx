@@ -12,7 +12,7 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
-import { selectUser } from '../../redux/auth/selectors';
+import { selectUser } from '../../redux/user/selectors';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
@@ -77,12 +77,11 @@ function SettingModal() {
         name: values.name,
         email: values.email,
         password: values.nPassword
-      })
-            
-    ).unwrap();
+      })           
+    )
       if (result) {
         actions.resetForm();
-        handleClose();
+        setOpen(false);
       }
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -102,7 +101,7 @@ function SettingModal() {
     }
   };
 // radio groop
-const [selectedGender, setSelectedGender] = useState('female');
+const [selectedGender, setSelectedGender] = useState();
 const handleGenderChange = (event) => {
   setSelectedGender(event.target.value);
 };
@@ -150,7 +149,7 @@ const handleGenderChange = (event) => {
                       <div className={css.changeAvatar}>
                         <img
                           src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
-                            (userData.avatarUrl ||
+                            (userData?.avatarUrl ||
                             'public/images/setting/Avatar.jpg')
                           }
                           alt="Avatar"
@@ -170,8 +169,9 @@ const handleGenderChange = (event) => {
                          row
                          aria-labelledby="gender-radio-group-label"                         
                          name="gender"
-                         value={selectedGender}
-                        onChange={handleGenderChange}                         
+                         value={selectedGender || userData?.gender}
+                        onChange={handleGenderChange}
+                                                 
                       >
                         <FormControlLabel
                           value="female"
