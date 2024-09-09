@@ -56,12 +56,12 @@ const TodayWaterList = () => {
             <ul className={css.listWraper}>
               {waterItems.map(elem => (
                 <li key={elem.id}>
-                  <WaterEntry
+{/*                   <WaterEntry
                     initialAmount={elem.amount}
                     initialDate={elem.date}
                     onDelete={() => handleDelete(elem.id)}
                     onEdit={() => handleEdit(elem)}
-                  />
+                  /> */}
                 </li>
               ))}
             </ul>
