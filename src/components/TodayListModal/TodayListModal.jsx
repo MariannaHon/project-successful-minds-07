@@ -1,7 +1,7 @@
 import { useState } from "react";
 import css from "./TodayListModal.module.css";
 import icons from "/public/symbol-defsN.svg"
-import { AddWater } from "../TodayWaterList/AddWaterList.jsx";
+import { EditWaterForm } from "../TodayWaterList/AddWaterList.jsx";
 import PropTypes from "prop-types";
 
 
@@ -65,7 +65,7 @@ export const WaterEntry = ({ initialAmount, initialDate, onDelete }) => {
             </div>
             {isModalOpen && (
                 <div className={css.modalOverlay}>
-                    <AddWater
+                    <EditWaterForm
                         initialAmount={amount}
                         initialDate={date}
                         updateWaterData={updateWaterData}
