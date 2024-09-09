@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-// import { WaterEntry } from '../TodayListModal/TodayListModal';
+import WaterEntry from '../TodayListModal/TodayListModal';
 import css from './TodayWaterList.module.css';
 import { EditWaterForm } from './AddWaterList';
 
@@ -56,12 +56,12 @@ const TodayWaterList = () => {
             <ul className={css.listWraper}>
               {waterItems.map(elem => (
                 <li key={elem.id}>
-{/*                   <WaterEntry
+                  <WaterEntry
                     initialAmount={elem.amount}
                     initialDate={elem.date}
                     onDelete={() => handleDelete(elem.id)}
                     onEdit={() => handleEdit(elem)}
-                  /> */}
+                  />
                 </li>
               ))}
             </ul>
