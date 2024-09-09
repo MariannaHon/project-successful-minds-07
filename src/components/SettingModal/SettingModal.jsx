@@ -121,7 +121,6 @@ function SettingModal() {
   const formData = new FormData();
   formData.append('avatarUrl', file);
   dispatch(changeAvatar(formData));
-}
   return (
     <div>
       <button className={css.buttonSetting} onClick={handleOpen}>
