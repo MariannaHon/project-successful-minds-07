@@ -23,8 +23,8 @@ import * as Yup from 'yup';
 import css from './SettingModal.module.css';
 
 const FeedbackSchema = Yup.object().shape({
-  gender: Yup.oneOf(['male', 'female'] )
-  .defined(),
+  // gender: Yup.oneOf(['male', 'female'] )
+  // .defined(),
   name: Yup.string().min(3, 'Too Short!').max(34, 'Too Long!'),
   email: Yup.string().email().required('Required'),
   outPassword: Yup.string()
