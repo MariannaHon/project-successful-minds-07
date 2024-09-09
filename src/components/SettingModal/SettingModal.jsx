@@ -71,9 +71,7 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
-      const result = await dispatch(updateUser({    
-        id: userId,
-        avatarUrl: values.avatarUrl,  
+      const result = await dispatch(updateUser({   
         gender: values.gender,
         name: values.name,
         email: values.email,
@@ -92,7 +90,7 @@ function SettingModal() {
       setOpen(true);
     }
   };
-
+// open/close password
   const togglePassInput = () => {
     if (type === 'password') {
       setType('text');
@@ -102,8 +100,15 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
- const [selectedFile, setSelectedFile] = useState(null);
+// radio groop
+  const [gender, setGender] = useState(); 
+  const handleChangeRadio = (event) => {
+    setGender(event.target.value);
+   
+  };
 
+//avatar chenge
+ const [selectedFile, setSelectedFile] = useState(null);
  function changeHandler(e) {
   const file = e.target.files[0];
   setSelectedFile(file);
@@ -164,19 +169,23 @@ function SettingModal() {
                       <RadioGroup
                         row
                         aria-labelledby="gender-radio-group-label"
-                        defaultValue="female"
+                      defaultValue="female"
                         name="gender"
                       >
                         <FormControlLabel
                           value="female"
                           control={<Radio />}
                           label="Woman"
+                          checked={gender === 'female'}
+                          onChange={handleChangeRadio}
                           className={css.label}
                         />
                         <FormControlLabel
                           value="male"
                           control={<Radio />}
                           label="Man"
+                          checked={gender === 'male'}
+                          onChange={handleChangeRadio}
                           className={css.label}
                         />
                       </RadioGroup>
