@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/project-successful-minds-07/",
+    "build": "vite build",
     "lint:js": "eslint src/**/*.{js,jsx}",
     "preview": "vite preview"
   },
