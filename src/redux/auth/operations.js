@@ -11,6 +11,7 @@ const clearAuthHeader = () => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
+axios.defaults.withCredentials = true;
 
 export const register = createAsyncThunk(
   'auth/register',

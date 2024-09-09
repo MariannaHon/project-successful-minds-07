@@ -1,3 +1,3 @@
-export const selectUser = (state) => state.user.items;
-export const selectLoading = state => state.user.loading;
-export const selectAvatar = state => state.user.avatar; 
+export const selectUser = (state) => state.users.user;
+export const selectLoading = state => state.users.loading;
+export const selectAvatar = state => state.users.avatar; 
