@@ -1,8 +1,8 @@
 
 // import { useState } from 'react';
-import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
+//import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
-// import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
+import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 // import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable.jsx';
 import css from './HomePage.module.css';
 
@@ -16,7 +16,7 @@ const HomePage = () => {
           <WaterRatioPanel />
         </div>
         <div className={css.rightColumn}>
-          {/* <TodayWaterList /> */}
+          <TodayWaterList />
           {/* <MonthStatsTable /> */}
         </div>
       {/* </div> */}
