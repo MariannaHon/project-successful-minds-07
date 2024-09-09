@@ -3,18 +3,19 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
-.container {
-    margin-bottom: 34px;
+.formContainer {
+    margin-bottom: 24px;
 }
 
 .modalStyle {
     position: absolute;
     width: 592px;
-    background-color: white;
+    background-color: var(--primary-white);
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
-border-radius: 10px;
+    border-radius: 10px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -32,7 +33,7 @@ border-radius: 10px;
     border: none;
     cursor: pointer;
     font-size: 24px;
-    color: #407BFF;
+    color: var(--primary-blue);
 }
 
 .title {
@@ -51,11 +52,11 @@ border-radius: 10px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .formulaTitle {
-    color: #2F2F2F;
+    color: var(--primary-black);
     padding: 4px;
     font-weight: 400;
     font-size: 16px;
@@ -66,7 +67,7 @@ border-radius: 10px;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.33333;
-    color: #407BFF;
+    color: var(--primary-blue);
 }
 
 .formulaContainer div {
@@ -78,8 +79,6 @@ border-radius: 10px;
     border: 1px solid #D7E3FF;
     border-radius: 10px;
     padding: 10px;
-    width: 544px;
-    height: 68px;
     margin-bottom: 34px;
 }
 
@@ -92,7 +91,7 @@ border-radius: 10px;
 }
 
 .formulaDescription span {
-    color: #407BFF;
+    color: var(--primary-blue);
 }
 
 .genderContainer {
@@ -115,7 +114,7 @@ border-radius: 10px;
     font-weight: 500;
     font-size: 18px;
     line-height: 1.11111;
-    color: #2F2F2F;
+    color: var(--primary-black);
 }
 
 
@@ -124,13 +123,11 @@ border-radius: 10px;
     align-items: center;
     cursor: pointer;
     font-size: 18px;
-    /* Розмір шрифту, як на фото */
     position: relative;
     padding-left: 30px;
-    margin-right: 20px;
-    /* Відступ між радіо-кнопками */
-    color: #333;
-    /* Колір тексту */
+
+    color: var(--primary-black);
+
 }
 
 .radioLabel input {
@@ -144,21 +141,18 @@ border-radius: 10px;
     top: 50%;
     left: 0;
     height: 14px;
-    /* Висота радіо-кнопки */
     width: 14px;
-    /* Ширина радіо-кнопки */
     background-color: transparent;
     border-radius: 50%;
-    border: 2px solid #007bff;
-    /* Синій контур */
+    border: 2px solid var(--primary-blue);
+
     transform: translateY(-50%);
 }
 
 .radioLabel input:checked+.checkmark {
     background-color: transparent;
-    /* Прозорий фон */
-    border-color: #007bff;
-    /* Синя рамка при виборі */
+
+    border-color: var(--primary-blue);
 }
 
 .radioLabel .checkmark::after {
@@ -177,8 +171,7 @@ border-radius: 10px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #007bff;
-    /* Синя точка в центрі при виборі */
+    background: var(--primary-blue);
     transform: translate(-50%, -50%);
 }
 
@@ -203,25 +196,26 @@ border-radius: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    color: #407BFF;
+    color: var(--primary-blue);
 }
 
 .inputField::placeholder {
-    color: #407BFF;
+    color: var(--primary-blue);
 }
 
 .inputField.error {
-    border-color: red;
+    border-color: #EF5050;
 }
 
 .errorText {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+    color: #EF5050;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28571;
 }
 
 .resultContainer {
-    margin: 20px 0;
+    margin: 16px 0 24px;
     display: flex;
     gap: 6px;
 }
@@ -230,12 +224,12 @@ border-radius: 10px;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.25;
-    color: #2F2F2F;
+    color: var(--primary-black);
 }
 
 .resultValue {
     font-size: 18px;
-    color: #007bff;
+    color: var(--primary-blue);
     font-weight: bold;
 }
 
@@ -243,16 +237,16 @@ border-radius: 10px;
     font-weight: 500;
     font-size: 18px;
     line-height: 1.11111;
-    color: #2F2F2F;
+    color: var(--primary-black);
 
 }
 
 .saveButton {
-    background-color: #007bff;
+    background-color: var(--primary-blue)f;
     border: none;
 
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    background: #407BFF;
+    background: var(--primary-blue);
     cursor: pointer;
     border-radius: 10px;
     padding: 10px 30px;
@@ -264,16 +258,60 @@ border-radius: 10px;
     line-height: 1.33333;
     text-align: center;
 
-    color: #FFFFFF;
+    color: var(--primary-white);
 
-   
+
 }
 
-.containerButton{
-    display:  flex;
+.containerButton {
+    display: flex;
     justify-content: flex-end;
 }
 
 .saveButton:hover {
-    background-color: #0056b3;
+    background-color:var(--primary-blue);
+}
+
+
+@media (max-width: 767px) {
+    .modalContainer {
+
+        padding: 24px 12px;
+    }
+
+    .modalStyle {
+        width: 280px;
+    }
+
+    .formulaContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .containerFormulaDescription {
+
+        width: 256px;
+    }
+
+    .saveButton {
+        padding: 8px 30px;
+        width: 256px;
+    }
+
+    .resultText {
+
+        width: 190px;
+    }
+
+    .resultContainer {
+        align-items: center;
+    }
+        .formulaContainer{
+            gap: 16px;
+        }
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+.modalStyle{width: 704px;}
+
 }

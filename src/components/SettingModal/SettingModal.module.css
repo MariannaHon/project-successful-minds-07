@@ -69,9 +69,9 @@ h3 {
     color: var(--primary-blue);
     outline: 0;
 }
-/* .field:focus:invalid {
+.field:focus:invalid {
     border: 1px solid var(--secondary-red);
-} */
+}
 input:focus:invalid {
     border: 1px solid var(--secondary-red);
 }

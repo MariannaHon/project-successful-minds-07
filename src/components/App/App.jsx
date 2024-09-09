@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
@@ -30,7 +30,7 @@ export default function App() {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const isRefresh = useSelector(selectIsRefresh);
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -42,7 +42,7 @@ export default function App() {
     <div>
       <SharedLayout>
         <Toaster />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
             <Route
@@ -80,6 +80,10 @@ export default function App() {
                   redirectTo="/signin"
                 />
               }
+            />
+            <Route
+              path="/home"
+              element={<PrivateRoute component={HomePage} redirectTo="/signin" />}
             />
             <Route path="*" element={<NotFoundPage />} />
             {isLoading && <Loader />}

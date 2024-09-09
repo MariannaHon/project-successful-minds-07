@@ -12,9 +12,9 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
+import { fetchUser, updateUser, changeAvatar } from '../../redux/user/operations';
 import { selectUser } from '../../redux/auth/selectors';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
 import { ErrorMessage } from 'formik';
@@ -57,7 +57,7 @@ function SettingModal() {
   const fieldId = useId();
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
-  
+
   const userId = userData?._id;
 
   useEffect(() => {
@@ -71,14 +71,18 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
+
       const result = await dispatch(updateUser({   
+
         gender: values.gender,
         name: values.name,
         email: values.email,
         password: values.nPassword
+
       })
             
     ).unwrap();
+
       if (result) {
         actions.resetForm();
         handleClose();
@@ -100,6 +104,7 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
+
 // radio groop
   const [gender, setGender] = useState(); 
   const handleChangeRadio = (event) => {
@@ -112,6 +117,7 @@ function SettingModal() {
  function changeHandler(e) {
   const file = e.target.files[0];
   setSelectedFile(file);
+
 
   const formData = new FormData();
   formData.append('avatarUrl', file);
@@ -149,9 +155,9 @@ function SettingModal() {
                       <h3 className={css.groupLeft}>Your Photo</h3>
                       <div className={css.changeAvatar}>
                         <img
-                          src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
-                            (userData.avatarUrl ||
-                            'public/images/setting/Avatar.jpg')
+                          src={
+                            userData.avatarUrl ||
+                            'public/images/setting/Avatar.jpg'
                           }
                           alt="Avatar"
                           className={css.photo}
@@ -159,7 +165,7 @@ function SettingModal() {
                         <label htmlFor={`${fieldId}-avatar`} className={css.link} >
                         <LuUpload className={css.iconChange}/>Upload a photo</label>
                         <input type='file' className={css.change} onChange={e => changeHandler(e)}
-                        id={`${fieldId}-avatar`} accept="image/*" name="file"/>                                      
+                        id={`${fieldId}-avatar`} accept="image/*"/>                                      
                       </div>
                     </div>
                     <FormControl className={css.radio}>
@@ -169,7 +175,7 @@ function SettingModal() {
                       <RadioGroup
                         row
                         aria-labelledby="gender-radio-group-label"
-                      defaultValue="female"
+                        defaultValue="female"
                         name="gender"
                       >
                         <FormControlLabel
@@ -334,7 +340,6 @@ function SettingModal() {
                   <button type="submit" className={css.button}>
                     Save
                   </button>
-                  <Toaster position="top-center" reverseOrder={true}/>
                 </div>
               </Form>
             </Formik>
