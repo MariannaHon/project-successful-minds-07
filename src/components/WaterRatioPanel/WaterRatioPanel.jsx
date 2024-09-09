@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
-import { CgAdd } from "react-icons/cg";
+import { CgAdd } from 'react-icons/cg';
 import css from './WaterRatioPanel.module.css';
-import { EditWaterForm } from "../TodayWaterList/AddWaterList";
+import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
 
 const WaterRatioPanel = ({ progress }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +21,10 @@ const WaterRatioPanel = ({ progress }) => {
       <div className={css.progressBarContainer}>
         <div className={css.progressBar}>
           <div className={css.progress} style={{ width: `${progress}%` }} />
-          <div className={css.thumb} style={{ left: `calc(${progress}% - 7px)` }} />
+          <div
+            className={css.thumb}
+            style={{ left: `calc(${progress}% - 7px)` }}
+          />
 
           <div className={css.marks}>
             <span className={css.mark} style={{ left: '0%' }} />
@@ -44,7 +46,7 @@ const WaterRatioPanel = ({ progress }) => {
       {isModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <EditWaterForm
+            <AddWaterList
               initialAmount={0} // Ви можете передати початкові значення
               initialDate={new Date()}
               updateWaterData={updateWaterData}

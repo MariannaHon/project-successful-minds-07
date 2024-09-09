@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import css from './TodayWaterList.module.css';
-// import icons from '../public/symbol-defsN.svg';
+import css from './AddWaterList.module.css';
+import icons from '../../../public/symbol-defsN.svg';
 import PropTypes from 'prop-types';
 
-export const EditWaterForm = ({
+export const AddWaterList = ({
   onClose,
   initialAmount,
   initialDate,
   updateWaterData,
 }) => {
   const [amount, setAmount] = useState(initialAmount);
-  const [date, setDate] = useState(initialDate);
+	const [date, setDate] = useState(initialDate);
+
 
   const formatTimeForInput = date => {
     let hours = new Date(date).getHours();
@@ -19,6 +20,11 @@ export const EditWaterForm = ({
     minutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${hours}:${minutes}`;
   };
+  // const formatDate = date => {
+  //   let hours = new Date(date).getHours();
+  //   let minutes = new Date(date).getMinutes();
+  //   return `${hours}:${minutes}`;
+  // };
 
   const handleTimeChange = e => {
     const [hours, minutes] = e.target.value.split(':').map(Number);
@@ -26,12 +32,6 @@ export const EditWaterForm = ({
     newDate.setHours(hours);
     newDate.setMinutes(minutes);
     setDate(newDate);
-  };
-
-  const formatDate = date => {
-    let hours = new Date(date).getHours();
-    let minutes = new Date(date).getMinutes();
-    return `${hours}:${minutes}`;
   };
 
   const handleDec = () => {
@@ -42,10 +42,13 @@ export const EditWaterForm = ({
     setAmount(amount + 50);
   };
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    updateWaterData(amount, date);
-    onClose();
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const newAmount = amount; // отримуємо кількість води з стану
+    const newDate = date; // отримуємо дату з стану
+
+    updateWaterData(newAmount, newDate); // This will now call handleAddWater from the parent
+    onClose(); // Close the modal
   };
 
   const handleAmountChange = e => {
@@ -55,26 +58,16 @@ export const EditWaterForm = ({
 
   return (
     <form className={css.sectionModal} onSubmit={handleFormSubmit}>
-      <p className={css.sectionHeader}>Edit the entered amount of water</p>
+      <p className={css.sectionHeader}>Add water</p>
       <button className={css.crossBtn} type="button" onClick={onClose}>
         <svg>
-          <use href="/project-successful-minds-07/symbol-defs.svg#icon-cross"></use>
+          <use href={`${icons}#icon-cross`}></use>
         </svg>
       </button>
+
       <div className={css.formEditInfo}>
-        <div className={css.waterPreInfo}>
-          <svg className={css.svgGlass}>
-            <use href="/project-successful-minds-07/symbol-defs.svg#icon-glass"></use>
-          </svg>
-          <div className={css.timeAmount}>
-            <span className={css.waterAmount}>
-              {amount ? `${amount} ml` : '0 ml'}
-            </span>
-            <span className={css.spanTime}>{formatDate(date)}</span>
-          </div>
-        </div>
         <div className={css.amountCorrection}>
-          <p className={css.enteredData}>Correct entered data:</p>
+          <p className={css.enteredData}>Choose a value:</p>
           <p>Amount of water:</p>
           <div className={css.amountCalc}>
             <button
@@ -84,7 +77,7 @@ export const EditWaterForm = ({
               disabled={amount === 0}
             >
               <svg>
-                <use href="/project-successful-minds-07/symbol-defs.svg#icon-minus"></use>
+                <use href={`${icons}#icon-minus`}></use>
               </svg>
             </button>
             <p className={css.spanAmount}>{amount ? `${amount} ml` : '0 ml'}</p>
@@ -95,10 +88,11 @@ export const EditWaterForm = ({
               disabled={amount === 5000}
             >
               <svg>
-                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus"></use>
+                <use href={`${icons}#icon-plus`}></use>
               </svg>
             </button>
           </div>
+
           <div className={css.inputWrapper}>
             <p>Recording time:</p>
             <input
@@ -132,7 +126,7 @@ export const EditWaterForm = ({
   );
 };
 
-EditWaterForm.propTypes = {
+AddWaterList.propTypes = {
   onClose: PropTypes.func.isRequired,
   initialAmount: PropTypes.number.isRequired,
   initialDate: PropTypes.instanceOf(Date).isRequired,
