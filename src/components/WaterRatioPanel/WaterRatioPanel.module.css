@@ -121,23 +121,21 @@
   color: #FFFFFF;
 }
 
-
-
 @media screen and (min-width: 768px) {
 
   .container {
-     margin-top: -150px;
+    margin-top: -150px;
   }
 
   .progressBarContainer {
     display: flex;
     flex-direction: row;
     gap: 12px;
-    align-items:center;
+    align-items: center;
     justify-content: center;
   }
 
-  .addWaterButton{
+  .addWaterButton {
     width: 336px;
     margin-top: 0px;
     margin-top: -10px;
@@ -158,12 +156,12 @@
 
 @media screen and (min-width: 1440px) {
   .progressBar {
-      width: 360px;
-    }
+    width: 360px;
+  }
 
   .progressTextNumber {
-      width: 391px;
-   }
+    width: 391px;
+  }
 
   .addWaterButton {
     width: 178px;

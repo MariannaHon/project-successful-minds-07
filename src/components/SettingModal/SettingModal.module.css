@@ -248,6 +248,7 @@ input:focus:invalid {
 .field {
     width: 392px;
     height: 44px;
+    padding: 10px 12px;
 }
 
 .thumb {

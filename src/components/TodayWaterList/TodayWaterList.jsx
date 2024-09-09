@@ -1,10 +1,10 @@
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 // import { RiDeleteBinLine } from "react-icons/ri";
-import { CiGlass } from "react-icons/ci";
-
+import { CiGlass } from 'react-icons/ci';
+// import { EditWaterForm } from './AddWaterList';
 import css from './TodayWaterList.module.css';
+
 import { AddWaterList } from './AddWaterList';
 import { TodayListModal } from '../TodayListModal/TodayListModal';
 import icons from '../../../public/symbol-defsN.svg';
@@ -55,26 +55,7 @@ export const TodayWaterList = () => {
     setWaterItems(waterItems.filter(entry => entry.id !== entryToDelete));
     handleCloseDelete();
   };
-
-  const handleEdit = item => {
-    setEditingRecord(item);
-  };
-
-  const handleEditModalClose = () => {
-    setEditingRecord(null);
-  };
-
-  const handleUpdateWater = (updatedAmount, updatedDate) => {
-    setWaterItems(
-      waterItems.map(item =>
-        item.id === editingRecord.id
-          ? { ...item, amount: updatedAmount, date: updatedDate }
-          : item
-      )
-    );
-    handleEditModalClose();
-  };
-
+  
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
@@ -89,13 +70,14 @@ export const TodayWaterList = () => {
             <div className={css.btnAll}>
               <button
                 className={css.btnPencil}
+
                 onClick={() => handleEdit(entry)}
               >
                 <HiOutlinePencilSquare className={css.iconPencil} />
               </button>
               <button
                 className={css.btnTrash}
-                onClick={() => handleOpenDelete(entry.id)}
+                onClick={() => handleOpenDelete(entry.id)
               >
                 <HiOutlineTrash className={css.iconDelete} />
               </button>

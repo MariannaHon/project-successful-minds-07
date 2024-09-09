@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import css from './TodayListModal.module.css';
 import icons from '../../../public/symbol-defsN.svg';
@@ -76,6 +77,18 @@ export const TodayListModal = ({
               </div>
             </div>
 
+            {isModalOpen && (
+                <div className={css.modalOverlay}>
+                    <EditWaterForm
+                        initialAmount={amount}
+                        initialDate={date}
+                        updateWaterData={updateWaterData}
+                        onClose={handleModalClose}
+                    />
+                </div>
+            )}
+
+
             <div className={css.amountCorrection}>
               <p className={css.enteredData}>Correct entered data:</p>
               <p>Amount of water:</p>
@@ -145,5 +158,6 @@ TodayListModal.propTypes = {
   initialDate: PropTypes.instanceOf(Date).isRequired,
   updateWaterData: PropTypes.func.isRequired,
 };
+
 
 export default TodayListModal;
