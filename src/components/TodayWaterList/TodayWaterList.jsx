@@ -77,7 +77,7 @@ export const TodayWaterList = () => {
               </button>
               <button
                 className={css.btnTrash}
-                onClick={() => handleOpenDelete(entry.id)
+                onClick={() => handleOpenDelete(entry.id)}
               >
                 <HiOutlineTrash className={css.iconDelete} />
               </button>
