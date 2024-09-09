@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 // import { RiDeleteBinLine } from "react-icons/ri";
-import { CiGlass } from "react-icons/ci";
+import { CiGlass } from 'react-icons/ci';
 // import { EditWaterForm } from './AddWaterList';
 import css from './TodayWaterList.module.css';
 const TodayWaterList = () => {
@@ -11,13 +11,12 @@ const TodayWaterList = () => {
     { id: 3, amount: 200, time: '14:00' },
     { id: 4, amount: 150, time: '16:00' },
     { id: 5, amount: 150, time: '16:00' },
-    { id: 6, amount: 150, time: '16:00' }
-
+    { id: 6, amount: 150, time: '16:00' },
   ]);
-  const handleEdit = (id) => {
+  const handleEdit = id => {
     setWaterEntries(waterEntries.filter(entry => entry.id !== id));
   };
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     setWaterEntries(waterEntries.filter(entry => entry.id !== id));
   };
   return (
@@ -33,11 +32,20 @@ const TodayWaterList = () => {
               <p className={css.time}>{entry.time}</p>
             </div>
             <div className={css.btnAll}>
-              <button className={css.btnPencil} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil} /></button>
+              <button
+                className={css.btnPencil}
+                onClick={() => handleEdit(entry.id)}
+              >
+                <HiOutlinePencilSquare className={css.iconPencil} />
+              </button>
               {/* <EditWaterForm /> */}
-              <button className={css.btnTrash} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete} /></button>
+              <button
+                className={css.btnTrash}
+                onClick={() => handleDelete(entry.id)}
+              >
+                <HiOutlineTrash className={css.iconDelete} />
+              </button>
             </div>
-
           </li>
         ))}
       </ul>
