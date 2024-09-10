@@ -1,22 +1,17 @@
 import { useState } from 'react';
 import { CgAdd } from 'react-icons/cg';
 import css from './WaterRatioPanel.module.css';
-// import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
-import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx'
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
-const WaterRatioPanel = ({ progress }) => {
+const WaterRatioPanel = ({ progress, handleAddWater }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const updateWaterData = (amount, date) => {
-    console.log(`Amount: ${amount}, Date: ${date}`);
-    setIsModalOpen(false);
-  };
-
   return (
+
     <div className={css.container}>
       <h2 className={css.title}>Today</h2>
       <div className={css.progressBarContainer}>
@@ -44,12 +39,14 @@ const WaterRatioPanel = ({ progress }) => {
         </button>
       </div>
 
+        
+
       {isModalOpen && (
-        <div className={css.modalOverlay}>
-          <div className={css.modalContent}>
-            <AddWaterModal/>
-          </div>
-        </div>
+        <AddWaterModal
+          initialAmount={0}
+          onClose={toggleModal}
+          updateWaterData={handleAddWater} // Додаємо нову воду
+        />
       )}
     </div>
   );
