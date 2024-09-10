@@ -5,7 +5,7 @@ import {
   logOut,
   refreshUser,
   forgotPassword,
-  updatePassword
+  //updatePassword
 
 } from './operations';
 
@@ -87,20 +87,20 @@ const authSlice = createSlice({
       })
 
       // ++++++++++++++++++++++++++++++++++++++++
-      .addCase(updatePassword.pending, state => {
-        state.loading = true;
-      })
-      .addCase(updatePassword.fulfilled, (state, action) => {
+      // .addCase(updatePassword.pending, state => {
+      //   state.loading = true;
+      // })
+      // .addCase(updatePassword.fulfilled, (state, action) => {
        
-        console.log('Password was successfully reset!');
-        state.user = action.payload.data.user;
-        state.error = null;
-        state.loading = false;
-      })
-      .addCase(updatePassword.rejected, (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      });
+      //   console.log('Password was successfully reset!');
+      //   state.user = action.payload.data.user;
+      //   state.error = null;
+      //   state.loading = false;
+      // })
+      // .addCase(updatePassword.rejected, (state, action) => {
+      //   state.error = action.payload;
+      //   state.loading = false;
+      // });
   },
 });
 
