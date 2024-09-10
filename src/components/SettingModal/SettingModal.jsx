@@ -12,7 +12,8 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
-import { selectUser } from '../../redux/user/selectors';
+
+import { selectUser } from '../../redux/auth/selectors';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Formik, Form, Field } from 'formik';
