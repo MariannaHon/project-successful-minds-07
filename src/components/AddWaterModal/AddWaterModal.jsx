@@ -1,4 +1,3 @@
-
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
@@ -11,6 +10,7 @@ import { RxMinus, RxPlus } from 'react-icons/rx';
 import css from "./AddWaterModal.module.css";
 import moment from "moment";
 import toast from 'react-hot-toast';
+import { nanoid } from "@reduxjs/toolkit";
 
 // Оновлена схема валідації для часу у форматі HH:mm
 const WaterSchema = Yup.object().shape({
@@ -23,9 +23,8 @@ const WaterSchema = Yup.object().shape({
         .required("Required field!"),
 });
 
-const AddWaterModal = ({ initialAmount = 50, onClose }) => {
+const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
     const dispatch = useDispatch();
-    const fieldId = useId();
     const [amountOfWater, setAmountOfWater] = useState(initialAmount);
 
     const incrementOfCounter = 50;
@@ -51,23 +50,23 @@ const AddWaterModal = ({ initialAmount = 50, onClose }) => {
         return moment(`${date} ${time}`, "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm");
     };
 
-    const initialTime = timeNow;
-
     const handleAddWater = (values, actions) => {
         const date = moment().format("YYYY-MM-DD"); // Текуча дата
         const formattedDateTime = formatDateTime(date, values.date);
         const waterVolume = values.waterVolume;
-        console.log("dfghjk", formattedDateTime);
-       
-        
 
         dispatch(addWater({ localTime: formattedDateTime, waterValue: waterVolume }))
             .unwrap()
             .then(() => {
                 actions.resetForm();
-                onClose();
-                setAmountOfWater(50);
+                onClose(); // Закриття модального вікна
+                setAmountOfWater(50); // Скидання кількості води
                 toast.success('Water data added successfully!');
+                updateWaterData({
+                    id: nanoid(), // Додаємо новий id для водного запису
+                    amount: waterVolume,
+                    date: formattedDateTime
+                });
             })
             .catch((error) => {
                 console.error("Failed to add water:", error);
@@ -87,7 +86,7 @@ const AddWaterModal = ({ initialAmount = 50, onClose }) => {
                     </div>
 
                     <Formik
-                        initialValues={{ date: initialTime, waterVolume: initialAmount }}
+                        initialValues={{ date: timeNow, waterVolume: initialAmount }}
                         onSubmit={handleAddWater}
                         validationSchema={WaterSchema}
                     >
@@ -181,7 +180,6 @@ const AddWaterModal = ({ initialAmount = 50, onClose }) => {
             </Box>
         </Modal>
     );
-
 };
 
 export default AddWaterModal;
