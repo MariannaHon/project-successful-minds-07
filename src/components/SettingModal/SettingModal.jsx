@@ -76,11 +76,11 @@ function SettingModal() {
         gender: selectedGender,
         name: values.name,
         email: values.email,
-        password: values.nPassword
+        password: values.nPassword || values.password
       })           
     ).unwrap();
-      if (result) {
-        actions.resetForm();
+      if (updateUser.fulfilled) {
+        actions.resetForm(result);
         setOpen(false);
       }
     } catch (error) {
