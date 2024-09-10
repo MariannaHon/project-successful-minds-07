@@ -2,13 +2,15 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentDate, selectWaterPerMonth } from '../../redux/water/selectors.js';
 import { fetchWaterPerMonth, fetchWaterPerDay } from '../../redux/water/operations';
-import { useAuth } from '../../hooks/useAuth';
 import { setActiveDay } from '../../redux/water/slice';
 import { formatDateToDayMonthYear } from '../../helpers/formatDateToDayMonthYear.js';
 import { convertDateFormatForActiveDay } from '../../helpers/convertDateFormatForActiveDay.js';
 import { isDateAfterToday } from '../../helpers/isDateAfterToday.js';
 import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
+// import { nanoid } from 'nanoid';
+import { selectUser } from '../../redux/auth/selectors';
+import { fetchUser } from '../../redux/user/operations';
 
 const daysInMonth = (month, year) => {
   return new Date(year, month + 1, 0).getDate();
@@ -16,13 +18,30 @@ const daysInMonth = (month, year) => {
 
 const Calendar = () => {
   const dispatch = useDispatch();
+
   const currentDate = useSelector(selectCurrentDate);
-
+  console.log(currentDate);
+  const user = useSelector(selectUser);
   const waterPerMonth = useSelector(selectWaterPerMonth);
+  console.log(waterPerMonth);
 
-  const activeDay = useSelector(state => state.water.activeDay);
+  useEffect(() => {
+    if (user._id) {
+        dispatch(fetchUser(user._id));
+    }
+}, [dispatch, user._id]);
 
-  const user = useAuth().user;
+
+  // const waterPerMonth = [{
+  //   id: nanoid(),
+  //   amount: 340,
+  //   date: new Date(),
+  // }]
+  
+
+  // const activeDay = useSelector(state => state.water.activeDay);
+
+  const activeDay = "02.05.2024";
 
   const calculateFeasibility = dayData => {
     if (!dayData || dayData.length === 0) return 0;
@@ -87,7 +106,8 @@ const Calendar = () => {
   };
 
   const formattedActiveDay = convertDateFormatForActiveDay(activeDay);
-
+ console.log(daysArray);
+ 
   return (
     <div data-tour="calendar-step" className={css.container}>
       <ul className={css.list}>

@@ -2,7 +2,7 @@
 import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
-// import Calendar from '../../components/Calendar/Calendar.jsx';
+import Calendar from '../../components/Calendar/Calendar.jsx';
 import css from './HomePage.module.css';
 const HomePage = () => {
   const progress = 50;
@@ -15,7 +15,7 @@ const HomePage = () => {
       </div>
       <div className={css.rightColumn}>
         <TodayWaterList />
-        {/* <Calendar /> */}
+        <Calendar /> 
       </div>
     </div >
   );

@@ -25,20 +25,22 @@ function handleError(state, action) {
   state.error = action.payload;
 }
 
+const initialState = {
+  waters: {
+    waterPerMonth: [],
+    waterPerDay: {
+      waterRecord: [],
+    },
+  },
+  loading: false,
+  error: false,
+  activeDay: localDate(),
+  currentDate: Date.now(),
+};
+
 const waterSlice = createSlice({
   name: 'water',
-  initialState: {
-    waters: {
-      waterPerMonth: [],
-      waterPerDay: {
-        waterRecord: [],
-      },
-    },
-    loading: false,
-    error: false,
-    activeDay: localDate(),
-    currentDate: Date.now(),
-  },
+  initialState,
   reducers: {
     setActiveDay(state, action) {
       state.activeDay = action.payload;
