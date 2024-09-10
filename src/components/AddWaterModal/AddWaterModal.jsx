@@ -23,7 +23,7 @@ const WaterSchema = Yup.object().shape({
         .required("Required field!"),
 });
 
-export const AddWaterModal = ({ initialAmount = 50, onClose }) => {
+const AddWaterModal = ({ initialAmount = 50, onClose }) => {
     const dispatch = useDispatch();
     const fieldId = useId();
     const [amountOfWater, setAmountOfWater] = useState(initialAmount);
