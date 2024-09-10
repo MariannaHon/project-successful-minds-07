@@ -1,3 +1,4 @@
+
 import DailyNorma from '../../components/DailyNorma/DailyNorma.jsx';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel.jsx';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
@@ -6,18 +7,17 @@ import css from './HomePage.module.css';
 const HomePage = () => {
   const progress = 50;
 
-	return (
+  return (
     <div className={css.homePage}>
-      <div >
-        <DailyNorma className={css.norma}/>
-
+      <DailyNorma className={css.norma} />
+      <div className={css.leftColumn}>
         <WaterRatioPanel progress={progress} />
       </div>
       <div className={css.rightColumn}>
         <TodayWaterList />
         {/* <Calendar /> */}
       </div>
-    </div>
+    </div >
   );
 };
 export default HomePage;

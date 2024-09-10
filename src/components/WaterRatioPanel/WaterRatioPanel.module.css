@@ -1,54 +1,43 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   margin-bottom: 40px;
-  padding: 232px 20px 0px 20px;
+  padding: 0 20px;
 }
 
 .title {
   font-size: 18px;
-  line-height: 1.33;
-  color: #407bff;
-  font-weight: 400;
-  margin-bottom: 8px;
+  line-height: 24px;
+  color: #407BFF;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 .progressBarContainer {
-  max-width: 280px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 16px;
 }
 
-.progressBar {
-  position: relative;
-  flex-grow: 1;
-  width: 256px;
-  opacity: 0px;
-  height: 8px;
-  background-color: #d7e3ff;
-  border-radius: 5px;
-  margin-bottom: 16px;
+.progressTextNumber {
+  display: flex;
+  width: 280px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -7px;
 }
 
-.progress {
-  background-color: #9ebbff;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  width: 256px;
+.progressText {
+  font-size: 12px;
+  font-weight: 400;
+  color: #407BFF;
 }
 
-.thumb {
-  position: absolute;
-  top: -4px;
-  width: 14px;
-  height: 14px;
-  background-color: white;
-  border: 1px solid #407bff;
-  border-radius: 50%;
+.progressTextM {
+  font-size: 16px;
+  font-weight: 500;
+  color: #407BFF;
 }
 
 .marks {
@@ -63,20 +52,37 @@
   position: absolute;
   width: 1px;
   height: 8px;
-  background-color: #d7e3ff;
+  background-color: #D7E3FF;
 }
 
-.progressTextNumber {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.progressBar {
+  position: relative;
+  flex-grow: 1;
+  width: 256px;
+  margin-left: 10px;
+  margin-right: 14px;
+  opacity: 0px;
+  height: 8px;
+  background-color: #D7E3FF;
+  border-radius: 5px;
+  margin-bottom: 16px;
 }
 
-.progressText {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.25;
-  color: #407bff;
+.progress {
+  background-color: #9EBBFF;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 256px;
+}
+
+.thumb {
+  position: absolute;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border: 1px solid #407BFF;
+  border-radius: 50%;
 }
 
 .centerMark {
@@ -84,102 +90,81 @@
   left: 50%;
   transform: translateX(-50%);
   top: 16px;
-  color: #407bff;
+  color: #407BFF;
   font-size: 14px;
 }
 
 .addWaterButton {
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  justify-content: center;
-  align-items: center;
   display: flex;
-  background-color: #407bff;
-  color: #ffffff;
-  height: 36px;
+  justify-content: center;
+  background-color: #407BFF;
+  color: #FFFFFF;
   width: 280px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: 18px;
+  margin-top: 40px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px #407BFF57;
   cursor: pointer;
 }
 
 .addWaterButton:hover {
-  background-color: #407bff;
-  box-shadow: 0px 4px 14px 0px #407bff8a;
+  background-color: #407BFF;
+  box-shadow: 0px 4px 14px 0px #407BFF8A;
 }
 
 .icon {
   width: 24px;
   height: 24px;
-  margin-right: 10px;
-  color: #ffffff;
-}
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--overlay-bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  margin-right: 20px;
+  color: #FFFFFF;
 }
 
 @media screen and (min-width: 768px) {
-  .container {
-    flex-direction: row;
-    padding: 326px 32px 0px 32px;
-  }
 
-  .title {
-    font-size: 18px;
-    line-height: 1.33;
-    color: #407bff;
-    font-weight: 400;
-    margin-bottom: 16px;
+  .container {
+    margin-top: -150px;
   }
 
   .progressBarContainer {
-    max-width: 704px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .addWaterButton {
+    width: 336px;
+    margin-top: 0px;
+    margin-top: -10px;
+  }
+
+  .title {
+    margin-bottom: 16px;
   }
 
   .progressBar {
     width: 325px;
-    margin-right: 12px;
-    margin-bottom: unset;
   }
 
-  .progress {
-    width: 325px;
-  }
-
-  .addWaterButton {
-    height: 44px;
-    width: 336px;
-    font-size: 18px;
-    line-height: 1.33;
+  .progressTextNumber {
+    width: 356px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .container {
-		padding-top: 466px;
-  }
-
   .progressBar {
     width: 360px;
   }
 
-  .progressBarContainer {
+  .progressTextNumber {
     width: 391px;
   }
 
   .addWaterButton {
     width: 178px;
-    height: 44px;
+    padding: 10px 10px;
   }
 }

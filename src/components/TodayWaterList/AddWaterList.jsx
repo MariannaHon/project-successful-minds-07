@@ -10,7 +10,8 @@ export const AddWaterList = ({
   updateWaterData,
 }) => {
   const [amount, setAmount] = useState(initialAmount);
-  const [date, setDate] = useState(initialDate);
+	const [date, setDate] = useState(initialDate);
+
 
   const formatTimeForInput = date => {
     let hours = new Date(date).getHours();
@@ -41,7 +42,7 @@ export const AddWaterList = ({
     setAmount(amount + 50);
   };
 
-  const handleFormSubmit = event => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
     const newAmount = amount; // отримуємо кількість води з стану
     const newDate = date; // отримуємо дату з стану
@@ -67,7 +68,7 @@ export const AddWaterList = ({
       <div className={css.formEditInfo}>
         <div className={css.amountCorrection}>
           <p className={css.enteredData}>Choose a value:</p>
-          <p className={css.amountWaterTitle}>Amount of water:</p>
+          <p>Amount of water:</p>
           <div className={css.amountCalc}>
             <button
               type="button"
@@ -93,7 +94,7 @@ export const AddWaterList = ({
           </div>
 
           <div className={css.inputWrapper}>
-            <p className={css.recordingTime}>Recording time:</p>
+            <p>Recording time:</p>
             <input
               type="time"
               value={formatTimeForInput(date)}
@@ -124,7 +125,6 @@ export const AddWaterList = ({
     </form>
   );
 };
-
 
 AddWaterList.propTypes = {
   onClose: PropTypes.func.isRequired,
