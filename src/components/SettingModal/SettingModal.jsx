@@ -76,7 +76,7 @@ function SettingModal() {
         gender: selectedGender,
         name: values.name,
         email: values.email,
-        password: values.nPassword
+        password: values.nPassword || values.password
       })
             
     ).unwrap();
