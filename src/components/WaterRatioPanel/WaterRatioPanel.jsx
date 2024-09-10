@@ -16,9 +16,11 @@ const WaterRatioPanel = ({ progress }) => {
   };
 
   return (
-    <div className={css.container}>
+		<div className={css.container}>
+		<div className={css.progressBarContainer}>	
       <h2 className={css.title}>Today</h2>
-      <div className={css.progressBarContainer}>
+
+      
         <div className={css.progressBar}>
           <div className={css.progress} style={{ width: `${progress}%` }} />
           <div
@@ -38,21 +40,19 @@ const WaterRatioPanel = ({ progress }) => {
             <span className={css.progressText}>100%</span>
           </div>
         </div>
-        <button className={css.addWaterButton} onClick={toggleModal}>
-          <CgAdd className={css.icon} /> Add Water
-        </button>
       </div>
+      <button className={css.addWaterButton} onClick={toggleModal}>
+        <CgAdd className={css.icon} /> Add Water
+      </button>
 
       {isModalOpen && (
         <div className={css.modalOverlay}>
-          <div className={css.modalContent}>
-            <AddWaterList
-              initialAmount={0} // Ви можете передати початкові значення
-              initialDate={new Date()}
-              updateWaterData={updateWaterData}
-              onClose={toggleModal} // Закрити модальне вікно
-            />
-          </div>
+          <AddWaterList
+            initialAmount={0}
+            initialDate={new Date()}
+            updateWaterData={updateWaterData}
+            onClose={toggleModal}
+          />
         </div>
       )}
     </div>
