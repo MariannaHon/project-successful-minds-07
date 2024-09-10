@@ -80,8 +80,8 @@ function SettingModal() {
       })
             
     ).unwrap();
-      if (result) {
-        actions.resetForm();
+      if (updateUser.fulfilled) {
+        actions.resetForm(result);
         handleClose();
       }
     } catch (error) {
@@ -102,7 +102,7 @@ function SettingModal() {
     }
   };
 // radio groop
-const [selectedGender, setSelectedGender] = useState('female');
+const [selectedGender, setSelectedGender] = useState();
 const handleGenderChange = (event) => {
   setSelectedGender(event.target.value);
 };
@@ -170,8 +170,8 @@ const handleGenderChange = (event) => {
                          row
                          aria-labelledby="gender-radio-group-label"                         
                          name="gender"
-                         value={selectedGender}
-                        onChange={handleGenderChange}                         
+                         value={selectedGender || userData?.gender}
+                         onChange={handleGenderChange}                        
                       >
                         <FormControlLabel
                           value="female"
