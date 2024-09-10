@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CgAdd } from 'react-icons/cg';
 import css from './WaterRatioPanel.module.css';
 // import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
-import { AddWaterModal } from '../AddWaterModal/AddWaterModal.jsx'
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx'
 
 const WaterRatioPanel = ({ progress }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
