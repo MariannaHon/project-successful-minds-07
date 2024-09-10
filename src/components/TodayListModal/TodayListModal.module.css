@@ -1,281 +1,266 @@
+
+.glass {
+    width: 36px;
+    height: 36px;
+
+}
+
+.edit,
+.delete {
+    width: 16px;
+    height: 16px;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 534px;
+    height: 36px;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.itemWrapper::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: #D7E3FF;
+    position: absolute;
+    bottom: -12px;
+}
+
+.svgWrapper {
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.amount {
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #407BFF;
+}
+
+.date {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.dateAmount {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.dateAmount p {
+    margin: 0;
+}
+
+.infoWrapper {
+    display: flex;
+    flex-direction: row;
+    min-width: 158px;
+    gap: 16px;
+    align-items: center;
+}
+
 .sectionModal {
-  background-color: var(--primary-white);
-  border-radius: var(--border-radius-smaller);
-  padding: 24px 12px;
-  min-width: 280px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
   margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
 .sectionHeader {
-  width: 200px;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  text-align: start;
-  margin-bottom: 24px;
-  line-height: var(--line-height-normal);
-  color: var(--primary-black);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
 }
 
 .crossBtn {
   position: absolute;
-  top: 24px;
-  right: 12px;
-  background-color: transparent;
+  top: 16px;
+  right: 16px;
+  background: none;
   border: none;
   cursor: pointer;
 }
 
 .crossBtn svg {
-  width: var(--icon-size-base);
-  height: var(--icon-size-base);
-  fill: var(--primary-blue);
+  width: 16px;
+  height: 16px;
+  fill: #888;
 }
 
 .formEditInfo {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
-.itemWrapper {
-  border-radius: 10px;
-  background-color: #ecf2ff;
+.waterPreInfo {
   display: flex;
-  width: 256px;
-  height: 52px;
   align-items: center;
-  padding: 8px 24px;
-  margin-bottom: 24px;
+  gap: 12px;
 }
 
-.dateAmount {
+.svgGlass {
+  width: 24px;
+  height: 24px;
+  fill: #00bfff;
+}
+
+.timeAmount {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-.glass {
-  width: 36px;
-  height: 36px;
-  margin-right: 12px;
+.waterAmount {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.amount {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.33;
-  color: #407bff;
-  margin-right: 16px;
-}
-
-.date {
-  color: #2f2f2f;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 2;
+.spanTime {
+  font-size: 14px;
+  color: #888;
 }
 
 .amountCorrection {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 .enteredData {
-  margin-bottom: 16px;
-  color: var(--primary-black);
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-extra-tight);
-}
-
-.amountWaterTitle {
-  margin-bottom: 12px;
-  color: var(--primary-black);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-relaxed); /* 125% */
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .amountCalc {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 24px;
-  gap: 7px;
+  gap: 8px;
 }
 
-.amountBtnDec,
+.amountBtnDec, 
 .amountBtnInc {
-  width: 44px;
-  height: 44px;
-  background-color: transparent;
-  border: 1px solid var(--secondary-blue);
-  padding: 10px;
-  border-radius: var(--border-radius-large);
+  background-color: #00bfff;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--box-shadow-lighter);
+  transition: background-color 0.3s ease;
 }
 
-.amountBtnDec svg,
+.amountBtnDec:disabled, 
+.amountBtnInc:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.amountBtnDec svg, 
 .amountBtnInc svg {
-  width: var(--icon-size-small);
-  height: var(--icon-size-small);
-  fill: var(--primary-blue);
+  width: 16px;
+  height: 16px;
+  fill: #fff;
 }
 
 .spanAmount {
-  width: 92px;
-  display: flex;
-  padding: 6px 10px;
-  justify-content: center;
-  align-items: center;
-  border-radius: var(--border-radius-larger);
-  background-color: var(--secondary-pale-blue);
-  color: var(--primary-blue);
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-loose);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .inputWrapper {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
-.recordingTime {
-  margin-bottom: 12px;
-  color: var(--primary-black);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-relaxed);
-}
-
-.inputWrapper input[type='time'],
-.inputWrapper input[type='number'] {
-  margin-bottom: 24px;
-  padding: 12px 10px;
-  border-radius: var(--border-radius-small);
-  border: 1px solid var(--secondary-pale-blue);
-  color: var(--primary-blue);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-relaxed);
-  width: 256px;
-  height: 42px;
-}
-
-input[type='time']::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-}
-
-input[type='time']::-moz-focus-inner {
-  border: 0;
+.inputWrapper input[type="time"], 
+.inputWrapper input[type="number"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
 }
 
 .numberTopic {
-  width: 240px;
-  margin-bottom: 16px;
-  color: var(--primary-black);
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-extra-tight);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .saveBtnWrapper {
+  margin-top: 16px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .finalAmountSave {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 16px;
 }
 
 .finalAmountSave p {
-  color: var(--primary-blue);
-  font-size: var(--font-size-medium);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-loose);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .finalAmountSave button {
-  width: 256px;
-  height: 36px;
-  padding: 8px 30px;
-  background-color: var(--primary-blue);
-  color: var(--primary-white);
-  box-shadow: var(--box-shadow-regular);
-  font-size: var(--font-size-smaller);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-relaxed);
-  border-radius: var(--border-radius-smaller);
+  background-color: #00bfff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* tablet */
-@media screen and (min-width: 768px) {
-  .sectionModal {
-    padding: 32px 24px;
-    min-width: 704px;
-  }
-
-  .sectionHeader {
-    width: 384px;
-  }
-
-  .crossBtn {
-    top: 32px;
-    right: 24px;
-  }
-
-  .itemWrapper {
-    width: 254px;
-  }
-
-  .inputWrapper input[type='time'],
-  .inputWrapper input[type='number'] {
-    width: 544px;
-  }
-
-  .numberTopic {
-    width: 348px;
-  }
-
-  .saveBtnWrapper {
-    justify-content: flex-end;
-  }
-
-  .finalAmountSave {
-    flex-direction: row;
-    gap: 24px;
-  }
-
-  .finalAmountSave button {
-    width: 160px;
-    height: 44px;
-    padding: 10px 30px;
-    font-size: var(--font-size-medium);
-    line-height: var(--line-height-loose);
-  }
+.finalAmountSave button:hover {
+  background-color: #0099cc;
 }
 
-/* desktop */
-@media screen and (min-width: 1440px) {
-  .sectionModal {
-    min-width: 592px;
-  }
+.finalAmountSave button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
-  .inputWrapper input[type='time'],
-  .inputWrapper input[type='number'] {
-    width: 544px;
-  }
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1001;
+  width: 100%;
 }

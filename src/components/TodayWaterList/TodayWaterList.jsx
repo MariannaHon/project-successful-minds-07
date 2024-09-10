@@ -34,6 +34,7 @@ export const TodayWaterList = () => {
     setWaterItems([newWaterItem, ...waterItems]);
   };
 
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -55,17 +56,7 @@ export const TodayWaterList = () => {
     setWaterItems(waterItems.filter(entry => entry.id !== entryToDelete));
     handleCloseDelete();
   };
-
-  // Edit a water entry (opens the modal)
-  const handleEdit = item => {
-    setEditingRecord(item);
-  };
-
-  // Close the edit modal
-  const handleEditModalClose = () => {
-    setEditingRecord(null);
-  };
-
+  
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
@@ -80,6 +71,7 @@ export const TodayWaterList = () => {
             <div className={css.btnAll}>
               <button
                 className={css.btnPencil}
+
                 onClick={() => handleEdit(entry)}
               >
                 <HiOutlinePencilSquare className={css.iconPencil} />
@@ -95,17 +87,17 @@ export const TodayWaterList = () => {
         ))}
       </ul>
       <button className={css.addWaterButton} onClick={toggleModal}>
-        <span className={css.plusSymb}>&#x2b;</span> Add water
+        + Add water
       </button>
 
       {/*  Render modal for editing water entries */}
       {editingRecord && (
-        <div className={css.modalOverlay}>
+        <div className={css.modalBackdrop}>
           <TodayListModal
             onClose={handleEditModalClose}
             initialAmount={editingRecord.amount}
             initialTime={editingRecord.time}
-            //updateWaterData={handleUpdateWater}
+            updateWaterData={handleUpdateWater}
           />
         </div>
       )}
@@ -114,25 +106,22 @@ export const TodayWaterList = () => {
       {isDeleteModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalDelete}>
-            <div className={css.crossSvg} onClick={handleCloseDelete}>
-              <svg>
-                <use href={`${icons}#icon-cross`}></use>
-              </svg>
-            </div>
+            <svg className={css.crossSvg} onClick={handleCloseDelete}>
+              <use href={`${icons}#icon-cross`}></use>
+            </svg>
             <div className={css.deleteQuestion}>
               <p className={css.deleteEntry}>Delete entry</p>
               <p className={css.sure}>
                 Are you sure you want to delete the entry?
               </p>
-
-              <div className={css.choiseBtns}>
-                <button className={css.btnCancel} onClick={handleCloseDelete}>
-                  Cancel
-                </button>
-                <button className={css.btnDel} onClick={handleDelete}>
-                  Delete
-                </button>
-              </div>
+            </div>
+            <div className={css.choiseBtns}>
+              <button className={css.btnCancel} onClick={handleCloseDelete}>
+                Cancel
+              </button>
+              <button className={css.btnDel} onClick={handleDelete}>
+                Delete
+              </button>
             </div>
           </div>
         </div>
@@ -140,18 +129,20 @@ export const TodayWaterList = () => {
 
       {isModalOpen && (
         <div className={css.modalOverlay}>
-          <AddWaterList
-            initialAmount={0} // Ви можете передати початкові значення
-            // initialDate={new Date()}
-            // value={formatTimeForInput(date)}
-            onClose={toggleModal} // Закрити модальне вікно
-            // onChange={handleTimeChange}
-          />
+          <div className={css.modalContent}>
+            <AddWaterList
+              initialAmount={0} // Ви можете передати початкові значення
+              // initialDate={new Date()}
+              // value={formatTimeForInput(date)}
+              onClose={toggleModal} // Закрити модальне вікно
+              updateWaterData={handleAddWater}
+              // onChange={handleTimeChange}
+            />
+          </div>
         </div>
       )}
     </div>
   );
 };
-
 
 export default TodayWaterList;
