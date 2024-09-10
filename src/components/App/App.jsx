@@ -45,6 +45,7 @@ export default function App() {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/reset-password" element={<UpdatePasswordPage />} />
             <Route
               path="/"
               element={
@@ -72,15 +73,15 @@ export default function App() {
                 />
               }
             />
-            <Route
-              path="/reset-password:token"
+            {/* <Route
+              path="/reset-password"
               element={
                 <PrivateRoute
                   component={UpdatePasswordPage}
                   redirectTo="/signin"
                 />
               }
-            />
+            /> */}
             <Route
               path="/home"
               element={<PrivateRoute component={HomePage} redirectTo="/signin" />}

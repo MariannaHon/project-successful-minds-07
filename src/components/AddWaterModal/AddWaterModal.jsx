@@ -1,3 +1,4 @@
+
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId, useState } from "react";
@@ -180,6 +181,7 @@ const AddWaterModal = ({ initialAmount = 50, onClose }) => {
             </Box>
         </Modal>
     );
+
 };
 
 export default AddWaterModal;

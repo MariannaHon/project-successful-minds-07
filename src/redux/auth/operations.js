@@ -11,6 +11,7 @@ const clearAuthHeader = () => {
 };
 
 axios.defaults.baseURL = 'https://successful-minds-db.onrender.com';
+axios.defaults.withCredentials = true;
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -122,7 +123,7 @@ export const forgotPassword = createAsyncThunk(
 );
 
 export const updatePassword = createAsyncThunk(
-  'auth/updatePassword',
+  'auth/reset-password',
   async ({ newPassword, confirmPassword, token }, thunkAPI) => {
     try {
       if (newPassword !== confirmPassword) {
@@ -130,7 +131,7 @@ export const updatePassword = createAsyncThunk(
         return thunkAPI.rejectWithValue("Passwords don't match");
       }
 
-      const response = await axios.patch('/auth/password', {
+      const response = await axios.patch('/auth/reset-password', {
         newPassword,
         confirmPassword,
         token,

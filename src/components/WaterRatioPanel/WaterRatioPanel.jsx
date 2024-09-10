@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
-import { CgAdd } from "react-icons/cg";
+import { CgAdd } from 'react-icons/cg';
 import css from './WaterRatioPanel.module.css';
-import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx'; 
+import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
 
-const WaterRatioPanel = ({ progress, handleAddWater }) => {
+const WaterRatioPanel = ({ progress }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -13,7 +12,7 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
 
   const updateWaterData = (amount, date) => {
     console.log(`Amount: ${amount}, Date: ${date}`);
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
 
   return (
@@ -22,7 +21,10 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
       <div className={css.progressBarContainer}>
         <div className={css.progressBar}>
           <div className={css.progress} style={{ width: `${progress}%` }} />
-          <div className={css.thumb} style={{ left: `calc(${progress}% - 7px)` }} />
+          <div
+            className={css.thumb}
+            style={{ left: `calc(${progress}% - 7px)` }}
+          />
 
           <div className={css.marks}>
             <span className={css.mark} style={{ left: '0%' }} />
@@ -32,7 +34,7 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
 
           <div className={css.progressTextNumber}>
             <span className={css.progressText}>0%</span>
-            <span className={css.progressTextM}>50%</span>
+            <span className={css.progressText}>50%</span>
             <span className={css.progressText}>100%</span>
           </div>
         </div>
@@ -42,12 +44,16 @@ const WaterRatioPanel = ({ progress, handleAddWater }) => {
       </div>
 
       {isModalOpen && (
-        <AddWaterModal
-          initialAmount={0}
-          initialDate={new Date()}
-          updateWaterData={updateWaterData}
-          onClose={toggleModal} 
-        />
+        <div className={css.modalOverlay}>
+          <div className={css.modalContent}>
+            <AddWaterList
+              initialAmount={0} // Ви можете передати початкові значення
+              initialDate={new Date()}
+              updateWaterData={updateWaterData}
+              onClose={toggleModal} // Закрити модальне вікно
+            />
+          </div>
+        </div>
       )}
     </div>
   );

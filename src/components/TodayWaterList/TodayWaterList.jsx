@@ -1,8 +1,15 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import { WaterEntry } from './TodayWaterListModal';
+import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+// import { RiDeleteBinLine } from "react-icons/ri";
+import { CiGlass } from 'react-icons/ci';
+// import { EditWaterForm } from './AddWaterList';
 import css from './TodayWaterList.module.css';
-import { EditWaterForm } from './AddWaterList';
+
+import { AddWaterList } from './AddWaterList';
+import { TodayListModal } from '../TodayListModal/TodayListModal';
+import icons from '../../../public/symbol-defsN.svg';
+
 
 export const TodayWaterList = () => {
   const [waterItems, setWaterItems] = useState([
@@ -14,6 +21,9 @@ export const TodayWaterList = () => {
   ]);
 
   const [editingRecord, setEditingRecord] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State to manage delete modal
+  const [entryToDelete, setEntryToDelete] = useState(null); // Entry to be deleted
 
   const handleAddWater = () => {
     const newWaterItem = {
@@ -24,67 +34,115 @@ export const TodayWaterList = () => {
     setWaterItems([newWaterItem, ...waterItems]);
   };
 
-  const handleDelete = id => {
-    setWaterItems(waterItems.filter(elem => elem.id !== id));
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
-  const handleEdit = item => {
-    setEditingRecord(item);
+  // Open the delete modal
+  const handleOpenDelete = id => {
+    setEntryToDelete(id);
+    setIsDeleteModalOpen(true);
   };
 
-  const handleEditModalClose = () => {
-    setEditingRecord(null);
+  // Close the delete modal
+  const handleCloseDelete = () => {
+    setEntryToDelete(null);
+    setIsDeleteModalOpen(false);
   };
 
-  const handleUpdateWater = (updatedAmount, updatedDate) => {
-    setWaterItems(
-      waterItems.map(item =>
-        item.id === editingRecord.id
-          ? { ...item, amount: updatedAmount, date: updatedDate }
-          : item
-      )
-    );
-    handleEditModalClose();
+  // Confirm delete
+  const handleDelete = () => {
+    setWaterItems(waterItems.filter(entry => entry.id !== entryToDelete));
+    handleCloseDelete();
   };
-
+  
   return (
-    <div className={css.tableWrapper}>
-      <div className={css.todayWrapper}>
-        <p className={css.today}>Today</p>
-        <div className={css.listContainer}>
-          <div className={css.hightRegulator}>
-            <ul className={css.listWraper}>
-              {waterItems.map(elem => (
-                <li key={elem.id}>
-                  <WaterEntry
-                    initialAmount={elem.amount}
-                    initialDate={elem.date}
-                    onDelete={() => handleDelete(elem.id)}
-                    onEdit={() => handleEdit(elem)}
-                  />
-                </li>
-              ))}
-            </ul>
-            <button className={css.addBtn} onClick={handleAddWater}>
-              <svg>
-                <use href="/project-successful-minds-07/symbol-defs.svg#icon-plus`"></use>
-              </svg>
-              <span>Add water</span>
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className={css.todayWaterList}>
+      <h2 className={css.title}>Today</h2>
+      <ul className={css.list}>
+        {waterItems.map(entry => (
+          <li key={entry.id} className={css.item}>
+            <div className={css.value}>
+              <CiGlass className={css.iconGlass} />
+              <p className={css.amount}>{entry.amount} ml</p>
+              <p className={css.time}>{entry.time}</p>
+            </div>
+            <div className={css.btnAll}>
+              <button
+                className={css.btnPencil}
 
+                onClick={() => handleEdit(entry)}
+              >
+                <HiOutlinePencilSquare className={css.iconPencil} />
+              </button>
+              <button
+                className={css.btnTrash}
+                onClick={() => handleOpenDelete(entry.id)}
+              >
+                <HiOutlineTrash className={css.iconDelete} />
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <button className={css.addWaterButton} onClick={toggleModal}>
+        + Add water
+      </button>
+
+      {/*  Render modal for editing water entries */}
       {editingRecord && (
         <div className={css.modalBackdrop}>
-          <EditWaterForm
+          <TodayListModal
             onClose={handleEditModalClose}
             initialAmount={editingRecord.amount}
-            initialDate={editingRecord.date}
+            initialTime={editingRecord.time}
             updateWaterData={handleUpdateWater}
           />
+        </div>
+      )}
+
+      {/* Render delete confirmation modal */}
+      {isDeleteModalOpen && (
+        <div className={css.modalOverlay}>
+          <div className={css.modalDelete}>
+            <svg className={css.crossSvg} onClick={handleCloseDelete}>
+              <use href={`${icons}#icon-cross`}></use>
+            </svg>
+            <div className={css.deleteQuestion}>
+              <p className={css.deleteEntry}>Delete entry</p>
+              <p className={css.sure}>
+                Are you sure you want to delete the entry?
+              </p>
+            </div>
+            <div className={css.choiseBtns}>
+              <button className={css.btnCancel} onClick={handleCloseDelete}>
+                Cancel
+              </button>
+              <button className={css.btnDel} onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isModalOpen && (
+        <div className={css.modalOverlay}>
+          <div className={css.modalContent}>
+            <AddWaterList
+              initialAmount={0} // Ви можете передати початкові значення
+              // initialDate={new Date()}
+              // value={formatTimeForInput(date)}
+              onClose={toggleModal} // Закрити модальне вікно
+              updateWaterData={handleAddWater}
+              // onChange={handleTimeChange}
+            />
+          </div>
         </div>
       )}
     </div>
   );
 };
+
+export default TodayWaterList;

@@ -9,14 +9,17 @@ const DailyNorma = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [open, setOpen] = useState(false);
+    const [localWaterRate, setLocalWaterRate] = useState(user.waterRate || 2000);
 
     useEffect(() => {
         if (user._id) {
-            dispatch(fetchUser(user._id)); 
-                    
-                       
+            dispatch(fetchUser(user._id));
         }
     }, [dispatch, user._id]);
+
+    useEffect(() => {
+        setLocalWaterRate(user.waterRate);
+    }, [user.waterRate]);
 
     const handleEditClick = () => {
         setOpen(true);
@@ -30,12 +33,12 @@ const DailyNorma = () => {
         return (milliliters / 1000).toFixed(1);
     };
 
-    const handleUpdateSuccess = () => {
+    const handleUpdateSuccess = (newWaterRate) => {
 
-        if (user._id) {
-            dispatch(fetchUser(user._id)); 
-            
-        } 
+        if (newWaterRate) {
+            setLocalWaterRate(newWaterRate);
+        }
+        setOpen(false);
     };
 
     return (
@@ -43,7 +46,7 @@ const DailyNorma = () => {
             <p className={css.title}>My daily norma</p>
             <div className={css.normaContainer}>
                 <span className={css.normaValue}>
-                    {user.waterRate ? convertMillilitersToLiters(user.waterRate) : '2.0'} L
+                    {localWaterRate ? convertMillilitersToLiters(localWaterRate) : '2.0'} L
                 </span>
                 <button className={css.editButton} onClick={handleEditClick}>Edit</button>
             </div>
