@@ -6,13 +6,11 @@ import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
 //import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-//import * as bcrypt from 'bcryptjs';
-
 const UpdatePasswordForm = () => {
 
-  //const navigate = useNavigate();
-  
+
   const dispatch = useDispatch();
+  
   const onSubmit = (values, actions) => {
     const newUser = {
       
@@ -48,42 +46,7 @@ const UpdatePasswordForm = () => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
       >
-        
-        {/* //   try {
-        //     const hashedPassword = await bcrypt.hash(new_password, 10);
-        //     if (!validationSchema.isValidSync(values)) {
-        //       toast.error('Please correct the errors in the form.');
-        //       return;
-        //     }
-        //     const response = await dispatch(
-        //       updatePassword({ new_password: hashedPassword, token })
-        //     );
-
-        //     if (response.status === 200) {
-        //       toast.success('Password updated successfully!');
-        //       navigate('/signin');
-        //     } else if (response.status === 400) {
-        //       toast.error('Invalid password or token.');
-        //     } else if (response.status === 401) {
-        //       toast.error('Unauthorized. Please sign in again.');
-
-        //       localStorage.removeItem('token');
-        //       navigate('/signin');
-        //     } else if (response.status === 500) {
-        //       toast.error('Server error. Please try again later.');
-        //     } else {
-        //       toast.error('Something went wrong. Please try again later.');
-        //     }
-        //   } catch (error) {
-        //     toast.error(error.message);
-        //   } finally {
-        //     actions.setSubmitting(false);
-        //   }
-        //   actions.resetForm();
-     // }}
-  //>
-     */}
-  
+              
       {({ errors, touched }) => (
         <Form className={css.formContainer} noValidate name="Update password">
           <label htmlFor="new_password" className={css.label}>
@@ -93,7 +56,6 @@ const UpdatePasswordForm = () => {
             <Field
               type="password"
               name="new_password"
-              //id={passwordFieldId}
               id={`${id}-new_password`}
               className={`${css.input} ${
                 errors.new_password && touched.new_password
@@ -125,10 +87,8 @@ const UpdatePasswordForm = () => {
             <Field
               type="password"
               name="confirm_new_password"
-              //id={passwordFieldId}
-              id={`${id}-confirm_new_password`}
-              //className={css.inputField}
-              className={`${css.input} ${
+                id={`${id}-confirm_new_password`}
+                className={`${css.input} ${
                 errors.confirm_new_password && touched.confirm_new_password
                   ? css.mismatch
                   : touched.confirm_new_password && !errors.confirm_new_password

@@ -12,6 +12,7 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
+
 import { selectUser } from '../../redux/auth/selectors';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -77,12 +78,11 @@ function SettingModal() {
         name: values.name,
         email: values.email,
         password: values.nPassword || values.password
-      })
-            
+      })           
     ).unwrap();
       if (updateUser.fulfilled) {
         actions.resetForm(result);
-        handleClose();
+        setOpen(false);
       }
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -150,7 +150,7 @@ const handleGenderChange = (event) => {
                       <div className={css.changeAvatar}>
                         <img
                           src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
-                            (userData.avatarUrl ||
+                            (userData?.avatarUrl ||
                             'public/images/setting/Avatar.jpg')
                           }
                           alt="Avatar"
@@ -171,7 +171,8 @@ const handleGenderChange = (event) => {
                          aria-labelledby="gender-radio-group-label"                         
                          name="gender"
                          value={selectedGender || userData?.gender}
-                         onChange={handleGenderChange}                        
+                        onChange={handleGenderChange}
+                                                 
                       >
                         <FormControlLabel
                           value="female"
