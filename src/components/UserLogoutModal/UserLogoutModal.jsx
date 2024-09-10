@@ -17,7 +17,7 @@ const style = {
   border: 'none',
   borderRadius: 2,
   boxShadow: 24,
-  p: 4,
+  p: 3,
 };
 
 const UserLogoutModal = () => {
@@ -38,7 +38,7 @@ const UserLogoutModal = () => {
       <Modal
         open={open}
         onClose={handleClose}>
-        <Box sx={style}>
+        <Box sx={style} className={css.container}>
           <button onClick={handleClose} className={css.iconClose}><IoClose /></button>
           <div className={css.containerAll}>
             <div className={css.containerText}>

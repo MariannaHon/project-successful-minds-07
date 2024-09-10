@@ -21,6 +21,7 @@ import { ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import css from './SettingModal.module.css';
+import { refreshUser } from '../../redux/auth/operations';
 
 const FeedbackSchema = Yup.object().shape({
   gender: Yup.string().oneOf(['male', 'female'] )
@@ -83,6 +84,7 @@ function SettingModal() {
       if (updateUser.fulfilled) {
         actions.resetForm(result);
         setOpen(false);
+        dispatch(refreshUser());
       }
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
