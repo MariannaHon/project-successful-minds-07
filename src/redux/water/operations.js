@@ -46,12 +46,11 @@ export const deleteWater = createAsyncThunk('water/delete', async (id, thunkAPI)
 
 export const addWater = createAsyncThunk(
   'water/add',
-  async ({ localDate, localTime: time, waterValue: amount }, thunkAPI) => {
-    const date = formatDateForAddOrEditWater(localDate);
+  async ({ localTime: time, waterValue: amount }, thunkAPI) => {
 
     try {
       const response = await axios.post('/water', {
-        date,
+        
         time,
         amount,
       });
