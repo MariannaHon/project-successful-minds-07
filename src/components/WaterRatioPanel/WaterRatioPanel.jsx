@@ -46,12 +46,7 @@ const WaterRatioPanel = ({ progress }) => {
       {isModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalContent}>
-            <AddWaterList
-              initialAmount={0} // Ви можете передати початкові значення
-              initialDate={new Date()}
-              updateWaterData={updateWaterData}
-              onClose={toggleModal} // Закрити модальне вікно
-            />
+            <AddWaterModal/>
           </div>
         </div>
       )}
