@@ -1,18 +1,23 @@
 
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo } from "react";
 import css from "./TodayWaterList.module.css";
 import { CiGlass } from 'react-icons/ci';
 import { fetchWaterPerDay } from "../../redux/water/operations.js";
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
+import { selectWatersToday } from '../../redux/water/selectors.js';
+
 
 
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 
 
-export const TodayWaterList = ({ waterItems, handleAddWater }) => {
+export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) => {
+
+  console.log(waterItems);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -32,10 +37,12 @@ export const TodayWaterList = ({ waterItems, handleAddWater }) => {
     setIsDeleteModalOpen(false);
   };
 
-  const handleDelete = () => {
-    setWaterItems(waterItems.filter((entry) => entry.id !== entryToDelete));
+  const handleDelete = (_id) => {
+    setWaterItems(waterItems.filter((entry) => entry._id !== _id));
     handleCloseDelete();
   };
+
+  const waterToday = useSelector(selectWatersToday);
 
   const dispatch = useDispatch();
 
@@ -43,13 +50,18 @@ export const TodayWaterList = ({ waterItems, handleAddWater }) => {
     dispatch(fetchWaterPerDay());
   }, [dispatch]);
 
+  const entries = useMemo(
+    () => waterToday?.records || [],
+    [waterToday]
+  );
+
 
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {waterItems.map((entry) => (
-          <li key={entry.id} className={css.item}>
+        {entries.map((entry) => (
+          <li key={entry._id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
