@@ -44,6 +44,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 
 .leftColumn {
   padding-top: 310px;
+  margin-top: 60px;
 }
 
 .rightColumn {

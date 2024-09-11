@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 179px;
+    /* width: 179px; */
+    gap:12px;
   }
   
   .paginationSection {
