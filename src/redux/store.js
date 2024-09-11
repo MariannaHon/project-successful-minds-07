@@ -32,7 +32,7 @@ const persistedWaterReducer = persistReducer(AuthPersistConfig, waterReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    water: persistedWaterReducer
+    water: persistedWaterReducer,
     modal: modalReducer,
     user: userReducer,
   },
