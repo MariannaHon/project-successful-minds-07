@@ -96,7 +96,8 @@ const WaterRatioPanel = ({ handleAddWater }) => {
         {loading ? (
           <Loader />
         ) : (
-          <div className={css.progressBar}>
+            <div className={css.progressBar}>
+              <div className={css.lightProgress}></div>
             {/* <div className={css.progress} style={{ width: `${progress}%` }} />
             <div
               className={css.thumb}
@@ -115,7 +116,9 @@ const WaterRatioPanel = ({ handleAddWater }) => {
                 left: `calc(${progressPercentage}% - ${(progressPercentage * 14) / 100
                   }px)`,
               }}
-            ></div>
+              >
+                <span className={css.percentageLabel}>{progressPercentage}%</span>
+            </div>
             <div className={css.progressTextNumber}>
               <span
                 className={`${css.progressText} ${progressPercentage <= 0 ? css.mark : ""
