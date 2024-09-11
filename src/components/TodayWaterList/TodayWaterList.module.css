@@ -104,8 +104,9 @@
 
 .btnAll {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   margin-right: 6px;
+  align-items: center;
 }
 
 .iconPencil {
