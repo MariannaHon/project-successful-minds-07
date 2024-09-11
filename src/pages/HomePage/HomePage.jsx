@@ -5,7 +5,6 @@ import css from "./HomePage.module.css";
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
-import css from './HomePage.module.css';
 
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { nanoid } from '@reduxjs/toolkit';
