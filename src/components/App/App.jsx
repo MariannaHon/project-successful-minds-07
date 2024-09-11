@@ -8,7 +8,7 @@ import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { refreshUser } from '../../redux/auth/operations';
 import { selectIsLoading, selectIsRefresh } from '../../redux/auth/selectors';
 
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UpdatePasswordPage = lazy(() =>
@@ -42,7 +42,7 @@ export default function App() {
         .then(() => {
           navigate('/home');
         })
-        .catch(err => console.error(err));
+        .catch(err => toast.error(`Something gone wrong.${err}`));
       return;
     }
   }, [dispatch, token, navigate]);
