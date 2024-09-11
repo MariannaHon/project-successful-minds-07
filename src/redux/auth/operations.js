@@ -134,6 +134,7 @@ export const updatePassword = createAsyncThunk(
       });
       setAuthHeader(response.data.accessToken);
       console.log(response.data);
+      toast.success(`Reset password successfully`);
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
