@@ -1,10 +1,10 @@
+
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../redux/auth/operations';
 import css from './UpdatePasswordForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
-//import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const UpdatePasswordForm = () => {
 
@@ -12,19 +12,19 @@ const UpdatePasswordForm = () => {
   const dispatch = useDispatch();
   
   const onSubmit = (values, actions) => {
+    const token = new URLSearchParams(window.location.search).get('token');
     const newUser = {
       
-      password: values.new_password ||  values.confirm_new_password,
+      password: values.new_password || values.confirm_new_password, token
     };
-    console.log (newUser);
     dispatch(updatePassword(newUser))
       .unwrap()
       .then(() => {})
       .catch(() => {
         toast.error('Passwords did not happen', {
           position: 'top-right',
-       });
-     });
+        });
+      });
     actions.resetForm();
   };
 
