@@ -27,6 +27,7 @@
   --font-weight-regular: 400;
 
   /* LINE-HEIGHT */
+  --line-height-two: 1.5;
   --line-height-loose: 1.33;
 	--line-height: 1.28;
   --line-height-relaxed: 1.25;
@@ -63,4 +64,5 @@
   --box-shadow-medium: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   --box-shadow-small: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
   --box-shadow-dark: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  --box-shadow-medium-two: 0px -2px 14px 0px rgba(64, 123, 255, 0.3);
 }

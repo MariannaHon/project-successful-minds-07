@@ -83,6 +83,7 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
 
   return (
     <div className={css.todayWaterList}>
+      
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
         {waterItems.map((entry) => (
@@ -141,6 +142,7 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
         </div>
       )}
     </div>
+   
   );
 };
 

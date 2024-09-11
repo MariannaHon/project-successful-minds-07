@@ -2,8 +2,8 @@ import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) => {
   const containerStyle = {
-    backgroundColor: isActive ? '#272E59' : feasibility < 100 ? 'rgba(50, 63, 71, 0.2)' : '#FFFFFF',
-    color: isActive ? '#407BFF' : '#000000',
+    backgroundColor: isActive ? '#fff' : feasibility < 100 ? 'rgba(50, 63, 71, 0.2)' : '#FFFFFF',
+    color: isActive ? '#000000' : '#000000',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     opacity: isDisabled ? 0.5 : 1,
   };
@@ -13,16 +13,16 @@ const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) =
   };
 
   return (
-    <div className={css.container}>
+    <div className={css.calendarItemContainer}>
       <button
-        className={css.button}
-        style={containerStyle}
+        className={css.calendarItemButton}
+         style={containerStyle}
         onClick={handleClick}
         disabled={isDisabled}
       >
         {day}
       </button>
-      <p className={css.text}>{feasibility}%</p>
+      <p className={css.calendarItemText}>{feasibility}%</p>
     </div>
   );
 };

@@ -6,12 +6,13 @@ import css from './MonthInfo.module.css'
 const MonthInfo = () => {
     return (
         <section className={css.monthSectionInfo}>
-            <div className={css.monthPaginationContainer}>
+           
+              <div className={css.monthPaginationContainer}>
                 <h3 className={css.monthTitle}>Month</h3>
                 <CalendarPagination />
-            </div>
+               </div>
+                <Calendar />
             
-            <Calendar />
         </section>
         )
 }

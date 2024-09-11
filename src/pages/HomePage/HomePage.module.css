@@ -11,6 +11,26 @@
   margin: 0 auto;
   padding: 0 20px;
 }
+.rightColumn {display: flex;
+  flex-direction: column;
+  width: 280px;
+  
+  
+  box-shadow: var(--box-shadow-medium-two);
+    padding: 24px 8px 24px 8px;
+ border-radius: var(--border-radius-smaller);
+  
+   
+  background-color: var(--secondary-light-blue);
+  /* font-size: var(--font-size-small);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-two); */
+  color: var(--secondary-blue);
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  
+}
 
 /* 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px),
