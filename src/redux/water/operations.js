@@ -7,12 +7,10 @@ import moment from "moment";
 
 
 export const fetchWaterPerDay = createAsyncThunk(
-  'water/fetchWaterPerDay',
+  'waterPerDay/fetch',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/water/today`);
-
-      if (!Array.isArray(response.data)) return;
 
       return response.data.data;
     } catch (error) {
@@ -20,22 +18,6 @@ export const fetchWaterPerDay = createAsyncThunk(
     }
   }
 );
-
-// export const fetchWaterPerMonth = createAsyncThunk(
-//   'water/fetchWaterPerMonth',
-//   async (monthReqParams, thunkAPI) => {
-//     try {
-//       const monthReqSearchParams = new URLSearchParams(monthReqParams)
-//       const response = await axios.get(`/water/month?${monthReqSearchParams.toString()}`);
-
-//       if (!Array.isArray(response.data.data)) return;
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const fetchWaterPerMonth = createAsyncThunk(
   'water/fetchWaterPerMonth',
