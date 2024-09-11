@@ -102,7 +102,10 @@ export const TodayWaterList = ({
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
-                {formatDate}
+                {new Date(entry.date).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
               </p>
             </div>
 
