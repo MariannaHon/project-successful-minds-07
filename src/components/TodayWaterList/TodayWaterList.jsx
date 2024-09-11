@@ -1,52 +1,37 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
 // import { CiGlass } from 'react-icons/ci';
-import { fetchWaterPerDay } from '../../redux/water/operations.js';
-import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-//import TodayListModal from '../TodayListModal/TodayListModal.jsx';
-import { deleteWater } from '../../redux/water/operations.js';
-import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
-import icons from '../../../public/symbol-defsN.svg';
-import { refreshUser } from '../../redux/auth/operations';
+import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
 
-export const TodayWaterList = () => {
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
+import EditModal from '../EditModal/EditModal.jsx';
+import { HiOutlineTrash } from 'react-icons/hi2';
+
+import { selectWatersToday } from '../../redux/water/selectors.js';
+
+import icons from '../../../public/symbol-defsN.svg';
+
+export const TodayWaterList = ({
+  waterItems,
+  setWaterItems,
+  handleAddWater,
+}) => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
-  const [waterItems, setWaterItems] = useState([]);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await dispatch(fetchWaterPerDay()).unwrap();
-        setWaterItems(response.records);
-      } catch (err) {
-        console.error('Failed to fetch water data:', err);
-      }
-    };
-
-    fetchData();
-  }, [dispatch]);
-
-  const handleAddWater = newWater => {
-    setWaterItems([newWater, ...waterItems]);
-    dispatch(refreshUser());
-  };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   const handleOpenDelete = id => {
-    if (id) {
-      setEntryToDelete(id);
-      setIsDeleteModalOpen(true);
-    } else {
-      console.error('Invalid ID: ', id);
-    }
+    setEntryToDelete(id);
+    setIsDeleteModalOpen(true);
   };
 
   const handleCloseDelete = () => {
@@ -54,31 +39,55 @@ export const TodayWaterList = () => {
     setIsDeleteModalOpen(false);
   };
 
-  const confirmDelete = async () => {
-    try {
-      if (!entryToDelete) {
-        throw new Error('Invalid ID');
-      }
-      await dispatch(deleteWater(entryToDelete)).unwrap();
-      setWaterItems(prevItems =>
-        prevItems.filter(entry => entry._id !== entryToDelete)
-      );
-      setIsDeleteModalOpen(false);
-    } catch (err) {
-      console.error(err);
+  const handleDelete = id => {
+    if (entryToDelete) {
+      dispatch(deleteWater(entryToDelete))
+        .unwrap()
+        .then(() => {
+          dispatch(fetchWaterPerDay());
+        })
+        .catch(err => {
+          console.error(err);
+        });
+      setWaterItems(waterItems.filter(entry => entry.id !== id));
+      handleCloseDelete();
     }
   };
+
+  const waterToday = useSelector(selectWatersToday);
+
+  useEffect(() => {
+    dispatch(fetchWaterPerDay());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (waterToday?.records) {
+      const formattedItems = waterToday.records.map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        })
+      }));
+      setWaterItems(formattedItems);
+    }
+  }, [waterToday, setWaterItems]);
 
   const sortedWaterItems = waterItems
     .slice()
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  console.log(sortedWaterItems);
+
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {sortedWaterItems.map(entry => (
-          <li key={entry._id} className={css.item}>
+        {sortedWaterItems.map((entry) => (
+          <li key={entry._id || entry.id} className={css.item}>
             <div className={css.value}>
                <svg className={css.iconGlass} aria-label="icon-glass"><use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use></svg>
               <p className={css.amount}>{entry.amount} ml</p>
@@ -89,10 +98,9 @@ export const TodayWaterList = () => {
                 })}
               </p>
             </div>
+
             <div className={css.btnAll}>
-              <button className={css.btnPencil}>
-                <HiOutlinePencilSquare className={css.iconPencil} />
-              </button>
+              <EditModal />
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry._id)}
@@ -115,18 +123,6 @@ export const TodayWaterList = () => {
         />
       )}
 
-      {/*  Render modal for editing water entries */}
-      {/* {editingRecord && (
-        <div className={css.modalBackdrop}>
-          <TodayListModal
-            onClose={handleEditModalClose}
-            initialAmount={editingRecord.amount}
-            initialTime={editingRecord.time}
-           // updateWaterData={handleUpdateWater}
-          />
-        </div>
-      )} */}
-
       {isDeleteModalOpen && (
         <div className={css.modalOverlay}>
           <div className={css.modalDelete}>
@@ -143,7 +139,12 @@ export const TodayWaterList = () => {
               <button className={css.btnCancel} onClick={handleCloseDelete}>
                 Cancel
               </button>
-              <button className={css.btnDel} onClick={confirmDelete}>
+              <button
+                className={css.btnDel}
+                onClick={() => {
+                  handleDelete(entryToDelete);
+                }}
+              >
                 Delete
               </button>
             </div>

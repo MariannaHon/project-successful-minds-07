@@ -22,11 +22,6 @@ const WaterRatioPanel = ({ handleAddWater }) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // const updateWaterData = (amount, date) => {
-  //   console.log(`Amount: ${amount}, Date: ${date}`);
-  //   setIsModalOpen(false);
-  // };
-
   const loading = useSelector(selectLoading);
   const water = useSelector(selectWatersToday);
 
@@ -49,12 +44,6 @@ const WaterRatioPanel = ({ handleAddWater }) => {
         ) : (
           <div className={css.progressBar}>
             <div className={css.lightProgress}></div>
-            {/* <div className={css.progress} style={{ width: `${progress}%` }} />
-            <div
-              className={css.thumb}
-              style={{ left: `calc(${progress}% - 7px)` }}
-            /> */}
-
             <div
               className={css.progress}
               style={{
