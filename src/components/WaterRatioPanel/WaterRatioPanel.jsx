@@ -64,7 +64,7 @@ import css from './WaterRatioPanel.module.css';
 import { selectLoading, selectWatersToday } from "../../redux/water/selectors.js";
 
 
-const WaterRatioPanel = () => {
+const WaterRatioPanel = ({handleAddWater}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -91,6 +91,7 @@ const WaterRatioPanel = () => {
     parseFloat(progress) > 100 ? 100 : parseFloat(progress);
 
   return (
+
     <div className={css.container}>
       <h2 className={css.title}>Today</h2>
       <div className={css.progressBarContainer}>
@@ -149,12 +150,14 @@ const WaterRatioPanel = () => {
         Add Water
       </button>
 
+        
+
       {isModalOpen && (
-        <div className={css.modalOverlay}>
-          <div className={css.modalContent}>
-            <AddWaterModal />
-          </div>
-        </div>
+        <AddWaterModal
+          initialAmount={0}
+          onClose={toggleModal}
+          updateWaterData={handleAddWater} // Додаємо нову воду
+        />
       )}
     </div>
   );

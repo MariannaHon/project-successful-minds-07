@@ -5,61 +5,20 @@ import { useEffect, useMemo } from "react";
 import TodayWaterItem from "./TodayWaterItem";
 import css from "./TodayWaterList.module.css";
 import { FaPlus as Plus } from "react-icons/fa6";
+import { CiGlass } from 'react-icons/ci';
 import { selectWatersToday } from "../../redux/water/selectors.js";
 import { fetchWaterPerDay } from "../../redux/water/operations.js";
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
 // import AddWaterList from "./AddWaterList.jsx";
 // import DeleteWater from "./DeleteWater.jsx";
 
 
 
 // import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
-// import { CiGlass } from 'react-icons/ci';
-// import { AddWaterList } from './AddWaterList';
 // import { TodayListModal } from '../TodayListModal/TodayListModal';
 // import icons from '../../../public/symbol-defsN.svg';
 
-
-
-// const [waterItems, setWaterItems] = useState([
-//   {
-//     id: nanoid(),
-//     amount: 340,
-//     date: new Date(),
-//   },
-// ]);
-
-// const [editingRecord, setEditingRecord] = useState(null);
-
-// const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State to manage delete modal
-// const [entryToDelete, setEntryToDelete] = useState(null); // Entry to be deleted
-
-// const handleAddWater = () => {
-//   const newWaterItem = {
-//     id: nanoid(),
-//     amount: 250,
-//     date: new Date(),
-//   };
-//   setWaterItems([newWaterItem, ...waterItems]);
-// };
-
-
-// // Open the delete modal
-// const handleOpenDelete = id => {
-//   setEntryToDelete(id);
-//   setIsDeleteModalOpen(true);
-// };
-
-// // Close the delete modal
-// const handleCloseDelete = () => {
-//   setEntryToDelete(null);
-//   setIsDeleteModalOpen(false);
-// };
-
-// // Confirm delete
-// const handleDelete = () => {
-//   setWaterItems(waterItems.filter(entry => entry.id !== entryToDelete));
-//   handleCloseDelete();
-// };
 
 const formatTime = (isoDateString) => {
   const date = new Date(isoDateString);
@@ -72,12 +31,29 @@ const formatTime = (isoDateString) => {
   return new Intl.DateTimeFormat("en-US", options).format(date);
 };
 
-export const TodayWaterList = () => {
-
+export const TodayWaterList = ({ waterItems, handleAddWater }) => {
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [entryToDelete, setEntryToDelete] = useState(null);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+const handleOpenDelete = (id) => {
+    setEntryToDelete(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDelete = () => {
+    setEntryToDelete(null);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDelete = () => {
+    setWaterItems(waterItems.filter((entry) => entry.id !== entryToDelete));
+    handleCloseDelete();
   };
 
   const dispatch = useDispatch();

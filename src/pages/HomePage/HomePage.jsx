@@ -9,9 +9,23 @@ import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { openModal } from "../../redux/modal/modalSlice.js";
 import DailyNormaModal from "../../components/DailyNormaModal/DailyNormaModal";
 import { selectIsModalOpen } from "../../redux/modal/modalSelectors.js";
+import { nanoid } from '@reduxjs/toolkit';
 
 
 const HomePage = () => {
+  
+  const [waterItems, setWaterItems] = useState([
+    {
+      id: nanoid(),
+      amount: 340,
+      date: new Date().toISOString(),
+    },
+  ]);
+  
+  const handleAddWater = (newWater) => {
+    setWaterItems([newWater, ...waterItems]); // Додаємо нову воду до початку списку
+  };
+  
   const dispatch = useDispatch();
 
   const modalIsOpen = useSelector(selectIsModalOpen);
@@ -26,12 +40,12 @@ const HomePage = () => {
         <title>Home page</title>
       </Helmet>
       <div className={css.homePage}>
+        <DailyNorma className={css.norma} />
         <div className={css.leftColumn}>
-          <DailyNorma handleOpenModal={handleOpenModal} />
-          <WaterRatioPanel />
+          <WaterRatioPanel handleAddWater={handleAddWater} />
         </div>
         <div className={css.rightColumn}>
-          <TodayWaterList />
+          <TodayWaterList waterItems={waterItems} handleAddWater={handleAddWater} />
           {/* <MonthStatsTable /> */}
         </div>
       </div>
@@ -41,3 +55,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
