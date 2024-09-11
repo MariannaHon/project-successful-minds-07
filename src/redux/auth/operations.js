@@ -124,19 +124,16 @@ export const forgotPassword = createAsyncThunk(
 
 export const updatePassword = createAsyncThunk(
   'auth/reset-password',
-  async ({ newPassword, confirmPassword, token }, thunkAPI) => {
+  async ({ password, token }, thunkAPI) => {
     try {
-      if (newPassword !== confirmPassword) {
-        toast.error("Passwords don't match");
-        return thunkAPI.rejectWithValue("Passwords don't match");
-      }
+      
 
-      const response = await axios.patch('/reset-password', {
-        newPassword,
-        confirmPassword,
+      const response = await axios.post('/auth/reset-password', {
+        password,
         token,
       });
       setAuthHeader(response.data.accessToken);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -144,3 +141,24 @@ export const updatePassword = createAsyncThunk(
     }
   }
 );
+// export const updatePassword = createAsyncThunk(
+//   'auth/reset-password',
+//   async ({ password, newPassword, token }, thunkAPI) => {
+//     try {
+//       if (password !== newPassword) {
+//         toast.error("Passwords don't match");
+//         return thunkAPI.rejectWithValue("Passwords don't match");
+//       }
+//       const response = await axios.post('/auth/reset-password', {
+//         password,
+//         newPassword,
+//         token,
+//       });
+//       setAuthHeader(response.data.accessToken);
+//       return response.data;
+//     } catch (error) {
+//       toast.error('Something went wrong :( Try again later.');
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

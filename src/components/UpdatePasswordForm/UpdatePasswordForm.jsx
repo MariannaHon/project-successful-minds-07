@@ -14,9 +14,9 @@ const UpdatePasswordForm = () => {
   const onSubmit = (values, actions) => {
     const newUser = {
       
-      new_password: values.new_password,
-      confirm_new_password: values.confirm_new_password,
+      password: values.new_password ||  values.confirm_new_password,
     };
+    console.log (newUser);
     dispatch(updatePassword(newUser))
       .unwrap()
       .then(() => {})
