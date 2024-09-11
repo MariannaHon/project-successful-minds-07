@@ -91,8 +91,9 @@ const WaterRatioPanel = ({ handleAddWater }) => {
   return (
 
     <div className={css.container}>
-      <h2 className={css.title}>Today</h2>
+      
       <div className={css.progressBarContainer}>
+        <h2 className={css.title}>Today</h2>
         {loading ? (
           <Loader />
         ) : (
