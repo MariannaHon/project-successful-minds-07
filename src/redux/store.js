@@ -21,11 +21,6 @@ const AuthPersistConfig = {
   whitelist: ['token'],
 };
 
-const WaterPersistConfig = {
-  key: 'root',
-  storage
-};
-
 const persistedAuthReducer = persistReducer(AuthPersistConfig, authReducer);
 const persistedWaterReducer = persistReducer(AuthPersistConfig, waterReducer);
 
