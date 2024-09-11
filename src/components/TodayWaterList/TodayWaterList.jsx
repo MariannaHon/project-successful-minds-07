@@ -6,9 +6,8 @@ import css from "./TodayWaterList.module.css";
 import { CiGlass } from 'react-icons/ci';
 import { fetchWaterPerDay } from "../../redux/water/operations.js";
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-
-
-import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import EditModal from '../EditModal/EditModal.jsx';
+import {  HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 
 
@@ -58,9 +57,7 @@ export const TodayWaterList = ({ waterItems, handleAddWater }) => {
               </p>
             </div>
             <div className={css.btnAll}>
-              <button className={css.btnPencil}>
-                <HiOutlinePencilSquare className={css.iconPencil} />
-              </button>
+              <EditModal/>           
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry.id)}
