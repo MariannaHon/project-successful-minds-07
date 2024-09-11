@@ -4,7 +4,7 @@ import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 //import { selectWatersToday } from '../../redux/water/selectors.js';
 import { fetchWaterPerDay, deleteWater } from '../../redux/water/operations.js';
 import { refreshUser } from '../../redux/auth/operations';
-//import EditModal from '../EditModal/EditModal';
+import EditModal from '../EditModal/EditModal';
 import { CiGlass } from 'react-icons/ci';
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
@@ -96,11 +96,7 @@ export const TodayWaterList = () => {
             </div>
 
             <div className={css.btnAll}>
-              {/* <EditModal /> */}
-
-              <button className={css.btnPencil}>
-                <HiOutlinePencilSquare className={css.iconPencil} />
-              </button>
+             <EditModal /> 
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry._id)}
