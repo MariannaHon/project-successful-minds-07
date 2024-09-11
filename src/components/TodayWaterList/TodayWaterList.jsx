@@ -1,31 +1,17 @@
-
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import css from './TodayWaterList.module.css';
 import { CiGlass } from 'react-icons/ci';
-import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
-
+import { fetchWaterPerDay } from '../../redux/water/operations.js';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-import { selectWatersToday } from '../../redux/water/selectors.js';
-import { refreshUser } from '../../redux/auth/operations';
-import EditModal from '../EditModal/EditModal';
+//import TodayListModal from '../TodayListModal/TodayListModal.jsx';
+import { deleteWater } from '../../redux/water/operations.js';
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
-import css from './TodayWaterList.module.css';
+import { refreshUser } from '../../redux/auth/operations';
 
-const TodayWaterList = () => {
-  
-  const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  };
-
-  return new Intl.DateTimeFormat("en-US", options).format(date);
-};
-  
+export const TodayWaterList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
@@ -35,14 +21,8 @@ const TodayWaterList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-				const response = await dispatch(fetchWaterPerDay()).unwrap();
-				if (Array.isArray(response.records)) {
-          setWaterItems(response.records);
-        } else {
-          console.error('Data is not an array');
-        }
-				 console.log(response.records);
-        // setWaterItems(response.records);
+        const response = await dispatch(fetchWaterPerDay()).unwrap();
+        setWaterItems(response.records);
       } catch (err) {
         console.error('Failed to fetch water data:', err);
       }
@@ -86,43 +66,8 @@ const TodayWaterList = () => {
       setIsDeleteModalOpen(false);
     } catch (err) {
       console.error(err);
-      
-//   const handleDelete = id => {
-//     if (entryToDelete) {
-//       dispatch(deleteWater(entryToDelete))
-//         .unwrap()
-//         .then(() => {
-//           dispatch(fetchWaterPerDay());
-//         })
-//         .catch(err => {
-//           console.error(err);
-//         });
-//       setWaterItems(waterItems.filter(entry => entry.id !== id));
-//       handleCloseDelete();
-//     }
-//   };
-
-  const waterToday = useSelector(selectWatersToday);
-
-//   useEffect(() => {
-//     dispatch(fetchWaterPerDay());
-//   }, [dispatch]);
-
-  useEffect(() => {
-    if (waterToday?.records) {
-      const formattedItems = waterToday.records.map(item => ({
-        ...item,
-        date: new Date(item.date).toLocaleString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        })
-      }));
-      setWaterItems(formattedItems);
     }
-  }, [waterToday, setWaterItems]);
+  };
 
   const sortedWaterItems = waterItems
     .slice()
@@ -144,9 +89,10 @@ const TodayWaterList = () => {
                 })}
               </p>
             </div>
-
             <div className={css.btnAll}>
-             <EditModal /> 
+              <button className={css.btnPencil}>
+                <HiOutlinePencilSquare className={css.iconPencil} />
+              </button>
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry._id)}
@@ -165,9 +111,21 @@ const TodayWaterList = () => {
         <AddWaterModal
           initialAmount={0}
           onClose={toggleModal}
-          updateWaterData={handleAddWater}
+          updateWaterData={handleAddWater} // Викликаємо функцію додавання води
         />
       )}
+
+      {/*  Render modal for editing water entries */}
+      {/* {editingRecord && (
+        <div className={css.modalBackdrop}>
+          <TodayListModal
+            onClose={handleEditModalClose}
+            initialAmount={editingRecord.amount}
+            initialTime={editingRecord.time}
+           // updateWaterData={handleUpdateWater}
+          />
+        </div>
+      )} */}
 
       {isDeleteModalOpen && (
         <div className={css.modalOverlay}>
