@@ -6,7 +6,7 @@
     border: 1px solid #ECF2FF;
     padding: 8px 20px;
     width: 166px;
-
+    position: absolute;
 
 }
 
@@ -48,3 +48,12 @@
     font-size: 16px;
     line-height: 1.25;
 }
+
+@media screen and (min-width: 1440px) {
+  .container {
+    margin-left: 73px;
+}
+}
+
+
+
