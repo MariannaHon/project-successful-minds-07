@@ -25,20 +25,31 @@ function handleError(state, action) {
   state.error = action.payload;
 }
 
+const initialState = {
+  currentMonth: new Date().getMonth(),
+  currentYear: new Date().getFullYear(),
+  daysStats: [],
+  selectedDay: null,
+  hoveredDay: null,
+
+  today: null,
+  items: [],
+
+  loading: false,
+  error: false,
+  activeDay: localDate(),
+  currentDate: Date.now(),
+  waters: {
+    waterPerMonth: [],
+    waterPerDay: {
+      waterRecord: [],
+    },
+  },
+}
+
 const waterSlice = createSlice({
   name: 'water',
-  initialState: {
-    waters: {
-      waterPerMonth: [],
-      waterPerDay: {
-        waterRecord: [],
-      },
-    },
-    loading: false,
-    error: false,
-    activeDay: localDate(),
-    currentDate: Date.now(),
-  },
+  initialState: initialState,
   reducers: {
     setActiveDay(state, action) {
       state.activeDay = action.payload;
@@ -46,6 +57,32 @@ const waterSlice = createSlice({
     setCurrentDate(state, action) {
       state.currentDate = action.payload;
     },
+    prevMonth(state) {
+      if (state.currentMonth === 0) {
+        state.currentMonth = 11;
+        state.currentYear -= 1;
+      } else {
+        state.currentMonth -= 1;
+      }
+      state.selectedDay = null;
+    },
+    nextMonth(state) {
+      if (state.currentMonth === 11) {
+        state.currentMonth = 0;
+        state.currentYear += 1;
+      } else {
+        state.currentMonth += 1;
+      }
+      state.selectedDay = null;
+    },
+    hoverDayIndex(state, action) {
+      state.hoveredDay = action.payload;
+    },
+    selectDay(state, action) {
+      state.selectedDay = action.payload;
+    },
+
+    clearWater: () => initialState,
   },
   extraReducers: builder =>
     builder
@@ -53,20 +90,28 @@ const waterSlice = createSlice({
       .addCase(fetchWaterPerDay.fulfilled, (state, action) => {
         state.error = false;
         state.loading = false;
-        state.waters.waterPerDay.waterRecord = action.payload;
+
+        // state.waters.waterPerDay.waterRecord = action.payload;
+
+        state.today = action.payload;
       })
       .addCase(fetchWaterPerDay.rejected, handleError)
       .addCase(fetchWaterPerMonth.pending, handleLoading)
       .addCase(fetchWaterPerMonth.fulfilled, (state, action) => {
         state.error = false;
         state.loading = false;
-        state.waters.waterPerMonth = action.payload;
+
+        // state.waters.waterPerMonth = action.payload;
+
+        state.daysStats = action.payload;
+        // state.daysStats = action.payload; === state.waters.waterPerMonth = action.payload;
       })
       .addCase(fetchWaterPerMonth.rejected, handleError)
       .addCase(deleteWater.pending, handleLoading)
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
         state.error = false;
+
         state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
           entry => entry._id !== action.payload._id
         );
@@ -91,6 +136,7 @@ const waterSlice = createSlice({
         }
 
         state.waters.waterPerMonth.push(action.payload);
+
       })
       .addCase(addWater.rejected, handleError)
       .addCase(changeWater.pending, handleLoading)
@@ -116,8 +162,8 @@ const waterSlice = createSlice({
         }
       })
       .addCase(changeWater.rejected, handleError),
+
 });
 
 export const waterReducer = waterSlice.reducer;
-export const { setActiveDay, setCurrentDate } = waterSlice.actions;
-
+export const { setActiveDay, setCurrentDate, prevMonth, nextMonth, hoverDayIndex, selectDay, clearWater } = waterSlice.actions;

@@ -1,24 +1,41 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 280px;
   margin-bottom: 40px;
-  padding: 0 20px;
-}
-
-.title {
-  font-size: 18px;
-  line-height: 24px;
-  color: #407BFF;
-  margin-bottom: 10px;
-  text-align: left;
 }
 
 .progressBarContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 280px;
+  height: 82px;
+  /* margin-bottom: 16px; */
+  /* position: relative; */
+}
+
+.progressBar {
+  position: relative;
+  width: 256px;
+  margin-left: 10px;
+  margin-right: 14px;
+  opacity: 0px;
+  height: 7px;
+  background-color: #D7E3FF;
+  border-radius: 5px;
   margin-bottom: 16px;
 }
+
+.title {
+  font-size: 18px;
+  line-height: 1.33;
+  color: #407BFF;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
 
 .progressTextNumber {
   display: flex;
@@ -30,9 +47,12 @@
 
 .progressText {
   font-size: 12px;
+  line-height: 1.33;
   font-weight: 400;
   color: #407BFF;
 }
+
+/*
 
 .progressTextM {
   font-size: 16px;
@@ -47,26 +67,16 @@
   right: 0;
   height: 0;
 }
+    */
 
 .mark {
   position: absolute;
   width: 1px;
   height: 8px;
   background-color: #D7E3FF;
-}
-
-.progressBar {
-  position: relative;
-  flex-grow: 1;
-  width: 256px;
-  margin-left: 10px;
-  margin-right: 14px;
-  opacity: 0px;
-  height: 8px;
-  background-color: #D7E3FF;
-  border-radius: 5px;
-  margin-bottom: 16px;
-}
+  font-size: 16px;
+  font-weight: 500;
+} 
 
 .progress {
   background-color: #9EBBFF;
@@ -85,14 +95,14 @@
   border-radius: 50%;
 }
 
-.centerMark {
+/* .centerMark {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 16px;
   color: #407BFF;
   font-size: 14px;
-}
+} */
 
 .addWaterButton {
   display: flex;
@@ -100,8 +110,10 @@
   background-color: #407BFF;
   color: #FFFFFF;
   width: 280px;
+  height: 36px;
   font-size: 18px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  margin: 16px auto 0px;
   padding: 10px 30px;
   border: none;
   border-radius: 10px;
@@ -125,6 +137,9 @@
 
   .container {
     margin-top: -150px;
+    display: flex;
+    flex-direction: row;
+    width: 704px;
   }
 
   .progressBarContainer {
@@ -137,8 +152,9 @@
 
   .addWaterButton {
     width: 336px;
+    height: 44px;
     margin-top: 0px;
-    margin-top: -10px;
+    /* margin-top: -10px; */
   }
 
   .title {
@@ -155,6 +171,13 @@
 }
 
 @media screen and (min-width: 1440px) {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 592px;
+  }
+
   .progressBar {
     width: 360px;
   }
@@ -165,6 +188,9 @@
 
   .addWaterButton {
     width: 178px;
+    height: 44px;
     padding: 10px 10px;
   }
 }
+
+

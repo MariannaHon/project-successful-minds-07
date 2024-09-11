@@ -1,6 +1,6 @@
 .todayWaterList {
   position: relative;
-  background-color: #ECF2FF;
+  background-color: #ecf2ff;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   max-width: 280px;
@@ -12,14 +12,22 @@
 
 .title {
   font-size: 24px;
-  color: #2F2F2F;
+  color: #2f2f2f;
   position: sticky;
   top: 0;
-  background-color: #ECF2FF;
+  background-color: #ecf2ff;
   margin: 0;
   padding-top: 16px;
   padding-bottom: 10px;
   z-index: 1;
+}
+
+.noNotes {
+  color: var(--primary-blue-color, #407bff);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 152px;
 }
 
 .list {
@@ -31,25 +39,21 @@
   height: 200px;
 }
 
-
 .list::-webkit-scrollbar {
   width: 4px;
 }
 
 .list::-webkit-scrollbar-thumb {
-  background-color: #9EBBFF;
+  background-color: #9ebbff;
   border-radius: 10px;
-
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 8px 0; */
-  border-bottom: 1px solid #D7E3FF;
+  border-bottom: 1px solid #d7e3ff;
   height: 50px;
-  /* margin: 10px 0; */
 }
 
 .value {
@@ -59,9 +63,8 @@
 
 .amount {
   font-size: 18px;
-  color: #407BFF;
+  color: #407bff;
   margin-right: 16px;
-  /* margin-bottom: 16px; */
 }
 
 .time {
@@ -86,7 +89,7 @@
   bottom: -2px;
   width: 16px;
   height: 1px;
-  background-color: #9EBBFF;
+  background-color: #9ebbff;
 }
 
 .btnTrash:hover::after {
@@ -96,7 +99,7 @@
   bottom: -2px;
   width: 16px;
   height: 1px;
-  background-color: #EF5050;
+  background-color: #ef5050;
 }
 
 .btnAll {
@@ -108,24 +111,27 @@
 .iconPencil {
   width: 16px;
   height: 16px;
-  color: #9EBBFF;
-  background-color: #ECF2FF;
+  color: #9ebbff;
+  background-color: #ecf2ff;
   border-radius: none;
-  /* margin-right: 18px; */
 }
 
 .iconDelete {
-  color: #EF5050;
-  /* margin-right: 18px; */
-
+  color: #ef5050;
 }
 
 .iconGlass {
   width: 36px;
   height: 36px;
-  color: #407BFF;
+  color: #407bff;
   margin-right: 12px;
-  /* margin-top: 6px; */
+}
+
+.crossSvg {
+  width: 16px;
+  height: 16px;
+  fill: #888;
+	cursor: pointer;
 }
 
 .addWaterButton {
@@ -136,8 +142,8 @@
   display: block;
   width: 100%;
   height: 40px;
-  background-color: #ECF2FF;
-  color: #407BFF;
+  background-color: #ecf2ff;
+  color: #407bff;
   border: none;
   cursor: pointer;
   padding: 0;
@@ -145,8 +151,8 @@
 }
 
 .addWaterButton:hover {
-  background-color: #ECF2FF;
-  color: #FF9D43;
+  background-color: #ecf2ff;
+  color: #ff9d43;
 }
 
 @media screen and (min-width: 768px) {
@@ -162,7 +168,6 @@
 }
 
 @media screen and (min-width: 1440px) {
-
   .todayWaterList {
     max-width: 592px;
   }
@@ -173,3 +178,112 @@
     justify-content: space-between;
   }
 }
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1001;
+  width: 100%;
+}
+
+.closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modalDelete {
+  width: 592px;
+  height: 208px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 32px 24px;
+  box-sizing: border-box;
+}
+
+.deleteEntry {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: left;
+  margin-top: 0;
+}
+
+.sure {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  margin: 0;
+}
+
+.deleteQuestion {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.crossSvg {
+  position: absolute;
+  top: 36px;
+  right: 24px;
+}
+
+.choiseBtns {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+.btnCancel {
+  width: 160px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  background-color: #d7e3ff;
+  color: #407bff;
+}
+
+.btnDel {
+  width: 160px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  background-color: #ef5050;
+  color: #fff;
+  box-shadow: 0 4px 8px 0 #407bff57;
+}
+
+

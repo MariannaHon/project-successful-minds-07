@@ -1,49 +1,113 @@
-import { useState } from 'react';
-import { HiOutlinePencilSquare, HiOutlineTrash } from "react-icons/hi2";
-// import { RiDeleteBinLine } from "react-icons/ri";
-import { CiGlass } from "react-icons/ci";
-// import { EditWaterForm } from './AddWaterList';
-import css from './TodayWaterList.module.css';
-const TodayWaterList = () => {
-  const [waterEntries, setWaterEntries] = useState([
-    { id: 1, amount: 250, time: '7:00' },
-    { id: 2, amount: 220, time: '11:00' },
-    { id: 3, amount: 200, time: '14:00' },
-    { id: 4, amount: 150, time: '16:00' },
-    { id: 5, amount: 150, time: '16:00' },
-    { id: 6, amount: 150, time: '16:00' }
 
-  ]);
-  const handleEdit = (id) => {
-    setWaterEntries(waterEntries.filter(entry => entry.id !== id));
+import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import css from "./TodayWaterList.module.css";
+import { CiGlass } from 'react-icons/ci';
+import { fetchWaterPerDay } from "../../redux/water/operations.js";
+import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
+
+import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import icons from '../../../public/symbol-defsN.svg';
+
+
+export const TodayWaterList = ({ waterItems, handleAddWater }) => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [entryToDelete, setEntryToDelete] = useState(null);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
-  const handleDelete = (id) => {
-    setWaterEntries(waterEntries.filter(entry => entry.id !== id));
+
+  const handleOpenDelete = (id) => {
+    setEntryToDelete(id);
+    setIsDeleteModalOpen(true);
   };
+
+  const handleCloseDelete = () => {
+    setEntryToDelete(null);
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDelete = () => {
+    setWaterItems(waterItems.filter((entry) => entry.id !== entryToDelete));
+    handleCloseDelete();
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchWaterPerDay());
+  }, [dispatch]);
+
+
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {waterEntries.map(entry => (
+        {waterItems.map((entry) => (
           <li key={entry.id} className={css.item}>
-            {/* <svg className={css.iconGlass} aria-label="icon-glass"><use href="/imgHomePage/Glass.svg#icon-glass"></use></svg> */}
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
-              <p className={css.time}>{entry.time}</p>
+              <p className={css.time}>
+                {new Date(entry.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </p>
             </div>
             <div className={css.btnAll}>
-              <button className={css.btnPencil} onClick={() => handleEdit(entry.id)}><HiOutlinePencilSquare className={css.iconPencil} /></button>
-              {/* <EditWaterForm /> */}
-              <button className={css.btnTrash} onClick={() => handleDelete(entry.id)}><HiOutlineTrash className={css.iconDelete} /></button>
+              <button className={css.btnPencil}>
+                <HiOutlinePencilSquare className={css.iconPencil} />
+              </button>
+              <button
+                className={css.btnTrash}
+                onClick={() => handleOpenDelete(entry.id)}
+              >
+                <HiOutlineTrash className={css.iconDelete} />
+              </button>
             </div>
-
           </li>
         ))}
       </ul>
-      <button className={css.addWaterButton}>+ Add water</button>
+      <button className={css.addWaterButton} onClick={toggleModal}>
+        + Add water
+      </button>
+
+      {isModalOpen && (
+        <AddWaterModal
+          initialAmount={0}
+          onClose={toggleModal}
+          updateWaterData={handleAddWater} // Викликаємо функцію додавання води
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <div className={css.modalOverlay}>
+          <div className={css.modalDelete}>
+            <svg className={css.crossSvg} onClick={handleCloseDelete}>
+              <use href={`${icons}#icon-cross`}></use>
+            </svg>
+            <div className={css.deleteQuestion}>
+              <p className={css.deleteEntry}>Delete entry</p>
+              <p className={css.sure}>Are you sure you want to delete the entry?</p>
+            </div>
+            <div className={css.choiseBtns}>
+              <button className={css.btnCancel} onClick={handleCloseDelete}>
+                Cancel
+              </button>
+              <button className={css.btnDel} onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default TodayWaterList;
+
+

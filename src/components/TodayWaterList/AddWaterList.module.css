@@ -1,0 +1,243 @@
+.glass {
+    width: 36px;
+    height: 36px;
+
+}
+
+.edit,
+.delete {
+    width: 16px;
+    height: 16px;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 534px;
+    height: 36px;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.itemWrapper::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: #D7E3FF;
+    position: absolute;
+    bottom: -12px;
+}
+
+.svgWrapper {
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.amount {
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #407BFF;
+}
+
+.date {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.dateAmount {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.dateAmount p {
+    margin: 0;
+}
+
+.infoWrapper {
+    display: flex;
+    flex-direction: row;
+    min-width: 158px;
+    gap: 16px;
+    align-items: center;
+}
+
+.sectionModal {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.sectionHeader {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.crossBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.crossBtn svg {
+  width: 16px;
+  height: 16px;
+  fill: #888;
+}
+
+.formEditInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.waterPreInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.svgGlass {
+  width: 24px;
+  height: 24px;
+  fill: #00bfff;
+}
+
+.timeAmount {
+  display: flex;
+  flex-direction: column;
+}
+
+.waterAmount {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.spanTime {
+  font-size: 14px;
+  color: #888;
+}
+
+.amountCorrection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.enteredData {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.amountCalc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amountBtnDec, 
+.amountBtnInc {
+  background-color: #00bfff;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.amountBtnDec:disabled, 
+.amountBtnInc:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.amountBtnDec svg, 
+.amountBtnInc svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+.spanAmount {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper input[type="time"], 
+.inputWrapper input[type="number"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+}
+
+.numberTopic {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.saveBtnWrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.finalAmountSave {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.finalAmountSave p {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.finalAmountSave button {
+  background-color: #00bfff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.finalAmountSave button:hover {
+  background-color: #0099cc;
+}
+
+.finalAmountSave button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

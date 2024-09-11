@@ -83,7 +83,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
 
             await dispatch(updateUser(updateUserPayload)).unwrap();
             toast.success('The changes were successfully applied!');
-            onUpdateSuccess();
+            onUpdateSuccess(todayWaterInMilliliters);
             onClose();
         } catch (error) {
             console.error('Update failed:', error);
