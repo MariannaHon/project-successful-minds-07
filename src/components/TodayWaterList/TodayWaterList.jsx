@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
-import { CiGlass } from 'react-icons/ci';
+// import { CiGlass } from 'react-icons/ci';
 import { fetchWaterPerDay } from '../../redux/water/operations.js';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 //import TodayListModal from '../TodayListModal/TodayListModal.jsx';
@@ -80,7 +80,7 @@ export const TodayWaterList = () => {
         {sortedWaterItems.map(entry => (
           <li key={entry._id} className={css.item}>
             <div className={css.value}>
-              <CiGlass className={css.iconGlass} />
+               <svg className={css.iconGlass} aria-label="icon-glass"><use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use></svg>
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
                 {new Date(entry.time).toLocaleTimeString([], {
