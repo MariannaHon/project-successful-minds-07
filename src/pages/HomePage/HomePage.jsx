@@ -4,6 +4,8 @@ import css from "./HomePage.module.css";
 
 import DailyNorma from "../../components/DailyNorma/DailyNorma";
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
+import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
+
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -35,11 +37,7 @@ const HomePage = () => {
         </div>
         <div className={css.rightColumn}>
           <TodayWaterList waterItems={waterItems} setWaterItems={setWaterItems} handleAddWater={handleAddWater} />
-<<<<<<< Updated upstream
-          {/* <MonthStatsTable /> */}
-=======
-          <MonthInfo />
->>>>>>> Stashed changes
+          <MonthInfo /> 
         </div>
       </div>
     </>

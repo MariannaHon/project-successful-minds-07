@@ -4,7 +4,7 @@ import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../../redux/auth/operations';
 import { useId } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
 
 const ForgotPasswordForm = () => {
   const mailFieldId = useId();
