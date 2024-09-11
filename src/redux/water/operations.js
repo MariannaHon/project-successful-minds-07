@@ -3,12 +3,13 @@ import axios from 'axios';
 // import { toast } from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formatDateForAddOrEditWater } from '../../helpers/formatDateForAddOrEditWater.js';
+import moment from "moment";
 
 export const fetchWaterPerDay = createAsyncThunk(
-  'waterPerDay/fetch',
-  async (localDate, thunkAPI) => {
+  'water/fetchWaterPerDay',
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/water/day/${localDate}`);
+      const response = await axios.get(`/water/today`);
 
       if (!Array.isArray(response.data)) return;
 
@@ -18,14 +19,35 @@ export const fetchWaterPerDay = createAsyncThunk(
     }
   }
 );
+
+// export const fetchWaterPerMonth = createAsyncThunk(
+//   'water/fetchWaterPerMonth',
+//   async (monthReqParams, thunkAPI) => {
+//     try {
+//       const monthReqSearchParams = new URLSearchParams(monthReqParams)
+//       const response = await axios.get(`/water/month?${monthReqSearchParams.toString()}`);
+
+//       if (!Array.isArray(response.data.data)) return;
+
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const fetchWaterPerMonth = createAsyncThunk(
-  'waterPerMonth/fetch',
-  async (localDate, thunkAPI) => {
+  'water/fetchWaterPerMonth',
+  async (monthReqParams, thunkAPI) => {
     try {
-      const response = await axios.get(`/water/month/${localDate}`);
+      const { month, year } = monthReqParams;
+      const formattedMonth = String(month).padStart(2, '0');
+      const formattedYear = String(year);
+      const response = await axios.get(`/water/month`, {
+        params: { month: formattedMonth, year: formattedYear }
+      });
 
-      if (!Array.isArray(response.data)) return;
+      if (!Array.isArray(response.data.data)) return;
 
       return response.data;
     } catch (error) {
@@ -33,6 +55,8 @@ export const fetchWaterPerMonth = createAsyncThunk(
     }
   }
 );
+
+
 
 export const deleteWater = createAsyncThunk('water/delete', async (id, thunkAPI) => {
   try {
