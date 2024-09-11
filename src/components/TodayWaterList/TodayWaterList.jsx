@@ -1,7 +1,12 @@
+
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { CiGlass } from 'react-icons/ci';
+import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
+
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-//import { selectWatersToday } from '../../redux/water/selectors.js';
+import { selectWatersToday } from '../../redux/water/selectors.js';
 import { fetchWaterPerDay, deleteWater } from '../../redux/water/operations.js';
 import { refreshUser } from '../../redux/auth/operations';
 import EditModal from '../EditModal/EditModal';
@@ -10,7 +15,23 @@ import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 import css from './TodayWaterList.module.css';
 
-export const TodayWaterList = () => {
+export const TodayWaterList = ({
+  waterItems,
+  setWaterItems,
+  handleAddWater,
+}) => {
+  
+  const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
@@ -71,6 +92,41 @@ export const TodayWaterList = () => {
       setIsDeleteModalOpen(false);
     } catch (err) {
       console.error(err);
+      
+//   const handleDelete = id => {
+//     if (entryToDelete) {
+//       dispatch(deleteWater(entryToDelete))
+//         .unwrap()
+//         .then(() => {
+//           dispatch(fetchWaterPerDay());
+//         })
+//         .catch(err => {
+//           console.error(err);
+//         });
+//       setWaterItems(waterItems.filter(entry => entry.id !== id));
+//       handleCloseDelete();
+//     }
+//   };
+
+  const waterToday = useSelector(selectWatersToday);
+
+//   useEffect(() => {
+//     dispatch(fetchWaterPerDay());
+//   }, [dispatch]);
+
+  useEffect(() => {
+    if (waterToday?.records) {
+      const formattedItems = waterToday.records.map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        })
+      }));
+      setWaterItems(formattedItems);
     }
   };
 

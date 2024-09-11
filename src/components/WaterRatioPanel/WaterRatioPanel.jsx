@@ -1,54 +1,4 @@
 
-// import { CgAdd } from 'react-icons/cg';
-
-// // import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
-
-
-// const WaterRatioPanel = ({ progress }) => {
-
-
-
-
-//   return (
-//     <div className={ }>
-
-//       <div className={ }>
-//         <div className={ }>
-//           <div className={css.progress} style={{ width: `${progress}%` }} />
-//           <div
-//             className={css.thumb}
-//             style={{ left: `calc(${progress}% - 7px)` }}
-//           />
-
-//           <div className={css.marks}>
-//             <span className={css.mark} style={{ left: '0%' }} />
-//             <span className={css.mark} style={{ left: '50%' }} />
-//             <span className={css.mark} style={{ left: '100%' }} />
-//           </div>
-
-//           <div className={css.progressTextNumber}>
-//             <span className={css.progressText}>0%</span>
-//             <span className={css.progressText}>50%</span>
-//             <span className={css.progressText}>100%</span>
-//           </div>
-//         </div>
-//         <button className={css.addWaterButton} onClick={toggleModal}>
-//           <CgAdd className={css.icon} /> Add Water
-//         </button>
-//       </div>
-
-//       {isModalOpen && (
-//         <div className={css.modalOverlay}>
-//           <div className={css.modalContent}>
-//             <AddWaterModal />
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default WaterRatioPanel;
 
 
 import { useState } from 'react';
@@ -91,14 +41,14 @@ const WaterRatioPanel = ({ handleAddWater }) => {
   return (
 
     <div className={css.container}>
-      
+
       <div className={css.progressBarContainer}>
         <h2 className={css.title}>Today</h2>
         {loading ? (
           <Loader />
         ) : (
-            <div className={css.progressBar}>
-              <div className={css.lightProgress}></div>
+          <div className={css.progressBar}>
+            <div className={css.lightProgress}></div>
             {/* <div className={css.progress} style={{ width: `${progress}%` }} />
             <div
               className={css.thumb}
@@ -117,8 +67,8 @@ const WaterRatioPanel = ({ handleAddWater }) => {
                 left: `calc(${progressPercentage}% - ${(progressPercentage * 14) / 100
                   }px)`,
               }}
-              >
-                <span className={css.percentageLabel}>{progressPercentage}%</span>
+            >
+              <span className={css.percentageLabel}>{progressPercentage}%</span>
             </div>
             <div className={css.progressTextNumber}>
               <span
