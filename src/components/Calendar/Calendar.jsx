@@ -62,7 +62,7 @@ const Calendar = () => {
 
     const formattedActiveDay = convertDateFormatForActiveDay(activeDay);
 
-    const activeDayData = findObjectByDate(waterPerMonth, formattedActiveDay);
+    const activeDayData = findObjectByDate(waterPerMonth, convertDateFormat(activeDay));
 
     return (
         <div data-tour="calendar-step" className={css.container}>

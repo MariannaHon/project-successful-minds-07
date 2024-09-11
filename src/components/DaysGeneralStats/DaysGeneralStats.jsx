@@ -28,10 +28,10 @@ const DaysGeneralStats = ({ selectedDay, dailyNorm, normCompletion, servings, ta
                 <strong>{selectedDay}</strong>
             </div>
             <div style={styles.statsItem}>
-                <span>Daily norm:</span> <strong>{dailyNorm} L</strong>
+                <span>Daily norm:</span> <strong>{dailyNorm} </strong>
             </div>
             <div style={styles.statsItem}>
-                <span>Fulfillment of the daily norm:</span> <strong>{normCompletion}%</strong>
+                <span>Fulfillment of the daily norm:</span> <strong>{normCompletion}</strong>
             </div>
             <div style={styles.statsItem}>
                 <span>Number of water servings:</span> <strong>{servings}</strong>
