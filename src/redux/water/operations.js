@@ -5,6 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formatDateForAddOrEditWater } from '../../helpers/formatDateForAddOrEditWater.js';
 import moment from "moment";
 
+
 export const fetchWaterPerDay = createAsyncThunk(
   'water/fetchWaterPerDay',
   async (_, thunkAPI) => {
@@ -13,7 +14,7 @@ export const fetchWaterPerDay = createAsyncThunk(
 
       if (!Array.isArray(response.data)) return;
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -49,7 +50,7 @@ export const fetchWaterPerMonth = createAsyncThunk(
 
       if (!Array.isArray(response.data.data)) return;
 
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -60,7 +61,7 @@ export const fetchWaterPerMonth = createAsyncThunk(
 
 export const deleteWater = createAsyncThunk('water/delete', async (id, thunkAPI) => {
   try {
-    const response = await axios.delete(`/water/remove/${id}`);
+    const response = await axios.delete(`/water/${id}`);
 
     return response.data;
   } catch (error) {
@@ -74,7 +75,6 @@ export const addWater = createAsyncThunk(
 
     try {
       const response = await axios.post('/water', {
-        
         time,
         amount,
       });
@@ -88,12 +88,10 @@ export const addWater = createAsyncThunk(
 
 export const changeWater = createAsyncThunk(
   'water/change',
-  async ({ localDate, localTime: time, _id, waterValue: amount }, thunkAPI) => {
-    const date = formatDateForAddOrEditWater(localDate);
+  async ({ localTime: time, _id, waterValue: amount }, thunkAPI) => {
 
     try {
-      const response = await axios.patch(`/water/edit/${_id}`, {
-        date,
+      const response = await axios.patch(`/water/${_id}`, {
         time,
         amount,
       });
@@ -104,4 +102,3 @@ export const changeWater = createAsyncThunk(
     }
   }
 );
-

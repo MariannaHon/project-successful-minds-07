@@ -1,38 +1,78 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 280px;
   margin-bottom: 40px;
-  padding: 0 20px;
-}
-
-.title {
-  font-size: 18px;
-  line-height: 24px;
-  color: #407BFF;
-  margin-bottom: 10px;
-  text-align: left;
 }
 
 .progressBarContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 16px;
+  /* align-items: center; */
+  width: 280px;
+  height: 82px;
+  /* margin-bottom: 16px; */
+  position: relative;
+  
 }
+
+.progressBar {
+  position: relative;
+  width: 256px;
+  margin-left: 10px;
+  margin-right: 14px;
+  opacity: 0px;
+  height: 7px;
+  background-color: #D7E3FF;
+  border-radius: 5px;
+  margin-bottom: 16px;
+ 
+}
+
+.title {
+  font-size: 18px;
+  line-height: 1.33;
+  color: #407BFF;
+  margin-bottom: 10px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
 
 .progressTextNumber {
   display: flex;
-  width: 280px;
+  /* flex-direction: row; */
+  /* flex-wrap: nowrap; */
+  width: 272px;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   margin-left: -7px;
+  position: absolute;
 }
 
 .progressText {
   font-size: 12px;
+  line-height: 1.33;
   font-weight: 400;
   color: #407BFF;
+  position: relative;
 }
+
+.progressText::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  /* Відступ вгору над текстом відсотків */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 8px;
+  /* Висота вертикальної лінії */
+  background-color: #D7E3FF;
+}
+
+/*
 
 .progressTextM {
   font-size: 16px;
@@ -47,32 +87,27 @@
   right: 0;
   height: 0;
 }
+    */
 
-.mark {
+/* .mark {
   position: absolute;
   width: 1px;
   height: 8px;
   background-color: #D7E3FF;
-}
-
-.progressBar {
-  position: relative;
-  flex-grow: 1;
-  width: 256px;
-  margin-left: 10px;
-  margin-right: 14px;
-  opacity: 0px;
-  height: 8px;
-  background-color: #D7E3FF;
-  border-radius: 5px;
-  margin-bottom: 16px;
-}
+  font-size: 16px;
+  font-weight: 500;
+}  */
 
 .progress {
   background-color: #9EBBFF;
   border-radius: 5px;
   margin-bottom: 20px;
   width: 256px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+  
 }
 
 .thumb {
@@ -83,25 +118,40 @@
   background-color: white;
   border: 1px solid #407BFF;
   border-radius: 50%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.centerMark {
+.percentageLabel {
+  position: absolute;
+  top: -15px;
+  /* Відступ для розташування над маркером */
+  font-size: 10px;
+  color: #407BFF;
+  white-space: nowrap;
+}
+
+/* .centerMark {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 16px;
   color: #407BFF;
   font-size: 14px;
-}
+} */
 
 .addWaterButton {
   display: flex;
   justify-content: center;
+  align-items:center;
   background-color: #407BFF;
   color: #FFFFFF;
   width: 280px;
+  height: 36px;
   font-size: 18px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  margin: 16px auto 0px;
   padding: 10px 30px;
   border: none;
   border-radius: 10px;
@@ -124,25 +174,32 @@
 @media screen and (min-width: 768px) {
 
   .container {
-    margin-top: -150px;
+    margin-top: -130px;
+    display: flex;
+    flex-direction: row;
+    width: 704px;
   }
 
   .progressBarContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 12px;
-    align-items: center;
-    justify-content: center;
+    width: 356px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    margin-right: 12px;
   }
 
   .addWaterButton {
     width: 336px;
+    height: 44px;
     margin-top: 0px;
-    margin-top: -10px;
+    /* margin-top: -10px; */
   }
 
   .title {
     margin-bottom: 16px;
+    line-height: 0.03;
   }
 
   .progressBar {
@@ -150,21 +207,33 @@
   }
 
   .progressTextNumber {
-    width: 356px;
+    width: 340px;
   }
+
 }
 
 @media screen and (min-width: 1440px) {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 592px;
+    margin-left: 40px;
+  }
+
   .progressBar {
     width: 360px;
   }
 
   .progressTextNumber {
-    width: 391px;
+    width: 375px;
   }
 
   .addWaterButton {
     width: 178px;
+    height: 44px;
     padding: 10px 10px;
   }
 }
+
+

@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-// import { HashRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './components/App/App.jsx';
 import 'modern-normalize';
 import './styles/globalStyles.css';
@@ -18,7 +18,9 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={<Loader />} persistor={persistor}>
         <BrowserRouter basename="/project-successful-minds-07">
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

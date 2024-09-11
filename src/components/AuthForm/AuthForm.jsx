@@ -64,7 +64,7 @@ const AuthForm = () => {
                 id={mailFieldId}
                 className={
                   errors.email && touched.email
-                    ? `${css.inputField} ${css.inputError}` // Добавляем класс ошибки
+                    ? `${css.inputField} ${css.inputError}`
                     : css.inputField
                 }
                 placeholder="Email"
@@ -90,7 +90,7 @@ const AuthForm = () => {
                 // className={css.inputField_pswd}
                 className={
                   errors.email && touched.email
-                    ? `${css.inputField_pswd} ${css.inputError}` // Добавляем класс ошибки
+                    ? `${css.inputField_pswd} ${css.inputError_pswd}` // Добавляем класс ошибки
                     : css.inputField_pswd
                 }
                 placeholder="Password"

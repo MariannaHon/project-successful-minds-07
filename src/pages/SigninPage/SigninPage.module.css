@@ -109,14 +109,14 @@
     display: block;
     background-image: url('/project-successful-minds-07/images/signin/desktop-bottle.png');
     background-repeat: no-repeat;
-    background-position: left 0px top 0px;
+    background-position: left 0px top -25px;
     /* background-size: cover; */
     width: 916px;
     height: 680px;
   }
   .container_signin {
-    left:-51px;
-    top:50px;
+    left:-38px;
+    top:-80px;
     width: 384px;
   }
 }
