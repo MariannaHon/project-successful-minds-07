@@ -1,10 +1,10 @@
+
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../redux/auth/operations';
 import css from './UpdatePasswordForm.module.css';
 import * as Yup from 'yup';
 import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useId } from 'react';
-//import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const UpdatePasswordForm = () => {
 
@@ -12,10 +12,10 @@ const UpdatePasswordForm = () => {
   const dispatch = useDispatch();
   
   const onSubmit = (values, actions) => {
+    const token = new URLSearchParams(window.location.search).get('token');
     const newUser = {
       
-      new_password: values.new_password,
-      confirm_new_password: values.confirm_new_password,
+      password: values.new_password || values.confirm_new_password, token
     };
     dispatch(updatePassword(newUser))
       .unwrap()

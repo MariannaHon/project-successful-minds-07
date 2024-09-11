@@ -1,17 +1,21 @@
 
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo } from "react";
 import css from "./TodayWaterList.module.css";
 import { CiGlass } from 'react-icons/ci';
 import { fetchWaterPerDay } from "../../redux/water/operations.js";
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
+
 import EditModal from '../EditModal/EditModal.jsx';
 import {  HiOutlineTrash } from 'react-icons/hi2';
+
+import { selectWatersToday } from '../../redux/water/selectors.js';
+
 import icons from '../../../public/symbol-defsN.svg';
 
 
-export const TodayWaterList = ({ waterItems, handleAddWater }) => {
+export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -31,16 +35,29 @@ export const TodayWaterList = ({ waterItems, handleAddWater }) => {
     setIsDeleteModalOpen(false);
   };
 
-  const handleDelete = () => {
-    setWaterItems(waterItems.filter((entry) => entry.id !== entryToDelete));
+  const handleDelete = (_id) => {
+    setWaterItems(waterItems.filter((entry) => entry._id !== _id));
     handleCloseDelete();
   };
+
+  const waterToday = useSelector(selectWatersToday);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWaterPerDay());
   }, [dispatch]);
+
+  // const entries = useMemo(
+  //   () => waterToday?.records || [],
+  //   [waterToday]
+  // );
+
+  useEffect(() => {
+    if (waterToday?.records) {
+      setWaterItems(waterToday.records);
+    }
+  }, [waterToday, setWaterItems]);
 
 
   return (
@@ -56,6 +73,7 @@ export const TodayWaterList = ({ waterItems, handleAddWater }) => {
                 {new Date(entry.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>
+
             <div className={css.btnAll}>
               <EditModal/>           
               <button
