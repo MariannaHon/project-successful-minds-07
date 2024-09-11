@@ -70,7 +70,7 @@ export const TodayWaterList = ({
 
   useEffect(() => {
     dispatch(fetchWaterPerDay());
-  }, [dispatch, waterItems]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (waterToday?.records) {
