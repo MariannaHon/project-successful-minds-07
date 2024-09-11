@@ -7,6 +7,8 @@ import { CiGlass } from 'react-icons/ci';
 import { fetchWaterPerDay } from "../../redux/water/operations.js";
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
+// import { nanoid } from '@reduxjs/toolkit';
+
 import { selectWatersToday } from '../../redux/water/selectors.js';
 
 
@@ -16,8 +18,6 @@ import icons from '../../../public/symbol-defsN.svg';
 
 
 export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) => {
-
-  console.log(waterItems);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -50,18 +50,24 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
     dispatch(fetchWaterPerDay());
   }, [dispatch]);
 
-  const entries = useMemo(
-    () => waterToday?.records || [],
-    [waterToday]
-  );
+  // const entries = useMemo(
+  //   () => waterToday?.records || [],
+  //   [waterToday]
+  // );
+
+  useEffect(() => {
+    if (waterToday?.records) {
+      setWaterItems(waterToday.records);
+    }
+  }, [waterToday, setWaterItems]);
 
 
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {entries.map((entry) => (
-          <li key={entry._id} className={css.item}>
+        {waterItems.map((entry) => (
+          <li key={entry.id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
@@ -69,6 +75,7 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
                 {new Date(entry.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </p>
             </div>
+
             <div className={css.btnAll}>
               <button className={css.btnPencil}>
                 <HiOutlinePencilSquare className={css.iconPencil} />
