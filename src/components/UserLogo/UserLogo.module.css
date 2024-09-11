@@ -1,52 +1,28 @@
 .userLogoWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 122px;
-  }
-  
-  .userLogoName {
-    display: flex;
-    flex-wrap: wrap;
-    width: 74px;
-    color: #2f2f2f;
-    text-align: right;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.25;
-    margin-right: 8px;
-  }
-  
-  .userLogoImg {
-    border-radius: 100px;
-    width: 28px;
-    height: 28px;
-    margin-right: 4px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
-  .userInitial {
-    display: flex;
-    flex-wrap: wrap;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.25;
-    text-align: right;
-    color: #2f2f2f;
-    margin-right: 4px;
+.userLogoName {
+  color: var(--primary-black);
+  text-align: right;
+  font-size: var(--font-size-smaller);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  margin-right: 8px;
+}
+
+.userLogoImg {
+  border-radius: var(--border-radius-extra-large);
+  width: var(--icon-size-extra-large);
+  height: var(--icon-size-extra-large);
+  margin-right: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .userLogoName {
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-loose);
   }
-  
-  
-  @media screen and (max-width: 768px) {
-    .userLogoName {
-      font-size: 14px;
-    }
-  
-    .userLogoImg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-  
+}
