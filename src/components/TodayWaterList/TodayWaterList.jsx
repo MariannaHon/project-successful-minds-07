@@ -15,6 +15,18 @@ import { selectWatersToday } from '../../redux/water/selectors.js';
 import icons from '../../../public/symbol-defsN.svg';
 
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
+
+
 export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +49,7 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
 
   const handleDelete = (_id) => {
     setWaterItems(waterItems.filter((entry) => entry._id !== _id));
+    dispatch(fetchWaterPerDay());
     handleCloseDelete();
   };
 
@@ -48,16 +61,24 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
     dispatch(fetchWaterPerDay());
   }, [dispatch]);
 
-  // const entries = useMemo(
-  //   () => waterToday?.records || [],
-  //   [waterToday]
-  // );
-
   useEffect(() => {
     if (waterToday?.records) {
-      setWaterItems(waterToday.records);
+      const formattedItems = waterToday.records.map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        })
+      }));
+      setWaterItems(formattedItems);
     }
   }, [waterToday, setWaterItems]);
+
+  console.log(waterItems);
+
 
 
   return (
@@ -65,12 +86,12 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
         {waterItems.map((entry) => (
-          <li key={entry.id} className={css.item}>
+          <li key={entry._id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
-                {new Date(entry.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {formatDate}
               </p>
             </div>
 
