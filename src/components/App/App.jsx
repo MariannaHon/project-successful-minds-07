@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
@@ -8,7 +8,7 @@ import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 import { refreshUser } from '../../redux/auth/operations';
 import { selectIsLoading, selectIsRefresh } from '../../redux/auth/selectors';
 
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UpdatePasswordPage = lazy(() =>
@@ -25,18 +25,29 @@ const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
 import Loader from '../Loader/Loader.jsx';
+import { useAuth } from '../../hooks/useAuth.jsx';
 
 export default function App() {
+  const { isRefreshing, token } = useAuth();
+
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  const isRefresh = useSelector(selectIsRefresh);
-
+  const navigate = useNavigate();
+  // const isRefresh = useSelector(selectIsRefresh);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) {
+      dispatch(refreshUser())
+        .unwrap()
+        .then(() => {
+          navigate('/home');
+        })
+        .catch(err => toast.error(`Something gone wrong.${err}`));
+      return;
+    }
+  }, [dispatch, token, navigate]);
 
-  return isRefresh ? (
+  return isRefreshing ? (
     <Loader />
   ) : (
     <div>
@@ -84,7 +95,9 @@ export default function App() {
             /> */}
             <Route
               path="/home"
-              element={<PrivateRoute component={HomePage} redirectTo="/signin" />}
+              element={
+                <PrivateRoute component={HomePage} redirectTo="/signin" />
+              }
             />
             <Route path="*" element={<NotFoundPage />} />
             {isLoading && <Loader />}

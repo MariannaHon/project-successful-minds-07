@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { Helmet } from "react-helmet-async";
-import css from "./HomePage.module.css";
+import { Helmet } from 'react-helmet-async';
+import css from './HomePage.module.css';
 
-import DailyNorma from "../../components/DailyNorma/DailyNorma";
+import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
 import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
 
 import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { nanoid } from '@reduxjs/toolkit';
 
-
 const HomePage = () => {
-
   const [waterItems, setWaterItems] = useState([
     {
       _id: nanoid(),
@@ -20,10 +18,9 @@ const HomePage = () => {
     },
   ]);
 
-  const handleAddWater = (newWater) => {
+  const handleAddWater = newWater => {
     setWaterItems([newWater, ...waterItems]); // Додаємо нову воду до початку списку
   };
-
 
   return (
     <>
