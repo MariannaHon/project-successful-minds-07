@@ -12,7 +12,7 @@ export const fetchWaterPerDay = createAsyncThunk(
     try {
       const response = await axios.get(`/water/today`);
 
-      if (!Array.isArray(response.data)) return;
+      //if (!Array.isArray(response.data)) return;
 
       return response.data.data;
     } catch (error) {

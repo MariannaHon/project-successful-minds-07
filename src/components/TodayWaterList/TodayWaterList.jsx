@@ -1,33 +1,57 @@
-
-import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo } from "react";
-import css from "./TodayWaterList.module.css";
-import { CiGlass } from 'react-icons/ci';
-import { fetchWaterPerDay } from "../../redux/water/operations.js";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-
-import EditModal from '../EditModal/EditModal.jsx';
-import {  HiOutlineTrash } from 'react-icons/hi2';
-
-import { selectWatersToday } from '../../redux/water/selectors.js';
-
+//import { selectWatersToday } from '../../redux/water/selectors.js';
+import { fetchWaterPerDay, deleteWater } from '../../redux/water/operations.js';
+import { refreshUser } from '../../redux/auth/operations';
+//import EditModal from '../EditModal/EditModal';
+import { CiGlass } from 'react-icons/ci';
+import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
+import css from './TodayWaterList.module.css';
 
-
-export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) => {
-
+export const TodayWaterList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
+  const [waterItems, setWaterItems] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+				const response = await dispatch(fetchWaterPerDay()).unwrap();
+				if (Array.isArray(response.records)) {
+          setWaterItems(response.records);
+        } else {
+          console.error('Data is not an array');
+        }
+				 console.log(response.records);
+        // setWaterItems(response.records);
+      } catch (err) {
+        console.error('Failed to fetch water data:', err);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  const handleAddWater = newWater => {
+    setWaterItems([newWater, ...waterItems]);
+    dispatch(refreshUser());
+  };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleOpenDelete = (id) => {
-    setEntryToDelete(id);
-    setIsDeleteModalOpen(true);
+  const handleOpenDelete = id => {
+    if (id) {
+      setEntryToDelete(id);
+      setIsDeleteModalOpen(true);
+    } else {
+      console.error('Invalid ID: ', id);
+    }
   };
 
   const handleCloseDelete = () => {
@@ -35,50 +59,51 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
     setIsDeleteModalOpen(false);
   };
 
-  const handleDelete = (_id) => {
-    setWaterItems(waterItems.filter((entry) => entry._id !== _id));
-    handleCloseDelete();
+  const confirmDelete = async () => {
+    try {
+      if (!entryToDelete) {
+        throw new Error('Invalid ID');
+      }
+      await dispatch(deleteWater(entryToDelete)).unwrap();
+      setWaterItems(prevItems =>
+        prevItems.filter(entry => entry._id !== entryToDelete)
+      );
+      setIsDeleteModalOpen(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const waterToday = useSelector(selectWatersToday);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchWaterPerDay());
-  }, [dispatch]);
-
-  // const entries = useMemo(
-  //   () => waterToday?.records || [],
-  //   [waterToday]
-  // );
-
-  useEffect(() => {
-    if (waterToday?.records) {
-      setWaterItems(waterToday.records);
-    }
-  }, [waterToday, setWaterItems]);
-
+  const sortedWaterItems = waterItems
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {waterItems.map((entry) => (
-          <li key={entry.id} className={css.item}>
+        {sortedWaterItems.map(entry => (
+          <li key={entry._id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
-                {new Date(entry.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                {new Date(entry.time).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
               </p>
             </div>
 
             <div className={css.btnAll}>
-              <EditModal/>           
+              {/* <EditModal /> */}
+
+              <button className={css.btnPencil}>
+                <HiOutlinePencilSquare className={css.iconPencil} />
+              </button>
               <button
                 className={css.btnTrash}
-                onClick={() => handleOpenDelete(entry.id)}
+                onClick={() => handleOpenDelete(entry._id)}
               >
                 <HiOutlineTrash className={css.iconDelete} />
               </button>
@@ -94,7 +119,7 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
         <AddWaterModal
           initialAmount={0}
           onClose={toggleModal}
-          updateWaterData={handleAddWater} // Викликаємо функцію додавання води
+          updateWaterData={handleAddWater}
         />
       )}
 
@@ -106,13 +131,15 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
             </svg>
             <div className={css.deleteQuestion}>
               <p className={css.deleteEntry}>Delete entry</p>
-              <p className={css.sure}>Are you sure you want to delete the entry?</p>
+              <p className={css.sure}>
+                Are you sure you want to delete the entry?
+              </p>
             </div>
             <div className={css.choiseBtns}>
               <button className={css.btnCancel} onClick={handleCloseDelete}>
                 Cancel
               </button>
-              <button className={css.btnDel} onClick={handleDelete}>
+              <button className={css.btnDel} onClick={confirmDelete}>
                 Delete
               </button>
             </div>
@@ -124,5 +151,3 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
 };
 
 export default TodayWaterList;
-
-
