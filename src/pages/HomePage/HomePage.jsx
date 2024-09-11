@@ -33,7 +33,7 @@ const HomePage = () => {
           <WaterRatioPanel handleAddWater={handleAddWater} />
         </div>
         <div className={css.rightColumn}>
-          <TodayWaterList waterItems={waterItems} setWaterItems={setWaterItems} handleAddWater={handleAddWater} />
+          <TodayWaterList />
           <MonthInfo /> 
         </div>
       </div>

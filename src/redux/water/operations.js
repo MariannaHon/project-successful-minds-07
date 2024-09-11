@@ -11,7 +11,6 @@ export const fetchWaterPerDay = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/water/today`);
-
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
