@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
 import { CiGlass } from 'react-icons/ci';
 import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
@@ -18,24 +18,11 @@ export const TodayWaterList = ({
   setWaterItems,
   handleAddWater,
 }) => {
-  console.log(waterItems);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    };
-
-    return new Intl.DateTimeFormat("en-US", options).format(date);
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
   const dispatch = useDispatch();
-  console.log(entryToDelete);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -88,16 +75,18 @@ export const TodayWaterList = ({
     }
   }, [waterToday, setWaterItems]);
 
-  console.log(waterItems);
+  const sortedWaterItems = waterItems
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  //   const entries = useMemo(() => waterToday?.records || [], [waterToday]);
+  console.log(sortedWaterItems);
 
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {waterItems.map((entry) => (
-          <li key={entry._id} className={css.item}>
+        {sortedWaterItems.map((entry) => (
+          <li key={entry._id || entry.id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
