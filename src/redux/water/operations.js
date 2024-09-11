@@ -18,6 +18,10 @@ export const fetchWaterPerDay = createAsyncThunk(
   }
 );
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 export const fetchWaterPerMonth = createAsyncThunk(
   'waterPerMonth/fetch',
   async ({ year, month }, thunkAPI) => {

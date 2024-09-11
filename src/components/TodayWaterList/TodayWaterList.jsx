@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
@@ -147,5 +146,4 @@ export const TodayWaterList = ({ waterItems, setWaterItems, handleAddWater }) =>
 };
 
 export default TodayWaterList;
-
 
