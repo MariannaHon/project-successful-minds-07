@@ -12,6 +12,19 @@ import icons from '../../../public/symbol-defsN.svg';
 import { refreshUser } from '../../redux/auth/operations';
 
 export const TodayWaterList = () => {
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
