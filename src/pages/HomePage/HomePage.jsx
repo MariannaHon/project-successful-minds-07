@@ -12,7 +12,7 @@ const HomePage = () => {
 
   const [waterItems, setWaterItems] = useState([
     {
-      id: nanoid(),
+      _id: nanoid(),
       amount: 340,
       date: new Date().toISOString(),
     },
