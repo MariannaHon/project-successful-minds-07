@@ -4,13 +4,15 @@ import css from './HomePage.module.css';
 
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList.jsx';
-import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
+import MonthInfo from '../../components/MonthInfo/MonthInfo.jsx';
+
+import WaterRatioPanel from "../../components/WaterRatioPanel/WaterRatioPanel";
 import { nanoid } from '@reduxjs/toolkit';
 
 const HomePage = () => {
   const [waterItems, setWaterItems] = useState([
     {
-      id: nanoid(),
+      _id: nanoid(),
       amount: 340,
       date: new Date().toISOString(),
     },
@@ -31,12 +33,8 @@ const HomePage = () => {
           <WaterRatioPanel handleAddWater={handleAddWater} />
         </div>
         <div className={css.rightColumn}>
-          <TodayWaterList
-            waterItems={waterItems}
-            setWaterItems={setWaterItems}
-            handleAddWater={handleAddWater}
-          />
-          {/* <MonthStatsTable /> */}
+          <TodayWaterList waterItems={waterItems} setWaterItems={setWaterItems} handleAddWater={handleAddWater} />
+          <MonthInfo /> 
         </div>
       </div>
     </>
@@ -44,3 +42,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

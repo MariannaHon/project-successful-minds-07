@@ -6,9 +6,11 @@ import { CiGlass } from 'react-icons/ci';
 import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
+import EditModal from '../EditModal/EditModal.jsx';
+import {  HiOutlineTrash } from 'react-icons/hi2';
+
 import { selectWatersToday } from '../../redux/water/selectors.js';
 
-import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 
 export const TodayWaterList = ({
@@ -17,6 +19,17 @@ export const TodayWaterList = ({
   handleAddWater,
 }) => {
   console.log(waterItems);
+
+  const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -59,28 +72,47 @@ export const TodayWaterList = ({
     dispatch(fetchWaterPerDay());
   }, [dispatch, waterItems]);
 
-  const entries = useMemo(() => waterToday?.records || [], [waterToday]);
+  useEffect(() => {
+    if (waterToday?.records) {
+      const formattedItems = waterToday.records.map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        })
+      }));
+      setWaterItems(formattedItems);
+    }
+  }, [waterToday, setWaterItems]);
+
+  console.log(waterItems);
+
+//   const entries = useMemo(() => waterToday?.records || [], [waterToday]);
 
   return (
     <div className={css.todayWaterList}>
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {entries.map(entry => (
+        {waterItems.map((entry) => (
           <li key={entry._id} className={css.item}>
             <div className={css.value}>
               <CiGlass className={css.iconGlass} />
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
-                {new Date(entry.date).toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
+//                 {new Date(entry.date).toLocaleTimeString([], {
+//                   hour: '2-digit',
+//                   minute: '2-digit',
+//                 })}
+
+                {formatDate}
               </p>
             </div>
+
             <div className={css.btnAll}>
-              <button className={css.btnPencil}>
-                <HiOutlinePencilSquare className={css.iconPencil} />
-              </button>
+              <EditModal/>           
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry._id)}

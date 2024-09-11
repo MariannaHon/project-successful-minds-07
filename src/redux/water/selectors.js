@@ -17,9 +17,9 @@ export const selectWaterNorma = state => state.user?.userInfo?.waterNorma || 1.5
 
 export const selectWaterPerDay = state => state.water.waterPerDay;
 
-export const selectWaterPerDayArr = state => state.water.waterPerDay.waterRecord;
+export const selectWaterPerDayArr = state => state.water.waters.waterPerDay.waterRecord;
 
-export const selectWaterPerMonth = state => state.water.waterPerMonth;
+export const selectWaterPerMonth = state => state.water.waters.waterPerMonth;
 
 export const selectActiveDay = state => state.water.activeDay;
 
