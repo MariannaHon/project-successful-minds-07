@@ -7,19 +7,13 @@ import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
 
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 import { selectWatersToday } from '../../redux/water/selectors.js';
-import { fetchWaterPerDay, deleteWater } from '../../redux/water/operations.js';
 import { refreshUser } from '../../redux/auth/operations';
 import EditModal from '../EditModal/EditModal';
-import { CiGlass } from 'react-icons/ci';
 import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 import css from './TodayWaterList.module.css';
 
-export const TodayWaterList = ({
-  waterItems,
-  setWaterItems,
-  handleAddWater,
-}) => {
+export const TodayWaterList = () => {
   
   const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -128,7 +122,7 @@ export const TodayWaterList = ({
       }));
       setWaterItems(formattedItems);
     }
-  };
+  }, [waterToday, setWaterItems]);
 
   const sortedWaterItems = waterItems
     .slice()
