@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 // import { CgAdd } from 'react-icons/cg';
 
 // // import { AddWaterList } from '../TodayWaterList/AddWaterList.jsx';
@@ -51,9 +51,9 @@ import { useState } from 'react';
 // export default WaterRatioPanel;
 
 
-
+import { useState } from 'react';
 import Loader from '../Loader/Loader.jsx';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { CgAdd } from 'react-icons/cg';
 
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx'
@@ -64,7 +64,7 @@ import css from './WaterRatioPanel.module.css';
 import { selectLoading, selectWatersToday } from "../../redux/water/selectors.js";
 
 
-const WaterRatioPanel = ({handleAddWater}) => {
+const WaterRatioPanel = ({ handleAddWater }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -76,8 +76,6 @@ const WaterRatioPanel = ({handleAddWater}) => {
   //   console.log(`Amount: ${amount}, Date: ${date}`);
   //   setIsModalOpen(false);
   // };
-
-  const dispatch = useDispatch();
 
   const loading = useSelector(selectLoading);
   const water = useSelector(selectWatersToday);
@@ -144,13 +142,13 @@ const WaterRatioPanel = ({handleAddWater}) => {
       <button
         type="button"
         className={css.addWaterButton}
-        onClick={() => dispatch(toggleModal())}
+        onClick={toggleModal}
       >
         <CgAdd className={css.icon} />
         Add Water
       </button>
 
-        
+
 
       {isModalOpen && (
         <AddWaterModal

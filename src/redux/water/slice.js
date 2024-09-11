@@ -112,21 +112,12 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = false;
 
-        // state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
-        //   entry => entry._id !== action.payload._id
-        // );
-        // state.waters.waterPerMonth = state.waters.waterPerMonth.filter(
-        //   entry => entry._id !== action.payload._id
-        // );
-
-        const index = state.today.todayWaterNotesList.findIndex(
-          (water) => String(water._id) === String(action.payload)
+        state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
+          entry => entry._id !== action.payload._id
         );
-
-        if (index !== -1) {
-          state.today.todayWaterNotesList.splice(index, 1);
-        }
-        // zamenit nazwy
+        state.waters.waterPerMonth = state.waters.waterPerMonth.filter(
+          entry => entry._id !== action.payload._id
+        );
       })
       .addCase(deleteWater.rejected, handleError)
       .addCase(addWater.pending, handleLoading)
@@ -134,52 +125,41 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = false;
 
-        // if (!state.waters.waterPerDay.waterRecord) {
-        //   state.waters.waterPerDay.waterRecord = [];
-        // }
+        if (!state.waters.waterPerDay.waterRecord) {
+          state.waters.waterPerDay.waterRecord = [];
+        }
 
-        // state.waters.waterPerDay.waterRecord.push(action.payload);
+        state.waters.waterPerDay.waterRecord.push(action.payload);
 
-        // if (!state.waters.waterPerMonth) {
-        //   state.waters.waterPerMonth = [];
-        // }
+        if (!state.waters.waterPerMonth) {
+          state.waters.waterPerMonth = [];
+        }
 
-        // state.waters.waterPerMonth.push(action.payload);
+        state.waters.waterPerMonth.push(action.payload);
 
-        state.today.todayWaterNotesList.push(action.payload);
       })
       .addCase(addWater.rejected, handleError)
       .addCase(changeWater.pending, handleLoading)
-      // .addCase(changeWater.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = false;
-
-      //   const updatedEntry = action.payload;
-      //   const index = state.waters.waterPerDay.waterRecord.findIndex(
-      //     entry => entry._id === updatedEntry._id
-      //   );
-
-      //   if (index !== -1) {
-      //     state.waters.waterPerDay.waterRecord[index] = updatedEntry;
-      //   }
-
-      //   const indexMonth = state.waters.waterPerMonth.findIndex(
-      //     entry => entry._id === updatedEntry._id
-      //   );
-
-      //   if (indexMonth !== -1) {
-      //     state.waters.waterPerMonth[indexMonth] = updatedEntry;
-      //   }
-      // })
       .addCase(changeWater.fulfilled, (state, action) => {
-        const index = state.today.todayWaterNotesList.findIndex(
-          (item) => String(item._id) === String(action.payload)
+        state.loading = false;
+        state.error = false;
+
+        const updatedEntry = action.payload;
+        const index = state.waters.waterPerDay.waterRecord.findIndex(
+          entry => entry._id === updatedEntry._id
         );
 
         if (index !== -1) {
-          state.today.todayWaterNotesList[index] = action.payload;
+          state.waters.waterPerDay.waterRecord[index] = updatedEntry;
         }
-        state.loading = false;
+
+        const indexMonth = state.waters.waterPerMonth.findIndex(
+          entry => entry._id === updatedEntry._id
+        );
+
+        if (indexMonth !== -1) {
+          state.waters.waterPerMonth[indexMonth] = updatedEntry;
+        }
       })
       .addCase(changeWater.rejected, handleError),
 

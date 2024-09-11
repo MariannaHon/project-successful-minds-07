@@ -48,7 +48,7 @@
   border-radius: 10px;
 }
 
-/* .item {
+.item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,7 +132,7 @@
   height: 16px;
   fill: #888;
 	cursor: pointer;
-} */
+}
 
 .addWaterButton {
   font-size: 16px;
