@@ -13,7 +13,7 @@ import { HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import icons from '../../../public/symbol-defsN.svg';
 import css from './TodayWaterList.module.css';
 
-export const TodayWaterList = () => {
+const TodayWaterList = () => {
   
   const formatDate = (dateString) => {
   const date = new Date(dateString);
