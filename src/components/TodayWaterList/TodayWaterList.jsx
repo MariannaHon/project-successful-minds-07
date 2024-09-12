@@ -13,6 +13,8 @@ import { selectWatersToday } from '../../redux/water/selectors.js';
 
 import icons from '../../../public/symbol-defsN.svg';
 
+import toast from 'react-hot-toast';
+
 export const TodayWaterList = ({
   waterItems,
   setWaterItems,
@@ -43,7 +45,11 @@ export const TodayWaterList = ({
         .unwrap()
         .then(() => {
           dispatch(fetchWaterPerDay());
+
           dispatch(refreshUser());
+
+          toast.error('Successfully delete water record to the list');
+
         })
         .catch(err => {
           console.error(err);
@@ -78,8 +84,6 @@ export const TodayWaterList = ({
   const sortedWaterItems = waterItems
     .slice()
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  console.log(sortedWaterItems);
 
   return (
     <div className={css.todayWaterList}>
