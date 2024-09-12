@@ -54,12 +54,12 @@ const CalendarPagination = () => {
           <use xlinkHref={`${sprite}#icon-chevron-left`}></use>
         </svg>
       </button>
-      <p>
+      <p className={css.monthName}>
         {months[new Date(currentDate).getMonth()]}, {new Date(currentDate).getFullYear()}
       </p>
       <button className={css.button} type="button" onClick={goToNextMonth} disabled={isDisabled}>
         <svg className={css.icon}>
-          <use xlinkHref={`${sprite}#icon-arrow-right-18x18`}></use> 
+          <use  xlinkHref={`${sprite}#icon-arrow-right-18x18`}></use> 
         </svg>
       </button>
     </div>

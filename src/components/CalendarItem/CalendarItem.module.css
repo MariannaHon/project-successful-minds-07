@@ -1,59 +1,115 @@
-.container {
+.calendarItemContainer {
     display: flex;
     flex-direction: column;
     width: 28px;
     height: 44px;
     align-items: center;
     justify-content: space-between;
+    
   }
   
-  .button {
+  .calendarItemButton {
     border: none;
     align-content: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background-color: #fff;
-  
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    
+    font-weight: 400;
     font-size: 14px;
-    line-height: 129%;
+    line-height: 1.28;
     letter-spacing: -0.01em;
     text-align: center;
-    color: #323f47;
+    color: #2F2F2F;
   }
-  
-  .text {
-    font-family: 'Poppins', sans-serif;
+
+  calendarItemButton:active,
+  calendarItemButton:hover {
+    background-color: #fff;
+    border: 1px solid #FF9D43
+  }
+  .calendarItemText {
     font-weight: 400;
     font-size: 10px;
-    line-height: 100%;
-    color: rgba(47, 47, 47, 0.6);
+    line-height: 1.6;
+    text-align: center;
+    color: #9EBBFF;
+   
+  }
+  /* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .container {
+  width: 38px;
+  height: 65px;
+}
+.calendarItemContainer {
+  display: flex;
+  flex-direction: column;
+  width: 34px;
+  height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.button {
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  line-height: 150%;
+}
+.text {
+  font-size: 12px;
+  line-height: 187%;
+}
+.calendarItemButton {
+      
+    width: 34px;
+    height: 34px;
+    font-weight: 400;
+     
+  font-size: 16px;
+  line-height: 1.25;
+ 
+  
+} 
+.calendarItemText {
+ 
+  font-size: 13px;
+  line-height: 1.53;
+  
+  
+ 
+}
+}
+
+/* ____________________________Desctop style____________________________ */
+@media screen and (min-width: 1440px) { 
+ 
+    .calendarItemButton {
+    border: none;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #2F2F2F;
+  }
+
+
   }
   
-  @media only screen and (min-width: 375px) {
-  }
-  
-  @media only screen and (min-width: 768px) {
-    .container {
-      width: 38px;
-      height: 65px;
-    }
-    .button {
-      width: 38px;
-      height: 38px;
-      font-size: 16px;
-      line-height: 150%;
-    }
-    .text {
-      font-size: 12px;
-      line-height: 187%;
-    }
-  }
-  
-  @media only screen and (min-width: 1440px) {
-  }
+ 

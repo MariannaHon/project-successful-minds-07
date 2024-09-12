@@ -71,14 +71,18 @@ const Calendar = () => {
     const activeDayData = findObjectByDate(waterPerMonth, convertDateFormat(activeDay));
 
     return (
-        <div data-tour="calendar-step" className={css.container}>
-            <ul className={css.list}>
+
+        <div data-tour="calendar-step" className={css.calendarContainer}>
+            <ul className={css.calendarList}>
+
+       
                 {loading ?
                     <div className={css.calendarLoader}>
                         <Loader />
                     </div>
                     : null
                 }
+
                 {daysArray.map(day => {
                     const dayKey = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
                     const formattedDayKey = convertDateFormat(dayKey);
@@ -89,7 +93,7 @@ const Calendar = () => {
                     const isDisabled = isDateAfterToday(dayKey);
 
                     return (
-                        <li key={day} className={css.item}>
+                        <li key={day} className={css.calendarItem}>
                             <CalendarItem
                                 day={day}
                                 waterData={dayData}

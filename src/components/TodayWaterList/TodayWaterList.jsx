@@ -84,6 +84,7 @@ export const TodayWaterList = ({
 
   return (
     <div className={css.todayWaterList}>
+      
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
         {sortedWaterItems.map((entry) => (
@@ -152,6 +153,7 @@ export const TodayWaterList = ({
         </div>
       )}
     </div>
+   
   );
 };
 
