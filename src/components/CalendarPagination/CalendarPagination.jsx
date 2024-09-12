@@ -3,8 +3,8 @@ import { setCurrentDate } from '../../redux/water/slice';
 import { fetchWaterPerMonth } from '../../redux/water/operations';
 import { isMonthNameCurrent } from '../../helpers/isMonthNameCurrent.js';
 import css from './CalendarPagination.module.css';
+import { icons as sprite } from '../../../public/index.js'; 
 import { formatDateToDayMonthYear } from '../../helpers/formatDateToDayMonthYear.js';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 const months = [
   'January',
@@ -31,6 +31,7 @@ const CalendarPagination = () => {
 
     dispatch(setCurrentDate(newDate.getTime()));
     dispatch(fetchWaterPerMonth(formattedDateForMonth));
+
   };
 
   const goToPreviousMonth = () => {
@@ -44,26 +45,22 @@ const CalendarPagination = () => {
     newDate.setMonth(newDate.getMonth() + 1);
     fetchAndSetDate(newDate);
   };
-  const isDisabled = isMonthNameCurrent(
-    months[new Date(currentDate).getMonth()]
-  );
+  const isDisabled = isMonthNameCurrent(months[new Date(currentDate).getMonth()]);
 
   return (
     <div className={css.container}>
       <button className={css.button} type="button" onClick={goToPreviousMonth}>
-        <IoIosArrowBack className={css.icon} />
+        <svg className={css.icon}>
+          <use xlinkHref={`${sprite}#icon-chevron-left`}></use>
+        </svg>
       </button>
-      <p className={css.text}>
-        {months[new Date(currentDate).getMonth()]},{' '}
-        {new Date(currentDate).getFullYear()}
+      <p className={css.monthName}>
+        {months[new Date(currentDate).getMonth()]}, {new Date(currentDate).getFullYear()}
       </p>
-      <button
-        className={css.button}
-        type="button"
-        onClick={goToNextMonth}
-        disabled={isDisabled}
-      >
-        <IoIosArrowForward className={css.icon} />
+      <button className={css.button} type="button" onClick={goToNextMonth} disabled={isDisabled}>
+        <svg className={css.icon}>
+          <use  xlinkHref={`${sprite}#icon-arrow-right-18x18`}></use> 
+        </svg>
       </button>
     </div>
   );

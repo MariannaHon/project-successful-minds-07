@@ -1,15 +1,14 @@
-.list {
+.calendarList {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 0 auto;
-  column-gap: 26px;
-  row-gap: 16px;
+  gap: 26px;
+  width: 100%;
   position: relative;
 }
 
-.item {
+.calendarItem {
   display: flex;
   flex-direction: center;
   align-items: center;
@@ -28,23 +27,26 @@
   background-color: #ffffff99;
 }
 
+@media screen and (min-width: 375px) {
+  .calendarList {
+    justify-content: space-between;
+    width: 100%;
+    gap: 26px;
+    display: flex;
+  }
+
+  .calendarItem {
+    width: calc((100% - 5 * 21px) / 6);
+  }
+}
+
 @media screen and (min-width: 768px) {
-  .list {
-    column-gap: 34px;
-    row-gap: 20px;
+  .calendarList {
+    column-gap: 16px;
   }
 
-  .item {
-    width: calc((100% - 9 * 34px) / 10);
+  .calendarItem {
+    width: calc((100% - 6 * 21px) / 11);
   }
 }
 
-@media screen and (min-width: 1440px) {
-  .list {
-    column-gap: 20px;
-  }
-
-  .item {
-    width: calc((100% - 9 * 20px) / 10);
-  }
-}
