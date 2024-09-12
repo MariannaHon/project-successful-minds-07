@@ -11,7 +11,6 @@ import * as Yup from 'yup';
 import css from './EditModal.module.css';
 import { changeWater } from '../../redux/water/operations';
 import { fetchWaterPerDay } from '../../redux/water/operations';
-import { refreshUser } from '../../redux/auth/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import icons from '../../../public/symbol-defsN.svg';
 
@@ -65,7 +64,8 @@ export default function EditModal({ editedAmount, editedTime, userId }) {
       if (changeWater.fulfilled) {
         actions.resetForm(result);
         setOpen(false);
-        dispatch(refreshUser());
+        dispatch(fetchWaterPerDay());
+        toast.success('Successfully update water record in the list');
       }
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
