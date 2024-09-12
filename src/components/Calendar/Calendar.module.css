@@ -5,6 +5,7 @@
   margin: 0 auto;
   gap: 26px;
   width: 100%;
+  position: relative;
 }
 
 .calendarItem {
@@ -14,6 +15,18 @@
   gap: 4px;
   border-radius: 30px;
   width: calc((100% - 5 * 21px) / 6);
+}
+
+.calendarLoader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff99;
 }
 
 @media screen and (min-width: 375px) {

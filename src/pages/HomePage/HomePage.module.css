@@ -14,13 +14,9 @@
 .rightColumn {display: flex;
   flex-direction: column;
   width: 280px;
-  
-  
   box-shadow: var(--box-shadow-medium-two);
-    padding: 24px 8px 24px 8px;
- border-radius: var(--border-radius-smaller);
-  
-   
+  padding: 24px 8px 24px 8px;
+  border-radius: var(--border-radius-smaller);
   background-color: var(--secondary-light-blue);
   /* font-size: var(--font-size-small);
   font-weight: var(--font-weight-regular);
@@ -44,7 +40,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 
 .leftColumn {
   padding-top: 310px;
-  margin-top: 60px;
+  margin-top: 55px;
 }
 
 .rightColumn {
@@ -86,8 +82,20 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .leftColumn {
     padding-top: 542px;
   }
-
+  .rightColumn {display: flex;
+    flex-direction: column;
+    width: 704px;
+    
+    padding: 32px 24px 32px 24px;
+    
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-two);
+      }
+  
 }
+
+
 
 @media screen and (min-width: 1440px) {
   .container {

@@ -101,7 +101,7 @@ const waterSlice = createSlice({
       .addCase(fetchWaterPerMonth.fulfilled, (state, action) => {
         state.error = false;
         state.loading = false;
-        state.waters.waterPerMonth = action.payload.data;
+        state.waters.waterPerMonth = action.payload;
       })
       .addCase(fetchWaterPerMonth.rejected, handleError)
 
@@ -110,12 +110,20 @@ const waterSlice = createSlice({
         state.loading = false;
         state.error = false;
 
-        state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
-          entry => entry._id !== action.payload._id
+        // state.waters.waterPerDay.waterRecord = state.waters.waterPerDay.waterRecord.filter(
+        //   entry => entry._id !== action.payload._id
+        // );
+        // state.waters.waterPerMonth = state.waters.waterPerMonth.filter(
+        //   entry => entry._id !== action.payload._id
+        // );
+
+        const index = state.today?.records.findIndex(
+          (water) => String(water._id) === String(action.payload)
         );
-        state.waters.waterPerMonth = state.waters.waterPerMonth.filter(
-          entry => entry._id !== action.payload._id
-        );
+
+        if (index !== -1) {
+          state.today.records.splice(index, 1);
+        }
       })
       .addCase(deleteWater.rejected, handleError)
       .addCase(addWater.pending, handleLoading)
@@ -160,7 +168,6 @@ const waterSlice = createSlice({
         }
       })
       .addCase(changeWater.rejected, handleError),
-
 });
 
 export const waterReducer = waterSlice.reducer;

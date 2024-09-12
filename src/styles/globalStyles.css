@@ -47,6 +47,7 @@
   --icon-size-small: 14px;
 
   /* BORDER-RADIUS */
+	--border-radius-extra-large: 100px;
   --border-radius-larger: 40px;
   --border-radius-large: 30px;
   --border-radius-medium: 20px;

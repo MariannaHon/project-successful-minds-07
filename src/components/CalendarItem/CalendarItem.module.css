@@ -40,26 +40,67 @@
     color: #9EBBFF;
    
   }
+  /* ____________________________Tablet style____________________________ */
+
+@media screen and (min-width: 768px) {
+  .container {
+  width: 38px;
+  height: 65px;
+}
+.button {
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  line-height: 150%;
+}
+.text {
+  font-size: 12px;
+  line-height: 187%;
+}
+.calendarItemButton {
+      
+    width: 34px;
+    height: 34px;
+    font-weight: 400;
+     
+  font-size: 16px;
+  line-height: 1.25;
+ 
   
-  @media only screen and (min-width: 375px) {
+} 
+.calendarItemText {
+ 
+  font-size: 13px;
+  line-height: 1.53;
+  
+  
+ 
+}
+}
+
+/* ____________________________Desctop style____________________________ */
+@media screen and (min-width: 1440px) { 
+ 
+    .calendarItemButton {
+    border: none;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #2F2F2F;
+  }
+
+
   }
   
-  @media only screen and (min-width: 768px) {
-    .container {
-      width: 38px;
-      height: 65px;
-    }
-    .button {
-      width: 38px;
-      height: 38px;
-      font-size: 16px;
-      line-height: 150%;
-    }
-    .text {
-      font-size: 12px;
-      line-height: 187%;
-    }
-  }
-  
-  @media only screen and (min-width: 1440px) {
-  }
+ 

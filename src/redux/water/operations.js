@@ -2,40 +2,20 @@
 import axios from 'axios';
 // import { toast } from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { formatDateForAddOrEditWater } from '../../helpers/formatDateForAddOrEditWater.js';
-import moment from "moment";
+// import { formatDateForAddOrEditWater } from '../../helpers/formatDateForAddOrEditWater.js';
 
 
 export const fetchWaterPerDay = createAsyncThunk(
-  'water/fetchWaterPerDay',
+  'waterPerDay/fetch',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/water/today`);
-
-      if (!Array.isArray(response.data)) return;
-
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const fetchWaterPerMonth = createAsyncThunk(
-//   'water/fetchWaterPerMonth',
-//   async (monthReqParams, thunkAPI) => {
-//     try {
-//       const monthReqSearchParams = new URLSearchParams(monthReqParams)
-//       const response = await axios.get(`/water/month?${monthReqSearchParams.toString()}`);
-
-//       if (!Array.isArray(response.data.data)) return;
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const fetchWaterPerMonth = createAsyncThunk(
   'water/fetchWaterPerMonth',

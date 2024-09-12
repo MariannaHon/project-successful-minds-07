@@ -1,38 +1,32 @@
 .userAuthWrapper {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-width: 84px;  
+  gap: 8px; 
 }
 
 .icons {
-  height: 28px;
-  width: 28px;
+  height: var(--icon-size-extra-large);
+  width: var(--icon-size-extra-large);
   fill: none;
-  stroke: #2F2F2F;
+  stroke: var(--primary-black);
 }
 
 .userAuthLink {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #407bff;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-smaller);
+  line-height: var(--line-height-relaxed);
+  color: var(--primary-blue);
   background-color: transparent;
 }
 
 .userAuthLink:hover,
 .userAuthLink:focus {
-  color: var(--Secondary-color-5, #ff9d43);
+  color: var(--secondary-orange);
 }
 
 @media screen and (min-width: 768px) {
-  .userAuthWrapper {
-    min-width: 90px;
-  }
-
   .userAuthLink {
-    font-size: 18px;
-    line-height: 1.33;
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-loose);
   }
 }

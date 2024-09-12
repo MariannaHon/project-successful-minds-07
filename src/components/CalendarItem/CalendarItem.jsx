@@ -6,6 +6,7 @@ const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) =
     color: isActive ? '#000000' : '#000000',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     opacity: isDisabled ? 0.5 : 1,
+    border: feasibility < 100 && !isDisabled  ? '1px solid red' : ''  
   };
 
   const handleClick = (event) => {

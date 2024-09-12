@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentDate, selectWaterPerMonth, selectActiveDay } from '../../redux/water/selectors';
+import { selectCurrentDate, selectWaterPerMonth, selectActiveDay, selectLoading } from '../../redux/water/selectors';
 import { fetchWaterPerMonth } from '../../redux/water/operations';
 import { setActiveDay } from '../../redux/water/slice';
 import { convertDateFormatForActiveDay } from '../../helpers/convertDateFormatForActiveDay';
@@ -9,6 +9,8 @@ import CalendarItem from '../CalendarItem/CalendarItem';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import css from './Calendar.module.css';
 import moment from 'moment';
+import Loader from '../Loader/Loader.jsx';
+import ClickOutside from '../../hooks/useClickOutside.jsx'
 
 const daysInMonth = (month, year) => {
     return new Date(year, month, 0).getDate();
@@ -20,8 +22,10 @@ const Calendar = () => {
     const waterPerMonth = useSelector(selectWaterPerMonth);
     const currentDate = useSelector(selectCurrentDate);
     const activeDay = useSelector(selectActiveDay);
+    const loading = useSelector(selectLoading);
 
     const [selectedDateElement, setSelectedDateElement] = useState(null);
+    const [open, setOpen] = useState(false);
 
     const momentDate = moment(currentDate);
     const month = momentDate.format('M');
@@ -32,6 +36,7 @@ const Calendar = () => {
     }, [dispatch, month, year]);
 
     const calculateFeasibility = consumedPercentage => {
+        if (!consumedPercentage) return 0
         return Math.round(Number(consumedPercentage?.replace('%', '')));
     };
 
@@ -50,23 +55,35 @@ const Calendar = () => {
     const daysArray = Array.from({ length: numberOfDays }, (_, index) => index + 1);
 
     const handleDayClick = (event, day) => {
-      if (!event) {
-          console.error('Event is undefined');
-          return;
-      }
-      
-      const formattedDay = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
-      setSelectedDateElement(event.currentTarget);
-      dispatch(setActiveDay(formattedDay));
-  };
+        if (!event) {
+            console.error('Event is undefined');
+            return;
+        }
+
+        const formattedDay = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
+        setSelectedDateElement(event.currentTarget);
+        dispatch(setActiveDay(formattedDay));
+        setOpen(true)
+    };
 
     const formattedActiveDay = convertDateFormatForActiveDay(activeDay);
 
-    const activeDayData = findObjectByDate(waterPerMonth, formattedActiveDay);
+    const activeDayData = findObjectByDate(waterPerMonth, convertDateFormat(activeDay));
 
     return (
+<<<<<<< HEAD
         <div data-tour="calendar-step" className={css.calendarContainer}>
             <ul className={css.calendarList}>
+=======
+        <div data-tour="calendar-step" className={css.container}>
+            <ul className={css.list}>
+                {loading ?
+                    <div className={css.calendarLoader}>
+                        <Loader />
+                    </div>
+                    : null
+                }
+>>>>>>> d71bcb780616273ad1a4892b25a639d30403daa9
                 {daysArray.map(day => {
                     const dayKey = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
                     const formattedDayKey = convertDateFormat(dayKey);
@@ -91,14 +108,16 @@ const Calendar = () => {
                 })}
             </ul>
 
-            {activeDay && activeDayData && (
-                <DaysGeneralStats
-                    selectedDay={formattedActiveDay}
-                    dailyNorm={activeDayData.dailyWaterRate}
-                    normCompletion={activeDayData.consumedPercentage}
-                    servings={activeDayData.consumptionCount}
-                    targetElement={selectedDateElement} // Передаємо елемент для позиціювання
-                />
+            {activeDay && activeDayData && open && (
+                <ClickOutside onClick={() => { setOpen(false) }}>
+                    <DaysGeneralStats
+                        selectedDay={formattedActiveDay}
+                        dailyNorm={activeDayData.dailyWaterRate}
+                        normCompletion={activeDayData.consumedPercentage}
+                        servings={activeDayData.consumptionCount}
+                        targetElement={selectedDateElement} // Передаємо елемент для позиціювання
+                    />
+                </ClickOutside>
             )}
         </div>
     );
