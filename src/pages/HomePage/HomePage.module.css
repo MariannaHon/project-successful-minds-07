@@ -69,10 +69,10 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 @media screen and (min-width: 768px) {
 
   .homePage {
-    background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet90.png'),
+    background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_tablet.png');
     background-repeat: no-repeat;
-    background-position: center -50px, center -20px;
+    background-position: bottom, center -20px;
     max-width: var(--container-medium-width);
     height: 1280px;
     margin-top: 40px;
@@ -80,19 +80,21 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   }
 
   .leftColumn {
-    padding-top: 542px;
+    padding-top: 472px;
   }
   .rightColumn {display: flex;
     flex-direction: column;
     width: 704px;
-    
     padding: 32px 24px 32px 24px;
-    
+    margin-bottom:20px;
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-two);
       }
-  
+      .leftColumn {
+        padding-top: 310px;
+        margin-top: 55px;
+      }
 }
 
 
