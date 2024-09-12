@@ -12,7 +12,6 @@ import moment from 'moment';
 import toast from 'react-hot-toast';
 import { nanoid } from '@reduxjs/toolkit';
 
-// Оновлена схема валідації для часу у форматі HH:mm
 const WaterSchema = Yup.object().shape({
   date: Yup.string()
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format! Use HH:mm.')
@@ -45,15 +44,14 @@ const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
 
   const timeNow = getCurrentTime();
 
-  // Форматуємо дату і час у формат YYYY-MM-DD HH:mm
   const formatDateTime = (date, time) => {
-    return moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm').format(
-      'YYYY-MM-DD HH:mm'
-    );
+    return moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm')
+      .local()
+      .format('YYYY-MM-DD HH:mm');
   };
 
   const handleAddWater = (values, actions) => {
-    const date = moment().format('YYYY-MM-DD'); // Текуча дата
+    const date = moment().format('YYYY-MM-DD');
     const formattedDateTime = formatDateTime(date, values.date);
     const waterVolume = values.waterVolume;
 
@@ -63,11 +61,11 @@ const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
       .unwrap()
       .then(() => {
         actions.resetForm();
-        onClose(); // Закриття модального вікна
-        setAmountOfWater(50); // Скидання кількості води
-        toast.success('Water data added successfully!');
+        onClose();
+        setAmountOfWater(50);
+        toast.success('Successfully added water record to the list');
         updateWaterData({
-          id: nanoid(), // Додаємо новий id для водного запису
+          id: nanoid(),
           amount: waterVolume,
           date: formattedDateTime,
         });
