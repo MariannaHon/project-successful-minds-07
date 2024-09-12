@@ -17,24 +17,24 @@ const CustomBox = styled(Box)(({ theme }) => ({
   width: '118px',
   height: '88px',
   top: 100,
-  right: 10,
+  right: 0,
   transform: 'translate(-50%, -50%)',
   zIndex: 1300,
   [theme.breakpoints.down('xs')]: {
-    top: 100,
-    right: 10,
+    top: 120,
+    right: 0,
   },
   [theme.breakpoints.between('sm', 'md')]: {
-    top: 100,
-    right: 140,
+    top: 120,
+    right: 0,
   },
   [theme.breakpoints.between('md', 'lg')]: {
     top: 120,
-    right: 150,
+    right: 100,
   },
   [theme.breakpoints.between('lg', 'xl')]: {
     top: 120,
-    right: 130,
+    right: 100,
   },
   [theme.breakpoints.up('xl')]: {
     top: 120,
