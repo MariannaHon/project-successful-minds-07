@@ -19,7 +19,6 @@ export const TodayWaterList = ({
   setWaterItems,
   handleAddWater,
 }) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [entryToDelete, setEntryToDelete] = useState(null);
@@ -69,8 +68,8 @@ export const TodayWaterList = ({
           minute: '2-digit',
           day: '2-digit',
           month: '2-digit',
-          year: 'numeric'
-        })
+          year: 'numeric',
+        }),
       }));
       setWaterItems(formattedItems);
     }
@@ -84,13 +83,14 @@ export const TodayWaterList = ({
 
   return (
     <div className={css.todayWaterList}>
-      
       <h2 className={css.title}>Today</h2>
       <ul className={css.list}>
-        {sortedWaterItems.map((entry) => (
+        {sortedWaterItems.map(entry => (
           <li key={entry._id || entry.id} className={css.item}>
             <div className={css.value}>
-               <svg className={css.iconGlass} aria-label="icon-glass"><use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use></svg>
+              <svg className={css.iconGlass} aria-label="icon-glass">
+                <use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use>
+              </svg>
               <p className={css.amount}>{entry.amount} ml</p>
               <p className={css.time}>
                 {new Date(entry.time).toLocaleTimeString([], {
@@ -99,9 +99,12 @@ export const TodayWaterList = ({
                 })}
               </p>
             </div>
-
             <div className={css.btnAll}>
-              <EditModal />
+              <EditModal
+                editedAmount={entry.amount}
+                editedTime={entry.time}
+                userId={entry._id}
+              />
               <button
                 className={css.btnTrash}
                 onClick={() => handleOpenDelete(entry._id)}
@@ -153,7 +156,6 @@ export const TodayWaterList = ({
         </div>
       )}
     </div>
-   
   );
 };
 
