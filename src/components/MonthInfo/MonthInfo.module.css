@@ -1,15 +1,8 @@
 .monthSectionInfo {
     width: 100%;
-    /* background-color: var(--secondary-light-blue);
-    font-size: var(--font-size-small);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-two);
-    color: var(--secondary-blue);
-  } */}
-  
-  
-  .monthTitle {
+}
    
+  .monthTitle {
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium);
     line-height: var(--line-height-normal);
@@ -31,6 +24,7 @@
       font-size: 28px;
       line-height: 114%;
     }
+    
     .monthSectionInfo {
       width: 100%;
       background-color: var(--secondary-light-blue);
@@ -40,8 +34,7 @@
       color: var(--secondary-blue);
     }
     
-    .monthTitle {
-     
+    .monthTitle { 
       font-size: var(--font-size-base);
       font-weight: var(--font-weight-medium);
       line-height: var(--line-height-normal);
@@ -56,3 +49,4 @@
       margin-bottom: 16px;
     }
   }
+

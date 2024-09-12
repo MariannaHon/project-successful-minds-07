@@ -12,7 +12,8 @@ const RegisterForm = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [type, setType] = useState('password');
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	
   const onSubmit = (values, actions) => {
     const newUser = {
       email: values.email,
@@ -24,11 +25,11 @@ const RegisterForm = () => {
 
   const formSchema = Yup.object().shape({
     email: Yup.string()
-      .email('Invalid email address')
+      .email('Please enter a valid email address')
       .required('Email is Required'),
     password: Yup.string()
-      .min(8, 'Too short password')
-      .max(64, 'Too long password')
+      .min(8, 'Password must be at least 8 characters')
+      .max(64, 'Password must be no more than 64 characters')
       .required('Password is Required'),
     repeatPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -93,9 +94,11 @@ const RegisterForm = () => {
                       id={`${id}-password`}
                       className={`${css.input} ${
                         errors.password && touched.password
-                          ? errors.password === 'Too short password'
+                          ? errors.password ===
+                            'Password must be at least 8 characters'
                             ? css.short
-                            : errors.password === 'Too long password'
+                            : errors.password ===
+                              'Password must be no more than 64 characters'
                             ? css.long
                             : errors.password === 'Password is Required'
                             ? css.required

@@ -18,7 +18,6 @@
     height: 32px;
     border-radius: 50%;
     background-color: #fff;
-    
     font-weight: 400;
     font-size: 14px;
     line-height: 1.28;
@@ -32,6 +31,7 @@
     background-color: #fff;
     border: 1px solid #FF9D43
   }
+
   .calendarItemText {
     font-weight: 400;
     font-size: 10px;
@@ -47,6 +47,7 @@
   width: 38px;
   height: 65px;
 }
+  
 .calendarItemContainer {
   display: flex;
   flex-direction: column;
@@ -62,34 +63,28 @@
   font-size: 16px;
   line-height: 150%;
 }
+  
 .text {
   font-size: 12px;
   line-height: 187%;
 }
-.calendarItemButton {
-      
-    width: 34px;
-    height: 34px;
-    font-weight: 400;
-     
+  
+.calendarItemButton {   
+  width: 34px;
+  height: 34px;
+  font-weight: 400;    
   font-size: 16px;
-  line-height: 1.25;
- 
-  
+  line-height: 1.25;  
 } 
+  
 .calendarItemText {
- 
   font-size: 13px;
-  line-height: 1.53;
-  
-  
- 
+  line-height: 1.53; 
 }
 }
 
 /* ____________________________Desctop style____________________________ */
 @media screen and (min-width: 1440px) { 
- 
     .calendarItemButton {
     border: none;
     align-content: center;
@@ -99,8 +94,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: #fff;
-    
+    background-color: #fff;  
     font-weight: 400;
     font-size: 14px;
     line-height: 1.28;
@@ -108,8 +102,5 @@
     text-align: center;
     color: #2F2F2F;
   }
-
-
   }
   
- 

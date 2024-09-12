@@ -11,6 +11,7 @@
   margin: 0 auto;
   padding: 0 20px;
 }
+
 .rightColumn {display: flex;
   flex-direction: column;
   width: 280px;
@@ -45,6 +46,9 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 
 .rightColumn {
   width: 100%;
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .norma {
@@ -53,21 +57,16 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   justify-content: flex-start;
   flex-direction: column;
   gap: 12px;
-
   border: 1px solid #ecf2ff;
   border-radius: 10px;
   padding: 8px 20px;
   min-width: 164px;
   height: 76px;
-
   box-shadow: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
   background: #fff;
 }
 
-
-
 @media screen and (min-width: 768px) {
-
   .homePage {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_tablet.png');
@@ -82,7 +81,9 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .leftColumn {
     padding-top: 472px;
   }
-  .rightColumn {display: flex;
+
+  .rightColumn {
+    display: flex;
     flex-direction: column;
     width: 704px;
     padding: 32px 24px 32px 24px;
@@ -91,7 +92,6 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-two);
       }
-       
 }
 
 
@@ -101,8 +101,8 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     max-width: var(--container-max-width);
     margin-top: 665px;
   }
-  .rightColumn {display: flex;
-    
+  
+  .rightColumn {display: flex;  
     width: 592px;
     height: 680px;
     padding: 32px 24px 32px 24px;
@@ -111,6 +111,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-two);
       }
+
   .homePage {
     background-color: var(--primary-white);
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_desctop.png'),
@@ -129,6 +130,3 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     margin-left: 35px;
   }
 }
-
-
-
