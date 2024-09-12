@@ -32,9 +32,13 @@ const CustomBox = styled(Box)(({ theme }) => ({
     top: 120,
     right: 150,
   },
-  [theme.breakpoints.up('lg')]: {
+  [theme.breakpoints.between('lg', 'xl')]: {
     top: 120,
-    right: 180,
+    right: 130,
+  },
+  [theme.breakpoints.up('xl')]: {
+    top: 120,
+    right: 330,
   },
 }));
 
