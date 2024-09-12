@@ -133,7 +133,6 @@ const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
                     <RxPlus className={css.addWaterIcon} />
                   </button>
                 </div>
-
                 <div className={css.timeContainer}>
                   <label>Recording time:</label>
                   <Field
