@@ -60,7 +60,11 @@ h3 {
     align-items: center;
    
 }
-
+@media (max-width: 1400px) and  (min-width: 320px){
+    .modalWindow {
+      overflow: scroll;
+    }
+  }
 .field {
     position: relative;
     padding: 4px;
@@ -162,7 +166,7 @@ input:focus:invalid {
 }
 .modalWindow {
     width: 280px;
-    overflow: scroll;    
+   
 
 }
 .leftRightGroup {
@@ -203,7 +207,8 @@ input:focus:invalid {
 }
 
 .modalWindow {
-    width: 704px;    
+    width: 704px; 
+   
 }
 .leftRightGroup {
     display: flex;
@@ -238,6 +243,7 @@ input:focus:invalid {
 }
 .modalWindow {
     width: 1008px;
+   
 }
 .groupRight {
     align-items: flex-start;    
