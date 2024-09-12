@@ -1,3 +1,103 @@
+/*======MODAL DELETE MOBILE STYLE START=======*/
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalDelete {
+  background-color: var(--primary-white);
+  border-radius: var(--border-radius-smaller);
+  padding: 32px 24px;
+  min-width: 280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.crossSvg {
+  position: absolute;
+  top: 32px;
+  right: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.crossSvg svg {
+  width: var(--icon-size-base);
+  height: var(--icon-size-base);
+  fill: var(--primary-blue);
+}
+
+.deleteQuestion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  row-gap: 24px;
+}
+
+.deleteEntry {
+  color: #2f2f2f;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.23;
+}
+
+.sure {
+  color: #2f2f2f;
+  width: 207px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+}
+
+.choiseBtns {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 24px;
+}
+
+.btnCancel {
+  width: 232px;
+  height: 36px;
+  padding: 8px 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  background-color: #d7e3ff;
+  color: #407bff;
+}
+
+.btnDel {
+  width: 232px;
+  height: 36px;
+  padding: 8px 30px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  background-color: #ef5050;
+  color: #fff;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+}
+/*======MODAL DELETE MOBILE STYLE END=======*/
+
 .todayWaterList {
   position: relative;
   background-color: #ecf2ff;
@@ -104,7 +204,6 @@
 
 .btnAll {
   display: flex;
-  gap: 18px;
   margin-right: 6px;
   align-items: center;
 }
@@ -134,7 +233,7 @@
   width: 16px;
   height: 16px;
   fill: #888;
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .addWaterButton {
@@ -168,6 +267,47 @@
   .list {
     height: 158px;
   }
+
+  /*======MODAL DELETE TABLET STYLE START=======*/
+  @media screen and (min-width: 768px) {
+    .modalDelete {
+      min-width: 592px;
+    }
+
+    .sure {
+      width: 338px;
+      font-size: 18px;
+    }
+
+    .deleteQuestion {
+      align-items: unset;
+    }
+
+    .choiseBtns {
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      row-gap: unset;
+      column-gap: 24px;
+    }
+
+    .btnCancel {
+      width: 160px;
+      height: 44px;
+      padding: 10px 30px;
+      font-size: 18px;
+      line-height: 1.33;
+    }
+
+    .btnDel {
+      width: 160px;
+      height: 44px;
+      padding: 10px 30px;
+      font-size: 18px;
+      line-height: 1.33;
+    }
+    /*======MODAL DELETE TABLET STYLE END=======*/
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -181,112 +321,3 @@
     justify-content: space-between;
   }
 }
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-  z-index: 1001;
-  width: 100%;
-}
-
-.closeModal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.modalDelete {
-  width: 592px;
-  height: 208px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-  border-radius: 10px;
-  background-color: #fff;
-  padding: 32px 24px;
-  box-sizing: border-box;
-}
-
-.deleteEntry {
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 32px;
-  text-align: left;
-  margin-top: 0;
-}
-
-.sure {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 20px;
-  text-align: left;
-  margin: 0;
-}
-
-.deleteQuestion {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.crossSvg {
-  position: absolute;
-  top: 36px;
-  right: 24px;
-}
-
-.choiseBtns {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  justify-content: flex-end;
-}
-
-.btnCancel {
-  width: 160px;
-  height: 44px;
-  border-radius: 10px;
-  border: none;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: center;
-  background-color: #d7e3ff;
-  color: #407bff;
-}
-
-.btnDel {
-  width: 160px;
-  height: 44px;
-  border-radius: 10px;
-  border: none;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: center;
-  background-color: #ef5050;
-  color: #fff;
-  box-shadow: 0 4px 8px 0 #407bff57;
-}
-
-
