@@ -101,7 +101,7 @@ const style = {
         
     return (
       <>
-        <Button onClick={handleOpen}><HiOutlinePencilSquare className={css.iconPencil} /></Button>
+        <button className={css.btnPencil} onClick={handleOpen}><HiOutlinePencilSquare className={css.iconPencil} /></button>
         <Modal
           open={open}
           onClose={handleClose}
