@@ -2,12 +2,15 @@ import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) => {
   const containerStyle = {
-    backgroundColor: isActive ? '#fff' : feasibility < 100 ? '#fff)' : '#FFFFFF',
-    // backgroundColor: isActive ? '#fff' : feasibility < 100 ? '' : '#FFFFFF',
-    // color: isActive ? '#000000' : '#000000',
+    backgroundColor: isActive
+      ? '#fff'
+      : feasibility < 100
+      ? '#fff)'
+      : '#FFFFFF',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     opacity: isDisabled ? 1 : 1,
-    border: feasibility < 100 && !isDisabled  ? '1px solid #FF9D43' : ''  
+    border:
+      feasibility >= 100 && !isDisabled ? '1px solid rgb(255, 157, 67)' : '',
   };
 
   const handleClick = (event) => {

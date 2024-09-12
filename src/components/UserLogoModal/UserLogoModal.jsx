@@ -7,7 +7,7 @@ import SettingModal from '../SettingModal/SettingModal.jsx';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal.jsx';
 import { styled } from '@mui/material/styles';
 
-const CustomBox = styled(Box)({
+const CustomBox = styled(Box)(({ theme }) => ({
   padding: 'var(--icon-size-smaller)',
   position: 'fixed',
   borderRadius: 'var(--border-radius-smaller)',
@@ -17,16 +17,26 @@ const CustomBox = styled(Box)({
   width: '118px',
   height: '88px',
   top: 100,
-  right: -30,
+  right: 10,
   transform: 'translate(-50%, -50%)',
   zIndex: 1300,
-  '@media (min-width: 768px)': {
+  [theme.breakpoints.down('xs')]: {
+    top: 100,
+    right: 10,
+  },
+  [theme.breakpoints.between('sm', 'md')]: {
+    top: 100,
+    right: 140,
+  },
+  [theme.breakpoints.between('md', 'lg')]: {
     top: 120,
+    right: 150,
   },
-  '@media (min-width: 1440px)': {
-    right: 90,
+  [theme.breakpoints.up('lg')]: {
+    top: 120,
+    right: 180,
   },
-});
+}));
 
 const UserLogoModal = () => {
   const [open, setOpen] = React.useState(false);
@@ -38,22 +48,24 @@ const UserLogoModal = () => {
       <button className={css.btn} onClick={handleOpen}>
         <GoChevronDown className={css.blueIcon} />
       </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        sx={{
-          '& .MuiBackdrop-root': {
-            backgroundColor: 'transparent',
-          },
-        }}
-      >
-        <CustomBox>
-          <div className={css.container}>
-            <SettingModal />
-            <UserLogoutModal />
-          </div>
-        </CustomBox>
-      </Modal>
+      <div className={css.box}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          sx={{
+            '& .MuiBackdrop-root': {
+              backgroundColor: 'transparent',
+            },
+          }}
+        >
+          <CustomBox>
+            <div className={css.container}>
+              <SettingModal />
+              <UserLogoutModal />
+            </div>
+          </CustomBox>
+        </Modal>
+      </div>
     </div>
   );
 };
