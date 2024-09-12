@@ -2,7 +2,10 @@
 h3 {
     color: var(--primary-black);
 }
-
+.Box {
+    top: 30%;
+    left: auto;
+}
 .error {
     line-height: 1.29;
     color: var(--secondary-red);
@@ -57,7 +60,11 @@ h3 {
     align-items: center;
    
 }
-
+@media (max-width: 1400px) and  (min-width: 320px){
+    .modalWindow {
+      overflow: scroll;
+    }
+  }
 .field {
     position: relative;
     padding: 4px;
@@ -158,7 +165,9 @@ input:focus:invalid {
     margin: 0 auto;
 }
 .modalWindow {
-    width: 280px;    
+    width: 280px;
+   
+
 }
 .leftRightGroup {
     display: flex;
@@ -198,7 +207,8 @@ input:focus:invalid {
 }
 
 .modalWindow {
-    width: 704px;    
+    width: 704px; 
+   
 }
 .leftRightGroup {
     display: flex;
@@ -233,6 +243,7 @@ input:focus:invalid {
 }
 .modalWindow {
     width: 1008px;
+   
 }
 .groupRight {
     align-items: flex-start;    
