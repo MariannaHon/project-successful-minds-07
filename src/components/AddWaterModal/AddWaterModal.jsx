@@ -51,28 +51,29 @@ const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
     };
 
     const handleAddWater = (values, actions) => {
-        const date = moment().format("YYYY-MM-DD"); // Текуча дата
-        const formattedDateTime = formatDateTime(date, values.date);
-        const waterVolume = values.waterVolume;
+    const currentDate = moment().format("YYYY-MM-DD"); // Отримання поточної дати
+    const formattedDateTime = formatDateTime(currentDate, values.date); // Використовуємо formatDateTime
 
-        dispatch(addWater({ localTime: formattedDateTime, waterValue: waterVolume }))
-            .unwrap()
-            .then(() => {
-                actions.resetForm();
-                onClose(); // Закриття модального вікна
-                setAmountOfWater(50); // Скидання кількості води
-                toast.success('Water data added successfully!');
-                updateWaterData({
-                    id: nanoid(), // Додаємо новий id для водного запису
-                    amount: waterVolume,
-                    date: formattedDateTime
-                });
-            })
-            .catch((error) => {
-                console.error("Failed to add water:", error);
-                toast.error('Error while saving water data.');
+    const waterVolume = values.waterVolume;
+
+    dispatch(addWater({ localTime: formattedDateTime, waterValue: waterVolume }))
+        .unwrap()
+        .then(() => {
+            actions.resetForm();
+            onClose(); // Закриття модального вікна
+            setAmountOfWater(50); // Скидання кількості води
+            toast.success('Water data added successfully!');
+            updateWaterData({
+                id: nanoid(), // Додаємо новий id для водного запису
+                amount: waterVolume,
+                date: formattedDateTime,
             });
-    };
+        })
+        .catch((error) => {
+            console.error("Failed to add water:", error);
+            toast.error('Error while saving water data.');
+        });
+};
 
     return (
         <Modal open={true} onClose={onClose}>

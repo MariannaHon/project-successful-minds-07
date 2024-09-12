@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
 // import { CiGlass } from 'react-icons/ci';
 import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
-
+import moment from "moment";
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
 
 import EditModal from '../EditModal/EditModal.jsx';
@@ -92,12 +92,9 @@ export const TodayWaterList = ({
             <div className={css.value}>
                <svg className={css.iconGlass} aria-label="icon-glass"><use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use></svg>
               <p className={css.amount}>{entry.amount} ml</p>
-              <p className={css.time}>
-                {new Date(entry.time).toLocaleTimeString([], {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })}
-              </p>
+             <p className={css.time}>
+  {moment(entry.time).format('HH:mm')}
+</p>
             </div>
 
             <div className={css.btnAll}>
