@@ -91,10 +91,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-two);
       }
-      .leftColumn {
-        padding-top: 310px;
-        margin-top: 55px;
-      }
+       
 }
 
 
@@ -104,7 +101,16 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     max-width: var(--container-max-width);
     margin-top: 665px;
   }
-
+  .rightColumn {display: flex;
+    
+    width: 592px;
+    height: 680px;
+    padding: 32px 24px 32px 24px;
+    margin-bottom:20px;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-two);
+      }
   .homePage {
     background-color: var(--primary-white);
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_desctop.png'),
@@ -119,7 +125,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   }
 
   .leftColumn {
-    margin-top: 180px;
+    margin-top: 250px;
     margin-left: 35px;
   }
 }
