@@ -2,7 +2,10 @@
 h3 {
     color: var(--primary-black);
 }
-
+.Box {
+    top: 30%;
+    left: auto;
+}
 .error {
     line-height: 1.29;
     color: var(--secondary-red);
@@ -158,7 +161,9 @@ input:focus:invalid {
     margin: 0 auto;
 }
 .modalWindow {
-    width: 280px;    
+    width: 280px;
+    overflow: scroll;    
+
 }
 .leftRightGroup {
     display: flex;
