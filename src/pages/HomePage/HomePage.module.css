@@ -116,7 +116,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_desctop.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_desctop.png');
     background-repeat: no-repeat;
-    background-position: center, left 50px top -50px;
+    background-position: center right 10px, left 50px top 10px;
     max-width: 1440px;
     height: 680px;
     display: flex;
