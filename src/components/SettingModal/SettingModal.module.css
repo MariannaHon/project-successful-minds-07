@@ -287,3 +287,9 @@ input:focus:invalid {
     width: 960px;
 }
 }
+
+@media (max-width: 1400px) and  (min-width: 320px){
+    .modalWindow {
+      overflow: scroll;
+    }
+  }
