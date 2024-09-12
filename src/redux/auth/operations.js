@@ -22,9 +22,27 @@ export const register = createAsyncThunk(
       setAuthHeader(accessToken);
       localStorage.setItem('accessToken', accessToken);
       return response.data;
-    } catch (e) {
-      toast.error('Something went wrong :( Try again later.');
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {if (error.response) {
+      const status = error.response.status;
+      // console.log(error.response);
+      const errorMessage =
+        error.response.data.msg || 'Authorization failed';
+      // console.log({ status } + '   and ' + { errorMessage });
+      toast.error(`Error ${status}: ${errorMessage}`, {
+        position: 'top-center',
+      });
+      return thunkAPI.rejectWithValue(errorMessage);
+    } else if (error.request) {
+      toast.error('Network error: No response from server.', {
+        position: 'top-center',
+      });
+      return thunkAPI.rejectWithValue('No response from server');
+    } else {
+      toast.error('Something went wrong :( Try again later.', {
+        position: 'top-center',
+      });
+      return thunkAPI.rejectWithValue(error.message);
+    }
     }
   }
 );
@@ -40,10 +58,10 @@ export const logIn = createAsyncThunk('auth/signin', async (User, thunkAPI) => {
   } catch (error) {
     if (error.response) {
       const status = error.response.status;
-      console.log(error.response);
+      // console.log(error.response);
       const errorMessage =
-        error.response.data.message || 'Authorization failed';
-      console.log({ status } + '   and ' + { errorMessage });
+        error.response.data.msg || 'Authorization failed';
+      // console.log({ status } + '   and ' + { errorMessage });
       toast.error(`Error ${status}: ${errorMessage}`, {
         position: 'top-center',
       });
