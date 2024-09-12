@@ -30,7 +30,7 @@ const FeedbackSchema = Yup.object().shape({
   email: Yup.string().email().required('Required'),
   outPassword: Yup.string()
     .min(8, 'Too Short!')
-    .max(64, 'Too Long!')
+    .max(64, 'Too Long!'),
   nPassword: Yup.string().min(8, 'Too Short!').max(64, 'Too Long!'),
   repeatNPassword: Yup.string()
     .min(8, 'Too Short!')
