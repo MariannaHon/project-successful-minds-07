@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
 // import { CiGlass } from 'react-icons/ci';
 import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
-import moment from "moment";
+import moment from 'moment';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
-
+import { refreshUser } from '../../redux/auth/operations.js';
 import EditModal from '../EditModal/EditModal.jsx';
 import { HiOutlineTrash } from 'react-icons/hi2';
-
 import { selectWatersToday } from '../../redux/water/selectors.js';
 
 import icons from '../../../public/symbol-defsN.svg';
@@ -44,6 +43,7 @@ export const TodayWaterList = ({
         .unwrap()
         .then(() => {
           dispatch(fetchWaterPerDay());
+          dispatch(refreshUser());
         })
         .catch(err => {
           console.error(err);
@@ -92,9 +92,7 @@ export const TodayWaterList = ({
                 <use href="/project-successful-minds-07/symbol-defsN.svg#icon-glass"></use>
               </svg>
               <p className={css.amount}>{entry.amount} ml</p>
-             <p className={css.time}>
-  {moment(entry.time).format('HH:mm')}
-</p>
+              <p className={css.time}>{moment(entry.time).format('HH:mm')}</p>
             </div>
             <div className={css.btnAll}>
               <EditModal
