@@ -1,20 +1,19 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-start;
   margin: 0 auto;
-  gap: 12px;
-  width: 100%;
+  column-gap: 26px;
+  row-gap: 16px;
   position: relative;
 }
 
 .item {
   display: flex;
-  flex-direction: column;
+  flex-direction: center;
   align-items: center;
-  gap: 4px;
-  border-radius: 30px;
-  width: calc((100% - 5 * 21px) / 6);
+  width: calc((100% - 5 * 26px) / 6);
 }
 
 .calendarLoader {
@@ -29,23 +28,23 @@
   background-color: #ffffff99;
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 768px) {
   .list {
-    justify-content: flex-start;
-    width: 100%;
+    column-gap: 34px;
+    row-gap: 20px;
   }
 
   .item {
-    width: calc((100% - 5 * 21px) / 6);
+    width: calc((100% - 9 * 34px) / 10);
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .list {
-    column-gap: 16px;
+    column-gap: 20px;
   }
 
   .item {
-    width: calc((100% - 6 * 21px) / 8);
+    width: calc((100% - 9 * 20px) / 10);
   }
 }

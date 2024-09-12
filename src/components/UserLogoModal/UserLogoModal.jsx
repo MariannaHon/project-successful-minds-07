@@ -1,43 +1,58 @@
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import css from './UserLogoModal.module.css';
-import { GoChevronDown } from "react-icons/go";
-import SettingModal from "../SettingModal/SettingModal.jsx";
+import { GoChevronDown } from 'react-icons/go';
+import SettingModal from '../SettingModal/SettingModal.jsx';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal.jsx';
+import { styled } from '@mui/material/styles';
 
-const style = {
-  position: 'absolute',
-  top: 140,
-  right: 40,
-  transform: 'translate(-50%, -50%)',
-  minWidth: 118,
-  minHight: 88,
-  bgcolor: 'background.paper',
+const CustomBox = styled(Box)({
+  padding: 'var(--icon-size-smaller)',
+  position: 'fixed',
+  borderRadius: 'var(--border-radius-smaller)',
+  backgroundColor: 'var(--primary-white)',
+  boxShadow: 'var(--box-shadow-light)',
   border: 'none',
-  borderRadius: 2,
-  boxShadow: 24,
-  p: 4,
-};
+  width: '118px',
+  height: '88px',
+  top: 100,
+  right: -30,
+  transform: 'translate(-50%, -50%)',
+  zIndex: 1300,
+  '@media (min-width: 768px)': {
+    top: 120,
+  },
+  '@media (min-width: 1440px)': {
+    right: 90,
+  },
+});
 
 const UserLogoModal = () => {
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   return (
-    <div>
-      <button className={css.btn} onClick={handleOpen}><GoChevronDown className={css.blueIcon} /></button>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style} >
+    <div className={css.wrap}>
+      <button className={css.btn} onClick={handleOpen}>
+        <GoChevronDown className={css.blueIcon} />
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{
+          '& .MuiBackdrop-root': {
+            backgroundColor: 'transparent',
+          },
+        }}
+      >
+        <CustomBox>
           <div className={css.container}>
             <SettingModal />
             <UserLogoutModal />
           </div>
-        </Box>
+        </CustomBox>
       </Modal>
     </div>
   );

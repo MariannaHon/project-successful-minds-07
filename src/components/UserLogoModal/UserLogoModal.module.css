@@ -1,17 +1,16 @@
 .blueIcon {
-    color: var(--primary-blue);
-    background-color: transparent;
-    width: 16px;
-    height: 16px;
+  color: var(--primary-blue);
+  background-color: transparent;
+  width: var(--icon-size-smaller);
+  height: var(--icon-size-smaller);
 }
 
 .btn {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-

@@ -28,6 +28,9 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
 
 .rightColumn {
   width: 100%;
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .norma {
@@ -47,10 +50,7 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   background: #fff;
 }
 
-
-
 @media screen and (min-width: 768px) {
-
   .homePage {
     background-image: url('/project-successful-minds-07/imgHomePage/Background_element_tablet90.png'),
       url('/project-successful-minds-07/imgHomePage/Botle_tablet.png');
@@ -65,7 +65,6 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .leftColumn {
     padding-top: 542px;
   }
-
 }
 
 @media screen and (min-width: 1440px) {
@@ -73,6 +72,10 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     max-width: var(--container-max-width);
     margin-top: 665px;
   }
+
+	.rightColumn {
+ max-width: 592px;
+}
 
   .homePage {
     background-color: var(--primary-white);
@@ -92,6 +95,3 @@ screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
     margin-left: 35px;
   }
 }
-
-
-
