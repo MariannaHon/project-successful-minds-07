@@ -27,7 +27,7 @@
     color: #2F2F2F;
   }
 
-
+  calendarItemButton:active,
   calendarItemButton:hover {
     background-color: #fff;
     border: 1px solid #FF9D43
@@ -46,6 +46,15 @@
   .container {
   width: 38px;
   height: 65px;
+}
+.calendarItemContainer {
+  display: flex;
+  flex-direction: column;
+  width: 34px;
+  height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 .button {
   width: 38px;

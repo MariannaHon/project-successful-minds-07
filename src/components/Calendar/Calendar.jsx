@@ -71,19 +71,18 @@ const Calendar = () => {
     const activeDayData = findObjectByDate(waterPerMonth, convertDateFormat(activeDay));
 
     return (
-<<<<<<< HEAD
+
         <div data-tour="calendar-step" className={css.calendarContainer}>
             <ul className={css.calendarList}>
-=======
-        <div data-tour="calendar-step" className={css.container}>
-            <ul className={css.list}>
+
+       
                 {loading ?
                     <div className={css.calendarLoader}>
                         <Loader />
                     </div>
                     : null
                 }
->>>>>>> d71bcb780616273ad1a4892b25a639d30403daa9
+
                 {daysArray.map(day => {
                     const dayKey = `${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${year}`;
                     const formattedDayKey = convertDateFormat(dayKey);
