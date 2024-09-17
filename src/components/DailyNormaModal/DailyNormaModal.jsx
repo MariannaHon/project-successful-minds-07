@@ -12,10 +12,47 @@ import css from './DailyNormaModal.module.css';
 import { IoClose } from 'react-icons/io5';
 
 const schema = yup.object().shape({
-    weight: yup.number().typeError('Please, enter a number').min(0).max(300).required('Weight is required'),
-    dailyTimeActivity: yup.number().typeError('Please, enter a number').min(0).max(10).required('Active sport time is required'),
+    weight: yup.number().min(0).max(300),
+    dailyTimeActivity: yup.number().min(0).max(10),
     todayWater: yup.number().typeError('Please, enter a number').min(0).max(10).required('Daily water intake is required'),
 });
+
+// const schema = yup.object().shape({
+//     todayWater: yup.number()
+//         .typeError('Please, enter a valid number')
+//         .min(0, 'Minimum value is 0')
+//         .max(10, 'Maximum value is 10')
+//         .required('Daily water intake is required'),
+
+//     weight: yup.number()
+//         .nullable()
+//         .typeError('Please, enter a number')
+//         .min(0, 'Minimum value is 0')
+//         .max(300, 'Maximum value is 300')
+//         .test('weight-changed', 'Weight is required when it is changed', function (value) {
+//             // Перевіряємо, чи weight змінився
+//             const { originalWeight } = this.options.context; // Отримуємо оригінальне значення ваги з контексту
+//             if (value !== originalWeight) {
+//                 // Якщо вага змінилася, перевіряємо наявність значення у dailyTimeActivity
+//                 return this.parent.dailyTimeActivity !== undefined && this.parent.dailyTimeActivity !== null;
+//             }
+//             return true; // Якщо вага не змінилася, не перевіряємо dailyTimeActivity
+//         }),
+
+//     dailyTimeActivity: yup.number()
+//         .nullable()
+//         .typeError('Please, enter a number')
+//         .min(0, 'Minimum value is 0')
+//         .max(10, 'Maximum value is 10')
+//         .when('weight', {
+//             is: value => value !== undefined && value !== null, // Коли вага задана
+//             then: yup.number().required('Active sport time is required when weight is provided'),
+//             otherwise: yup.number().nullable(), // Якщо вага не задана
+//         }),
+
+//     manualWaterNorm: yup.boolean().default(false), // Поле, що вказує на ручне введення води
+// });
+
 
 const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
     const user = useSelector(selectUser);
@@ -52,9 +89,10 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
         if (user) {
             const initialWaterNorm = user.waterRate ? formatNumber(user.waterRate / 1000) : '2.0';
             setFinalWaterNorm(initialWaterNorm);
+            setManualWaterNorm(initialWaterNorm);
             reset({
-                weight: user.weight || '',
-                dailyTimeActivity: user.dailyTimeActivity || '',
+                weight: user.weight || 0,
+                dailyTimeActivity: user.dailyTimeActivity || 0,
                 todayWater: user.waterRate ? user.waterRate / 1000 : '',
                 gender: user.gender || ''
             });

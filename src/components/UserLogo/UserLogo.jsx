@@ -34,7 +34,7 @@ const UserLogo = () => {
 
   return (
     <div className={css.userLogoWrapper}>
-      <p className={css.userLogoName}>{getUserAvatarContent()}</p>
+      <div className={css.userLogoName}>{getUserAvatarContent()}</div>
       <UserLogoModal />
     </div>
   );
