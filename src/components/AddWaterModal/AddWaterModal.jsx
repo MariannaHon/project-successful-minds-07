@@ -17,7 +17,7 @@ const WaterSchema = Yup.object().shape({
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format! Use HH:mm.')
     .required('Required field!'),
   waterVolume: Yup.number()
-    .min(1, 'Too little! Min 1 ml')
+    .min(50, 'Too little! Min 50 ml')
     .max(5000, 'Too much! Max 5000 ml')
     .required('Required field!'),
 });
@@ -46,7 +46,7 @@ const AddWaterModal = ({ initialAmount = 50, onClose, updateWaterData }) => {
 
   const formatDateTime = (date, time) => {
     return moment(`${date} ${time}`, 'YYYY-MM-DD HH:mm')
-      .local()
+      .utc()
       .format('YYYY-MM-DD HH:mm');
   };
 

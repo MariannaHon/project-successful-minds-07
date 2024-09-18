@@ -19,7 +19,7 @@ const HomePage = () => {
   ]);
 
   const handleAddWater = newWater => {
-    setWaterItems([newWater, ...waterItems]); // Додаємо нову воду до початку списку
+    setWaterItems([newWater, ...waterItems]);
   };
 
   return (

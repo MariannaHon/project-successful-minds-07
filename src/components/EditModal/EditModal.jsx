@@ -13,6 +13,7 @@ import { changeWater } from '../../redux/water/operations';
 import { fetchWaterPerDay } from '../../redux/water/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import icons from '../../../public/symbol-defsN.svg';
+import moment from 'moment';
 
 const style = {
   position: 'absolute',
@@ -28,7 +29,7 @@ const style = {
 };
 
 const FeedbackSchema = Yup.object().shape({
-  waterValue: Yup.number().min(50).max(999),
+  waterValue: Yup.number().min(50, 'Too little! Min 50 ml').max(5000, 'Too much! Max 5000 ml'),
   localTime: Yup.string().required('Time is required'),
 });
 
@@ -195,33 +196,31 @@ export default function EditModal({ editedAmount, editedTime, userId }) {
   );
 }
 
+
 function formatTimeForInput(date) {
-  let hours = new Date(date).getHours();
-  let minutes = new Date(date).getMinutes();
-  hours = hours < 10 ? `0${hours}` : hours;
-  minutes = minutes < 10 ? `0${minutes}` : minutes;
-  return `${hours}:${minutes}`;
+  if (!date) return '';
+
+  const localTime = moment.utc(date).local();
+  return localTime.format('HH:mm');
 }
 
+
+
 function formatDateTimeForBackend(isoDateString, time) {
+
   if (!isoDateString || !time) {
     console.error('Invalid ISO date string or time');
     return '';
   }
 
-  const date = new Date(isoDateString);
 
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Місяці починаються з 0, тому +1
-  const day = date.getDate().toString().padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-
+  const date = moment(isoDateString);
   const [hours, minutes] = time.split(':');
-  const formattedTime =
-    hours && minutes
-      ? `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
-      : '00:00';
 
-  return `${formattedDate} ${formattedTime}`;
+  date.set({
+    hour: hours,
+    minute: minutes
+  });
+
+  return date.utc().format('YYYY-MM-DD HH:mm');
 }

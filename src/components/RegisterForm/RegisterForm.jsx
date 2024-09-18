@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { register } from '../../redux/auth/operations';
-//import toast from 'react-hot-toast';
 import css from './RegisterForm.module.css';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import { useId, useState } from 'react';
@@ -12,8 +11,8 @@ const RegisterForm = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [type, setType] = useState('password');
 
-	const dispatch = useDispatch();
-	
+  const dispatch = useDispatch();
+
   const onSubmit = (values, actions) => {
     const newUser = {
       email: values.email,
@@ -62,15 +61,14 @@ const RegisterForm = () => {
                   </label>
                   <div>
                     <Field
-                      className={`${css.input} ${
-                        errors.email && touched.email
+                      className={`${css.input} ${errors.email && touched.email
                           ? errors.email === 'Email is Required'
                             ? css.required
                             : css.invalid
                           : touched.email && !errors.email
-                          ? css.valid
-                          : ''
-                      }`}
+                            ? css.valid
+                            : ''
+                        }`}
                       id={`${id}-email`}
                       type="email"
                       name="email"
@@ -92,21 +90,20 @@ const RegisterForm = () => {
                   <div className={css.iconPosition}>
                     <Field
                       id={`${id}-password`}
-                      className={`${css.input} ${
-                        errors.password && touched.password
+                      className={`${css.input} ${errors.password && touched.password
                           ? errors.password ===
                             'Password must be at least 8 characters'
                             ? css.short
                             : errors.password ===
                               'Password must be no more than 64 characters'
-                            ? css.long
-                            : errors.password === 'Password is Required'
-                            ? css.required
-                            : css.invalid
+                              ? css.long
+                              : errors.password === 'Password is Required'
+                                ? css.required
+                                : css.invalid
                           : touched.password && !errors.password
-                          ? css.valid
-                          : ''
-                      }`}
+                            ? css.valid
+                            : ''
+                        }`}
                       type={type}
                       name="password"
                       autoComplete="new-password"
@@ -143,13 +140,12 @@ const RegisterForm = () => {
                   <div className={css.iconPosition}>
                     <Field
                       id={`${id}-repeatPassword`}
-                      className={`${css.input} ${
-                        errors.repeatPassword && touched.repeatPassword
+                      className={`${css.input} ${errors.repeatPassword && touched.repeatPassword
                           ? css.mismatch
                           : touched.repeatPassword && !errors.repeatPassword
-                          ? css.valid
-                          : ''
-                      }`}
+                            ? css.valid
+                            : ''
+                        }`}
                       type={isOpen ? 'password' : 'text'}
                       name="repeatPassword"
                       autoComplete="new-password"

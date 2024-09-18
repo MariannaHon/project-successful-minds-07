@@ -24,8 +24,8 @@ import css from './SettingModal.module.css';
 import { refreshUser } from '../../redux/auth/operations';
 
 const FeedbackSchema = Yup.object().shape({
-  gender: Yup.string().oneOf(['male', 'female'] )
-  .defined(),
+  gender: Yup.string().oneOf(['male', 'female'])
+    .defined(),
   name: Yup.string().min(3, 'Too Short!').max(34, 'Too Long!'),
   email: Yup.string().email().required('Required'),
   outPassword: Yup.string()
@@ -59,7 +59,7 @@ function SettingModal() {
   const fieldId = useId();
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
-  
+
   const userId = userData?._id;
 
   useEffect(() => {
@@ -73,13 +73,13 @@ function SettingModal() {
 
   const handleSubmit = async (values, actions) => {
     try {
-      const result = await dispatch(updateUser({   
+      const result = await dispatch(updateUser({
         gender: selectedGender,
         name: values.name,
         email: values.email,
         password: values.nPassword || values.password
-      })           
-    ).unwrap();
+      })
+      ).unwrap();
       if (updateUser.fulfilled) {
         actions.resetForm(result);
         setOpen(false);
@@ -92,7 +92,7 @@ function SettingModal() {
       setOpen(true);
     }
   };
-// open/close password
+
   const togglePassInput = () => {
     if (type === 'password') {
       setType('text');
@@ -102,22 +102,22 @@ function SettingModal() {
       setOpenPsw(true);
     }
   };
-// radio groop
-const [selectedGender, setSelectedGender] = useState();
-const handleGenderChange = (event) => {
-  setSelectedGender(event.target.value);
-};
 
-//avatar chenge
- const [selectedFile, setSelectedFile] = useState(null);
- function changeHandler(e) {
-  const file = e.target.files[0];
-  setSelectedFile(file);
+  const [selectedGender, setSelectedGender] = useState();
+  const handleGenderChange = (event) => {
+    setSelectedGender(event.target.value);
+  };
 
-  const formData = new FormData();
-  formData.append('avatarUrl', file);
-  dispatch(changeAvatar(formData));
-}
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  function changeHandler(e) {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+
+    const formData = new FormData();
+    formData.append('avatarUrl', file);
+    dispatch(changeAvatar(formData));
+  }
   return (
     <div>
       <button className={css.buttonSetting} onClick={handleOpen}>
@@ -150,17 +150,17 @@ const handleGenderChange = (event) => {
                       <h3 className={css.groupLeft}>Your Photo</h3>
                       <div className={css.changeAvatar}>
                         <img
-                          src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
+                          src={selectedFile ? (URL.createObjectURL(selectedFile)) :
                             (userData?.avatarUrl ||
-                            'public/images/setting/Avatar.jpg')
+                              'public/images/setting/Avatar.jpg')
                           }
                           alt="Avatar"
                           className={css.photo}
                         />
                         <label htmlFor={`${fieldId}-avatar`} className={css.link} >
-                        <LuUpload className={css.iconChange}/>Upload a photo</label>
+                          <LuUpload className={css.iconChange} />Upload a photo</label>
                         <input type='file' className={css.change} onChange={e => changeHandler(e)}
-                        id={`${fieldId}-avatar`} accept="image/*" name="file"/>                                      
+                          id={`${fieldId}-avatar`} accept="image/*" name="file" />
                       </div>
                     </div>
                     <FormControl className={css.radio}>
@@ -168,12 +168,11 @@ const handleGenderChange = (event) => {
                         <h3>Your gender identity</h3>
                       </FormLabel>
                       <RadioGroup
-                         row
-                         aria-labelledby="gender-radio-group-label"                         
-                         name="gender"
-                         value={selectedGender || userData?.gender}
+                        row
+                        aria-labelledby="gender-radio-group-label"
+                        name="gender"
+                        value={selectedGender || userData?.gender}
                         onChange={handleGenderChange}
-                                                 
                       >
                         <FormControlLabel
                           value="female"
@@ -333,7 +332,7 @@ const handleGenderChange = (event) => {
                   <button type="submit" className={css.button}>
                     Save
                   </button>
-                  <Toaster position="top-center" reverseOrder={true}/>
+                  <Toaster position="top-center" reverseOrder={true} />
                 </div>
               </Form>
             </Formik>

@@ -25,27 +25,13 @@ const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
 import Loader from '../Loader/Loader.jsx';
-// import { useAuth } from '../../hooks/useAuth.jsx';
 
 export default function App() {
-  // const { isRefreshing, token } = useAuth();
 
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
   const isRefresh = useSelector(selectIsRefresh);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     dispatch(refreshUser())
-  //       .unwrap()
-  //       .then(() => {
-  //         navigate('/home');
-  //       })
-  //       .catch(err => toast.error(`Something gone wrong.${err}`));
-  //     return;
-  //   }
-  // }, [dispatch, token, navigate]);
 
   useEffect(() => {
     dispatch(refreshUser());

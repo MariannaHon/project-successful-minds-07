@@ -39,11 +39,11 @@ export const TodayListModal = ({
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    const newAmount = amount; // отримуємо кількість води з стану
-    const newDate = date; // отримуємо дату з стану
+    const newAmount = amount;
+    const newDate = date;
 
-    updateWaterData(newAmount, newDate); // викликаємо функцію для оновлення даних
-    onClose(); // закриваємо модальне вікно
+    updateWaterData(newAmount, newDate);
+    onClose();
   };
 
   const handleAmountChange = e => {
@@ -76,18 +76,6 @@ export const TodayListModal = ({
                 </div>
               </div>
             </div>
-
-            {isModalOpen && (
-                <div className={css.modalOverlay}>
-                    <EditWaterForm
-                        initialAmount={amount}
-                        initialDate={date}
-                        updateWaterData={updateWaterData}
-                        onClose={handleModalClose}
-                    />
-                </div>
-            )}
-
 
             <div className={css.amountCorrection}>
               <p className={css.enteredData}>Correct entered data:</p>

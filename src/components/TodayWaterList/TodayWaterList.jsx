@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import css from './TodayWaterList.module.css';
-// import { CiGlass } from 'react-icons/ci';
 import { deleteWater, fetchWaterPerDay } from '../../redux/water/operations.js';
 import moment from 'moment';
 import AddWaterModal from '../AddWaterModal/AddWaterModal.jsx';
@@ -122,7 +121,7 @@ export const TodayWaterList = ({
         <AddWaterModal
           initialAmount={0}
           onClose={toggleModal}
-          updateWaterData={handleAddWater} // Викликаємо функцію додавання води
+          updateWaterData={handleAddWater}
         />
       )}
 

@@ -17,10 +17,8 @@ const DaysGeneralStats = ({
       setIsLargeScreen(window.innerWidth > 1440);
     };
 
-    // Check on load
     checkScreenSize();
 
-    // Add event listener to update on resize
     window.addEventListener('resize', checkScreenSize);
 
     return () => {
@@ -43,11 +41,11 @@ const DaysGeneralStats = ({
       ref={popupRef}
       style={{
         ...styles.popup,
-        top: '50%', // Center vertically
-        left: '50%', // Center horizontally
+        top: '50%',
+        left: '50%',
         transform: isLargeScreen
-          ? 'translate(-50%, -50%)' // Center modal for large screens
-          : 'translate(-50%, 300%)', // Default positioning for smaller screens
+          ? 'translate(-50%, -50%)'
+          : 'translate(-50%, 300%)',
         width: '285px',
       }}
     >

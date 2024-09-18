@@ -75,7 +75,6 @@ const Calendar = () => {
         <div data-tour="calendar-step" className={css.calendarContainer}>
             <ul className={css.calendarList}>
 
-       
                 {loading ?
                     <div className={css.calendarLoader}>
                         <Loader />
@@ -114,7 +113,7 @@ const Calendar = () => {
                         dailyNorm={activeDayData.dailyWaterRate}
                         normCompletion={activeDayData.consumedPercentage}
                         servings={activeDayData.consumptionCount}
-                        targetElement={selectedDateElement} // Передаємо елемент для позиціювання
+                        targetElement={selectedDateElement}
                     />
                 </ClickOutside>
             )}

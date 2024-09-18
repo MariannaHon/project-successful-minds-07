@@ -4,7 +4,7 @@ import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../../redux/auth/operations';
 import { useId } from 'react';
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const ForgotPasswordForm = () => {
   const mailFieldId = useId();
@@ -18,23 +18,23 @@ const ForgotPasswordForm = () => {
     const userEmail = { email: values.email };
     dispatch(forgotPassword(userEmail))
       .unwrap()
-      // .then(() => {})
-      // .catch(() => {
-      //   toast.error('Passwords did not happen', {
-      //     position: 'top-right',
-      //   });
-      // });
+    // .then(() => {})
+    // .catch(() => {
+    //   toast.error('Passwords did not happen', {
+    //     position: 'top-right',
+    //   });
+    // });
     actions.resetForm();
   };
   return (
     <>
-    <Toaster/>
-    <Formik
-      initialValues={{ email: '' }}
-      validationSchema={forgot}
-      onSubmit={onSubmit}
-    >
-      {({ errors, touched }) => (
+      <Toaster />
+      <Formik
+        initialValues={{ email: '' }}
+        validationSchema={forgot}
+        onSubmit={onSubmit}
+      >
+        {({ errors, touched }) => (
           <Form className={css.formContainer} name="ForgotPassword" noValidate>
             <label htmlFor={mailFieldId} className={css.label}>
               Enter your email

@@ -51,32 +51,28 @@ const WaterRatioPanel = ({ handleAddWater }) => {
             <div
               className={css.thumb}
               style={{
-                left: `calc(${progressPercentage}% - ${
-                  (progressPercentage * 14) / 100
-                }px)`,
+                left: `calc(${progressPercentage}% - ${(progressPercentage * 14) / 100
+                  }px)`,
               }}
             >
               <span className={css.percentageLabel}>{progressPercentage}%</span>
             </div>
             <div className={css.progressTextNumber}>
               <span
-                className={`${css.progressText} ${
-                  progressPercentage <= 0 ? css.mark : ''
-                }`}
+                className={`${css.progressText} ${progressPercentage <= 0 ? css.mark : ''
+                  }`}
               >
                 0%
               </span>
               <span
-                className={`${css.progressText} ${
-                  progressPercentage === 50 ? css.mark : ''
-                }`}
+                className={`${css.progressText} ${progressPercentage === 50 ? css.mark : ''
+                  }`}
               >
                 50%
               </span>
               <span
-                className={`${css.progressText} ${
-                  progressPercentage >= 100 ? css.mark : ''
-                }`}
+                className={`${css.progressText} ${progressPercentage >= 100 ? css.mark : ''
+                  }`}
               >
                 100%
               </span>
@@ -97,7 +93,7 @@ const WaterRatioPanel = ({ handleAddWater }) => {
         <AddWaterModal
           initialAmount={0}
           onClose={toggleModal}
-          updateWaterData={handleAddWater} // Додаємо нову воду
+          updateWaterData={handleAddWater}
         />
       )}
     </div>

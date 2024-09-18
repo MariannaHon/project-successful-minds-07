@@ -5,8 +5,8 @@ const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) =
     backgroundColor: isActive
       ? '#fff'
       : feasibility < 100
-      ? '#fff)'
-      : '#FFFFFF',
+        ? '#fff)'
+        : '#FFFFFF',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
     opacity: isDisabled ? 1 : 1,
     border:
@@ -14,14 +14,14 @@ const CalendarItem = ({ feasibility = 0, day, isActive, onClick, isDisabled }) =
   };
 
   const handleClick = (event) => {
-    onClick(event); 
+    onClick(event);
   };
 
   return (
     <div className={css.calendarItemContainer}>
       <button
         className={css.calendarItemButton}
-         style={containerStyle}
+        style={containerStyle}
         onClick={handleClick}
         disabled={isDisabled}
       >
