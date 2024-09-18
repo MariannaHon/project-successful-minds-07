@@ -15,12 +15,13 @@ export const fetchUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'update/user',
-  async ({ gender, name, email, password, waterRate }, thunkAPI) => {
+  async ({ gender, name, email, oldPassword, password, waterRate }, thunkAPI) => {
     try {
       const response = await axios.patch('users', {
         gender,
         name,
         email,
+        oldPassword,
         password,
         waterRate,
       });
@@ -34,14 +35,14 @@ export const updateUser = createAsyncThunk(
 export const changeAvatar = createAsyncThunk(
 
   'update/avatar',
-  async (formData,thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-    const response = await axios.patch('users/avatar', formData);
-    return response.data.avatar;
-  } catch (error) {
-    console.log(error)
-    return thunkAPI.rejectWithValue(error.message);
+      const response = await axios.patch('users/avatar', formData);
+      return response.data.avatar;
+    } catch (error) {
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.message);
 
+    }
   }
-}
 );
