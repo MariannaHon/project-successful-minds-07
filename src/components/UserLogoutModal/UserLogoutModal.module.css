@@ -54,6 +54,13 @@ h3 {
     background-color: var(--secondary-blue);
     border-radius: 10px;
     outline: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.33333;
+    text-align: center;
+    color: #407bff;
 }
 
 .buttonLogout {
@@ -62,6 +69,13 @@ h3 {
     background-color: var(--secondary-red);
     border-radius: 10px;
     outline: 0;
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.33333;
+    text-align: center;
+    color: #fff;
 }
 
 .containerAll {

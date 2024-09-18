@@ -12,9 +12,22 @@ import css from './DailyNormaModal.module.css';
 import { IoClose } from 'react-icons/io5';
 
 const schema = yup.object().shape({
-    weight: yup.number().min(0).max(300),
-    dailyTimeActivity: yup.number().min(0).max(10),
-    todayWater: yup.number().typeError('Please, enter a number').min(0).max(10).required('Daily water intake is required'),
+    weight: yup
+        .mixed()
+        .test('is-number-or-empty', 'Weight must be a number or an empty string', (value) => {
+            return value === '' || (!isNaN(value) && parseFloat(value) >= 0 && parseFloat(value) <= 300);
+        }),
+    dailyTimeActivity: yup
+        .mixed()
+        .test('is-number-or-empty', 'Activity time must be a number or an empty string', (value) => {
+            return value === '' || (!isNaN(value) && parseFloat(value) >= 0 && parseFloat(value) <= 10);
+        }),
+    todayWater: yup
+        .number()
+        .typeError('Please, enter a number')
+        .min(0)
+        .max(10)
+        .required('Daily water intake is required'),
 });
 
 
@@ -55,8 +68,8 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             setFinalWaterNorm(initialWaterNorm);
             setManualWaterNorm(initialWaterNorm);
             reset({
-                weight: user.weight || 0,
-                dailyTimeActivity: user.dailyTimeActivity || 0,
+                weight: user.weight || '',
+                dailyTimeActivity: user.dailyTimeActivity || '',
                 todayWater: user.waterRate ? user.waterRate / 1000 : '',
                 gender: user.gender || ''
             });
@@ -67,9 +80,9 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
         if (watchFields[0] && watchFields[1] && !isEditing) {
             const calculatedNormaWater = calculateNormaWater(watchFields[2], watchFields[0], watchFields[1]);
             const formattedValue = formatNumber(calculatedNormaWater);
-            setValue('todayWater', parseFloat(formattedValue));
             setManualWaterNorm(formattedValue);
             setFinalWaterNorm(formattedValue);
+            setValue('todayWater', parseFloat(formattedValue));
         }
     }, [watchFields, setValue, isEditing]);
 
@@ -84,6 +97,7 @@ const DailyNormaModal = ({ onClose, onUpdateSuccess }) => {
             };
 
             await dispatch(updateUser(updateUserPayload)).unwrap();
+
             toast.success('The changes were successfully applied!');
             onUpdateSuccess(todayWaterInMilliliters);
             onClose();

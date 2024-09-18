@@ -41,6 +41,7 @@ h3 {
     border: 1px solid var(--primary-white);
     width: 80px;
     height: 80px;
+    object-fit: cover;
 }
 .iconChange {
     color: var(--primary-blue);
@@ -117,8 +118,6 @@ input:focus:invalid {
     display: flex;
     align-items: center;
     gap: 8px;
-  
-    
 }
 .errorInput {
     border: 1px solid var(--secondary-red);
@@ -153,9 +152,7 @@ input:focus:invalid {
 .rightBox {
     display: flex;
     flex-direction: column;
-    /* align-items: flex-end; */
     margin-top: 24px;
-    /* max-width: 960px; */
 }
 @media screen and (max-width: 767px) {
 .container {
@@ -164,8 +161,6 @@ input:focus:invalid {
 }
 .modalWindow {
     width: 280px;
-   
-
 }
 .leftRightGroup {
     display: flex;
@@ -206,7 +201,6 @@ input:focus:invalid {
 
 .modalWindow {
     width: 704px; 
-   
 }
 .leftRightGroup {
     display: flex;
@@ -241,7 +235,6 @@ input:focus:invalid {
 }
 .modalWindow {
     width: 1008px;
-   
 }
 .groupRight {
     align-items: flex-start;    
@@ -261,8 +254,6 @@ input:focus:invalid {
 
 .thumb {
     position: relative;
-  
- 
 }
 .eye {
     position: absolute;

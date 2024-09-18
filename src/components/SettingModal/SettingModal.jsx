@@ -71,28 +71,6 @@ function SettingModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const handleSubmit = async (values, actions) => {
-  //   try {
-  //     const result = await dispatch(updateUser({
-  //       gender: selectedGender,
-  //       name: values.name,
-  //       email: values.email,
-  //       oldPassword: values.outPassword,
-  //       password: values.nPassword || values.password
-  //     })
-  //     ).unwrap();
-  //     if (updateUser.fulfilled) {
-  //       actions.resetForm(result);
-  //       setOpen(false);
-  //       dispatch(refreshUser());
-  //     }
-  //   } catch (error) {
-  //     toast.error('Something went wrong :( Try again later.');
-  //     console.error('Failed to update user data:', error);
-  //     actions.setErrors({ submit: error.message });
-  //     setOpen(true);
-  //   }
-  // };
 
   const handleSubmit = async (values, actions) => {
     try {
