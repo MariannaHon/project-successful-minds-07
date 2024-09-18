@@ -23,7 +23,6 @@ h3 {
     display: flex;
     flex-direction: column;
     gap: 12px;
- 
 }
 .groupLeft {
     display: flex;
@@ -58,13 +57,12 @@ h3 {
     color: var(--primary-blue);
     display: flex;
     align-items: center;
-   
 }
 @media (max-width: 1400px) and  (min-width: 320px){
     .modalWindow {
-      overflow: scroll;
+    overflow-y: scroll;
     }
-  }
+}
 .field {
     position: relative;
     padding: 4px;
